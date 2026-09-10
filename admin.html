@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Lavanya</title>
+
+    <link rel="stylesheet" href="Assets/css/common.css">
+    <link rel="stylesheet" href="Assets/css/admin.css">
+
+</head>
+
+<body class="admin-body">
+
+    <!-- =========================================
+         LOGIN GATE
+         ========================================= -->
+
+    <div class="admin-login-screen" id="admin-login-screen">
+
+        <div class="admin-login-card">
+
+            <a href="index.html" class="logo">lavanya<span>.</span></a>
+            <p class="admin-login-sub">Admin Dashboard</p>
+
+            <form id="admin-login-form">
+
+                <div class="admin-field">
+                    <label for="admin-username">Username</label>
+                    <input type="text" id="admin-username" autocomplete="username" required>
+                </div>
+
+                <div class="admin-field">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" autocomplete="current-password" required>
+                </div>
+
+                <p class="admin-error" id="admin-login-error"></p>
+
+                <button type="submit" class="admin-btn admin-btn-primary">Sign In</button>
+
+            </form>
+
+            <p class="admin-hint">
+                Demo credentials: <strong>admin</strong> / <strong>lavanya123</strong><br>
+                This is a client-side demo gate only — it is not real authentication
+                and must be replaced by a proper backend login once one exists.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ADMIN APP
+         ========================================= -->
+
+    <div class="admin-app" id="admin-app" style="display:none;">
+
+        <aside class="admin-sidebar">
+
+            <a href="index.html" class="logo">lavanya<span>.</span></a>
+            <p class="admin-sidebar-tag">Admin Dashboard</p>
+
+            <nav class="admin-nav">
+                <button type="button" class="nav-link active" data-panel="dashboard">Dashboard</button>
+                <button type="button" class="nav-link" data-panel="products">Products</button>
+                <button type="button" class="nav-link" data-panel="orders">Orders</button>
+                <button type="button" class="nav-link" data-panel="customers">Customers</button>
+                <button type="button" class="nav-link" data-panel="messages">Messages</button>
+                <button type="button" class="nav-link" data-panel="newsletter">Newsletter</button>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <a href="index.html">&larr; Back to site</a>
+                <button type="button" id="admin-logout-btn">Log out</button>
+            </div>
+
+        </aside>
+
+        <main class="admin-main">
+
+            <div class="admin-banner">
+                This dashboard reads and writes data stored in this browser
+                (localStorage) so it works with the site as it exists today.
+                Once the Spring/Hibernate backend is built, these sections
+                should be pointed at real REST endpoints instead.
+            </div>
+
+            <!-- DASHBOARD -->
+            <section class="admin-panel active" id="panel-dashboard">
+
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p>A quick snapshot of the store.</p>
+                    </div>
+                </div>
+
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="stat-label">Products</div>
+                        <div class="stat-value" id="stat-products">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-label">Registered Customers</div>
+                        <div class="stat-value" id="stat-customers">0</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-label">Last Order Total</div>
+                        <div class="stat-value" id="stat-last-order">—</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="stat-label">Newsletter Signups</div>
+                        <div class="stat-value" id="stat-newsletter">0</div>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h3>Recent activity</h3>
+                    <p class="card-sub">The latest events this browser has recorded.</p>
+                    <dl class="admin-kv" id="activity-list"></dl>
+                </div>
+
+            </section>
+
+            <!-- PRODUCTS -->
+            <section class="admin-panel" id="panel-products">
+
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Products</h1>
+                        <p>Manage the catalog shown on the Shop page.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+
+                    <div class="admin-section-head">
+                        <div>
+                            <h3>All products</h3>
+                            <p class="card-sub">Stored under the <code>lavanyaAdminProducts</code> key.</p>
+                        </div>
+                        <button type="button" class="admin-btn admin-btn-terracotta" id="add-product-btn">
+                            + Add Product
+                        </button>
+                    </div>
+
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price (NPR)</th>
+                                    <th>Badge</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table-body"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ORDERS -->
+            <section class="admin-panel" id="panel-orders">
+
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Orders</h1>
+                        <p>The site currently keeps only the most recent order — not a full history.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card" id="order-card">
+                    <h3>Most recent order</h3>
+                    <p class="card-sub">From <code>lavanyaLastOrder</code>.</p>
+                    <div id="order-detail"></div>
+                </div>
+
+            </section>
+
+            <!-- CUSTOMERS -->
+            <section class="admin-panel" id="panel-customers">
+
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Customers</h1>
+                        <p>The site currently keeps only the last registered account, not a full customer list.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card" id="customer-card">
+                    <h3>Registered customer</h3>
+                    <p class="card-sub">From <code>lavanyaRegisteredUser</code>.</p>
+                    <div id="customer-detail"></div>
+                </div>
+
+            </section>
+
+            <!-- MESSAGES -->
+            <section class="admin-panel" id="panel-messages">
+
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Contact Messages</h1>
+                        <p>Submissions from the Contact page.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card" id="message-card">
+                    <h3>Latest message</h3>
+                    <p class="card-sub">From <code>lavanyaContactMessage</code>.</p>
+                    <div id="message-detail"></div>
+                </div>
+
+            </section>
+
+            <!-- NEWSLETTER -->
+            <section class="admin-panel" id="panel-newsletter">
+
+                <div class="admin-topbar">
+                    <div>
+                        <h1>Newsletter</h1>
+                        <p>Signups from the footer and account page forms.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card" id="newsletter-card">
+                    <h3>Latest signup</h3>
+                    <p class="card-sub">From <code>lavanyaNewsletter</code>.</p>
+                    <div id="newsletter-detail"></div>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         ADD / EDIT PRODUCT MODAL
+         ========================================= -->
+
+    <div class="admin-modal-overlay" id="product-modal-overlay">
+
+        <div class="admin-modal">
+
+            <h3 id="product-modal-title">Add Product</h3>
+
+            <form id="product-form">
+
+                <input type="hidden" id="product-id">
+
+                <div class="admin-field">
+                    <label for="product-name">Product name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+
+                <div class="admin-modal-row">
+
+                    <div class="admin-field">
+                        <label for="product-category">Category</label>
+                        <select id="product-category" required>
+                            <option value="cleanse">Cleanse</option>
+                            <option value="treat">Treat</option>
+                            <option value="moisturize">Moisturize</option>
+                            <option value="protect">Protect</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="product-price">Price (NPR)</label>
+                        <input type="number" id="product-price" min="0" step="1" required>
+                    </div>
+
+                </div>
+
+                <div class="admin-field">
+                    <label for="product-image">Image path</label>
+                    <input type="text" id="product-image" placeholder="Assets/Images/example.jpg">
+                </div>
+
+                <div class="admin-field">
+                    <label for="product-badge">Badge (optional)</label>
+                    <input type="text" id="product-badge" placeholder="BESTSELLER">
+                </div>
+
+                <div class="admin-field">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="3"></textarea>
+                </div>
+
+                <p class="admin-error" id="product-form-error"></p>
+
+                <div class="admin-modal-actions">
+                    <button type="button" class="admin-btn admin-btn-outline" id="product-cancel-btn">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary">Save Product</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ========================================
+           SEED DATA
+           (Copied from shop.html so the admin panel
+           has something to manage on first load.)
+           ======================================== */
+
+        const seedProducts = [
+            { id: "cleanse-01", name: "Gentle Botanical Cleanser", category: "cleanse", categoryLabel: "CLEANSE", price: 850, image: "Assets/Images/cleanser1.jpg", description: "A soft daily cleanser designed to leave skin feeling fresh and comfortable.", badge: "BESTSELLER" },
+            { id: "cleanse-02", name: "Green Tea Purifying Cleanser", category: "cleanse", categoryLabel: "CLEANSE", price: 950, image: "Assets/Images/cleanser2.jpg", description: "A refreshing cleanser for a clean, balanced-looking complexion.", badge: "NEW" },
+            { id: "treat-01", name: "Clarity Botanical Serum", category: "treat", categoryLabel: "TREAT", price: 1450, image: "Assets/Images/serum1.jpg", description: "A targeted serum for routines focused on clearer-looking, smoother skin.", badge: "TARGETED" },
+            { id: "treat-02", name: "Radiance Botanical Serum", category: "treat", categoryLabel: "TREAT", price: 1550, image: "Assets/Images/serum2.jpg", description: "A brightening-focused botanical serum for a fresh, radiant-looking complexion.", badge: "RADIANCE" },
+            { id: "treat-03", name: "Calm Botanical Essence", category: "treat", categoryLabel: "TREAT", price: 1250, image: "Assets/Images/essence.jpg", description: "A soothing essence layer for routines built around comfort and calm.", badge: "SOOTHING" },
+            { id: "moisturize-01", name: "Daily Botanical Moisturizer", category: "moisturize", categoryLabel: "MOISTURIZE", price: 1150, image: "Assets/Images/moisturizer.jpg", description: "A lightweight, everyday moisturizer for a comfortable, balanced feel.", badge: "DAILY ESSENTIAL" },
+            { id: "moisturize-02", name: "Rich Botanical Cream", category: "moisturize", categoryLabel: "MOISTURIZE", price: 1650, image: "Assets/Images/skincare2.jpg", description: "A richer cream for routines that need extra comfort and nourishment.", badge: "RICH FORMULA" },
+            { id: "acne-01", name: "Acne Clarifying Treatment", category: "treat", categoryLabel: "TREAT", price: 1350, image: "Assets/Images/acnetreat.jpg", description: "A targeted treatment for routines focused on blemish-prone skin.", badge: "TARGETED" },
+            { id: "protect-01", name: "Daily Botanical SPF", category: "protect", categoryLabel: "PROTECT", price: 1250, image: "Assets/Images/spf1.jpg", description: "An everyday sunscreen step designed to layer easily under makeup.", badge: "DAILY ESSENTIAL" },
+            { id: "protect-02", name: "Mineral Botanical SPF", category: "protect", categoryLabel: "PROTECT", price: 1350, image: "Assets/Images/spf2.jpg", description: "A mineral sunscreen option for a simple everyday protection step.", badge: "MINERAL" }
+        ];
+
+        const ADMIN_AUTH_KEY = "lavanyaAdminAuthed";
+        const ADMIN_PRODUCTS_KEY = "lavanyaAdminProducts";
+
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "lavanya123";
+
+
+        /* ========================================
+           LOGIN GATE
+           ======================================== */
+
+        const loginScreen = document.getElementById("admin-login-screen");
+        const adminApp = document.getElementById("admin-app");
+        const loginForm = document.getElementById("admin-login-form");
+        const loginError = document.getElementById("admin-login-error");
+
+        function showApp() {
+            loginScreen.style.display = "none";
+            adminApp.style.display = "grid";
+            renderAll();
+        }
+
+        if (sessionStorage.getItem(ADMIN_AUTH_KEY) === "true") {
+            showApp();
+        }
+
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById("admin-username").value.trim();
+            const password = document.getElementById("admin-password").value;
+
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                sessionStorage.setItem(ADMIN_AUTH_KEY, "true");
+                loginError.textContent = "";
+                showApp();
+            } else {
+                loginError.textContent = "Incorrect username or password.";
+            }
+        });
+
+        document.getElementById("admin-logout-btn").addEventListener("click", function () {
+            sessionStorage.removeItem(ADMIN_AUTH_KEY);
+            adminApp.style.display = "none";
+            loginScreen.style.display = "flex";
+            loginForm.reset();
+        });
+
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+
+        const navLinks = document.querySelectorAll(".nav-link");
+        const panels = document.querySelectorAll(".admin-panel");
+
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.forEach(function (l) { l.classList.remove("active"); });
+                panels.forEach(function (p) { p.classList.remove("active"); });
+
+                link.classList.add("active");
+                document.getElementById("panel-" + link.dataset.panel).classList.add("active");
+            });
+        });
+
+
+        /* ========================================
+           PRODUCTS: storage helpers
+           ======================================== */
+
+        function getProducts() {
+            const stored = localStorage.getItem(ADMIN_PRODUCTS_KEY);
+
+            if (!stored) {
+                localStorage.setItem(ADMIN_PRODUCTS_KEY, JSON.stringify(seedProducts));
+                return seedProducts.slice();
+            }
+
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                return seedProducts.slice();
+            }
+        }
+
+        function saveProducts(products) {
+            localStorage.setItem(ADMIN_PRODUCTS_KEY, JSON.stringify(products));
+        }
+
+        function renderProducts() {
+            const products = getProducts();
+            const tbody = document.getElementById("products-table-body");
+
+            if (products.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='5'><div class='admin-empty'>No products yet.</div></td></tr>";
+            } else {
+                tbody.innerHTML = products.map(function (product) {
+                    return "<tr>" +
+                        "<td class='wrap'>" + escapeHtml(product.name) + "</td>" +
+                        "<td>" + escapeHtml(product.categoryLabel || product.category) + "</td>" +
+                        "<td>NPR " + Number(product.price).toLocaleString() + "</td>" +
+                        "<td>" + (product.badge ? "<span class='admin-badge'>" + escapeHtml(product.badge) + "</span>" : "—") + "</td>" +
+                        "<td><div class='admin-row-actions'>" +
+                        "<button type='button' class='edit-btn' data-id='" + product.id + "'>Edit</button>" +
+                        "<button type='button' class='delete-btn' data-id='" + product.id + "'>Delete</button>" +
+                        "</div></td>" +
+                        "</tr>";
+                }).join("");
+            }
+
+            document.getElementById("stat-products").textContent = products.length;
+
+            tbody.querySelectorAll(".edit-btn").forEach(function (btn) {
+                btn.addEventListener("click", function () { openProductModal(btn.dataset.id); });
+            });
+
+            tbody.querySelectorAll(".delete-btn").forEach(function (btn) {
+                btn.addEventListener("click", function () { deleteProduct(btn.dataset.id); });
+            });
+        }
+
+        function deleteProduct(id) {
+            if (!confirm("Delete this product? This cannot be undone.")) {
+                return;
+            }
+
+            const products = getProducts().filter(function (p) { return p.id !== id; });
+            saveProducts(products);
+            renderProducts();
+        }
+
+
+        /* ========================================
+           PRODUCTS: add / edit modal
+           ======================================== */
+
+        const productModalOverlay = document.getElementById("product-modal-overlay");
+        const productForm = document.getElementById("product-form");
+        const productFormError = document.getElementById("product-form-error");
+
+        function openProductModal(id) {
+            productForm.reset();
+            productFormError.textContent = "";
+
+            if (id) {
+                const product = getProducts().find(function (p) { return p.id === id; });
+
+                if (!product) {
+                    return;
+                }
+
+                document.getElementById("product-modal-title").textContent = "Edit Product";
+                document.getElementById("product-id").value = product.id;
+                document.getElementById("product-name").value = product.name;
+                document.getElementById("product-category").value = product.category;
+                document.getElementById("product-price").value = product.price;
+                document.getElementById("product-image").value = product.image || "";
+                document.getElementById("product-badge").value = product.badge || "";
+                document.getElementById("product-description").value = product.description || "";
+            } else {
+                document.getElementById("product-modal-title").textContent = "Add Product";
+                document.getElementById("product-id").value = "";
+            }
+
+            productModalOverlay.classList.add("active");
+        }
+
+        function closeProductModal() {
+            productModalOverlay.classList.remove("active");
+        }
+
+        document.getElementById("add-product-btn").addEventListener("click", function () {
+            openProductModal(null);
+        });
+
+        document.getElementById("product-cancel-btn").addEventListener("click", closeProductModal);
+
+        productModalOverlay.addEventListener("click", function (event) {
+            if (event.target === productModalOverlay) {
+                closeProductModal();
+            }
+        });
+
+        const categoryLabels = {
+            cleanse: "CLEANSE",
+            treat: "TREAT",
+            moisturize: "MOISTURIZE",
+            protect: "PROTECT"
+        };
+
+        productForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("product-name").value.trim();
+            const category = document.getElementById("product-category").value;
+            const price = Number(document.getElementById("product-price").value);
+            const image = document.getElementById("product-image").value.trim();
+            const badge = document.getElementById("product-badge").value.trim();
+            const description = document.getElementById("product-description").value.trim();
+            const existingId = document.getElementById("product-id").value;
+
+            if (!name || !price) {
+                productFormError.textContent = "Please fill in the product name and price.";
+                return;
+            }
+
+            const products = getProducts();
+
+            if (existingId) {
+                const index = products.findIndex(function (p) { return p.id === existingId; });
+
+                if (index !== -1) {
+                    products[index] = Object.assign({}, products[index], {
+                        name: name,
+                        category: category,
+                        categoryLabel: categoryLabels[category],
+                        price: price,
+                        image: image,
+                        badge: badge,
+                        description: description
+                    });
+                }
+            } else {
+                const newId = category + "-" + Date.now();
+
+                products.push({
+                    id: newId,
+                    name: name,
+                    category: category,
+                    categoryLabel: categoryLabels[category],
+                    price: price,
+                    image: image,
+                    badge: badge,
+                    description: description
+                });
+            }
+
+            saveProducts(products);
+            closeProductModal();
+            renderProducts();
+        });
+
+
+        /* ========================================
+           ORDERS / CUSTOMERS / MESSAGES / NEWSLETTER
+           ======================================== */
+
+        function renderOrder() {
+            const raw = localStorage.getItem("lavanyaLastOrder");
+            const container = document.getElementById("order-detail");
+            const statEl = document.getElementById("stat-last-order");
+
+            if (!raw) {
+                container.innerHTML = "<div class='admin-empty'>No orders have been placed yet.</div>";
+                statEl.textContent = "—";
+                return;
+            }
+
+            let order;
+
+            try {
+                order = JSON.parse(raw);
+            } catch (e) {
+                container.innerHTML = "<div class='admin-empty'>Order data could not be read.</div>";
+                return;
+            }
+
+            statEl.textContent = "NPR " + Number(order.total || 0).toLocaleString();
+
+            const customerName = order.customer && (order.customer.name || order.customer.fullName || order.customer.email) || "—";
+            const itemsHtml = (order.items || []).map(function (item) {
+                return "<li><span>" + escapeHtml(item.name || "Item") + " &times; " + (item.quantity || 1) + "</span><span>NPR " + Number((item.price || 0) * (item.quantity || 1)).toLocaleString() + "</span></li>";
+            }).join("");
+
+            container.innerHTML =
+                "<dl class='admin-kv'>" +
+                "<dt>Order number</dt><dd>" + escapeHtml(order.orderNumber || "—") + "</dd>" +
+                "<dt>Customer</dt><dd>" + escapeHtml(String(customerName)) + "</dd>" +
+                "<dt>Subtotal</dt><dd>NPR " + Number(order.subtotal || 0).toLocaleString() + "</dd>" +
+                "<dt>Shipping</dt><dd>NPR " + Number(order.shipping || 0).toLocaleString() + "</dd>" +
+                "<dt>Discount</dt><dd>NPR " + Number(order.discount || 0).toLocaleString() + "</dd>" +
+                "<dt>Total</dt><dd>NPR " + Number(order.total || 0).toLocaleString() + "</dd>" +
+                "<dt>Placed at</dt><dd>" + escapeHtml(order.placedAt || "—") + "</dd>" +
+                "</dl>" +
+                "<ul class='admin-order-items'>" + (itemsHtml || "<li>No items recorded.</li>") + "</ul>";
+        }
+
+        function renderCustomer() {
+            const raw = localStorage.getItem("lavanyaRegisteredUser");
+            const container = document.getElementById("customer-detail");
+            const statEl = document.getElementById("stat-customers");
+
+            if (!raw) {
+                container.innerHTML = "<div class='admin-empty'>No customer has registered yet.</div>";
+                statEl.textContent = "0";
+                return;
+            }
+
+            let user;
+
+            try {
+                user = JSON.parse(raw);
+            } catch (e) {
+                container.innerHTML = "<div class='admin-empty'>Customer data could not be read.</div>";
+                return;
+            }
+
+            statEl.textContent = "1";
+
+            container.innerHTML =
+                "<dl class='admin-kv'>" +
+                "<dt>Name</dt><dd>" + escapeHtml(user.name || "—") + "</dd>" +
+                "<dt>Email</dt><dd>" + escapeHtml(user.email || "—") + "</dd>" +
+                "<dt>Joined</dt><dd>" + escapeHtml(user.createdAt || "—") + "</dd>" +
+                "</dl>";
+        }
+
+        function renderMessage() {
+            const raw = localStorage.getItem("lavanyaContactMessage");
+            const container = document.getElementById("message-detail");
+
+            if (!raw) {
+                container.innerHTML = "<div class='admin-empty'>No contact messages yet.</div>";
+                return;
+            }
+
+            let msg;
+
+            try {
+                msg = JSON.parse(raw);
+            } catch (e) {
+                container.innerHTML = "<div class='admin-empty'>Message data could not be read.</div>";
+                return;
+            }
+
+            container.innerHTML =
+                "<dl class='admin-kv'>" +
+                "<dt>Name</dt><dd>" + escapeHtml(msg.name || "—") + "</dd>" +
+                "<dt>Email</dt><dd>" + escapeHtml(msg.email || "—") + "</dd>" +
+                "<dt>Subject</dt><dd>" + escapeHtml(msg.subject || "—") + "</dd>" +
+                "<dt>Message</dt><dd>" + escapeHtml(msg.message || "—") + "</dd>" +
+                "</dl>";
+        }
+
+        function renderNewsletter() {
+            const email = localStorage.getItem("lavanyaNewsletter");
+            const container = document.getElementById("newsletter-detail");
+            const statEl = document.getElementById("stat-newsletter");
+
+            if (!email) {
+                container.innerHTML = "<div class='admin-empty'>No newsletter signups yet.</div>";
+                statEl.textContent = "0";
+                return;
+            }
+
+            statEl.textContent = "1";
+            container.innerHTML = "<dl class='admin-kv'><dt>Email</dt><dd>" + escapeHtml(email) + "</dd></dl>";
+        }
+
+        function renderActivity() {
+            const list = document.getElementById("activity-list");
+            const items = [];
+
+            const order = localStorage.getItem("lavanyaLastOrder");
+            const user = localStorage.getItem("lavanyaRegisteredUser");
+            const message = localStorage.getItem("lavanyaContactMessage");
+            const newsletter = localStorage.getItem("lavanyaNewsletter");
+
+            if (order) items.push(["Last order placed", JSON.parse(order).placedAt || "—"]);
+            if (user) items.push(["Customer registered", JSON.parse(user).email || "—"]);
+            if (message) items.push(["Message received from", JSON.parse(message).name || "—"]);
+            if (newsletter) items.push(["Newsletter signup", newsletter]);
+
+            if (items.length === 0) {
+                list.innerHTML = "<div class='admin-empty'>Nothing recorded yet — browse the site to generate activity.</div>";
+                return;
+            }
+
+            list.innerHTML = items.map(function (pair) {
+                return "<dt>" + escapeHtml(pair[0]) + "</dt><dd>" + escapeHtml(String(pair[1])) + "</dd>";
+            }).join("");
+        }
+
+
+        /* ========================================
+           UTIL
+           ======================================== */
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function renderAll() {
+            renderProducts();
+            renderOrder();
+            renderCustomer();
+            renderMessage();
+            renderNewsletter();
+            renderActivity();
+        }
+
+    </script>
+
+</body>
+
+</html>
