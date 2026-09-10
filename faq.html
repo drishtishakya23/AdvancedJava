@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FAQ | Lavanya</title>
+
+    <!-- COMMON HEADER AND FOOTER CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
+
+    <!-- FAQ PAGE CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/faq.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+         ========================================= -->
+
+    <div class="announcement-bar">
+
+        Free shipping on orders over NPR 2500
+        <span>|</span>
+        Thoughtful botanical skincare
+
+    </div>
+
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                lavanya<span>.</span>
+            </a>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="quiz.html">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <a
+                    href="#shop-products"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main>
+
+
+        <!-- =====================================
+             FAQ HERO
+             ===================================== -->
+
+        <section class="faq-hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    NEED A LITTLE HELP?
+                </p>
+
+                <h1>
+                    Frequently asked questions.
+                </h1>
+
+                <p>
+                    Find answers about our products,
+                    recommendations, orders, delivery,
+                    and your Lavanya skincare journey.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             FAQ SEARCH
+             ===================================== -->
+
+        <section class="faq-section">
+
+            <div class="container">
+
+                <div class="faq-search">
+
+                    <label
+                        for="faq-search-input"
+                        class="sr-only"
+                    >
+                        Search frequently asked questions
+                    </label>
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="search"
+                        id="faq-search-input"
+                        placeholder="Search your question..."
+                    >
+
+                </div>
+
+
+                <!-- =================================
+                     FAQ CATEGORY FILTERS
+                     ================================= -->
+
+                <div
+                    class="faq-filters"
+                    role="tablist"
+                    aria-label="FAQ categories"
+                >
+
+                    <button
+                        type="button"
+                        class="faq-filter active"
+                        data-category="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        type="button"
+                        class="faq-filter"
+                        data-category="products"
+                    >
+                        Products
+                    </button>
+
+                    <button
+                        type="button"
+                        class="faq-filter"
+                        data-category="recommendations"
+                    >
+                        Recommendations
+                    </button>
+
+                    <button
+                        type="button"
+                        class="faq-filter"
+                        data-category="orders"
+                    >
+                        Orders
+                    </button>
+
+                    <button
+                        type="button"
+                        class="faq-filter"
+                        data-category="shipping"
+                    >
+                        Shipping
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     FAQ LIST
+                     ================================= -->
+
+                <div
+                    class="faq-list"
+                    id="faq-list"
+                >
+
+
+                    <!-- FAQ 1 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="recommendations"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                How does the skin quiz work?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Our skin quiz asks about your
+                                skin type, concerns, routine,
+                                preferences, and budget. Your
+                                answers are compared with product
+                                information to create personalized
+                                shopping recommendations.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 2 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="recommendations"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                Are the recommendations medical advice?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                No. Lavanya recommendations are
+                                designed to help you discover
+                                skincare products based on your
+                                preferences and quiz answers.
+                                They are not a medical diagnosis
+                                or a substitute for professional
+                                medical advice.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 3 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="products"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                How do I know which products are right for me?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                The easiest way is to take our
+                                skin quiz. You can also browse
+                                products by skin type and concern
+                                on the Shop page.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 4 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="products"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                Can I use the products even if they are not a perfect match?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Yes. Match scores are shopping
+                                recommendations, not restrictions.
+                                You can still view and purchase any
+                                product you choose.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 5 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="products"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                What if I am new to skincare?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                That's exactly what the personalized
+                                routine is designed to help with.
+                                Start with a simple routine and add
+                                products gradually as you become
+                                comfortable with your skincare.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 6 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="orders"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                How can I view my order?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                After completing checkout, your order
+                                confirmation contains your order
+                                details. Your most recent order is
+                                also displayed in the My Account page.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 7 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="orders"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                What payment methods are available?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                The checkout experience supports
+                                Cash on Delivery, card payment,
+                                and wallet payment options.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 8 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="shipping"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                When is shipping free?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Standard shipping is free when
+                                your order subtotal reaches
+                                NPR 2500 or more. Orders below
+                                that amount have a standard
+                                shipping charge.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 9 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="shipping"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                How long does delivery take?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Delivery timing can vary depending
+                                on the selected delivery option and
+                                destination. Your selected delivery
+                                method is shown during checkout.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FAQ 10 -->
+
+                    <article
+                        class="faq-item"
+                        data-category="recommendations"
+                    >
+
+                        <button
+                            type="button"
+                            class="faq-question"
+                            aria-expanded="false"
+                        >
+
+                            <span>
+                                Can I retake the skin quiz?
+                            </span>
+
+                            <span class="faq-icon">
+                                +
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <p>
+                                Yes. You can retake the quiz whenever
+                                your skin needs or skincare preferences
+                                change. Your latest answers will update
+                                your saved skin profile.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- NO RESULTS -->
+
+                    <div
+                        class="faq-no-results"
+                        id="faq-no-results"
+                    >
+
+                        <h3>
+                            No questions found.
+                        </h3>
+
+                        <p>
+                            Try another search or choose a
+                            different category.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CONTACT CTA
+             ===================================== -->
+
+        <section class="faq-cta">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    STILL HAVE QUESTIONS?
+                </p>
+
+                <h2>
+                    We're happy to help.
+                </h2>
+
+                <p>
+                    If you couldn't find what you were
+                    looking for, send us a message.
+                </p>
+
+                <a
+                    href="contact.html"
+                    class="btn btn-primary"
+                >
+                    Contact Lavanya
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+                    Lavan<span>y</span>a
+                </a>
+
+                <p>
+                    Thoughtful botanical skincare made
+                    for simple, intentional routines.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="recommendations.html">
+                    Recommendations
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Help
+                </h4>
+
+                <a href="quiz.html">
+                    Skin Quiz
+                </a>
+
+                <a href="faq.html">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+            </div>
+
+            <div class="footer-newsletter">
+
+                <h4>
+                    Stay in the loop
+                </h4>
+
+                <p>
+                    Receive skincare tips, new product
+                    updates, and thoughtful offers from
+                    Lavanya.
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label
+                        for="newsletter-email"
+                        class="sr-only"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        placeholder="Your email address"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-light"
+                    >
+                        Join
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Lavanya. All rights reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* ========================================
+           HEADER COUNTERS
+           ======================================== */
+
+        const wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaWishlist"
+                ) || "[]"
+            );
+
+
+        const cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaCart"
+                ) || "[]"
+            );
+
+
+        document.getElementById(
+            "wishlist-count"
+        ).textContent =
+            wishlist.length;
+
+
+        document.getElementById(
+            "cart-count"
+        ).textContent =
+            cart.reduce(
+                (total, item) =>
+                    total +
+                    Number(
+                        item.quantity || 1
+                    ),
+                0
+            );
+
+
+
+        /* ========================================
+           FAQ ACCORDION
+           ======================================== */
+
+        const faqQuestions =
+            document.querySelectorAll(
+                ".faq-question"
+            );
+
+
+        faqQuestions.forEach(
+            question => {
+
+                question.addEventListener(
+                    "click",
+                    function() {
+
+                        const faqItem =
+                            this.closest(
+                                ".faq-item"
+                            );
+
+
+                        const isOpen =
+                            faqItem.classList.contains(
+                                "open"
+                            );
+
+
+                        document
+                            .querySelectorAll(
+                                ".faq-item.open"
+                            )
+                            .forEach(
+                                item => {
+
+                                    item.classList.remove(
+                                        "open"
+                                    );
+
+                                    item
+                                        .querySelector(
+                                            ".faq-question"
+                                        )
+                                        .setAttribute(
+                                            "aria-expanded",
+                                            "false"
+                                        );
+
+                                }
+                            );
+
+
+                        if (!isOpen) {
+
+                            faqItem.classList.add(
+                                "open"
+                            );
+
+                            this.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* ========================================
+           FAQ FILTER
+           ======================================== */
+
+        const filterButtons =
+            document.querySelectorAll(
+                ".faq-filter"
+            );
+
+
+        const faqItems =
+            document.querySelectorAll(
+                ".faq-item"
+            );
+
+
+        let selectedCategory = "all";
+
+
+        function filterFAQs() {
+
+            const searchTerm =
+                document
+                    .getElementById(
+                        "faq-search-input"
+                    )
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            let visibleCount = 0;
+
+
+            faqItems.forEach(
+                item => {
+
+                    const category =
+                        item.dataset.category;
+
+
+                    const text =
+                        item.textContent
+                            .toLowerCase();
+
+
+                    const categoryMatch =
+                        selectedCategory === "all" ||
+                        category === selectedCategory;
+
+
+                    const searchMatch =
+                        !searchTerm ||
+                        text.includes(
+                            searchTerm
+                        );
+
+
+                    if (
+                        categoryMatch &&
+                        searchMatch
+                    ) {
+
+                        item.style.display =
+                            "block";
+
+                        visibleCount++;
+
+                    } else {
+
+                        item.style.display =
+                            "none";
+
+                        item.classList.remove(
+                            "open"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            document.getElementById(
+                "faq-no-results"
+            ).style.display =
+                visibleCount === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+
+        filterButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    function() {
+
+                        filterButtons.forEach(
+                            item =>
+                                item.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                        this.classList.add(
+                            "active"
+                        );
+
+
+                        selectedCategory =
+                            this.dataset.category;
+
+
+                        filterFAQs();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* ========================================
+           FAQ SEARCH
+           ======================================== */
+
+        document
+            .getElementById(
+                "faq-search-input"
+            )
+            .addEventListener(
+                "input",
+                filterFAQs
+            );
+
+
+
+        /* ========================================
+           LOGOUT
+           ======================================== */
+
+        const logoutButton =
+            document.querySelector(
+                "[data-logout]"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function() {
+
+                    localStorage.removeItem(
+                        "lavanyaUser"
+                    );
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+
+
+
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+
+        const newsletterForm =
+            document.getElementById(
+                "newsletter-form"
+            );
+
+
+        newsletterForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "newsletter-email"
+                        )
+                        .value
+                        .trim();
+
+
+                if (!email) {
+                    return;
+                }
+
+
+                localStorage.setItem(
+                    "lavanyaNewsletter",
+                    email
+                );
+
+
+                newsletterForm.reset();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

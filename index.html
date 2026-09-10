@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lavanya — Personalized Skincare</title>
+
+    <meta
+        name="description"
+        content="Lavanya is personalized skincare built around your skin type, concerns, and routine."
+    >
+
+    <link rel="stylesheet" href="Assets/CSS/common.css">
+        <link rel="stylesheet" href="Assets/CSS/home.css">
+
+</head>
+
+<body>
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+    ========================================== -->
+
+    <div class="announcement-bar">
+        Free shipping on orders over NPR 2,500
+        <span>·</span>
+        Find your skin match in 2 minutes
+    </div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <a href="index.html" class="logo">
+                lavanya<span>.</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html" class="active">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="quiz.html">Find My Products</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+
+                <a href="shop.html" class="header-action" aria-label="Search">
+                    🔍
+                </a>
+
+                <a href="wishlist.html" class="header-action" aria-label="Wishlist">
+                    ♡
+                    <span class="header-counter" id="wishlist-count">0</span>
+                </a>
+
+                <a href="cart.html" class="header-action" aria-label="Shopping cart">
+                    🛒
+                    <span class="header-counter" id="cart-count">0</span>
+                </a>
+
+                <a href="account.html" class="header-action" aria-label="Account">
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================================
+             HERO
+        ========================================== -->
+
+        <section class="hero">
+
+            <div class="container hero-inner">
+
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        PERSONALIZED SKINCARE
+                    </p>
+
+                    <h1>
+                        Your skin.<br>
+                        Your ritual.<br>
+                        <em>Your Lavanya.</em>
+                    </h1>
+
+                    <p class="hero-description">
+                        Discover skincare chosen around your skin type,
+                        concerns, preferences, and everyday ritual.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a href="quiz.html" class="btn btn-primary">
+                            Find my products
+                        </a>
+
+                        <a href="shop.html" class="btn btn-secondary">
+                            Shop all products
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ADD HERO IMAGE HERE
+                     
+                     Replace the src with your image.
+                     
+                     Example:
+                     assets/images/hero-skincare.jpg
+                ================================== -->
+
+                <div class="hero-visual">
+
+                    <img
+                        src="Assets/Images/end.jpg"
+                        alt="image"
+                        class="hero-image"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WELCOME
+        ========================================== -->
+
+        <section class="section welcome-section">
+
+            <div class="container">
+
+                <div class="welcome-card">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            YOUR LAVANYA JOURNEY
+                        </p>
+
+                        <h2 id="welcome-title">
+                            Welcome to Lavanya.
+                        </h2>
+
+                        <p id="welcome-text">
+                            Tell us a little about your skin and we'll
+                            help you build a ritual that feels right for you.
+                        </p>
+
+                    </div>
+
+                    <a href="quiz.html" class="btn btn-primary">
+                        Find my skin match
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             INTRO
+        ========================================== -->
+
+        <section class="section intro-section">
+
+            <div class="container intro-grid">
+
+                <div class="intro-heading">
+
+                    <p class="eyebrow">
+                        SKINCARE, SIMPLIFIED
+                    </p>
+
+                    <h2>
+                        Skincare that
+                        <em>starts with you.</em>
+                    </h2>
+
+                </div>
+
+                <div class="intro-copy">
+
+                    <p>
+                        Your skin is unique. Your routine should be too.
+                    </p>
+
+                    <p>
+                        Lavanya helps you discover products based on
+                        your individual skin profile instead of making
+                        you guess what belongs on your shelf.
+                    </p>
+
+                    <a href="quiz.html" class="text-link">
+                        Discover your routine →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             QUIZ BANNER
+        ========================================== -->
+
+        <section class="section quiz-banner-section">
+
+            <div class="container">
+
+                <div class="quiz-banner">
+
+                    <div class="quiz-banner-content">
+
+                        <p class="eyebrow">
+                            NOT SURE WHERE TO START?
+                        </p>
+
+                        <h2>
+                            Find skincare made
+                            for your skin.
+                        </h2>
+
+                        <p>
+                            Take our quick skin quiz and get personalized
+                            product recommendations in about 2 minutes.
+                        </p>
+
+                        <a href="quiz.html" class="btn btn-light">
+                            Take the skin quiz
+                        </a>
+
+                    </div>
+
+
+                    <!-- ADD QUIZ BANNER IMAGE HERE -->
+
+                    <div class="quiz-decoration">
+
+                        <img
+                            src="Assets/Images/sunflower.jpg"
+                            alt="image"
+                            class="quiz-banner-image"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             CATEGORIES
+        ========================================== -->
+
+        <section class="section categories-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            BUILD YOUR RITUAL
+                        </p>
+
+                        <h2>
+                            Shop by ritual.
+                        </h2>
+
+                    </div>
+
+                    <a href="shop.html" class="text-link">
+                        View everything →
+                    </a>
+
+                </div>
+
+
+                <div class="category-grid">
+
+                    <!-- CLEANSE -->
+
+                    <a href="shop.html?category=cleanser" class="category-card">
+
+                        <!-- ADD CLEANSE IMAGE HERE -->
+
+                        <img
+                            src="Assets/Images/prod2.jpg"
+                            alt="image"
+                            class="category-image"
+                        >
+
+                        <div class="category-content">
+
+                            <span class="category-number">
+                                01
+                            </span>
+
+                            <h3>
+                                Cleanse
+                            </h3>
+
+                            <p>
+                                Gentle cleansers for a fresh,
+                                comfortable start.
+                            </p>
+
+                            <span>
+                                Explore cleansers →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- TREAT -->
+
+                    <a href="shop.html?category=serum" class="category-card">
+
+                        <!-- ADD TREAT IMAGE HERE -->
+
+                        <img
+                            src="Assets/Images/prod8.jpg"
+                            alt="image"
+                            class="category-image"
+                        >
+
+                        <div class="category-content">
+
+                            <span class="category-number">
+                                02
+                            </span>
+
+                            <h3>
+                                Treat
+                            </h3>
+
+                            <p>
+                                Targeted serums and treatments
+                                for your skin concerns.
+                            </p>
+
+                            <span>
+                                Explore treatments →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- HYDRATE -->
+
+                    <a href="shop.html?category=moisturizer" class="category-card">
+
+                        <!-- ADD HYDRATE IMAGE HERE -->
+
+                        <img
+                            src="Assets/Images/skincare4.jpg"
+                            alt="image"
+                            class="category-image"
+                        >
+
+                        <div class="category-content">
+
+                            <span class="category-number">
+                                03
+                            </span>
+
+                            <h3>
+                                Hydrate
+                            </h3>
+
+                            <p>
+                                Nourishing hydration to support
+                                your everyday skin ritual.
+                            </p>
+
+                            <span>
+                                Explore hydration →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- PROTECT -->
+
+                    <a href="shop.html?category=sunscreen" class="category-card">
+
+                        <!-- ADD PROTECT IMAGE HERE -->
+
+                        <img
+                            src="Assets/Images/moisturizer.jpg"
+                            alt="image"
+                            class="category-image"
+                        >
+
+                        <div class="category-content">
+
+                            <span class="category-number">
+                                04
+                            </span>
+
+                            <h3>
+                                Protect
+                            </h3>
+
+                            <p>
+                                Daily protection for skin that
+                                stays cared for.
+                            </p>
+
+                            <span>
+                                Explore protection →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             FEATURED PRODUCTS
+        ========================================== -->
+
+        <section class="section featured-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            LAVANYA EDIT
+                        </p>
+
+                        <h2>
+                            A few skin favourites.
+                        </h2>
+
+                    </div>
+
+                    <a href="shop.html" class="text-link">
+                        Shop all →
+                    </a>
+
+                </div>
+
+
+                <div class="product-grid" id="featured-products">
+
+
+                    <!-- PRODUCT 1 -->
+
+                    <article class="product-card">
+
+                        <!-- ADD PRODUCT IMAGE HERE -->
+
+                        <a href="product.html?id=1" class="product-image">
+
+                            <img
+                                src="Assets/Images/serum.jpg"
+                                alt="image"
+                            >
+
+                            <span class="product-badge">
+                                BESTSELLER
+                            </span>
+
+                        </a>
+
+                        <div class="product-info">
+
+                            <p class="product-category">
+                                SERUM
+                            </p>
+
+                            <h3>
+                                Niacinamide Serum
+                            </h3>
+
+                            <p class="product-description">
+                                A lightweight daily serum for
+                                balanced-looking skin.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="product-price">
+                                    NPR 1,299
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="product-add"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCT 2 -->
+
+                    <article class="product-card">
+
+                        <!-- ADD PRODUCT IMAGE HERE -->
+
+                        <a href="product.html?id=2" class="product-image">
+
+                            <img
+                                src="Assets/Images/cleanser.jpg"
+                                alt="image"
+                            >
+
+                        </a>
+
+                        <div class="product-info">
+
+                            <p class="product-category">
+                                CLEANSER
+                            </p>
+
+                            <h3>
+                                Gentle Daily Cleanser
+                            </h3>
+
+                            <p class="product-description">
+                                A soft, refreshing cleanse without
+                                leaving skin feeling stripped.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="product-price">
+                                    NPR 899
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="product-add"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCT 3 -->
+
+                    <article class="product-card">
+
+                        <!-- ADD PRODUCT IMAGE HERE -->
+
+                        <a href="product.html?id=3" class="product-image">
+
+                            <img
+                                src="Assets/Images/cream.jpg"
+                                alt="image"
+                            >
+
+                            <span class="product-badge">
+                                NEW
+                            </span>
+
+                        </a>
+
+                        <div class="product-info">
+
+                            <p class="product-category">
+                                MOISTURIZER
+                            </p>
+
+                            <h3>
+                                Daily Barrier Cream
+                            </h3>
+
+                            <p class="product-description">
+                                Comfortable everyday hydration
+                                for a soft skin feel.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="product-price">
+                                    NPR 1,099
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="product-add"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCT 4 -->
+
+                    <article class="product-card">
+
+                        <!-- ADD PRODUCT IMAGE HERE -->
+
+                        <a href="product.html?id=4" class="product-image">
+
+                            <img
+                                src="Assets/Images/spf.jpg"
+                                alt="image"
+                            >
+
+                        </a>
+
+                        <div class="product-info">
+
+                            <p class="product-category">
+                                SUNSCREEN
+                            </p>
+
+                            <h3>
+                                Daily SPF 50
+                            </h3>
+
+                            <p class="product-description">
+                                Lightweight daily sun protection
+                                designed for comfortable wear.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="product-price">
+                                    NPR 1,199
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="product-add"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHY LAVANYA
+        ========================================== -->
+
+        <section class="section values-section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <p class="eyebrow">
+                        THE LAVANYA APPROACH
+                    </p>
+
+                    <h2>
+                        Less guessing.<br>
+                        More understanding.
+                    </h2>
+
+                </div>
+
+
+                <div class="values-grid">
+
+                    <div class="value-card">
+
+                        <span class="value-number">
+                            01
+                        </span>
+
+                        <h3>
+                            Skin-first
+                        </h3>
+
+                        <p>
+                            Recommendations begin with your skin
+                            profile, not trends.
+                        </p>
+
+                    </div>
+
+
+                    <div class="value-card">
+
+                        <span class="value-number">
+                            02
+                        </span>
+
+                        <h3>
+                            Thoughtful
+                        </h3>
+
+                        <p>
+                            Build a routine around what your skin
+                            actually needs.
+                        </p>
+
+                    </div>
+
+
+                    <div class="value-card">
+
+                        <span class="value-number">
+                            03
+                        </span>
+
+                        <h3>
+                            Simple
+                        </h3>
+
+                        <p>
+                            Clear recommendations without making
+                            skincare feel complicated.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a href="index.html" class="logo footer-logo">
+                        lavanya<span>.</span>
+                    </a>
+
+                    <p>
+                        Personalized skincare for your skin,
+                        your routine, and your everyday ritual.
+                    </p>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Explore</h4>
+
+                    <a href="shop.html">Shop</a>
+                    <a href="quiz.html">Find My Products</a>
+                    <a href="about.html">About Lavanya</a>
+                    <a href="contact.html">Contact</a>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Help</h4>
+
+                    <a href="account.html">My Account</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="faq.html">FAQ</a>
+
+                </div>
+
+                <div class="footer-newsletter">
+
+                    <h4>
+                        Stay in the ritual.
+                    </h4>
+
+                    <p>
+                        Join our list for skincare notes,
+                        new launches, and Lavanya updates.
+                    </p>
+
+                    <form id="newsletter-form">
+
+                        <label
+                            for="newsletter-email"
+                            class="sr-only"
+                        >
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="newsletter-email"
+                            placeholder="Your email address"
+                            required
+                        >
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Join
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 Lavanya. All rights reserved.
+                </p>
+
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/auth.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            if (typeof getCurrentUser === "function") {
+
+                const user = getCurrentUser();
+
+                if (user) {
+
+                    const welcomeTitle =
+                        document.getElementById("welcome-title");
+
+                    const welcomeText =
+                        document.getElementById("welcome-text");
+
+                    if (welcomeTitle) {
+                        welcomeTitle.textContent =
+                            `Welcome back, ${user.name.split(" ")[0]}.`;
+                    }
+
+                    if (welcomeText) {
+                        welcomeText.textContent =
+                            "Ready to continue your skincare ritual? " +
+                            "Explore your recommendations or discover something new.";
+                    }
+
+                }
+            }
+
+
+            const newsletterForm =
+                document.getElementById("newsletter-form");
+
+            if (newsletterForm) {
+
+                newsletterForm.addEventListener(
+                    "submit",
+                    function (event) {
+
+                        event.preventDefault();
+
+                        alert(
+                            "Thank you for joining the Lavanya ritual."
+                        );
+
+                        newsletterForm.reset();
+
+                    }
+                );
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+.login-page {
+    background: var(--cream);
+}
+
+.login-section {
+    min-height: 720px;
+    padding: 80px 0 100px;
+    background: var(--cream);
+}
+
+.login-section > .container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 42px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.login-intro {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.section-eyebrow {
+    margin-bottom: 10px;
+    color: var(--terracotta);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.login-intro h1 {
+    margin-bottom: 14px;
+    color: var(--green);
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.1;
+}
+
+.login-intro p:last-child {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.login-message {
+    min-height: 20px;
+    margin-bottom: 18px;
+    padding: 0 5px;
+    color: var(--terracotta);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.login-message:empty {
+    margin-bottom: 0;
+}
+
+.login-message.show {
+    margin-bottom: 18px;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--paper);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--sage);
+    background: var(--white);
+    box-shadow:
+        0 0 0 3px
+        rgba(169, 185, 165, 0.2);
+}
+
+.form-group input::placeholder {
+    color: #9a9d98;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 65px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    padding: 4px;
+    border: none;
+    background: transparent;
+    color: var(--terracotta);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.password-toggle:hover {
+    color: var(--green);
+}
+
+.login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 5px 0 22px;
+}
+
+.remember-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.remember-option input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    accent-color: var(--green);
+    cursor: pointer;
+}
+
+.forgot-password {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--terracotta);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    color: var(--green);
+}
+
+.login-submit {
+    width: 100%;
+}
+
+.login-signup {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.login-signup p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.login-signup a {
+    color: var(--terracotta);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-signup a:hover {
+    color: var(--green);
+    text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+
+    .login-section {
+        padding: 65px 0 80px;
+    }
+
+    .login-card {
+        max-width: 560px;
+
+        padding: 38px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .login-section {
+        padding: 50px 0 65px;
+    }
+
+    .login-card {
+        padding: 28px 20px;
+
+        border-radius: var(--radius-md);
+    }
+
+    .login-intro h1 {
+        font-size: 34px;
+    }
+
+    .login-intro p:last-child {
+        font-size: 13px;
+    }
+
+    .login-options {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .forgot-password {
+        align-self: flex-end;
+    }
+}

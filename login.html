@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | Lavanya</title>
+
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/login.css"
+    >
+
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     ANNOUNCEMENT BAR
+========================================================= -->
+
+<div class="announcement-bar">
+
+    Free shipping on orders over NPR 2500
+    <span>|</span>
+    Thoughtful botanical skincare
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header">
+
+    <div class="container header-inner">
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            lavanya<span>.</span>
+        </a>
+
+
+        <!-- MAIN NAVIGATION -->
+
+        <nav
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a
+                href="shop.html"
+            >
+                Shop
+            </a>
+
+            <a href="quiz.html">
+                Find My Products
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+            <a
+                href="#shop-products"
+                class="header-action"
+                aria-label="Search"
+            >
+                🔍
+            </a>
+
+
+            <a
+                href="wishlist.html"
+                class="header-action"
+                aria-label="Wishlist"
+            >
+
+                ♡
+
+                <span
+                    class="header-counter"
+                    id="wishlist-count"
+                >
+                    0
+                </span>
+
+            </a>
+
+
+            <a
+                href="cart.html"
+                class="header-action"
+                aria-label="Shopping cart"
+            >
+
+                🛒
+
+                <span
+                    class="header-counter"
+                    id="cart-count"
+                >
+                    0
+                </span>
+
+            </a>
+
+
+            <!-- ACCOUNT / LOGIN -->
+
+            <a
+                href="login.html"
+                class="header-action"
+                id="account-link"
+                aria-label="Account"
+            >
+                👤
+            </a>
+
+
+            <!-- SIGNUP / LOGOUT -->
+
+            <a
+                href="signup.html"
+                class="header-action"
+                id="auth-arrow"
+                aria-label="Signup"
+            >
+                ↪
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
+
+<main class="login-page">
+
+    <section class="login-section">
+
+        <div class="container">
+
+            <div class="login-card">
+
+
+                <!-- LOGIN INTRO -->
+
+                <div class="login-intro">
+
+                    <p class="section-eyebrow">
+                        Welcome back
+                    </p>
+
+                    <h1>
+                        Login to Lavanya
+                    </h1>
+
+                    <p>
+                        Sign in to access your personalized
+                        skincare recommendations, wishlist,
+                        cart, and account.
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN MESSAGE -->
+
+                <div
+                    class="login-message"
+                    id="login-message"
+                    aria-live="polite"
+                ></div>
+
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    id="login-form"
+                    class="login-form"
+                >
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="login-email">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="login-email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="login-password">
+                            Password
+                        </label>
+
+                        <div class="password-field">
+
+                            <input
+                                type="password"
+                                id="login-password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="toggle-password"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOGIN OPTIONS -->
+
+                    <div class="login-options">
+
+                        <label class="remember-option">
+
+                            <input
+                                type="checkbox"
+                                id="remember-email"
+                            >
+
+                            <span>
+                                Remember my email
+                            </span>
+
+                        </label>
+
+
+                        <button
+                            type="button"
+                            class="forgot-password"
+                            id="forgot-password"
+                        >
+                            Forgot password?
+                        </button>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary login-submit"
+                    >
+                        Login
+                    </button>
+
+
+                </form>
+
+
+                <!-- SIGNUP LINK -->
+
+                <div class="login-signup">
+
+                    <p>
+                        Don't have an account?
+                        <a href="signup.html">
+                            Create an account
+                        </a>
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="container footer-main">
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="logo footer-logo"
+            >
+                Lavan<span>y</span>a
+            </a>
+
+            <p>
+                Thoughtful botanical skincare made
+                for simple, intentional routines.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Shop
+            </h4>
+
+            <a href="shop.html">
+                All Products
+            </a>
+
+            <a href="recommendations.html">
+                Recommendations
+            </a>
+
+            <a href="wishlist.html">
+                Wishlist
+            </a>
+
+            <a href="cart.html">
+                Cart
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Help
+            </h4>
+
+            <a href="quiz.html">
+                Skin Quiz
+            </a>
+
+            <a href="faq.html">
+                FAQ
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="account.html">
+                My Account
+            </a>
+
+        </div>
+
+
+        <div class="footer-newsletter">
+
+            <h4>
+                Stay in the loop
+            </h4>
+
+            <p>
+                Receive skincare tips, new product
+                updates, and thoughtful offers from
+                Lavanya.
+            </p>
+
+            <form id="newsletter-form">
+
+                <label
+                    for="newsletter-email"
+                    class="sr-only"
+                >
+                    Email address
+                </label>
+
+                <input
+                    type="email"
+                    id="newsletter-email"
+                    placeholder="Your email address"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn btn-light"
+                >
+                    Join
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 Lavanya. All rights reserved.
+        </p>
+
+        <div class="footer-bottom-links">
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const loginForm =
+    document.getElementById("login-form");
+
+const loginEmail =
+    document.getElementById("login-email");
+
+const loginPassword =
+    document.getElementById("login-password");
+
+const loginMessage =
+    document.getElementById("login-message");
+
+const rememberEmail =
+    document.getElementById("remember-email");
+
+const togglePassword =
+    document.getElementById("toggle-password");
+
+const forgotPassword =
+    document.getElementById("forgot-password");
+
+const accountLink =
+    document.getElementById("account-link");
+
+const authArrow =
+    document.getElementById("auth-arrow");
+
+const wishlistCount =
+    document.getElementById("wishlist-count");
+
+const cartCount =
+    document.getElementById("cart-count");
+
+
+
+/* =========================================================
+   HEADER COUNTS
+========================================================= */
+
+function updateHeaderCounts() {
+
+    const wishlist =
+        JSON.parse(
+            localStorage.getItem(
+                "lavanyaWishlist"
+            ) || "[]"
+        );
+
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem(
+                "lavanyaCart"
+            ) || "[]"
+        );
+
+
+    wishlistCount.textContent =
+        wishlist.length;
+
+
+    cartCount.textContent =
+        cart.reduce(
+            (total, item) =>
+                total +
+                Number(item.quantity || 0),
+            0
+        );
+
+}
+
+
+updateHeaderCounts();
+
+
+
+/* =========================================================
+   HEADER AUTHENTICATION STATE
+========================================================= */
+
+function updateAuthHeader() {
+
+    const user =
+        JSON.parse(
+            localStorage.getItem(
+                "lavanyaUser"
+            ) || "null"
+        );
+
+
+    /* ---------------------------------------------
+       LOGGED IN
+    --------------------------------------------- */
+
+    if (user) {
+
+        accountLink.href =
+            "account.html";
+
+        accountLink.setAttribute(
+            "aria-label",
+            "Account"
+        );
+
+
+        authArrow.href =
+            "login.html";
+
+        authArrow.setAttribute(
+            "aria-label",
+            "Logout"
+        );
+
+
+        authArrow.title =
+            "Logout";
+
+    }
+
+
+    /* ---------------------------------------------
+       LOGGED OUT
+    --------------------------------------------- */
+
+    else {
+
+        accountLink.href =
+            "login.html";
+
+        accountLink.setAttribute(
+            "aria-label",
+            "Login"
+        );
+
+
+        authArrow.href =
+            "signup.html";
+
+        authArrow.setAttribute(
+            "aria-label",
+            "Signup"
+        );
+
+
+        authArrow.title =
+            "Sign up";
+
+    }
+
+}
+
+
+updateAuthHeader();
+
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+authArrow.addEventListener(
+    "click",
+    function(event) {
+
+        const user =
+            localStorage.getItem(
+                "lavanyaUser"
+            );
+
+
+        if (user) {
+
+            event.preventDefault();
+
+
+            localStorage.removeItem(
+                "lavanyaUser"
+            );
+
+
+            /*
+               After logout, send the user
+               to the login page.
+            */
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   LOAD SAVED EMAIL
+========================================================= */
+
+const rememberedEmail =
+    localStorage.getItem(
+        "lavanyaRememberedEmail"
+    );
+
+
+if (rememberedEmail) {
+
+    loginEmail.value =
+        rememberedEmail;
+
+    rememberEmail.checked =
+        true;
+
+}
+
+
+
+/* =========================================================
+   SHOW LOGIN MESSAGE
+========================================================= */
+
+const savedLoginMessage =
+    localStorage.getItem(
+        "lavanyaLoginMessage"
+    );
+
+
+if (savedLoginMessage) {
+
+    loginMessage.textContent =
+        savedLoginMessage;
+
+    loginMessage.classList.add(
+        "show"
+    );
+
+
+    localStorage.removeItem(
+        "lavanyaLoginMessage"
+    );
+
+}
+
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+togglePassword.addEventListener(
+    "click",
+    function() {
+
+        if (
+            loginPassword.type ===
+            "password"
+        ) {
+
+            loginPassword.type =
+                "text";
+
+            togglePassword.textContent =
+                "Hide";
+
+            togglePassword.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+        }
+
+        else {
+
+            loginPassword.type =
+                "password";
+
+            togglePassword.textContent =
+                "Show";
+
+            togglePassword.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+loginForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            loginEmail.value
+                .trim()
+                .toLowerCase();
+
+
+        const password =
+            loginPassword.value;
+
+
+        const registeredUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaRegisteredUser"
+                ) || "null"
+            );
+
+
+        /* ---------------------------------------------
+           NO REGISTERED ACCOUNT
+        --------------------------------------------- */
+
+        if (!registeredUser) {
+
+            loginMessage.textContent =
+                "No account was found. Please create an account first.";
+
+            loginMessage.classList.add(
+                "show"
+            );
+
+            return;
+
+        }
+
+
+
+        /* ---------------------------------------------
+           EMAIL CHECK
+        --------------------------------------------- */
+
+        if (
+            email !==
+            registeredUser.email.toLowerCase()
+        ) {
+
+            loginMessage.textContent =
+                "The email address or password is incorrect.";
+
+            loginMessage.classList.add(
+                "show"
+            );
+
+            return;
+
+        }
+
+
+
+        /* ---------------------------------------------
+           PASSWORD CHECK
+        --------------------------------------------- */
+
+        if (
+            password !==
+            registeredUser.password
+        ) {
+
+            loginMessage.textContent =
+                "The email address or password is incorrect.";
+
+            loginMessage.classList.add(
+                "show"
+            );
+
+            return;
+
+        }
+
+
+
+        /* ---------------------------------------------
+           REMEMBER EMAIL
+        --------------------------------------------- */
+
+        if (rememberEmail.checked) {
+
+            localStorage.setItem(
+                "lavanyaRememberedEmail",
+                email
+            );
+
+        }
+
+        else {
+
+            localStorage.removeItem(
+                "lavanyaRememberedEmail"
+            );
+
+        }
+
+
+
+        /* ---------------------------------------------
+           CREATE ACTIVE USER SESSION
+        --------------------------------------------- */
+
+        const loggedInUser = {
+
+            name:
+                registeredUser.name,
+
+            email:
+                registeredUser.email,
+
+            loggedInAt:
+                new Date().toISOString()
+
+        };
+
+
+        localStorage.setItem(
+            "lavanyaUser",
+            JSON.stringify(
+                loggedInUser
+            )
+        );
+
+
+
+        /* ---------------------------------------------
+           RETURN TO ORIGINAL REQUESTED PAGE
+        --------------------------------------------- */
+
+        let redirectAfterLogin =
+            localStorage.getItem(
+                "lavanyaRedirectAfterLogin"
+            );
+
+
+        /*
+           If there is no saved destination,
+           send the customer to their account.
+        */
+
+        if (
+            !redirectAfterLogin ||
+            redirectAfterLogin ===
+            "login.html" ||
+            redirectAfterLogin ===
+            "signup.html"
+        ) {
+
+            redirectAfterLogin =
+                "account.html";
+
+        }
+
+
+
+        /* ---------------------------------------------
+           REMOVE SAVED REDIRECT
+        --------------------------------------------- */
+
+        localStorage.removeItem(
+            "lavanyaRedirectAfterLogin"
+        );
+
+
+
+        /* ---------------------------------------------
+           GO TO DESTINATION
+        --------------------------------------------- */
+
+        window.location.href =
+            redirectAfterLogin;
+
+    }
+);
+
+
+
+/* =========================================================
+   FORGOT PASSWORD
+========================================================= */
+
+forgotPassword.addEventListener(
+    "click",
+    function() {
+
+        loginMessage.textContent =
+            "Password recovery is currently a demo feature. Please create a new account if you cannot remember your password.";
+
+        loginMessage.classList.add(
+            "show"
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+const newsletterForm =
+    document.getElementById(
+        "newsletter-form"
+    );
+
+
+if (newsletterForm) {
+
+    newsletterForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById(
+                        "newsletter-email"
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (email) {
+
+                localStorage.setItem(
+                    "lavanyaNewsletter",
+                    email
+                );
+
+
+                alert(
+                    "Thank you for joining the Lavanya newsletter."
+                );
+
+
+                newsletterForm.reset();
+
+            }
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>

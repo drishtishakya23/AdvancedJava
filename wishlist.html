@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Wishlist | Lavanya</title>
+
+    <meta
+        name="description"
+        content="View your saved Lavanya botanical skincare products."
+    >
+
+    <!-- COMMON HEADER AND FOOTER CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
+
+    <!-- WISHLIST PAGE CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/wishlist.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+    ========================================== -->
+
+    <div class="announcement-bar">
+
+        Free shipping on orders over NPR 2500
+
+        <span>|</span>
+
+        Thoughtful botanical skincare
+
+    </div>
+
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                lavanya<span>.</span>
+            </a>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="quiz.html">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <a
+                    href="shop.html#shop-products"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             WISHLIST HERO
+        ========================================== -->
+
+        <section class="wishlist-hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    YOUR SAVED SKINCARE
+                </p>
+
+                <h1>
+                    My Wishlist
+                </h1>
+
+                <p>
+                    Keep the products you love close and
+                    move them to your routine whenever
+                    you're ready.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             WISHLIST PRODUCTS
+        ========================================== -->
+
+        <section class="wishlist-section">
+
+            <div class="container">
+
+
+                <!-- WISHLIST HEADER -->
+
+                <div
+                    class="wishlist-header"
+                    id="wishlist-header"
+                >
+
+                    <div>
+
+                        <p class="wishlist-eyebrow">
+                            SAVED PRODUCTS
+                        </p>
+
+                        <h2>
+                            Products you've saved.
+                        </h2>
+
+                        <p id="wishlist-results">
+                            0 products saved
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="wishlist-checkout"
+                    >
+                        Checkout Wishlist
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================
+                     WISHLIST GRID
+                ================================== -->
+
+                <div
+                    class="wishlist-grid"
+                    id="wishlist-grid"
+                >
+
+                    <!-- Wishlist products are inserted here -->
+
+                </div>
+
+
+
+                <!-- =================================
+                     EMPTY WISHLIST
+                ================================== -->
+
+                <div
+                    class="wishlist-empty"
+                    id="wishlist-empty"
+                    hidden
+                >
+
+                    <div class="wishlist-empty-icon">
+                        ♡
+                    </div>
+
+                    <p class="wishlist-eyebrow">
+                        YOUR WISHLIST
+                    </p>
+
+                    <h2>
+                        Your wishlist is empty
+                    </h2>
+
+                    <p>
+                        Save products you love from the
+                        shop and they will appear here.
+                    </p>
+
+                    <a
+                        href="shop.html"
+                        class="btn btn-primary"
+                    >
+                        Explore Shop
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             QUIZ CTA
+        ========================================== -->
+
+        <section class="wishlist-quiz-section">
+
+            <div class="container">
+
+                <div class="wishlist-quiz-banner">
+
+                    <div class="wishlist-quiz-content">
+
+                        <p class="eyebrow">
+                            NOT SURE WHAT TO CHOOSE?
+                        </p>
+
+                        <h2>
+                            Let your skin choose.
+                        </h2>
+
+                        <p>
+                            Take our skin quiz and discover
+                            products selected around your skin
+                            type, concerns and preferences.
+                        </p>
+
+                        <a
+                            href="quiz.html"
+                            class="btn btn-light"
+                        >
+                            Find My Products
+                        </a>
+
+                    </div>
+
+
+                    <div class="wishlist-quiz-mark">
+
+                        <span>
+                            ✦
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+
+            <!-- FOOTER BRAND -->
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+                    Lavan<span>y</span>a
+                </a>
+
+                <p>
+                    Thoughtful botanical skincare made
+                    for simple, intentional routines.
+                </p>
+
+            </div>
+
+
+
+            <!-- FOOTER SHOP -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="recommendations.html">
+                    Recommendations
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+
+
+            <!-- FOOTER HELP -->
+
+            <div class="footer-column">
+
+                <h4>
+                    Help
+                </h4>
+
+                <a href="quiz.html">
+                    Skin Quiz
+                </a>
+
+                <a href="faq.html">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+            </div>
+
+
+
+            <!-- FOOTER NEWSLETTER -->
+
+            <div class="footer-newsletter">
+
+                <h4>
+                    Stay in the loop
+                </h4>
+
+                <p>
+                    Receive skincare tips, new product
+                    updates, and thoughtful offers from
+                    Lavanya.
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label
+                        for="newsletter-email"
+                        class="sr-only"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        placeholder="Your email address"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-light"
+                    >
+                        Join
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Lavanya. All rights reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         WISHLIST JAVASCRIPT
+         JavaScript stays inside this HTML file.
+    ========================================== -->
+
+    <script>
+
+
+        /* =========================================
+           GET WISHLIST
+           
+           IMPORTANT:
+           Shop.html stores COMPLETE PRODUCT OBJECTS
+           inside lavanyaWishlist.
+        ========================================== */
+
+        function getWishlist() {
+
+            try {
+
+                const savedWishlist =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaWishlist"
+                        ) || "[]"
+                    );
+
+
+                /*
+                    This also makes the page compatible
+                    with an older wishlist that may contain
+                    only product IDs.
+                */
+
+                return savedWishlist
+                    .map(function(item) {
+
+                        if (
+                            typeof item === "object" &&
+                            item !== null
+                        ) {
+
+                            return item;
+
+                        }
+
+
+                        return null;
+
+                    })
+                    .filter(Boolean);
+
+            } catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           WISHLIST DATA
+        ========================================== */
+
+        let wishlist =
+            getWishlist();
+
+
+
+        /* =========================================
+           UPDATE HEADER COUNTERS
+        ========================================== */
+
+        function updateHeaderCounters() {
+
+
+            const wishlistCount =
+                document.getElementById(
+                    "wishlist-count"
+                );
+
+
+            const cartCount =
+                document.getElementById(
+                    "cart-count"
+                );
+
+
+            if (wishlistCount) {
+
+                wishlistCount.textContent =
+                    wishlist.length;
+
+            }
+
+
+            let cart = [];
+
+            try {
+
+                cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaCart"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                cart = [];
+
+            }
+
+
+            if (cartCount) {
+
+                const totalQuantity =
+                    cart.reduce(
+                        function(
+                            total,
+                            item
+                        ) {
+
+                            return total +
+                                Number(
+                                    item.quantity || 1
+                                );
+
+                        },
+                        0
+                    );
+
+
+                cartCount.textContent =
+                    totalQuantity;
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SAVE WISHLIST
+        ========================================== */
+
+        function saveWishlist() {
+
+            localStorage.setItem(
+                "lavanyaWishlist",
+                JSON.stringify(wishlist)
+            );
+
+        }
+
+
+
+        /* =========================================
+           ADD TO CART
+        ========================================== */
+
+        function addToCart(product) {
+
+
+            let cart = [];
+
+
+            try {
+
+                cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaCart"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                cart = [];
+
+            }
+
+
+            const existingProduct =
+                cart.find(
+                    function(item) {
+
+                        return item.id ===
+                            product.id;
+
+                    }
+                );
+
+
+            if (existingProduct) {
+
+                existingProduct.quantity =
+                    Number(
+                        existingProduct.quantity || 1
+                    ) + 1;
+
+            } else {
+
+                cart.push({
+
+                    id: product.id,
+
+                    name: product.name,
+
+                    price: product.price,
+
+                    image: product.image,
+
+                    quantity: 1
+
+                });
+
+            }
+
+
+            localStorage.setItem(
+                "lavanyaCart",
+                JSON.stringify(cart)
+            );
+
+
+            updateHeaderCounters();
+
+
+            showToast(
+                product.name +
+                " added to cart."
+            );
+
+        }
+
+
+
+        /* =========================================
+           REMOVE FROM WISHLIST
+        ========================================== */
+
+        function removeFromWishlist(productId) {
+
+
+            wishlist =
+                wishlist.filter(
+                    function(product) {
+
+                        return product.id !==
+                            productId;
+
+                    }
+                );
+
+
+            saveWishlist();
+
+
+            updateHeaderCounters();
+
+
+            renderWishlist();
+
+
+            showToast(
+                "Product removed from wishlist."
+            );
+
+        }
+
+
+
+        /* =========================================
+           CREATE PRODUCT CARD
+        ========================================== */
+
+        function createWishlistCard(product) {
+
+
+            return `
+
+                <article class="wishlist-card">
+
+
+                    <div class="wishlist-image">
+
+
+                        <!-- =================================
+                             PRODUCT IMAGE
+                             Each product uses its own image.
+                        ================================== -->
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            loading="lazy"
+                        >
+
+
+                        <!-- REMOVE BUTTON -->
+
+                        <button
+                            type="button"
+                            class="wishlist-remove"
+                            data-remove="${product.id}"
+                            aria-label="Remove ${product.name} from wishlist"
+                            title="Remove from wishlist"
+                        >
+                            ♥
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="wishlist-card-content">
+
+
+                        <p class="wishlist-category">
+                            ${product.category || "SKINCARE"}
+                        </p>
+
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+
+                        <p class="wishlist-price">
+                            NPR ${Number(
+                                product.price
+                            ).toLocaleString()}
+                        </p>
+
+
+                        <div class="wishlist-actions">
+
+
+                            <button
+                                type="button"
+                                class="btn btn-primary wishlist-cart-btn"
+                                data-cart="${product.id}"
+                            >
+                                Add to Cart
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="wishlist-text-btn"
+                                data-remove="${product.id}"
+                            >
+                                Remove
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+            `;
+
+        }
+
+
+
+        /* =========================================
+           RENDER WISHLIST
+        ========================================== */
+
+        function renderWishlist() {
+
+
+            const grid =
+                document.getElementById(
+                    "wishlist-grid"
+                );
+
+
+            const empty =
+                document.getElementById(
+                    "wishlist-empty"
+                );
+
+
+            const header =
+                document.getElementById(
+                    "wishlist-header"
+                );
+
+
+            const results =
+                document.getElementById(
+                    "wishlist-results"
+                );
+
+
+            /*
+                IMPORTANT FIX:
+
+                We DO NOT use products.find()
+                here anymore.
+
+                The wishlist already contains
+                the complete product objects.
+            */
+
+
+            if (results) {
+
+                results.textContent =
+                    wishlist.length === 1
+                        ? "1 product saved"
+                        : wishlist.length +
+                          " products saved";
+
+            }
+
+
+            /* EMPTY */
+
+            if (wishlist.length === 0) {
+
+
+                grid.innerHTML = "";
+
+
+                grid.hidden = true;
+
+
+                empty.hidden = false;
+
+
+                header.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            /* PRODUCTS EXIST */
+
+            grid.hidden = false;
+
+
+            empty.hidden = true;
+
+
+            header.style.display =
+                "flex";
+
+
+            grid.innerHTML =
+                wishlist
+                    .map(
+                        function(product) {
+
+                            return createWishlistCard(
+                                product
+                            );
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+
+        /* =========================================
+           BUTTON EVENTS
+        ========================================== */
+
+        document.addEventListener(
+            "click",
+            function(event) {
+
+
+                /* REMOVE */
+
+                const removeButton =
+                    event.target.closest(
+                        "[data-remove]"
+                    );
+
+
+                if (removeButton) {
+
+
+                    removeFromWishlist(
+                        removeButton.dataset.remove
+                    );
+
+
+                    return;
+
+                }
+
+
+
+                /* ADD TO CART */
+
+                const cartButton =
+                    event.target.closest(
+                        "[data-cart]"
+                    );
+
+
+                if (cartButton) {
+
+
+                    const product =
+                        wishlist.find(
+                            function(item) {
+
+                                return item.id ===
+                                    cartButton.dataset.cart;
+
+                            }
+                        );
+
+
+                    if (product) {
+
+                        addToCart(product);
+
+                    }
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           CHECKOUT ENTIRE WISHLIST
+        ========================================== */
+
+        const checkoutButton =
+            document.getElementById(
+                "wishlist-checkout"
+            );
+
+
+        if (checkoutButton) {
+
+            checkoutButton.addEventListener(
+                "click",
+                function() {
+
+
+                    if (wishlist.length === 0) {
+
+                        showToast(
+                            "Your wishlist is empty."
+                        );
+
+                        return;
+
+                    }
+
+
+                    let cart = [];
+
+
+                    try {
+
+                        cart =
+                            JSON.parse(
+                                localStorage.getItem(
+                                    "lavanyaCart"
+                                ) || "[]"
+                            );
+
+                    } catch (error) {
+
+                        cart = [];
+
+                    }
+
+
+                    wishlist.forEach(
+                        function(product) {
+
+
+                            const existingProduct =
+                                cart.find(
+                                    function(item) {
+
+                                        return item.id ===
+                                            product.id;
+
+                                    }
+                                );
+
+
+                            if (existingProduct) {
+
+                                existingProduct.quantity =
+                                    Number(
+                                        existingProduct.quantity || 1
+                                    ) + 1;
+
+                            } else {
+
+                                cart.push({
+
+                                    id: product.id,
+
+                                    name: product.name,
+
+                                    price: product.price,
+
+                                    image: product.image,
+
+                                    quantity: 1
+
+                                });
+
+                            }
+
+                        }
+                    );
+
+
+                    localStorage.setItem(
+                        "lavanyaCart",
+                        JSON.stringify(cart)
+                    );
+
+
+                    updateHeaderCounters();
+
+
+                    window.location.href =
+                        "checkout.html";
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           LOGOUT
+        ========================================== */
+
+        const logoutButton =
+            document.querySelector(
+                "[data-logout]"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function() {
+
+
+                    localStorage.removeItem(
+                        "lavanyaUser"
+                    );
+
+
+                    alert(
+                        "You have been logged out."
+                    );
+
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           NEWSLETTER
+        ========================================== */
+
+        const newsletterForm =
+            document.getElementById(
+                "newsletter-form"
+            );
+
+
+        if (newsletterForm) {
+
+            newsletterForm.addEventListener(
+                "submit",
+                function(event) {
+
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "newsletter-email"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (!email) {
+
+                        return;
+
+                    }
+
+
+                    localStorage.setItem(
+                        "lavanyaNewsletter",
+                        email
+                    );
+
+
+                    newsletterForm.reset();
+
+
+                    showToast(
+                        "Thank you for joining Lavanya."
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           TOAST
+        ========================================== */
+
+        function showToast(message) {
+
+
+            let toast =
+                document.getElementById(
+                    "wishlist-toast"
+                );
+
+
+            if (!toast) {
+
+
+                toast =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                toast.id =
+                    "wishlist-toast";
+
+
+                toast.className =
+                    "wishlist-toast";
+
+
+                document.body.appendChild(
+                    toast
+                );
+
+            }
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            clearTimeout(
+                toast.hideTimer
+            );
+
+
+            toast.hideTimer =
+                setTimeout(
+                    function() {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    2200
+                );
+
+        }
+
+
+
+        /* =========================================
+           INITIALIZE
+        ========================================== */
+
+        updateHeaderCounters();
+
+        renderWishlist();
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+.about-hero {
+    padding: 90px 0;
+    background: var(--cream);
+}
+
+.about-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-hero-content {
+    max-width: 560px;
+}
+
+.eyebrow {
+    margin-bottom: 14px;
+    color: var(--terracotta);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.about-hero h1 {
+    margin-bottom: 25px;
+    color: var(--green);
+    font-size: clamp(45px, 6vw, 72px);
+    line-height: 1.02;
+}
+
+.about-hero-text {
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.about-hero-image {
+    height: 560px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--green-light);
+}
+
+.about-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.philosophy-section {
+    padding: 100px 0;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.philosophy-image {
+    height: 520px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--green-light);
+}
+
+.philosophy-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.philosophy-content {
+    max-width: 550px;
+}
+
+.philosophy-content h2 {
+    margin-bottom: 25px;
+    color: var(--green);
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.1;
+}
+
+.philosophy-content p:not(.eyebrow) {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.philosophy-content .btn {
+    margin-top: 15px;
+}
+
+.botanical-section {
+    padding: 100px 0;
+    background: var(--paper);
+}
+
+.section-heading {
+    max-width: 650px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin-bottom: 18px;
+    color: var(--green);
+    font-size: clamp(35px, 5vw, 52px);
+}
+
+.section-heading p:last-child {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.value-card {
+    min-height: 300px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.value-number {
+    margin-bottom: 55px;
+    color: var(--terracotta);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.value-card h3 {
+    margin-bottom: 14px;
+    color: var(--green);
+    font-size: 20px;
+}
+
+.value-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.brand-statement {
+    padding: 100px 0;
+}
+
+.statement-box {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 75px 50px;
+    border-radius: var(--radius-lg);
+    background: var(--green);
+    text-align: center;
+}
+
+.statement-box .eyebrow {
+    color: var(--sage);
+}
+
+.statement-box h2 {
+    max-width: 720px;
+    margin: 0 auto 20px;
+    color: var(--white);
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.15;
+}
+
+.statement-box p:not(.eyebrow) {
+    max-width: 620px;
+    margin: 0 auto 30px;
+    color: var(--green-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.about-cta {
+    padding: 90px 0 110px;
+    text-align: center;
+}
+
+.about-cta .container {
+    max-width: 700px;
+}
+
+.about-cta h2 {
+    margin-bottom: 18px;
+    color: var(--green);
+    font-size: clamp(34px, 5vw, 50px);
+}
+
+.about-cta p:not(.eyebrow) {
+    margin-bottom: 28px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+@media (max-width: 950px) {
+
+    .about-hero-grid,
+    .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .about-hero-content,
+    .philosophy-content {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-hero-image,
+    .philosophy-image {
+        max-width: 650px;
+        width: 100%;
+        height: 450px;
+        margin: 0 auto;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .about-hero {
+        padding: 65px 0;
+    }
+
+    .philosophy-section,
+    .botanical-section,
+    .brand-statement {
+        padding: 70px 0;
+    }
+
+    .about-hero-image,
+    .philosophy-image {
+        height: 340px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-card {
+        min-height: auto;
+    }
+
+    .value-number {
+        margin-bottom: 30px;
+    }
+
+    .statement-box {
+        padding: 55px 25px;
+    }
+
+    .about-cta {
+        padding: 70px 0 80px;
+    }
+}

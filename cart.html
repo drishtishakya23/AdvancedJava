@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cart | Lavanya</title>
+
+    <!-- COMMON HEADER AND FOOTER CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
+
+    <!-- CART PAGE CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/cart.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+         ========================================= -->
+
+    <div class="announcement-bar">
+
+        Free shipping on orders over NPR 2500
+
+        <span>|</span>
+
+        Thoughtful botanical skincare
+
+    </div>
+
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                lavanya<span>.</span>
+            </a>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a
+                    href="shop.html"
+                    class="active"
+                >
+                    Shop
+                </a>
+
+                <a href="quiz.html">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <a
+                    href="shop.html#shop-products"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CART PAGE
+         ========================================= -->
+
+    <main>
+
+
+        <!-- CART HERO -->
+
+        <section class="cart-hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    YOUR LAVANYA BAG
+                </p>
+
+                <h1>
+                    Shopping Cart
+                </h1>
+
+                <p>
+                    Review your selected skincare before
+                    moving to checkout.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CART CONTENT
+             ===================================== -->
+
+        <section class="cart-section">
+
+            <div class="container">
+
+                <div
+                    class="cart-layout"
+                    id="cart-layout"
+                >
+
+
+                    <!-- =================================
+                         CART ITEMS
+                         ================================= -->
+
+                    <div class="cart-items-area">
+
+                        <div class="cart-items-header">
+
+                            <div>
+
+                                <h2>
+                                    Your Products
+                                </h2>
+
+                                <p id="cart-results">
+                                    0 items
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CART ITEMS INSERTED HERE -->
+
+                        <div
+                            class="cart-items"
+                            id="cart-items"
+                        ></div>
+
+
+                        <!-- EMPTY CART -->
+
+                        <div
+                            class="cart-empty"
+                            id="cart-empty"
+                            hidden
+                        >
+
+                            <div class="cart-empty-icon">
+                                🛒
+                            </div>
+
+                            <h2>
+                                Your cart is empty
+                            </h2>
+
+                            <p>
+                                Your skincare routine is
+                                waiting. Explore Lavanya
+                                and find something made
+                                for you.
+                            </p>
+
+                            <a
+                                href="shop.html"
+                                class="btn btn-primary"
+                            >
+                                Continue Shopping
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         ORDER SUMMARY
+                         ================================= -->
+
+                    <aside
+                        class="cart-summary"
+                        id="cart-summary"
+                    >
+
+                        <h2>
+                            Order Summary
+                        </h2>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <strong id="cart-subtotal">
+                                NPR 0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Shipping
+                            </span>
+
+                            <strong id="cart-shipping">
+                                NPR 0
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            class="free-shipping-message"
+                            id="free-shipping-message"
+                        >
+                            Free shipping on orders
+                            over NPR 2500.
+                        </div>
+
+
+                        <!-- COUPON -->
+
+                        <div class="coupon-box">
+
+                            <label for="coupon-code">
+                                Coupon code
+                            </label>
+
+                            <div class="coupon-input">
+
+                                <input
+                                    type="text"
+                                    id="coupon-code"
+                                    placeholder="Enter code"
+                                >
+
+                                <button
+                                    type="button"
+                                    id="apply-coupon"
+                                    class="btn btn-secondary"
+                                >
+                                    Apply
+                                </button>
+
+                            </div>
+
+                            <p
+                                class="coupon-message"
+                                id="coupon-message"
+                            ></p>
+
+                        </div>
+
+
+                        <div
+                            class="summary-row discount-row"
+                            id="discount-row"
+                            hidden
+                        >
+
+                            <span>
+                                Discount
+                            </span>
+
+                            <strong id="cart-discount">
+                                - NPR 0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="cart-total">
+                                NPR 0
+                            </strong>
+
+                        </div>
+
+
+                        <a
+                            href="checkout.html"
+                            class="btn btn-primary cart-checkout"
+                            id="checkout-button"
+                        >
+                            Proceed to Checkout
+                        </a>
+
+
+                        <a
+                            href="shop.html"
+                            class="continue-shopping"
+                        >
+                            ← Continue Shopping
+                        </a>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+                    Lavan<span>y</span>a
+                </a>
+
+                <p>
+                    Thoughtful botanical skincare made
+                    for simple, intentional routines.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="recommendations.html">
+                    Recommendations
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Help
+                </h4>
+
+                <a href="quiz.html">
+                    Skin Quiz
+                </a>
+
+                <a href="faq.html">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+            </div>
+
+
+            <div class="footer-newsletter">
+
+                <h4>
+                    Stay in the loop
+                </h4>
+
+                <p>
+                    Receive skincare tips, new product
+                    updates, and thoughtful offers from
+                    Lavanya.
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label
+                        for="newsletter-email"
+                        class="sr-only"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        placeholder="Your email address"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-light"
+                    >
+                        Join
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Lavanya. All rights reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         CART JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* ========================================
+           CART STORAGE
+           ======================================== */
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaCart"
+                ) || "[]"
+            );
+
+
+        let wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaWishlist"
+                ) || "[]"
+            );
+
+
+        let discount = 0;
+
+
+
+        /* ========================================
+           HEADER COUNTERS
+           ======================================== */
+
+        function updateHeaderCounters() {
+
+            const wishlistCount =
+                document.getElementById(
+                    "wishlist-count"
+                );
+
+            const cartCount =
+                document.getElementById(
+                    "cart-count"
+                );
+
+
+            if (wishlistCount) {
+
+                wishlistCount.textContent =
+                    wishlist.length;
+
+            }
+
+
+            if (cartCount) {
+
+                const quantity =
+                    cart.reduce(
+                        (total, item) =>
+                            total +
+                            Number(
+                                item.quantity || 1
+                            ),
+                        0
+                    );
+
+                cartCount.textContent =
+                    quantity;
+
+            }
+
+        }
+
+
+
+        /* ========================================
+           SAVE CART
+           ======================================== */
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "lavanyaCart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+
+        /* ========================================
+           CALCULATE SUBTOTAL
+           ======================================== */
+
+        function getSubtotal() {
+
+            return cart.reduce(
+                (total, item) => {
+
+                    return total +
+                        Number(item.price) *
+                        Number(item.quantity || 1);
+
+                },
+                0
+            );
+
+        }
+
+
+
+        /* ========================================
+           CHANGE QUANTITY
+           ======================================== */
+
+        function changeQuantity(
+            productId,
+            change
+        ) {
+
+            const item =
+                cart.find(
+                    product =>
+                        product.id === productId
+                );
+
+
+            if (!item) {
+                return;
+            }
+
+
+            item.quantity =
+                Number(item.quantity || 1) +
+                change;
+
+
+            if (item.quantity <= 0) {
+
+                cart =
+                    cart.filter(
+                        product =>
+                            product.id !== productId
+                    );
+
+            }
+
+
+            saveCart();
+
+            renderCart();
+
+        }
+
+
+
+        /* ========================================
+           REMOVE ITEM
+           ======================================== */
+
+        function removeItem(productId) {
+
+            cart =
+                cart.filter(
+                    item =>
+                        item.id !== productId
+                );
+
+
+            saveCart();
+
+            renderCart();
+
+        }
+
+
+
+        /* ========================================
+           APPLY COUPON
+           ======================================== */
+
+        function applyCoupon() {
+
+            const input =
+                document.getElementById(
+                    "coupon-code"
+                );
+
+            const message =
+                document.getElementById(
+                    "coupon-message"
+                );
+
+            const code =
+                input.value
+                    .trim()
+                    .toUpperCase();
+
+
+            if (code === "LAVANYA10") {
+
+                discount =
+                    Math.round(
+                        getSubtotal() * 0.10
+                    );
+
+
+                message.textContent =
+                    "10% discount applied.";
+
+                message.className =
+                    "coupon-message success";
+
+                renderCart();
+
+                return;
+
+            }
+
+
+            discount = 0;
+
+
+            if (code === "") {
+
+                message.textContent =
+                    "Please enter a coupon code.";
+
+            } else {
+
+                message.textContent =
+                    "Invalid coupon code.";
+
+            }
+
+
+            message.className =
+                "coupon-message error";
+
+            renderCart();
+
+        }
+
+
+
+        /* ========================================
+           RENDER CART
+           ======================================== */
+
+        function renderCart() {
+
+            const itemsContainer =
+                document.getElementById(
+                    "cart-items"
+                );
+
+            const empty =
+                document.getElementById(
+                    "cart-empty"
+                );
+
+            const layout =
+                document.getElementById(
+                    "cart-layout"
+                );
+
+            const summary =
+                document.getElementById(
+                    "cart-summary"
+                );
+
+            const results =
+                document.getElementById(
+                    "cart-results"
+                );
+
+
+            const subtotal =
+                getSubtotal();
+
+
+            const itemCount =
+                cart.reduce(
+                    (total, item) =>
+                        total +
+                        Number(
+                            item.quantity || 1
+                        ),
+                    0
+                );
+
+
+            results.textContent =
+                itemCount === 1
+                    ? "1 item"
+                    : itemCount + " items";
+
+
+            /* EMPTY CART */
+
+            if (cart.length === 0) {
+
+                itemsContainer.innerHTML = "";
+
+                empty.hidden = false;
+
+                summary.style.display =
+                    "none";
+
+                discount = 0;
+
+                return;
+
+            }
+
+
+            empty.hidden = true;
+
+            summary.style.display =
+                "block";
+
+
+            /* SHIPPING */
+
+            const shipping =
+                subtotal >= 2500
+                    ? 0
+                    : 150;
+
+
+            const total =
+                Math.max(
+                    0,
+                    subtotal +
+                    shipping -
+                    discount
+                );
+
+
+            /* SUMMARY */
+
+            document.getElementById(
+                "cart-subtotal"
+            ).textContent =
+                "NPR " +
+                subtotal.toLocaleString();
+
+
+            document.getElementById(
+                "cart-shipping"
+            ).textContent =
+                shipping === 0
+                    ? "Free"
+                    : "NPR " +
+                      shipping.toLocaleString();
+
+
+            document.getElementById(
+                "cart-discount"
+            ).textContent =
+                "- NPR " +
+                discount.toLocaleString();
+
+
+            document.getElementById(
+                "cart-total"
+            ).textContent =
+                "NPR " +
+                total.toLocaleString();
+
+
+            document.getElementById(
+                "discount-row"
+            ).hidden =
+                discount === 0;
+
+
+            const freeShippingMessage =
+                document.getElementById(
+                    "free-shipping-message"
+                );
+
+
+            if (subtotal >= 2500) {
+
+                freeShippingMessage.textContent =
+                    "You qualify for free shipping.";
+
+            } else {
+
+                const remaining =
+                    2500 - subtotal;
+
+                freeShippingMessage.textContent =
+                    "Add NPR " +
+                    remaining.toLocaleString() +
+                    " more for free shipping.";
+
+            }
+
+
+
+            /* CART ITEMS */
+
+            itemsContainer.innerHTML =
+                cart.map(item => `
+
+                    <article
+                        class="cart-item"
+                    >
+
+
+                        <div class="cart-item-image">
+
+                            <!-- PRODUCT IMAGE GOES HERE -->
+
+                            <img
+                                src="${item.image}"
+                                alt="image"
+                            >
+
+                        </div>
+
+
+                        <div class="cart-item-details">
+
+                            <h3>
+                                ${item.name}
+                            </h3>
+
+                            <p class="cart-item-price">
+                                NPR ${Number(item.price).toLocaleString()}
+                            </p>
+
+
+                            <div class="cart-item-actions">
+
+
+                                <!-- QUANTITY -->
+
+                                <div
+                                    class="quantity-control"
+                                    aria-label="Quantity"
+                                >
+
+                                    <button
+                                        type="button"
+                                        data-minus="${item.id}"
+                                        aria-label="Decrease quantity"
+                                    >
+                                        −
+                                    </button>
+
+                                    <span>
+                                        ${item.quantity}
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        data-plus="${item.id}"
+                                        aria-label="Increase quantity"
+                                    >
+                                        +
+                                    </button>
+
+                                </div>
+
+
+                                <!-- REMOVE -->
+
+                                <button
+                                    type="button"
+                                    class="remove-cart-item"
+                                    data-remove="${item.id}"
+                                >
+                                    Remove
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart-item-total">
+
+                            NPR ${(
+                                Number(item.price) *
+                                Number(item.quantity || 1)
+                            ).toLocaleString()}
+
+                        </div>
+
+                    </article>
+
+                `).join("");
+
+
+            updateHeaderCounters();
+
+        }
+
+
+
+        /* ========================================
+           CART BUTTON EVENTS
+           ======================================== */
+
+        document.addEventListener(
+            "click",
+            function(event) {
+
+
+                const plusButton =
+                    event.target.closest(
+                        "[data-plus]"
+                    );
+
+
+                if (plusButton) {
+
+                    changeQuantity(
+                        plusButton.dataset.plus,
+                        1
+                    );
+
+                    return;
+
+                }
+
+
+                const minusButton =
+                    event.target.closest(
+                        "[data-minus]"
+                    );
+
+
+                if (minusButton) {
+
+                    changeQuantity(
+                        minusButton.dataset.minus,
+                        -1
+                    );
+
+                    return;
+
+                }
+
+
+                const removeButton =
+                    event.target.closest(
+                        "[data-remove]"
+                    );
+
+
+                if (removeButton) {
+
+                    removeItem(
+                        removeButton.dataset.remove
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* ========================================
+           COUPON BUTTON
+           ======================================== */
+
+        document
+            .getElementById(
+                "apply-coupon"
+            )
+            .addEventListener(
+                "click",
+                applyCoupon
+            );
+
+
+
+        /* ========================================
+           CHECKOUT PROTECTION
+           ======================================== */
+
+        document
+            .getElementById(
+                "checkout-button"
+            )
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    if (cart.length === 0) {
+
+                        event.preventDefault();
+
+                    }
+
+                }
+            );
+
+
+
+        /* ========================================
+           LOGOUT
+           ======================================== */
+
+        const logoutButton =
+            document.querySelector(
+                "[data-logout]"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function() {
+
+                    localStorage.removeItem(
+                        "lavanyaUser"
+                    );
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+
+
+
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+
+        const newsletterForm =
+            document.getElementById(
+                "newsletter-form"
+            );
+
+
+        if (newsletterForm) {
+
+            newsletterForm.addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "newsletter-email"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (!email) {
+                        return;
+                    }
+
+
+                    localStorage.setItem(
+                        "lavanyaNewsletter",
+                        email
+                    );
+
+
+                    newsletterForm.reset();
+
+                }
+            );
+
+        }
+
+
+
+        /* ========================================
+           INITIAL LOAD
+           ======================================== */
+
+        updateHeaderCounters();
+
+        renderCart();
+
+    </script>
+
+
+</body>
+
+</html>

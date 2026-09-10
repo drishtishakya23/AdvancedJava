@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account | Lavanya</title>
+
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/signup.css"
+    >
+
+</head>
+
+<body>
+
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+         ========================================= -->
+
+    <div class="announcement-bar">
+
+        Free shipping on orders over NPR 2500
+        <span>|</span>
+        Thoughtful botanical skincare
+
+    </div>
+
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                lavanya<span>.</span>
+            </a>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="quiz.html">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <a
+                    href="shop.html#shop-products"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <!-- ACCOUNT / LOGIN -->
+
+                <a
+                    href="login.html"
+                    class="header-action"
+                    id="account-link"
+                    aria-label="Login"
+                >
+                    👤
+                </a>
+
+                <!-- SIGNUP / LOGOUT -->
+
+                <a
+                    href="signup.html"
+                    class="header-action"
+                    id="auth-arrow"
+                    aria-label="Sign up"
+                >
+                    ↪
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN
+         ========================================= -->
+
+    <main>
+
+        <section class="signup-section">
+
+            <div class="container signup-container">
+
+
+                <!-- SIGNUP CARD -->
+
+                <div class="signup-card">
+
+                    <div class="signup-heading">
+
+                        <p class="eyebrow">
+                            JOIN LAVANYA
+                        </p>
+
+                        <h1>
+                            Create your account.
+                        </h1>
+
+                        <p>
+                            Save your skincare profile,
+                            favorites, and orders in one place.
+                        </p>
+
+                    </div>
+
+
+                    <!-- SIGNUP FORM -->
+
+                    <form id="signup-form">
+
+
+                        <div class="form-group">
+
+                            <label for="signup-name">
+                                Full name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="signup-name"
+                                name="name"
+                                placeholder="Your full name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="signup-email">
+                                Email address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="signup-email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="signup-password">
+                                Password
+                            </label>
+
+                            <div class="password-input">
+
+                                <input
+                                    type="password"
+                                    id="signup-password"
+                                    name="password"
+                                    placeholder="At least 6 characters"
+                                    autocomplete="new-password"
+                                    minlength="6"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    id="toggle-password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="signup-confirm-password">
+                                Confirm password
+                            </label>
+
+                            <div class="password-input">
+
+                                <input
+                                    type="password"
+                                    id="signup-confirm-password"
+                                    name="confirm-password"
+                                    placeholder="Repeat your password"
+                                    autocomplete="new-password"
+                                    minlength="6"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    id="toggle-confirm-password"
+                                >
+                                    Show
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <label class="terms-option">
+
+                            <input
+                                type="checkbox"
+                                id="signup-terms"
+                                required
+                            >
+
+                            <span>
+                                I agree to Lavanya's
+                                <a href="#">
+                                    Terms
+                                </a>
+                                and
+                                <a href="#">
+                                    Privacy Policy
+                                </a>.
+                            </span>
+
+                        </label>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary signup-submit"
+                        >
+                            Create Account
+                        </button>
+
+
+                        <p
+                            class="signup-message"
+                            id="signup-message"
+                            aria-live="polite"
+                        ></p>
+
+                    </form>
+
+
+                    <!-- LOGIN -->
+
+                    <div class="signup-divider">
+
+                        <span>
+                            Already have an account?
+                        </span>
+
+                    </div>
+
+
+                    <a
+                        href="login.html"
+                        class="btn btn-secondary login-button"
+                    >
+                        Login Instead
+                    </a>
+
+                </div>
+
+
+
+                <!-- SIDE CONTENT -->
+
+                <div class="signup-side">
+
+                    <p class="eyebrow">
+                        A MORE PERSONAL ROUTINE
+                    </p>
+
+                    <h2>
+                        Your skin.
+                        Your routine.
+                        Your Lavanya.
+                    </h2>
+
+                    <p>
+                        Create an account and make your
+                        skincare shopping experience more
+                        personal from the very beginning.
+                    </p>
+
+
+                    <div class="signup-benefits">
+
+                        <div class="signup-benefit">
+
+                            <span>
+                                ✦
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Save your skin profile
+                                </strong>
+
+                                <p>
+                                    Keep your quiz results
+                                    available whenever you shop.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="signup-benefit">
+
+                            <span>
+                                ♡
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Save your favorites
+                                </strong>
+
+                                <p>
+                                    Build a personal collection
+                                    of products you love.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="signup-benefit">
+
+                            <span>
+                                🛍
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Keep track of orders
+                                </strong>
+
+                                <p>
+                                    Access your latest order
+                                    information from your account.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+                    Lavan<span>y</span>a
+                </a>
+
+                <p>
+                    Thoughtful botanical skincare made
+                    for simple, intentional routines.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="recommendations.html">
+                    Recommendations
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Help
+                </h4>
+
+                <a href="quiz.html">
+                    Skin Quiz
+                </a>
+
+                <a href="faq.html">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+            </div>
+
+            <div class="footer-newsletter">
+
+                <h4>
+                    Stay in the loop
+                </h4>
+
+                <p>
+                    Receive skincare tips, new product
+                    updates, and thoughtful offers from
+                    Lavanya.
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label
+                        for="newsletter-email"
+                        class="sr-only"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        placeholder="Your email address"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-light"
+                    >
+                        Join
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Lavanya. All rights reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+        /* ========================================
+           HEADER COUNTERS
+           ======================================== */
+
+        const wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaWishlist"
+                ) || "[]"
+            );
+
+        const cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaCart"
+                ) || "[]"
+            );
+
+
+        document.getElementById(
+            "wishlist-count"
+        ).textContent = wishlist.length;
+
+
+        document.getElementById(
+            "cart-count"
+        ).textContent =
+            cart.reduce(
+                (total, item) =>
+                    total +
+                    Number(item.quantity || 1),
+                0
+            );
+
+
+
+        /* ========================================
+           HEADER ACCOUNT / LOGIN / SIGNUP / LOGOUT
+           ======================================== */
+
+        const accountLink =
+            document.getElementById(
+                "account-link"
+            );
+
+        const authArrow =
+            document.getElementById(
+                "auth-arrow"
+            );
+
+
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaUser"
+                ) || "null"
+            );
+
+
+        if (currentUser) {
+
+            /*
+               LOGGED-IN USER
+            */
+
+            accountLink.href =
+                "account.html";
+
+            accountLink.setAttribute(
+                "aria-label",
+                "My Account"
+            );
+
+
+            authArrow.href =
+                "login.html";
+
+            authArrow.setAttribute(
+                "aria-label",
+                "Logout"
+            );
+
+
+            authArrow.addEventListener(
+                "click",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    localStorage.removeItem(
+                        "lavanyaUser"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        } else {
+
+            /*
+               LOGGED-OUT USER
+            */
+
+            accountLink.href =
+                "login.html";
+
+            accountLink.setAttribute(
+                "aria-label",
+                "Login"
+            );
+
+
+            authArrow.href =
+                "signup.html";
+
+            authArrow.setAttribute(
+                "aria-label",
+                "Sign up"
+            );
+
+        }
+
+
+
+        /* ========================================
+           SIGNUP FORM
+           ======================================== */
+
+        const signupForm =
+            document.getElementById(
+                "signup-form"
+            );
+
+        const signupMessage =
+            document.getElementById(
+                "signup-message"
+            );
+
+
+        signupForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                        .getElementById(
+                            "signup-name"
+                        )
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "signup-email"
+                        )
+                        .value
+                        .trim()
+                        .toLowerCase();
+
+
+                const password =
+                    document.getElementById(
+                        "signup-password"
+                    ).value;
+
+
+                const confirmPassword =
+                    document.getElementById(
+                        "signup-confirm-password"
+                    ).value;
+
+
+
+                /* ========================================
+                   NAME VALIDATION
+                   ======================================== */
+
+                if (name.length < 2) {
+
+                    signupMessage.textContent =
+                        "Please enter your full name.";
+
+                    return;
+
+                }
+
+
+
+                /* ========================================
+                   PASSWORD VALIDATION
+                   ======================================== */
+
+                if (password.length < 6) {
+
+                    signupMessage.textContent =
+                        "Your password must be at least 6 characters.";
+
+                    return;
+
+                }
+
+
+                if (password !== confirmPassword) {
+
+                    signupMessage.textContent =
+                        "Passwords do not match.";
+
+                    return;
+
+                }
+
+
+
+                /* ========================================
+                   CHECK EXISTING ACCOUNT
+                   ======================================== */
+
+                const existingUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaRegisteredUser"
+                        ) || "null"
+                    );
+
+
+                if (
+                    existingUser &&
+                    existingUser.email === email
+                ) {
+
+                    signupMessage.textContent =
+                        "An account with this email already exists. Please login.";
+
+                    return;
+
+                }
+
+
+
+                /* ========================================
+                   SAVE REGISTERED USER
+                   ======================================== */
+
+                const registeredUser = {
+
+                    name: name,
+
+                    email: email,
+
+                    password: password,
+
+                    createdAt:
+                        new Date().toISOString()
+
+                };
+
+
+                localStorage.setItem(
+                    "lavanyaRegisteredUser",
+                    JSON.stringify(
+                        registeredUser
+                    )
+                );
+
+
+
+                /* ========================================
+                   IMPORTANT
+                   
+                   DO NOT AUTOMATICALLY LOGIN
+                   
+                   The user must login after signup.
+                   ======================================== */
+
+                localStorage.removeItem(
+                    "lavanyaUser"
+                );
+
+
+
+                /* ========================================
+                   PRESERVE ORIGINAL DESTINATION
+                   
+                   If the user was redirected to signup
+                   because they tried to access Shop/Quiz,
+                   keep that destination for login.
+                   ======================================== */
+
+                const savedRedirect =
+                    localStorage.getItem(
+                        "lavanyaRedirectAfterLogin"
+                    );
+
+
+                if (savedRedirect) {
+
+                    localStorage.setItem(
+                        "lavanyaRedirectAfterLogin",
+                        savedRedirect
+                    );
+
+                }
+
+
+
+                /* ========================================
+                   LOGIN MESSAGE
+                   ======================================== */
+
+                localStorage.setItem(
+                    "lavanyaLoginMessage",
+                    "Your account has been created. Please login to continue."
+                );
+
+
+                signupMessage.textContent =
+                    "Account created successfully. Please login to continue.";
+
+
+
+                /* ========================================
+                   REDIRECT TO LOGIN
+                   ======================================== */
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "login.html";
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+
+
+        /* ========================================
+           PASSWORD TOGGLE
+           ======================================== */
+
+        const passwordInput =
+            document.getElementById(
+                "signup-password"
+            );
+
+        const togglePassword =
+            document.getElementById(
+                "toggle-password"
+            );
+
+
+        togglePassword.addEventListener(
+            "click",
+            function() {
+
+                const isPassword =
+                    passwordInput.type ===
+                    "password";
+
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                togglePassword.textContent =
+                    isPassword
+                        ? "Hide"
+                        : "Show";
+
+            }
+        );
+
+
+
+        /* ========================================
+           CONFIRM PASSWORD TOGGLE
+           ======================================== */
+
+        const confirmPasswordInput =
+            document.getElementById(
+                "signup-confirm-password"
+            );
+
+        const toggleConfirmPassword =
+            document.getElementById(
+                "toggle-confirm-password"
+            );
+
+
+        toggleConfirmPassword.addEventListener(
+            "click",
+            function() {
+
+                const isPassword =
+                    confirmPasswordInput.type ===
+                    "password";
+
+
+                confirmPasswordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+
+                toggleConfirmPassword.textContent =
+                    isPassword
+                        ? "Hide"
+                        : "Show";
+
+            }
+        );
+
+
+
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+
+        document.getElementById(
+            "newsletter-form"
+        ).addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document
+                        .getElementById(
+                            "newsletter-email"
+                        )
+                        .value
+                        .trim();
+
+
+                localStorage.setItem(
+                    "lavanyaNewsletter",
+                    email
+                );
+
+
+                this.reset();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

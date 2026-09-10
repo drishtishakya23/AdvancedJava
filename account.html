@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Account | Lavanya</title>
+
+    <!-- COMMON HEADER AND FOOTER CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
+
+    <!-- ACCOUNT PAGE CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/account.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+         ========================================= -->
+
+    <div class="announcement-bar">
+
+        Free shipping on orders over NPR 2500
+        <span>|</span>
+        Thoughtful botanical skincare
+
+    </div>
+
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                lavanya<span>.</span>
+            </a>
+
+
+            <!-- MAIN NAVIGATION -->
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a
+                    href="shop.html"
+                    class="active"
+                >
+                    Shop
+                </a>
+
+                <a href="quiz.html">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <a
+                    href="#shop-products"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+         ========================================= -->
+
+    <main>
+
+
+        <!-- =====================================
+             ACCOUNT HERO
+             ===================================== -->
+
+        <section class="account-hero">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    YOUR LAVANYA
+                </p>
+
+                <h1>
+                    My Account
+                </h1>
+
+                <p>
+                    Keep track of your skincare journey,
+                    orders, and personal preferences.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ACCOUNT CONTENT
+             ===================================== -->
+
+        <section class="account-section">
+
+            <div class="container account-layout">
+
+
+                <!-- =================================
+                     PROFILE CARD
+                     ================================= -->
+
+                <div class="account-main">
+
+
+                    <section class="account-card profile-card">
+
+                        <div class="account-card-header">
+
+                            <div>
+
+                                <p class="card-eyebrow">
+                                    PROFILE
+                                </p>
+
+                                <h2>
+                                    Personal Details
+                                </h2>
+
+                            </div>
+
+                            <div class="profile-icon">
+                                👤
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="profile-details"
+                            id="profile-details"
+                        >
+
+                            <div class="profile-row">
+
+                                <span>
+                                    Name
+                                </span>
+
+                                <strong id="profile-name">
+                                    Guest
+                                </strong>
+
+                            </div>
+
+
+                            <div class="profile-row">
+
+                                <span>
+                                    Email
+                                </span>
+
+                                <strong id="profile-email">
+                                    Not signed in
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="account-login-message"
+                            id="account-login-message"
+                        >
+
+                            <p>
+                                You can create an account later
+                                to save your details and manage
+                                your skincare journey.
+                            </p>
+
+                            <a
+                                href="login.html"
+                                class="btn btn-secondary"
+                            >
+                                Login
+
+                            </a>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         SKIN PROFILE
+                         ================================= -->
+
+                    <section class="account-card">
+
+                        <div class="account-card-header">
+
+                            <div>
+
+                                <p class="card-eyebrow">
+                                    SKIN PROFILE
+                                </p>
+
+                                <h2>
+                                    Your Skin Profile
+                                </h2>
+
+                            </div>
+
+                            <span class="profile-status">
+                                Quiz
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="skin-profile"
+                            id="skin-profile"
+                        >
+
+                            <div class="skin-profile-empty">
+
+                                <div class="empty-icon">
+                                    ✦
+                                </div>
+
+                                <h3>
+                                    Discover your skin profile
+                                </h3>
+
+                                <p>
+                                    Take our skin quiz to receive
+                                    personalized product recommendations.
+                                </p>
+
+                                <a
+                                    href="quiz.html"
+                                    class="btn btn-primary"
+                                >
+                                    Take Skin Quiz
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         RECENT ORDER
+                         ================================= -->
+
+                    <section class="account-card">
+
+                        <div class="account-card-header">
+
+                            <div>
+
+                                <p class="card-eyebrow">
+                                    ORDER HISTORY
+                                </p>
+
+                                <h2>
+                                    Recent Order
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="recent-order"
+                            id="recent-order"
+                        >
+
+                            <div class="order-empty">
+
+                                <div class="empty-icon">
+                                    🛍
+                                </div>
+
+                                <h3>
+                                    No orders yet
+                                </h3>
+
+                                <p>
+                                    Your recent Lavanya orders
+                                    will appear here.
+                                </p>
+
+                                <a
+                                    href="shop.html"
+                                    class="btn btn-primary"
+                                >
+                                    Start Shopping
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+
+                <!-- =================================
+                     ACCOUNT SIDEBAR
+                     ================================= -->
+
+                <aside class="account-sidebar">
+
+
+                    <!-- QUICK LINKS -->
+
+                    <div class="account-card quick-links">
+
+                        <p class="card-eyebrow">
+                            QUICK ACCESS
+                        </p>
+
+                        <h2>
+                            Your Lavanya
+                        </h2>
+
+
+                        <a href="shop.html">
+
+                            <span>
+                                🛍
+                            </span>
+
+                            Shop Products
+
+                        </a>
+
+
+                        <a href="wishlist.html">
+
+                            <span>
+                                ♡
+                            </span>
+
+                            Wishlist
+
+                        </a>
+
+
+                        <a href="cart.html">
+
+                            <span>
+                                🛒
+                            </span>
+
+                            Cart
+
+                        </a>
+
+
+                        <a href="recommendations.html">
+
+                            <span>
+                                ✦
+                            </span>
+
+                            My Recommendations
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- ACCOUNT ACTION -->
+
+                    <div class="account-card account-action-card">
+
+                        <p class="card-eyebrow">
+                            ACCOUNT
+                        </p>
+
+                        <h2>
+                            Manage your account
+                        </h2>
+
+                        <p>
+                            Login or create an account to
+                            keep your information available
+                            for future visits.
+                        </p>
+
+                        <a
+                            href="login.html"
+                            class="btn btn-primary"
+                        >
+                            Login
+                        </a>
+
+                        <a
+                            href="signup.html"
+                            class="account-signup-link"
+                        >
+                            Create an account →
+
+                        </a>
+
+                    </div>
+
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ACCOUNT CTA
+             ===================================== -->
+
+        <section class="account-cta">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    YOUR ROUTINE, YOUR WAY
+                </p>
+
+                <h2>
+                    Keep discovering what
+                    works for your skin.
+                </h2>
+
+                <p>
+                    Explore our products or retake the
+                    skin quiz whenever your routine changes.
+                </p>
+
+                <div class="account-cta-actions">
+
+                    <a
+                        href="shop.html"
+                        class="btn btn-primary"
+                    >
+                        Shop Skincare
+                    </a>
+
+                    <a
+                        href="quiz.html"
+                        class="btn btn-secondary"
+                    >
+                        Retake Skin Quiz
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+                    Lavan<span>y</span>a
+                </a>
+
+                <p>
+                    Thoughtful botanical skincare made
+                    for simple, intentional routines.
+                </p>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="recommendations.html">
+                    Recommendations
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+            <div class="footer-column">
+
+                <h4>
+                    Help
+                </h4>
+
+                <a href="quiz.html">
+                    Skin Quiz
+                </a>
+
+                <a href="faq.html">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+            </div>
+
+            <div class="footer-newsletter">
+
+                <h4>
+                    Stay in the loop
+                </h4>
+
+                <p>
+                    Receive skincare tips, new product
+                    updates, and thoughtful offers from
+                    Lavanya.
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label
+                        for="newsletter-email"
+                        class="sr-only"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        placeholder="Your email address"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-light"
+                    >
+                        Join
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 Lavanya. All rights reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script>
+
+
+        /* ========================================
+           LOCAL STORAGE
+           ======================================== */
+
+        const user =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaUser"
+                ) || "null"
+            );
+
+
+        const wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaWishlist"
+                ) || "[]"
+            );
+
+
+        const cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaCart"
+                ) || "[]"
+            );
+
+
+        const skinProfile =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaSkinProfile"
+                ) || "null"
+            );
+
+
+        const lastOrder =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaLastOrder"
+                ) || "null"
+            );
+
+
+
+        /* ========================================
+           HEADER COUNTERS
+           ======================================== */
+
+        document.getElementById(
+            "wishlist-count"
+        ).textContent =
+            wishlist.length;
+
+
+        document.getElementById(
+            "cart-count"
+        ).textContent =
+            cart.reduce(
+                (total, item) =>
+                    total +
+                    Number(
+                        item.quantity || 1
+                    ),
+                0
+            );
+
+
+
+        /* ========================================
+           USER PROFILE
+           ======================================== */
+
+        if (user) {
+
+            document.getElementById(
+                "profile-name"
+            ).textContent =
+                user.name ||
+                user.fullName ||
+                "Lavanya User";
+
+
+            document.getElementById(
+                "profile-email"
+            ).textContent =
+                user.email ||
+                "Email not available";
+
+
+            document.getElementById(
+                "account-login-message"
+            ).innerHTML = `
+
+                <p>
+                    Your account is ready to use.
+                    Continue exploring your Lavanya routine.
+                </p>
+
+            `;
+
+        }
+
+
+
+        /* ========================================
+           SKIN PROFILE
+           ======================================== */
+
+        if (skinProfile) {
+
+            const skinProfileContainer =
+                document.getElementById(
+                    "skin-profile"
+                );
+
+
+            const formatValue =
+                value => {
+
+                    if (!value) {
+                        return "Not specified";
+                    }
+
+                    return value
+                        .replaceAll("-", " ")
+                        .replace(/\b\w/g, letter =>
+                            letter.toUpperCase()
+                        );
+
+                };
+
+
+            skinProfileContainer.innerHTML = `
+
+                <div class="skin-profile-grid">
+
+                    <div class="skin-profile-item">
+
+                        <span>
+                            Skin Type
+                        </span>
+
+                        <strong>
+                            ${formatValue(
+                                skinProfile.skinType
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="skin-profile-item">
+
+                        <span>
+                            Main Concern
+                        </span>
+
+                        <strong>
+                            ${formatValue(
+                                skinProfile.primaryConcern
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="skin-profile-item">
+
+                        <span>
+                            Secondary Concern
+                        </span>
+
+                        <strong>
+                            ${formatValue(
+                                skinProfile.secondaryConcern
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="skin-profile-item">
+
+                        <span>
+                            Routine
+                        </span>
+
+                        <strong>
+                            ${formatValue(
+                                skinProfile.routine
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="skin-profile-item">
+
+                        <span>
+                            Preference
+                        </span>
+
+                        <strong>
+                            ${formatValue(
+                                skinProfile.preference
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="skin-profile-item">
+
+                        <span>
+                            Budget
+                        </span>
+
+                        <strong>
+                            ${formatValue(
+                                skinProfile.budget
+                            )}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skin-profile-action">
+
+                    <a
+                        href="quiz.html"
+                        class="btn btn-secondary"
+                    >
+                        Retake Quiz
+                    </a>
+
+                    <a
+                        href="recommendations.html"
+                        class="btn btn-primary"
+                    >
+                        View Recommendations
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        /* ========================================
+           RECENT ORDER
+           ======================================== */
+
+        if (lastOrder) {
+
+            const recentOrder =
+                document.getElementById(
+                    "recent-order"
+                );
+
+
+            const orderItems =
+                lastOrder.items || [];
+
+
+            const itemCount =
+                orderItems.reduce(
+                    (total, item) =>
+                        total +
+                        Number(
+                            item.quantity || 1
+                        ),
+                    0
+                );
+
+
+            recentOrder.innerHTML = `
+
+                <div class="recent-order-header">
+
+                    <div>
+
+                        <span>
+                            Order Number
+                        </span>
+
+                        <strong>
+                            ${lastOrder.orderNumber}
+                        </strong>
+
+                    </div>
+
+                    <span class="order-status">
+                        Confirmed
+                    </span>
+
+                </div>
+
+
+                <div class="recent-order-details">
+
+                    <div>
+
+                        <span>
+                            Items
+                        </span>
+
+                        <strong>
+                            ${itemCount}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+                            NPR ${Number(
+                                lastOrder.total || 0
+                            ).toLocaleString()}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Date
+                        </span>
+
+                        <strong>
+                            ${lastOrder.placedAt
+                                ? new Date(
+                                    lastOrder.placedAt
+                                ).toLocaleDateString()
+                                : "Recently"}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="order-confirmation.html"
+                    class="recent-order-link"
+                >
+                    View Order Details →
+
+                </a>
+
+            `;
+
+        }
+
+
+
+        /* ========================================
+           LOGOUT
+           ======================================== */
+
+        const logoutButton =
+            document.querySelector(
+                "[data-logout]"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function() {
+
+                    localStorage.removeItem(
+                        "lavanyaUser"
+                    );
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+
+
+
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+
+        const newsletterForm =
+            document.getElementById(
+                "newsletter-form"
+            );
+
+
+        if (newsletterForm) {
+
+            newsletterForm.addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "newsletter-email"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (!email) {
+                        return;
+                    }
+
+
+                    localStorage.setItem(
+                        "lavanyaNewsletter",
+                        email
+                    );
+
+
+                    newsletterForm.reset();
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

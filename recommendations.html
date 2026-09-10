@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Your Recommendations — Lavanya</title>
+
+    <meta
+        name="description"
+        content="Discover personalized Lavanya skincare recommendations based on your skin profile."
+    >
+
+    <!-- SHARED CSS -->
+    <link rel="stylesheet" href="Assets/CSS/common.css">
+
+    <!-- PAGE-SPECIFIC CSS -->
+    <link rel="stylesheet" href="Assets/CSS/recommendations.css">
+</head>
+
+<body>
+
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+    ========================================== -->
+
+    <div class="announcement-bar">
+        Free shipping on orders over NPR 2,500
+        <span>·</span>
+        Find your skin match in 2 minutes
+    </div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <a href="index.html" class="logo">
+                lavanya<span>.</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="quiz.html" class="active">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <a
+                    href="shop.html"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+                </a>
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================================
+             RESULTS HERO
+        ========================================== -->
+
+        <section class="recommendations-hero">
+
+            <div class="container">
+
+                <div class="recommendations-hero-content">
+
+                    <p class="eyebrow">
+                        YOUR LAVANYA MATCH
+                    </p>
+
+                    <h1>
+                        Skincare chosen
+                        <em>for you.</em>
+                    </h1>
+
+                    <p>
+                        We've looked at your quiz answers and
+                        selected products that may be a good match
+                        for your skin profile and preferences.
+                    </p>
+
+                    <a
+                        href="quiz.html"
+                        class="text-link"
+                    >
+                        Retake the quiz
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             SKIN PROFILE
+        ========================================== -->
+
+        <section class="profile-section">
+
+            <div class="container">
+
+                <div class="profile-card">
+
+                    <div class="profile-heading">
+
+                        <p class="eyebrow">
+                            YOUR SKIN PROFILE
+                        </p>
+
+                        <h2>
+                            Your routine,
+                            your way.
+                        </h2>
+
+                    </div>
+
+
+                    <div
+                        class="profile-details"
+                        id="profile-details"
+                    >
+
+                        <!-- JavaScript fills this area -->
+
+                    </div>
+
+
+                    <div class="profile-actions">
+
+                        <a
+                            href="quiz.html"
+                            class="btn btn-secondary"
+                        >
+                            Change answers
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             RECOMMENDATIONS
+        ========================================== -->
+
+        <section class="recommendations-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            YOUR MATCHES
+                        </p>
+
+                        <h2>
+                            Products that fit
+                            your profile.
+                        </h2>
+
+                    </div>
+
+                    <p class="recommendation-count">
+                        <span id="recommendation-count">
+                            0
+                        </span>
+                        recommendations
+                    </p>
+
+                </div>
+
+
+                <!-- =================================
+                     PRODUCT GRID
+                ================================== -->
+
+                <div
+                    class="recommendation-grid"
+                    id="recommendation-grid"
+                >
+
+                    <!-- JavaScript inserts products here -->
+
+                </div>
+
+
+                <!-- =================================
+                     EMPTY / NO PROFILE MESSAGE
+                ================================== -->
+
+                <div
+                    class="no-profile"
+                    id="no-profile"
+                    hidden
+                >
+
+                    <div class="no-profile-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Let's find your match.
+                    </h3>
+
+                    <p>
+                        Take our short skin quiz and we'll
+                        create recommendations based on
+                        your answers.
+                    </p>
+
+                    <a
+                        href="quiz.html"
+                        class="btn btn-primary"
+                    >
+                        Take the Skin Quiz
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             RECOMMENDED ROUTINE
+        ========================================== -->
+
+        <section class="routine-section">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <p class="eyebrow">
+                        YOUR DAILY RITUAL
+                    </p>
+
+                    <h2>
+                        A simple routine
+                        to start with.
+                    </h2>
+
+                </div>
+
+
+                <div class="routine-grid">
+
+
+                    <!-- =================================
+                         MORNING
+                    ================================== -->
+
+                    <div class="routine-card">
+
+                        <span class="routine-number">
+                            01
+                        </span>
+
+                        <span class="routine-time">
+                            MORNING
+                        </span>
+
+                        <h3>
+                            Cleanse
+                        </h3>
+
+                        <p>
+                            Start with a gentle cleanser to
+                            refresh your skin without leaving
+                            it feeling stripped.
+                        </p>
+
+                    </div>
+
+
+                    <div class="routine-card">
+
+                        <span class="routine-number">
+                            02
+                        </span>
+
+                        <span class="routine-time">
+                            MORNING
+                        </span>
+
+                        <h3>
+                            Treat
+                        </h3>
+
+                        <p>
+                            Follow with a targeted treatment
+                            selected around your main skin
+                            concern.
+                        </p>
+
+                    </div>
+
+
+                    <div class="routine-card">
+
+                        <span class="routine-number">
+                            03
+                        </span>
+
+                        <span class="routine-time">
+                            MORNING
+                        </span>
+
+                        <h3>
+                            Hydrate
+                        </h3>
+
+                        <p>
+                            Apply a moisturizer suited to your
+                            skin type to help maintain comfortable,
+                            hydrated-looking skin.
+                        </p>
+
+                    </div>
+
+
+                    <div class="routine-card">
+
+                        <span class="routine-number">
+                            04
+                        </span>
+
+                        <span class="routine-time">
+                            MORNING
+                        </span>
+
+                        <h3>
+                            Protect
+                        </h3>
+
+                        <p>
+                            Finish with sunscreen during the day
+                            to help protect your skin from UV
+                            exposure.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             WHY THESE PRODUCTS
+        ========================================== -->
+
+        <section class="why-section">
+
+            <div class="container">
+
+                <div class="why-grid">
+
+
+                    <!-- ADD IMAGE HERE -->
+
+                    <div class="why-visual">
+
+                        <img
+                            src="Assets/Images/recommendations.jpg"
+                            alt="image"
+                            class="why-image"
+                        >
+
+                    </div>
+
+
+                    <div class="why-content">
+
+                        <p class="eyebrow">
+                            HOW WE MATCH
+                        </p>
+
+                        <h2>
+                            Thoughtful choices,
+                            not complicated ones.
+                        </h2>
+
+                        <p>
+                            Your recommendations are based on
+                            the information you shared in the
+                            skin quiz — including your skin type,
+                            primary concern, routine preferences,
+                            and budget.
+                        </p>
+
+                        <p>
+                            We aim to make choosing skincare
+                            easier by showing you products that
+                            align with your profile.
+                        </p>
+
+                        <a
+                            href="shop.html"
+                            class="btn btn-primary"
+                        >
+                            Explore All Products
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+
+                <!-- FOOTER BRAND -->
+
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="logo footer-logo"
+                    >
+                        lavanya<span>.</span>
+                    </a>
+
+                    <p>
+                        Personalized skincare for your skin,
+                        your routine, and your everyday ritual.
+                    </p>
+
+                </div>
+
+
+                <!-- EXPLORE -->
+
+                <div class="footer-column">
+
+                    <h4>
+                        Explore
+                    </h4>
+
+                    <a href="shop.html">
+                        Shop
+                    </a>
+
+                    <a href="quiz.html">
+                        Find My Products
+                    </a>
+
+                    <a href="about.html">
+                        About Lavanya
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <!-- HELP -->
+
+                <div class="footer-column">
+
+                    <h4>
+                        Help
+                    </h4>
+
+                    <a href="account.html">
+                        My Account
+                    </a>
+
+                    <a href="wishlist.html">
+                        Wishlist
+                    </a>
+
+                    <a href="cart.html">
+                        Cart
+                    </a>
+
+                    <a href="faq.html">
+                        FAQ
+                    </a>
+
+                </div>
+
+
+                <!-- NEWSLETTER -->
+
+                <div class="footer-newsletter">
+
+                    <h4>
+                        Stay in the ritual.
+                    </h4>
+
+                    <p>
+                        Join our list for skincare notes,
+                        new launches, and Lavanya updates.
+                    </p>
+
+                    <form id="newsletter-form">
+
+                        <label
+                            for="newsletter-email"
+                            class="sr-only"
+                        >
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="newsletter-email"
+                            placeholder="Your email address"
+                            required
+                        >
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Join
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 Lavanya. All rights reserved.
+                </p>
+
+                <div class="footer-bottom-links">
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         RECOMMENDATIONS JAVASCRIPT
+         JavaScript stays inside this HTML file.
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+
+            /* =========================================
+               PRODUCT DATA
+            ========================================== */
+
+            const products = [
+
+                {
+                    id: "cleanse-01",
+                    name: "Gentle Botanical Cleanser",
+                    category: "CLEANSE",
+                    price: 850,
+                    description:
+                        "A soft daily cleanser designed to leave skin feeling fresh and comfortable.",
+                    image:
+                        "Assets/Images/cleanser1.jpg",
+                    skinTypes:
+                        ["dry", "normal", "sensitive", "combination"],
+                    concerns:
+                        ["dryness", "sensitivity", "dullness"],
+                    preferences:
+                        ["fragrance-free", "simple", "rich"],
+                    routine:
+                        ["beginner", "simple", "regular"],
+                    budget:
+                        ["essential", "balanced"],
+                    badge: "GOOD START"
+                },
+
+
+                {
+                    id: "hydrate-01",
+                    name: "Dew Botanical Moisturizer",
+                    category: "HYDRATE",
+                    price: 1250,
+                    description:
+                        "A lightweight botanical moisturizer for comfortable, hydrated-looking skin.",
+                    image:
+                        "assets/Images/dew.jpg",
+                    skinTypes:
+                        ["dry", "normal", "combination", "sensitive"],
+                    concerns:
+                        ["dryness", "dullness", "sensitivity"],
+                    preferences:
+                        ["lightweight", "simple", "fragrance-free"],
+                    routine:
+                        ["beginner", "simple", "regular"],
+                    budget:
+                        ["balanced", "premium"],
+                    badge: "BEST MATCH"
+                },
+
+
+                {
+                    id: "treat-01",
+                    name: "Clarity Botanical Serum",
+                    category: "TREAT",
+                    price: 1450,
+                    description:
+                        "A targeted serum designed for routines focused on clearer-looking, smoother skin.",
+                    image:
+                        "Assets/Images/serum1.jpg",
+                    skinTypes:
+                        ["oily", "combination", "normal"],
+                    concerns:
+                        ["acne", "texture", "dullness"],
+                    preferences:
+                        ["lightweight", "simple"],
+                    routine:
+                        ["regular", "advanced"],
+                    budget:
+                        ["balanced", "premium"],
+                    badge: "TARGETED"
+                },
+
+
+                {
+                    id: "treat-02",
+                    name: "Radiance Botanical Serum",
+                    category: "TREAT",
+                    price: 1550,
+                    description:
+                        "A brightening-focused botanical serum for a fresh, radiant-looking complexion.",
+                    image:
+                        "Assets/Images/serum2.jpg",
+                    skinTypes:
+                        ["dry", "normal", "combination"],
+                    concerns:
+                        ["dullness", "aging", "texture"],
+                    preferences:
+                        ["lightweight", "simple"],
+                    routine:
+                        ["regular", "advanced"],
+                    budget:
+                        ["balanced", "premium"],
+                    badge: "RADIANCE"
+                },
+
+
+                {
+                    id: "hydrate-02",
+                    name: "Nourish Face Cream",
+                    category: "HYDRATE",
+                    price: 1350,
+                    description:
+                        "A richer cream created for routines that prioritize nourishment and comfort.",
+                    image:
+                        "Assets/Images/facecream.jpg",
+                    skinTypes:
+                        ["dry", "normal", "sensitive"],
+                    concerns:
+                        ["dryness", "sensitivity", "aging"],
+                    preferences:
+                        ["rich", "fragrance-free"],
+                    routine:
+                        ["simple", "regular", "advanced"],
+                    budget:
+                        ["balanced", "premium"],
+                    badge: "NOURISH"
+                },
+
+
+                {
+                    id: "protect-01",
+                    name: "Daily Botanical Shield SPF",
+                    category: "PROTECT",
+                    price: 1100,
+                    description:
+                        "A comfortable daily sunscreen for a simple morning skincare ritual.",
+                    image:
+                        "Assets/Images/spf1.jpg",
+                    skinTypes:
+                        ["dry", "oily", "combination", "normal", "sensitive"],
+                    concerns:
+                        ["dullness", "aging", "acne"],
+                    preferences:
+                        ["lightweight", "simple"],
+                    routine:
+                        ["beginner", "simple", "regular", "advanced"],
+                    budget:
+                        ["essential", "balanced", "premium"],
+                    badge: "DAILY ESSENTIAL"
+                }
+
+            ];
+
+
+            /* =========================================
+               GET SAVED PROFILE
+            ========================================== */
+
+            const savedProfile =
+                localStorage.getItem(
+                    "lavanyaSkinProfile"
+                );
+
+
+            const profileDetails =
+                document.getElementById(
+                    "profile-details"
+                );
+
+            const recommendationGrid =
+                document.getElementById(
+                    "recommendation-grid"
+                );
+
+            const noProfile =
+                document.getElementById(
+                    "no-profile"
+                );
+
+            const recommendationCount =
+                document.getElementById(
+                    "recommendation-count"
+                );
+
+
+            /* =========================================
+               FORMAT PROFILE VALUES
+            ========================================== */
+
+            function formatValue(value) {
+
+                if (!value) {
+                    return "Not selected";
+                }
+
+                const words =
+                    value.replaceAll("-", " ").split(" ");
+
+                return words
+                    .map(function (word) {
+
+                        return word.charAt(0).toUpperCase()
+                            + word.slice(1);
+
+                    })
+                    .join(" ");
+
+            }
+
+
+            /* =========================================
+               DISPLAY PROFILE
+            ========================================== */
+
+            function displayProfile(profile) {
+
+                profileDetails.innerHTML = `
+
+                    <div class="profile-item">
+                        <span>SKIN TYPE</span>
+                        <strong>
+                            ${formatValue(profile.skinType)}
+                        </strong>
+                    </div>
+
+                    <div class="profile-item">
+                        <span>MAIN CONCERN</span>
+                        <strong>
+                            ${formatValue(profile.primaryConcern)}
+                        </strong>
+                    </div>
+
+                    <div class="profile-item">
+                        <span>SECONDARY CONCERN</span>
+                        <strong>
+                            ${formatValue(profile.secondaryConcern)}
+                        </strong>
+                    </div>
+
+                    <div class="profile-item">
+                        <span>ROUTINE</span>
+                        <strong>
+                            ${formatValue(profile.routine)}
+                        </strong>
+                    </div>
+
+                    <div class="profile-item">
+                        <span>PREFERENCE</span>
+                        <strong>
+                            ${formatValue(profile.preference)}
+                        </strong>
+                    </div>
+
+                    <div class="profile-item">
+                        <span>BUDGET</span>
+                        <strong>
+                            ${formatValue(profile.budget)}
+                        </strong>
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =========================================
+               PRODUCT MATCHING
+            ========================================== */
+
+            function calculateMatch(
+                product,
+                profile
+            ) {
+
+                let score = 0;
+
+
+                /* Skin type */
+
+                if (
+                    product.skinTypes.includes(
+                        profile.skinType
+                    )
+                ) {
+
+                    score += 5;
+
+                }
+
+
+                /* Primary concern */
+
+                if (
+                    product.concerns.includes(
+                        profile.primaryConcern
+                    )
+                ) {
+
+                    score += 4;
+
+                }
+
+
+                /* Secondary concern */
+
+                if (
+                    product.concerns.includes(
+                        profile.secondaryConcern
+                    )
+                ) {
+
+                    score += 2;
+
+                }
+
+
+                /* Preference */
+
+                if (
+                    product.preferences.includes(
+                        profile.preference
+                    )
+                ) {
+
+                    score += 2;
+
+                }
+
+
+                /* Beginner-friendly */
+
+                if (
+                    profile.routine === "beginner" &&
+                    product.routine.includes("beginner")
+                ) {
+
+                    score += 1;
+
+                }
+
+
+                /* Budget */
+
+                if (
+                    product.budget.includes(
+                        profile.budget
+                    )
+                ) {
+
+                    score += 2;
+
+                }
+
+
+                const maximumScore = 16;
+
+                let percentage =
+                    Math.round(
+                        (score / maximumScore) * 100
+                    );
+
+
+                /*
+                    Keep the displayed match percentage
+                    within a useful recommendation range.
+                */
+
+                if (percentage > 98) {
+                    percentage = 98;
+                }
+
+                if (percentage < 50) {
+                    percentage = 50;
+                }
+
+
+                return percentage;
+
+            }
+
+
+            /* =========================================
+               RECOMMENDATION REASON
+            ========================================== */
+
+            function getReason(
+                product,
+                profile
+            ) {
+
+                const reasons = [];
+
+
+                if (
+                    product.skinTypes.includes(
+                        profile.skinType
+                    )
+                ) {
+
+                    reasons.push(
+                        `suited to ${formatValue(profile.skinType)} skin`
+                    );
+
+                }
+
+
+                if (
+                    product.concerns.includes(
+                        profile.primaryConcern
+                    )
+                ) {
+
+                    reasons.push(
+                        `supports your focus on ${formatValue(profile.primaryConcern)}`
+                    );
+
+                }
+
+
+                if (
+                    product.preferences.includes(
+                        profile.preference
+                    )
+                ) {
+
+                    reasons.push(
+                        `fits your ${formatValue(profile.preference)} preference`
+                    );
+
+                }
+
+
+                if (reasons.length === 0) {
+
+                    return "A thoughtful addition to your skincare routine.";
+
+                }
+
+
+                return reasons
+                    .slice(0, 2)
+                    .join(" and ")
+                    + ".";
+
+            }
+
+
+            /* =========================================
+               RENDER PRODUCTS
+            ========================================== */
+
+            function renderProducts(
+                matchedProducts,
+                profile
+            ) {
+
+                recommendationGrid.innerHTML = "";
+
+
+                matchedProducts.forEach(function (item) {
+
+                    const card =
+                        document.createElement("article");
+
+                    card.className =
+                        "recommendation-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="recommendation-image">
+
+                            <!-- ADD PRODUCT IMAGE HERE -->
+
+                            <img
+                                src="${item.image}"
+                                alt="image"
+                            >
+
+                            <span class="recommendation-badge">
+                                ${item.badge}
+                            </span>
+
+                            <span class="match-badge">
+                                ${item.match}% MATCH
+                            </span>
+
+                        </div>
+
+
+                        <div class="recommendation-info">
+
+                            <p class="product-category">
+                                ${item.category}
+                            </p>
+
+                            <h3>
+                                ${item.name}
+                            </h3>
+
+                            <p class="product-description">
+                                ${item.description}
+                            </p>
+
+                            <p class="match-reason">
+                                <strong>
+                                    Why it matches:
+                                </strong>
+
+                                ${getReason(item, profile)}
+                            </p>
+
+
+                            <div class="recommendation-bottom">
+
+                                <span class="product-price">
+                                    NPR ${item.price.toLocaleString()}
+                                </span>
+
+                                <div class="recommendation-actions">
+
+                                    <button
+                                        type="button"
+                                        class="wishlist-button"
+                                        data-product-id="${item.id}"
+                                        aria-label="Add to wishlist"
+                                    >
+                                        ♡
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="product-add"
+                                        data-product-id="${item.id}"
+                                        aria-label="Add to cart"
+                                    >
+                                        +
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    recommendationGrid.appendChild(card);
+
+                });
+
+
+                attachProductActions();
+
+            }
+
+
+            /* =========================================
+               MATCH PRODUCTS
+            ========================================== */
+
+            function getRecommendations(profile) {
+
+                return products
+                    .map(function (product) {
+
+                        return {
+                            ...product,
+                            match:
+                                calculateMatch(
+                                    product,
+                                    profile
+                                )
+                        };
+
+                    })
+                    .sort(function (a, b) {
+
+                        return b.match - a.match;
+
+                    })
+                    .slice(0, 4);
+
+            }
+
+
+            /* =========================================
+               CART
+            ========================================== */
+
+            function addToCart(productId) {
+
+                const product =
+                    products.find(function (item) {
+
+                        return item.id === productId;
+
+                    });
+
+
+                if (!product) {
+                    return;
+                }
+
+
+                let cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaCart"
+                        ) || "[]"
+                    );
+
+
+                const existing =
+                    cart.find(function (item) {
+
+                        return item.id === productId;
+
+                    });
+
+
+                if (existing) {
+
+                    existing.quantity =
+                        (existing.quantity || 1) + 1;
+
+                } else {
+
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1
+                    });
+
+                }
+
+
+                localStorage.setItem(
+                    "lavanyaCart",
+                    JSON.stringify(cart)
+                );
+
+
+                updateCartCount();
+
+                alert(
+                    `${product.name} added to your cart.`
+                );
+
+            }
+
+
+            /* =========================================
+               WISHLIST
+            ========================================== */
+
+            function addToWishlist(productId) {
+
+                const product =
+                    products.find(function (item) {
+
+                        return item.id === productId;
+
+                    });
+
+
+                if (!product) {
+                    return;
+                }
+
+
+                let wishlist =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaWishlist"
+                        ) || "[]"
+                    );
+
+
+                const exists =
+                    wishlist.some(function (item) {
+
+                        return item.id === productId;
+
+                    });
+
+
+                if (!exists) {
+
+                    wishlist.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image
+                    });
+
+
+                    localStorage.setItem(
+                        "lavanyaWishlist",
+                        JSON.stringify(wishlist)
+                    );
+
+
+                    updateWishlistCount();
+
+                    alert(
+                        `${product.name} added to your wishlist.`
+                    );
+
+                } else {
+
+                    alert(
+                        "This product is already in your wishlist."
+                    );
+
+                }
+
+            }
+
+
+            /* =========================================
+               PRODUCT BUTTONS
+            ========================================== */
+
+            function attachProductActions() {
+
+                document
+                    .querySelectorAll(".product-add")
+                    .forEach(function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                addToCart(
+                                    button.dataset.productId
+                                );
+
+                            }
+                        );
+
+                    });
+
+
+                document
+                    .querySelectorAll(".wishlist-button")
+                    .forEach(function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function () {
+
+                                addToWishlist(
+                                    button.dataset.productId
+                                );
+
+                            }
+                        );
+
+                    });
+
+            }
+
+
+            /* =========================================
+               CART COUNT
+            ========================================== */
+
+            function updateCartCount() {
+
+                const cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaCart"
+                        ) || "[]"
+                    );
+
+
+                const count =
+                    cart.reduce(
+                        function (total, item) {
+
+                            return total +
+                                (item.quantity || 1);
+
+                        },
+                        0
+                    );
+
+
+                const cartCount =
+                    document.getElementById(
+                        "cart-count"
+                    );
+
+
+                if (cartCount) {
+
+                    cartCount.textContent =
+                        count;
+
+                }
+
+            }
+
+
+            /* =========================================
+               WISHLIST COUNT
+            ========================================== */
+
+            function updateWishlistCount() {
+
+                const wishlist =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaWishlist"
+                        ) || "[]"
+                    );
+
+
+                const wishlistCount =
+                    document.getElementById(
+                        "wishlist-count"
+                    );
+
+
+                if (wishlistCount) {
+
+                    wishlistCount.textContent =
+                        wishlist.length;
+
+                }
+
+            }
+
+
+            /* =========================================
+               LOGOUT
+            ========================================== */
+
+            const logoutButton =
+                document.querySelector(
+                    "[data-logout]"
+                );
+
+
+            if (logoutButton) {
+
+                logoutButton.addEventListener(
+                    "click",
+                    function () {
+
+                        localStorage.removeItem(
+                            "lavanyaUser"
+                        );
+
+                        alert(
+                            "You have been logged out."
+                        );
+
+                        window.location.href =
+                            "index.html";
+
+                    }
+                );
+
+            }
+
+
+            /* =========================================
+               NEWSLETTER
+            ========================================== */
+
+            const newsletterForm =
+                document.getElementById(
+                    "newsletter-form"
+                );
+
+
+            if (newsletterForm) {
+
+                newsletterForm.addEventListener(
+                    "submit",
+                    function (event) {
+
+                        event.preventDefault();
+
+                        const email =
+                            document.getElementById(
+                                "newsletter-email"
+                            ).value;
+
+
+                        localStorage.setItem(
+                            "lavanyaNewsletter",
+                            email
+                        );
+
+
+                        alert(
+                            "Thank you for joining the Lavanya ritual."
+                        );
+
+
+                        newsletterForm.reset();
+
+                    }
+                );
+
+            }
+
+
+            /* =========================================
+               INITIALIZE
+            ========================================== */
+
+            updateCartCount();
+
+            updateWishlistCount();
+
+
+            if (!savedProfile) {
+
+                noProfile.hidden = false;
+
+                profileDetails.innerHTML = "";
+
+                recommendationGrid.innerHTML = "";
+
+                recommendationCount.textContent = "0";
+
+                return;
+
+            }
+
+
+            let profile;
+
+
+            try {
+
+                profile =
+                    JSON.parse(savedProfile);
+
+            } catch (error) {
+
+                noProfile.hidden = false;
+
+                return;
+
+            }
+
+
+            displayProfile(profile);
+
+
+            const recommendations =
+                getRecommendations(profile);
+
+
+            recommendationCount.textContent =
+                recommendations.length;
+
+
+            renderProducts(
+                recommendations,
+                profile
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>

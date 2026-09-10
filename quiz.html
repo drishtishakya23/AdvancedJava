@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Skin Quiz — Lavanya</title>
+
+    <meta
+        name="description"
+        content="Take the Lavanya skin quiz and discover skincare recommendations based on your skin type, concerns, and preferences."
+    >
+
+    <!-- SHARED CSS -->
+    <link rel="stylesheet" href="Assets/CSS/common.css">
+
+    <!-- PAGE-SPECIFIC CSS -->
+    <link rel="stylesheet" href="Assets/CSS/quiz.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+    ========================================== -->
+
+    <div class="announcement-bar">
+        Free shipping on orders over NPR 2,500
+        <span>·</span>
+        Find your skin match in 2 minutes
+    </div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <a href="index.html" class="logo">
+                lavanya<span>.</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="quiz.html" class="active">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <a
+                    href="shop.html"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+                </a>
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =========================================
+             QUIZ INTRO
+        ========================================== -->
+
+        <section class="quiz-intro">
+
+            <div class="container quiz-intro-inner">
+
+                <div class="quiz-intro-content">
+
+                    <p class="eyebrow">
+                        YOUR SKIN, UNDERSTOOD
+                    </p>
+
+                    <h1>
+                        Let's find your
+                        <em>skin match.</em>
+                    </h1>
+
+                    <p class="quiz-intro-description">
+                        Answer a few simple questions about your skin,
+                        concerns, and preferences. We'll use your answers
+                        to create a personalized Lavanya routine.
+                    </p>
+
+                    <div class="quiz-intro-details">
+
+                        <span>
+                            2 minutes
+                        </span>
+
+                        <span>
+                            6 questions
+                        </span>
+
+                        <span>
+                            Personalized results
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     ADD QUIZ INTRO IMAGE HERE
+
+                     Replace the src later with your
+                     actual skincare/plant image.
+                ================================== -->
+
+                <div class="quiz-intro-visual">
+
+                    <img
+                        src="Assets/Images/consult.jpg"
+                        alt="image"
+                        class="quiz-intro-image"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             QUIZ
+        ========================================== -->
+
+        <section class="quiz-section">
+
+            <div class="container">
+
+                <div class="quiz-wrapper">
+
+
+                    <!-- =================================
+                         QUIZ HEADER
+                    ================================== -->
+
+                    <div class="quiz-header">
+
+                        <div class="quiz-progress-info">
+
+                            <span id="question-number">
+                                Question 1 of 6
+                            </span>
+
+                            <span id="progress-percent">
+                                17%
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="progress-bar"
+                            aria-hidden="true"
+                        >
+
+                            <div
+                                class="progress-fill"
+                                id="progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         QUIZ FORM
+                    ================================== -->
+
+                    <form
+                        id="skin-quiz"
+                        class="quiz-form"
+                    >
+
+
+                        <!-- =================================
+                             QUESTION 1
+                        ================================== -->
+
+                        <div
+                            class="quiz-step active"
+                            data-step="1"
+                        >
+
+                            <p class="question-eyebrow">
+                                LET'S START WITH THE BASICS
+                            </p>
+
+                            <h2>
+                                How would you describe
+                                your skin?
+                            </h2>
+
+                            <p class="question-description">
+                                Choose the option that feels most
+                                like your skin on a typical day.
+                            </p>
+
+
+                            <div class="answer-grid">
+
+
+                                <label class="answer-card">
+
+                                    <input
+                                        type="radio"
+                                        name="skinType"
+                                        value="dry"
+                                    >
+
+                                    <span class="answer-content">
+
+                                        <span class="answer-icon">
+                                            ◌
+                                        </span>
+
+                                        <strong>
+                                            Dry
+                                        </strong>
+
+                                        <small>
+                                            Often feels tight,
+                                            rough, or thirsty.
+                                        </small>
+
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-card">
+
+                                    <input
+                                        type="radio"
+                                        name="skinType"
+                                        value="oily"
+                                    >
+
+                                    <span class="answer-content">
+
+                                        <span class="answer-icon">
+                                            ◉
+                                        </span>
+
+                                        <strong>
+                                            Oily
+                                        </strong>
+
+                                        <small>
+                                            Often looks shiny or
+                                            feels oilier throughout
+                                            the day.
+                                        </small>
+
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-card">
+
+                                    <input
+                                        type="radio"
+                                        name="skinType"
+                                        value="combination"
+                                    >
+
+                                    <span class="answer-content">
+
+                                        <span class="answer-icon">
+                                            ◐
+                                        </span>
+
+                                        <strong>
+                                            Combination
+                                        </strong>
+
+                                        <small>
+                                            Some areas feel oily
+                                            while others feel dry.
+                                        </small>
+
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-card">
+
+                                    <input
+                                        type="radio"
+                                        name="skinType"
+                                        value="normal"
+                                    >
+
+                                    <span class="answer-content">
+
+                                        <span class="answer-icon">
+                                            ○
+                                        </span>
+
+                                        <strong>
+                                            Normal
+                                        </strong>
+
+                                        <small>
+                                            Generally balanced
+                                            and comfortable.
+                                        </small>
+
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-card">
+
+                                    <input
+                                        type="radio"
+                                        name="skinType"
+                                        value="sensitive"
+                                    >
+
+                                    <span class="answer-content">
+
+                                        <span class="answer-icon">
+                                            ✧
+                                        </span>
+
+                                        <strong>
+                                            Sensitive
+                                        </strong>
+
+                                        <small>
+                                            Can feel reactive,
+                                            delicate, or easily
+                                            uncomfortable.
+                                        </small>
+
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             QUESTION 2
+                        ================================== -->
+
+                        <div
+                            class="quiz-step"
+                            data-step="2"
+                        >
+
+                            <p class="question-eyebrow">
+                                WHAT MATTERS MOST?
+                            </p>
+
+                            <h2>
+                                What would you most like
+                                to improve?
+                            </h2>
+
+                            <p class="question-description">
+                                Choose the concern you'd most like
+                                your routine to focus on.
+                            </p>
+
+
+                            <div class="answer-list">
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="primaryConcern"
+                                        value="acne"
+                                    >
+
+                                    <span>
+                                        Breakouts & blemishes
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="primaryConcern"
+                                        value="dryness"
+                                    >
+
+                                    <span>
+                                        Dryness & dehydration
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="primaryConcern"
+                                        value="dullness"
+                                    >
+
+                                    <span>
+                                        Dullness & uneven-looking skin
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="primaryConcern"
+                                        value="texture"
+                                    >
+
+                                    <span>
+                                        Texture & clogged pores
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="primaryConcern"
+                                        value="aging"
+                                    >
+
+                                    <span>
+                                        Fine lines & skin ageing
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="primaryConcern"
+                                        value="sensitivity"
+                                    >
+
+                                    <span>
+                                        Sensitivity & comfort
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             QUESTION 3
+                        ================================== -->
+
+                        <div
+                            class="quiz-step"
+                            data-step="3"
+                        >
+
+                            <p class="question-eyebrow">
+                                ONE MORE THING
+                            </p>
+
+                            <h2>
+                                Is there another concern
+                                you'd like to address?
+                            </h2>
+
+                            <p class="question-description">
+                                This helps us make your recommendations
+                                a little more personal.
+                            </p>
+
+
+                            <div class="answer-list">
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="acne"
+                                    >
+
+                                    <span>
+                                        Breakouts & blemishes
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="dryness"
+                                    >
+
+                                    <span>
+                                        Dryness & dehydration
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="dullness"
+                                    >
+
+                                    <span>
+                                        Dullness & uneven-looking skin
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="texture"
+                                    >
+
+                                    <span>
+                                        Texture & clogged pores
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="aging"
+                                    >
+
+                                    <span>
+                                        Fine lines & skin ageing
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="sensitivity"
+                                    >
+
+                                    <span>
+                                        Sensitivity & comfort
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="secondaryConcern"
+                                        value="none"
+                                    >
+
+                                    <span>
+                                        Nothing else — I'm keeping it simple
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             QUESTION 4
+                        ================================== -->
+
+                        <div
+                            class="quiz-step"
+                            data-step="4"
+                        >
+
+                            <p class="question-eyebrow">
+                                YOUR ROUTINE
+                            </p>
+
+                            <h2>
+                                How would you describe
+                                your current routine?
+                            </h2>
+
+                            <p class="question-description">
+                                There is no right answer. We just want
+                                to meet you where you are.
+                            </p>
+
+
+                            <div class="answer-list">
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="routine"
+                                        value="beginner"
+                                    >
+
+                                    <span>
+                                        I'm completely new to skincare
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="routine"
+                                        value="simple"
+                                    >
+
+                                    <span>
+                                        I keep it simple — cleanser,
+                                        moisturizer, sunscreen
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="routine"
+                                        value="regular"
+                                    >
+
+                                    <span>
+                                        I have a regular routine already
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="routine"
+                                        value="advanced"
+                                    >
+
+                                    <span>
+                                        I enjoy a more complete routine
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             QUESTION 5
+                        ================================== -->
+
+                        <div
+                            class="quiz-step"
+                            data-step="5"
+                        >
+
+                            <p class="question-eyebrow">
+                                YOUR PREFERENCES
+                            </p>
+
+                            <h2>
+                                What matters to you
+                                when choosing skincare?
+                            </h2>
+
+                            <p class="question-description">
+                                Choose the preference that best
+                                describes you.
+                            </p>
+
+
+                            <div class="answer-list">
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="preference"
+                                        value="fragrance-free"
+                                    >
+
+                                    <span>
+                                        I prefer fragrance-free products
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="preference"
+                                        value="lightweight"
+                                    >
+
+                                    <span>
+                                        I prefer lightweight textures
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="preference"
+                                        value="rich"
+                                    >
+
+                                    <span>
+                                        I prefer rich, nourishing textures
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="preference"
+                                        value="simple"
+                                    >
+
+                                    <span>
+                                        I want a simple, minimal routine
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="preference"
+                                        value="no-preference"
+                                    >
+
+                                    <span>
+                                        I don't have a preference
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             QUESTION 6
+                        ================================== -->
+
+                        <div
+                            class="quiz-step"
+                            data-step="6"
+                        >
+
+                            <p class="question-eyebrow">
+                                LAST QUESTION
+                            </p>
+
+                            <h2>
+                                What kind of routine
+                                are you looking for?
+                            </h2>
+
+                            <p class="question-description">
+                                We'll use this to keep your
+                                recommendations within your comfort zone.
+                            </p>
+
+
+                            <div class="answer-list">
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="budget"
+                                        value="essential"
+                                    >
+
+                                    <span>
+                                        Essentials — keep it affordable
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="budget"
+                                        value="balanced"
+                                    >
+
+                                    <span>
+                                        Balanced — quality and value
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="budget"
+                                        value="premium"
+                                    >
+
+                                    <span>
+                                        Premium — I'm happy to invest
+                                    </span>
+
+                                </label>
+
+
+                                <label class="answer-row">
+
+                                    <input
+                                        type="radio"
+                                        name="budget"
+                                        value="complete"
+                                    >
+
+                                    <span>
+                                        Show me the complete routine
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================
+                             QUIZ NAVIGATION
+                        ================================== -->
+
+                        <div class="quiz-navigation">
+
+                            <button
+                                type="button"
+                                class="quiz-back"
+                                id="back-button"
+                            >
+                                ← Back
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-primary quiz-next"
+                                id="next-button"
+                            >
+                                Continue →
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             QUIZ NOTE
+        ========================================== -->
+
+        <section class="quiz-note-section">
+
+            <div class="container">
+
+                <div class="quiz-note">
+
+                    <span class="quiz-note-mark">
+                        ✦
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            A little note from Lavanya
+                        </h3>
+
+                        <p>
+                            Your results are personalized based on
+                            the answers you provide. They are intended
+                            as skincare guidance, not medical advice.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+
+                <!-- FOOTER BRAND -->
+
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="logo footer-logo"
+                    >
+                        lavanya<span>.</span>
+                    </a>
+
+                    <p>
+                        Personalized skincare for your skin,
+                        your routine, and your everyday ritual.
+                    </p>
+
+                </div>
+
+
+                <!-- EXPLORE -->
+
+                <div class="footer-column">
+
+                    <h4>
+                        Explore
+                    </h4>
+
+                    <a href="shop.html">
+                        Shop
+                    </a>
+
+                    <a href="quiz.html">
+                        Find My Products
+                    </a>
+
+                    <a href="about.html">
+                        About Lavanya
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <!-- HELP -->
+
+                <div class="footer-column">
+
+                    <h4>
+                        Help
+                    </h4>
+
+                    <a href="account.html">
+                        My Account
+                    </a>
+
+                    <a href="wishlist.html">
+                        Wishlist
+                    </a>
+
+                    <a href="cart.html">
+                        Cart
+                    </a>
+
+                    <a href="faq.html">
+                        FAQ
+                    </a>
+
+                </div>
+
+
+                <!-- NEWSLETTER -->
+
+                <div class="footer-newsletter">
+
+                    <h4>
+                        Stay in the ritual.
+                    </h4>
+
+                    <p>
+                        Join our list for skincare notes,
+                        new launches, and Lavanya updates.
+                    </p>
+
+                    <form id="newsletter-form">
+
+                        <label
+                            for="newsletter-email"
+                            class="sr-only"
+                        >
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="newsletter-email"
+                            placeholder="Your email address"
+                            required
+                        >
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Join
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 Lavanya. All rights reserved.
+                </p>
+
+                <div class="footer-bottom-links">
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         QUIZ JAVASCRIPT
+         JavaScript stays inside this HTML file.
+    ========================================== -->
+
+    <script>
+        
+/* =========================================================
+   AUTHENTICATION GATE
+   Users must be logged in to take the skin quiz.
+========================================================= */
+
+const currentUser = localStorage.getItem("lavanyaUser");
+
+if (!currentUser) {
+
+    localStorage.setItem(
+        "lavanyaLoginMessage",
+        "Please login or create an account before taking the skin quiz."
+    );
+
+    localStorage.setItem(
+        "lavanyaRedirectAfterLogin",
+        "quiz.html"
+    );
+
+    window.location.href = "login.html";
+}
+
+
+/* =========================================================
+   YOUR EXISTING QUIZ JAVASCRIPT
+   Keep the rest of your existing script below this point.
+========================================================= */
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const steps =
+                document.querySelectorAll(".quiz-step");
+
+            const nextButton =
+                document.getElementById("next-button");
+
+            const backButton =
+                document.getElementById("back-button");
+
+            const progressFill =
+                document.getElementById("progress-fill");
+
+            const questionNumber =
+                document.getElementById("question-number");
+
+            const progressPercent =
+                document.getElementById("progress-percent");
+
+
+            let currentStep = 1;
+
+            const totalSteps = steps.length;
+
+
+            /* =========================================
+               QUIZ DATA
+            ========================================== */
+
+            const quizAnswers = {};
+
+
+            /* =========================================
+               SHOW STEP
+            ========================================== */
+
+            function showStep(stepNumber) {
+
+                steps.forEach(function (step) {
+
+                    step.classList.remove("active");
+
+                });
+
+                const current =
+                    document.querySelector(
+                        `.quiz-step[data-step="${stepNumber}"]`
+                    );
+
+                if (current) {
+                    current.classList.add("active");
+                }
+
+
+                const percentage =
+                    Math.round(
+                        (stepNumber / totalSteps) * 100
+                    );
+
+
+                questionNumber.textContent =
+                    `Question ${stepNumber} of ${totalSteps}`;
+
+                progressPercent.textContent =
+                    `${percentage}%`;
+
+                progressFill.style.width =
+                    `${percentage}%`;
+
+
+                backButton.style.visibility =
+                    stepNumber === 1
+                        ? "hidden"
+                        : "visible";
+
+
+                if (stepNumber === totalSteps) {
+
+                    nextButton.textContent =
+                        "See my results →";
+
+                } else {
+
+                    nextButton.textContent =
+                        "Continue →";
+
+                }
+
+            }
+
+
+            /* =========================================
+               SAVE CURRENT ANSWER
+            ========================================== */
+
+            function saveCurrentAnswer() {
+
+                const currentStepElement =
+                    document.querySelector(
+                        `.quiz-step[data-step="${currentStep}"]`
+                    );
+
+                if (!currentStepElement) {
+                    return false;
+                }
+
+
+                const selected =
+                    currentStepElement.querySelector(
+                        "input[type='radio']:checked"
+                    );
+
+
+                if (!selected) {
+
+                    alert(
+                        "Please choose an answer before continuing."
+                    );
+
+                    return false;
+                }
+
+
+                quizAnswers[selected.name] =
+                    selected.value;
+
+
+                return true;
+            }
+
+
+            /* =========================================
+               NEXT BUTTON
+            ========================================== */
+
+            nextButton.addEventListener(
+                "click",
+                function () {
+
+                    if (!saveCurrentAnswer()) {
+                        return;
+                    }
+
+
+                    if (currentStep < totalSteps) {
+
+                        currentStep++;
+
+                        showStep(currentStep);
+
+                        window.scrollTo({
+                            top: document.querySelector(
+                                ".quiz-section"
+                            ).offsetTop - 30,
+                            behavior: "smooth"
+                        });
+
+                    } else {
+
+                        /* SAVE QUIZ PROFILE */
+
+                        const profile = {
+                            skinType:
+                                quizAnswers.skinType || "",
+
+                            primaryConcern:
+                                quizAnswers.primaryConcern || "",
+
+                            secondaryConcern:
+                                quizAnswers.secondaryConcern || "",
+
+                            routine:
+                                quizAnswers.routine || "",
+
+                            preference:
+                                quizAnswers.preference || "",
+
+                            budget:
+                                quizAnswers.budget || "",
+
+                            completedAt:
+                                new Date().toISOString()
+                        };
+
+
+                        localStorage.setItem(
+                            "lavanyaSkinProfile",
+                            JSON.stringify(profile)
+                        );
+
+
+                        window.location.href =
+                            "recommendations.html";
+
+                    }
+
+                }
+            );
+
+
+            /* =========================================
+               BACK BUTTON
+            ========================================== */
+
+            backButton.addEventListener(
+                "click",
+                function () {
+
+                    if (currentStep > 1) {
+
+                        currentStep--;
+
+                        showStep(currentStep);
+
+                    }
+
+                }
+            );
+
+
+            /* =========================================
+               HEADER COUNTS
+            ========================================== */
+
+            function updateCartCount() {
+
+                const cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaCart"
+                        ) || "[]"
+                    );
+
+
+                const count =
+                    cart.reduce(
+                        function (total, item) {
+
+                            return total +
+                                (item.quantity || 1);
+
+                        },
+                        0
+                    );
+
+
+                const cartCount =
+                    document.getElementById(
+                        "cart-count"
+                    );
+
+
+                if (cartCount) {
+                    cartCount.textContent = count;
+                }
+
+            }
+
+
+            function updateWishlistCount() {
+
+                const wishlist =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaWishlist"
+                        ) || "[]"
+                    );
+
+
+                const wishlistCount =
+                    document.getElementById(
+                        "wishlist-count"
+                    );
+
+
+                if (wishlistCount) {
+                    wishlistCount.textContent =
+                        wishlist.length;
+                }
+
+            }
+
+
+            /* =========================================
+               LOGOUT
+            ========================================== */
+
+            const logoutButton =
+                document.querySelector("[data-logout]");
+
+
+            if (logoutButton) {
+
+                logoutButton.addEventListener(
+                    "click",
+                    function () {
+
+                        localStorage.removeItem(
+                            "lavanyaUser"
+                        );
+
+                        alert(
+                            "You have been logged out."
+                        );
+
+                        window.location.href =
+                            "index.html";
+
+                    }
+                );
+
+            }
+
+
+            /* =========================================
+               NEWSLETTER
+            ========================================== */
+
+            const newsletterForm =
+                document.getElementById(
+                    "newsletter-form"
+                );
+
+
+            if (newsletterForm) {
+
+                newsletterForm.addEventListener(
+                    "submit",
+                    function (event) {
+
+                        event.preventDefault();
+
+                        const email =
+                            document.getElementById(
+                                "newsletter-email"
+                            ).value;
+
+
+                        localStorage.setItem(
+                            "lavanyaNewsletter",
+                            email
+                        );
+
+
+                        alert(
+                            "Thank you for joining the Lavanya ritual."
+                        );
+
+
+                        newsletterForm.reset();
+
+                    }
+                );
+
+            }
+
+
+            /* =========================================
+               INITIALIZE
+            ========================================== */
+
+            updateCartCount();
+
+            updateWishlistCount();
+
+            showStep(currentStep);
+
+        });
+
+    </script>
+
+</body>
+</html>
