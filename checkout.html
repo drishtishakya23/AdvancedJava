@@ -24,6 +24,9 @@
         href="Assets/CSS/checkout.css"
     >
 
+    <!-- SHARED DATA LAYER (products / orders / customers) -->
+    <script src="Assets/js/store-data.js"></script>
+
 </head>
 
 
@@ -1384,11 +1387,22 @@
                         );
 
 
+                    /* Generate a unique order number every time.
+                       The counter prevents duplicate IDs even when two
+                       checkouts happen within the same millisecond. */
+                    const orderSequence =
+                        Number(localStorage.getItem("lavanyaOrderSequence") || 0) + 1;
+
+                    localStorage.setItem(
+                        "lavanyaOrderSequence",
+                        String(orderSequence)
+                    );
+
                     const orderNumber =
                         "LAV-" +
-                        Date.now()
-                            .toString()
-                            .slice(-8);
+                        new Date().getFullYear() +
+                        "-" +
+                        String(orderSequence).padStart(5, "0");
 
 
                     const customer = {
@@ -1484,16 +1498,23 @@
                         total:
                             total,
 
+                        status:
+                            "Processing",
+
                         placedAt:
                             new Date().toISOString()
 
                     };
 
 
-                    localStorage.setItem(
-                        "lavanyaLastOrder",
-                        JSON.stringify(order)
-                    );
+                    /* Saves the order to the full order history
+                       (LavanyaStore.ORDERS_KEY) AND keeps the
+                       legacy "lavanyaLastOrder" key in sync, so
+                       this single order now shows up in the
+                       Admin dashboard's Orders list as well as
+                       on order-confirmation.html / account.html. */
+
+                    LavanyaStore.addOrder(order);
 
 
                     /* Clear cart after successful order */

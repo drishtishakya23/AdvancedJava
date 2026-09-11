@@ -1,877 +1,2537 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | Lavanya</title>
-
-    <link rel="stylesheet" href="Assets/css/common.css">
-    <link rel="stylesheet" href="Assets/css/admin.css">
-
-    <script src="Assets/js/store-data.js"></script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Lavanya</title>
+<link rel="stylesheet" href="Assets/CSS/common.css">
+<link rel="stylesheet" href="Assets/CSS/admin.css">
+<script src="Assets/js/store-data.js"></script>
 </head>
-
 <body class="admin-body">
 
-    <!-- =========================================
-         LOGIN GATE
-         ========================================= -->
+<div class="admin-login-screen" id="admin-login-screen">
+  <div class="admin-login-card">
+    <a href="index.html" class="logo">lavanya<span>.</span></a>
+    <p class="admin-login-sub">Admin Dashboard</p>
 
-    <div class="admin-login-screen" id="admin-login-screen">
+    <form id="admin-login-form">
+      <div class="admin-field">
+        <label for="admin-username">Username</label>
+        <input id="admin-username" required>
+      </div>
 
-        <div class="admin-login-card">
+      <div class="admin-field">
+        <label for="admin-password">Password</label>
+        <input id="admin-password" type="password" required>
+      </div>
 
-            <a href="index.html" class="logo">lavanya<span>.</span></a>
-            <p class="admin-login-sub">Admin Dashboard</p>
+      <p class="admin-error" id="admin-login-error"></p>
 
-            <form id="admin-login-form">
+      <button class="admin-btn admin-btn-primary">
+        Sign In
+      </button>
+    </form>
 
-                <div class="admin-field">
-                    <label for="admin-username">Username</label>
-                    <input type="text" id="admin-username" autocomplete="username" required>
-                </div>
+    <p class="admin-hint">
+      Demo:
+      <strong>admin</strong> /
+      <strong>lavanya123</strong>
+    </p>
+  </div>
+</div>
 
-                <div class="admin-field">
-                    <label for="admin-password">Password</label>
-                    <input type="password" id="admin-password" autocomplete="current-password" required>
-                </div>
 
-                <p class="admin-error" id="admin-login-error"></p>
+<div class="admin-app" id="admin-app" style="display:none">
 
-                <button type="submit" class="admin-btn admin-btn-primary">Sign In</button>
+  <aside class="admin-sidebar">
 
-            </form>
+    <a href="index.html" class="logo">
+      lavanya<span>.</span>
+    </a>
 
-            <p class="admin-hint">
-                Demo credentials: <strong>admin</strong> / <strong>lavanya123</strong><br>
-                This is a client-side demo gate only — it is not real authentication
-                and must be replaced by a proper backend login once one exists.
+    <p class="admin-sidebar-tag">
+      Admin Dashboard
+    </p>
+
+    <nav class="admin-nav">
+
+      <button class="nav-link active" data-panel="dashboard">
+        Dashboard
+      </button>
+
+      <button class="nav-link" data-panel="products">
+        Products
+      </button>
+
+      <button class="nav-link" data-panel="orders">
+        Orders
+      </button>
+
+      <button class="nav-link" data-panel="customers">
+        Customers
+      </button>
+
+      <button class="nav-link" data-panel="messages">
+        Messages
+      </button>
+
+      <button class="nav-link" data-panel="newsletter">
+        Newsletter
+      </button>
+
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <a href="index.html">← Back to site</a>
+      <button id="admin-logout-btn">Log out</button>
+    </div>
+
+  </aside>
+
+
+  <main class="admin-main">
+
+    <div class="admin-banner">
+      This frontend admin uses browser localStorage.
+      A future Spring/Hibernate backend should replace localStorage.
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <section class="admin-panel active" id="panel-dashboard">
+
+      <div class="admin-topbar">
+        <div>
+          <h1>Dashboard</h1>
+          <p>Store overview and activity.</p>
+        </div>
+      </div>
+
+
+      <div class="admin-stats">
+
+        <div class="admin-stat-card">
+          <div class="stat-label">Products</div>
+          <div class="stat-value" id="stat-products">0</div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-label">Customers</div>
+          <div class="stat-value" id="stat-customers">0</div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-label">Orders</div>
+          <div class="stat-value" id="stat-orders">0</div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-label">Sales</div>
+          <div class="stat-value" id="stat-sales">NPR 0</div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-label">Low Stock</div>
+          <div class="stat-value" id="stat-low-stock">0</div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="stat-label">Newsletter</div>
+          <div class="stat-value" id="stat-newsletter">0</div>
+        </div>
+
+      </div>
+
+
+      <div class="admin-card">
+
+        <h3>Recent activity</h3>
+
+        <dl
+          class="admin-kv"
+          id="activity-list"
+        ></dl>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="admin-panel" id="panel-products">
+
+      <div class="admin-topbar">
+        <div>
+          <h1>Products</h1>
+          <p>Add, edit, delete and control stock.</p>
+        </div>
+      </div>
+
+
+      <div class="admin-card">
+
+        <div class="admin-section-head">
+
+          <div>
+            <h3>Catalog</h3>
+            <p class="card-sub">
+              Changes appear on the customer Shop page.
             </p>
+          </div>
+
+          <button
+            class="admin-btn admin-btn-terracotta"
+            id="add-product-btn"
+          >
+            + Add Product
+          </button>
 
         </div>
 
-    </div>
 
+        <div class="admin-table-wrap">
 
-    <!-- =========================================
-         ADMIN APP
-         ========================================= -->
+          <table class="admin-table">
 
-    <div class="admin-app" id="admin-app" style="display:none;">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Badge</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-        <aside class="admin-sidebar">
+            <tbody id="products-table-body"></tbody>
 
-            <a href="index.html" class="logo">lavanya<span>.</span></a>
-            <p class="admin-sidebar-tag">Admin Dashboard</p>
-
-            <nav class="admin-nav">
-                <button type="button" class="nav-link active" data-panel="dashboard">Dashboard</button>
-                <button type="button" class="nav-link" data-panel="products">Products</button>
-                <button type="button" class="nav-link" data-panel="orders">Orders</button>
-                <button type="button" class="nav-link" data-panel="customers">Customers</button>
-                <button type="button" class="nav-link" data-panel="messages">Messages</button>
-                <button type="button" class="nav-link" data-panel="newsletter">Newsletter</button>
-            </nav>
-
-            <div class="admin-sidebar-footer">
-                <a href="index.html">&larr; Back to site</a>
-                <button type="button" id="admin-logout-btn">Log out</button>
-            </div>
-
-        </aside>
-
-        <main class="admin-main">
-
-            <div class="admin-banner">
-                This dashboard reads and writes data stored in this browser
-                (localStorage) so it works with the site as it exists today.
-                Once the Spring/Hibernate backend is built, these sections
-                should be pointed at real REST endpoints instead.
-            </div>
-
-            <!-- DASHBOARD -->
-            <section class="admin-panel active" id="panel-dashboard">
-
-                <div class="admin-topbar">
-                    <div>
-                        <h1>Dashboard</h1>
-                        <p>A quick snapshot of the store.</p>
-                    </div>
-                </div>
-
-                <div class="admin-stats">
-                    <div class="admin-stat-card">
-                        <div class="stat-label">Products</div>
-                        <div class="stat-value" id="stat-products">0</div>
-                    </div>
-                    <div class="admin-stat-card">
-                        <div class="stat-label">Registered Customers</div>
-                        <div class="stat-value" id="stat-customers">0</div>
-                    </div>
-                    <div class="admin-stat-card">
-                        <div class="stat-label">Last Order Total</div>
-                        <div class="stat-value" id="stat-last-order">—</div>
-                    </div>
-                    <div class="admin-stat-card">
-                        <div class="stat-label">Newsletter Signups</div>
-                        <div class="stat-value" id="stat-newsletter">0</div>
-                    </div>
-                </div>
-
-                <div class="admin-card">
-                    <h3>Recent activity</h3>
-                    <p class="card-sub">The latest events this browser has recorded.</p>
-                    <dl class="admin-kv" id="activity-list"></dl>
-                </div>
-
-            </section>
-
-            <!-- PRODUCTS -->
-            <section class="admin-panel" id="panel-products">
-
-                <div class="admin-topbar">
-                    <div>
-                        <h1>Products</h1>
-                        <p>Manage the catalog shown on the Shop page.</p>
-                    </div>
-                </div>
-
-                <div class="admin-card">
-
-                    <div class="admin-section-head">
-                        <div>
-                            <h3>All products</h3>
-                            <p class="card-sub">These are the exact products shown on the Shop page.</p>
-                        </div>
-                        <button type="button" class="admin-btn admin-btn-terracotta" id="add-product-btn">
-                            + Add Product
-                        </button>
-                    </div>
-
-                    <div class="admin-table-wrap">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Category</th>
-                                    <th>Price (NPR)</th>
-                                    <th>Badge</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="products-table-body"></tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- ORDERS -->
-            <section class="admin-panel" id="panel-orders">
-
-                <div class="admin-topbar">
-                    <div>
-                        <h1>Orders</h1>
-                        <p>Every order placed through checkout, newest first.</p>
-                    </div>
-                </div>
-
-                <div class="admin-card">
-
-                    <div class="admin-section-head">
-                        <div>
-                            <h3>All orders</h3>
-                            <p class="card-sub" id="orders-count-sub">0 orders</p>
-                        </div>
-                    </div>
-
-                    <div class="admin-table-wrap">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Order #</th>
-                                    <th>Customer</th>
-                                    <th>Total (NPR)</th>
-                                    <th>Status</th>
-                                    <th>Placed</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="orders-table-body"></tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- CUSTOMERS -->
-            <section class="admin-panel" id="panel-customers">
-
-                <div class="admin-topbar">
-                    <div>
-                        <h1>Customers</h1>
-                        <p>Everyone who has created an account on the site.</p>
-                    </div>
-                </div>
-
-                <div class="admin-card">
-
-                    <div class="admin-section-head">
-                        <div>
-                            <h3>All customers</h3>
-                            <p class="card-sub" id="customers-count-sub">0 customers</p>
-                        </div>
-                    </div>
-
-                    <div class="admin-table-wrap">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Joined</th>
-                                    <th>Orders</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody id="customers-table-body"></tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- MESSAGES -->
-            <section class="admin-panel" id="panel-messages">
-
-                <div class="admin-topbar">
-                    <div>
-                        <h1>Contact Messages</h1>
-                        <p>Submissions from the Contact page.</p>
-                    </div>
-                </div>
-
-                <div class="admin-card" id="message-card">
-                    <h3>Latest message</h3>
-                    <p class="card-sub">From <code>lavanyaContactMessage</code>.</p>
-                    <div id="message-detail"></div>
-                </div>
-
-            </section>
-
-            <!-- NEWSLETTER -->
-            <section class="admin-panel" id="panel-newsletter">
-
-                <div class="admin-topbar">
-                    <div>
-                        <h1>Newsletter</h1>
-                        <p>Signups from the footer and account page forms.</p>
-                    </div>
-                </div>
-
-                <div class="admin-card" id="newsletter-card">
-                    <h3>Latest signup</h3>
-                    <p class="card-sub">From <code>lavanyaNewsletter</code>.</p>
-                    <div id="newsletter-detail"></div>
-                </div>
-
-            </section>
-
-        </main>
-
-    </div>
-
-
-    <!-- =========================================
-         ADD / EDIT PRODUCT MODAL
-         ========================================= -->
-
-    <div class="admin-modal-overlay" id="product-modal-overlay">
-
-        <div class="admin-modal">
-
-            <h3 id="product-modal-title">Add Product</h3>
-
-            <form id="product-form">
-
-                <input type="hidden" id="product-id">
-
-                <div class="admin-field">
-                    <label for="product-name">Product name</label>
-                    <input type="text" id="product-name" required>
-                </div>
-
-                <div class="admin-modal-row">
-
-                    <div class="admin-field">
-                        <label for="product-category">Category</label>
-                        <select id="product-category" required>
-                            <option value="cleanse">Cleanse</option>
-                            <option value="treat">Treat</option>
-                            <option value="hydrate">Hydrate</option>
-                            <option value="protect">Protect</option>
-                        </select>
-                    </div>
-
-                    <div class="admin-field">
-                        <label for="product-price">Price (NPR)</label>
-                        <input type="number" id="product-price" min="0" step="1" required>
-                    </div>
-
-                </div>
-
-                <div class="admin-field">
-                    <label for="product-image">Image path</label>
-                    <input type="text" id="product-image" placeholder="Assets/Images/example.jpg">
-                </div>
-
-                <div class="admin-field">
-                    <label for="product-badge">Badge (optional)</label>
-                    <input type="text" id="product-badge" placeholder="BESTSELLER">
-                </div>
-
-                <div class="admin-field">
-                    <label for="product-description">Description</label>
-                    <textarea id="product-description" rows="3"></textarea>
-                </div>
-
-                <div class="admin-modal-row">
-
-                    <div class="admin-field">
-                        <label for="product-skin-types">Skin types (comma separated, optional)</label>
-                        <input type="text" id="product-skin-types" placeholder="dry, normal, sensitive">
-                    </div>
-
-                    <div class="admin-field">
-                        <label for="product-concerns">Skin concerns (comma separated, optional)</label>
-                        <input type="text" id="product-concerns" placeholder="dryness, dullness">
-                    </div>
-
-                </div>
-
-                <p class="admin-hint" style="margin-top:-8px;">
-                    Skin types / concerns power the "match" score shown on the Shop and Quiz pages.
-                    Leave blank if you don't need that.
-                </p>
-
-                <p class="admin-error" id="product-form-error"></p>
-
-                <div class="admin-modal-actions">
-                    <button type="button" class="admin-btn admin-btn-outline" id="product-cancel-btn">Cancel</button>
-                    <button type="submit" class="admin-btn admin-btn-primary">Save Product</button>
-                </div>
-
-            </form>
+          </table>
 
         </div>
 
-    </div>
+      </div>
+
+    </section>
 
 
-    <!-- =========================================
-         ORDER DETAIL MODAL
-         ========================================= -->
+    <!-- ORDERS -->
 
-    <div class="admin-modal-overlay" id="order-modal-overlay">
+    <section class="admin-panel" id="panel-orders">
 
-        <div class="admin-modal">
+      <div class="admin-topbar">
+        <div>
+          <h1>Orders</h1>
+          <p>
+            Manage orders from Processing to Delivered.
+          </p>
+        </div>
+      </div>
 
-            <h3>Order Detail</h3>
 
-            <div id="order-modal-body"></div>
+      <div class="admin-card">
 
-            <div class="admin-modal-actions">
-                <button type="button" class="admin-btn admin-btn-outline" id="order-modal-close-btn">Close</button>
-            </div>
+        <div class="admin-section-head">
+
+          <div>
+            <h3>All orders</h3>
+
+            <p
+              class="card-sub"
+              id="orders-count-sub"
+            >
+              0 orders
+            </p>
+          </div>
 
         </div>
 
+
+        <div class="admin-table-wrap">
+
+          <table class="admin-table">
+
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="orders-table-body"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CUSTOMERS -->
+
+    <section class="admin-panel" id="panel-customers">
+
+      <div class="admin-topbar">
+        <div>
+          <h1>Customers</h1>
+          <p>
+            View, edit and remove customer accounts.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="admin-card">
+
+        <div class="admin-section-head">
+
+          <div>
+            <h3>All customers</h3>
+
+            <p
+              class="card-sub"
+              id="customers-count-sub"
+            >
+              0 customers
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="admin-table-wrap">
+
+          <table class="admin-table">
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Joined</th>
+                <th>Orders</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody id="customers-table-body"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MESSAGES -->
+
+    <section class="admin-panel" id="panel-messages">
+
+      <div class="admin-topbar">
+        <div>
+          <h1>Messages</h1>
+          <p>
+            View, mark read and delete the latest contact message.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="admin-card">
+
+        <div id="message-detail"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NEWSLETTER -->
+
+    <section class="admin-panel" id="panel-newsletter">
+
+      <div class="admin-topbar">
+        <div>
+          <h1>Newsletter</h1>
+          <p>
+            View and remove the latest signup.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="admin-card">
+
+        <div id="newsletter-detail"></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- PRODUCT MODAL -->
+
+<div
+  class="admin-modal-overlay"
+  id="product-modal-overlay"
+>
+
+  <div class="admin-modal">
+
+    <h3 id="product-modal-title">
+      Add Product
+    </h3>
+
+
+    <form id="product-form">
+
+      <input
+        type="hidden"
+        id="product-id"
+      >
+
+
+      <div class="admin-modal-row">
+
+        <div class="admin-field">
+          <label>Name</label>
+          <input id="product-name" required>
+        </div>
+
+        <div class="admin-field">
+          <label>Price (NPR)</label>
+          <input
+            id="product-price"
+            type="number"
+            min="0"
+            required
+          >
+        </div>
+
+      </div>
+
+
+      <div class="admin-modal-row">
+
+        <div class="admin-field">
+          <label>Category</label>
+
+          <select id="product-category">
+            <option value="cleanse">Cleanse</option>
+            <option value="treat">Treat</option>
+            <option value="hydrate">Hydrate</option>
+            <option value="protect">Protect</option>
+          </select>
+        </div>
+
+
+        <div class="admin-field">
+          <label>Routine step</label>
+
+          <select id="product-routine-step">
+            <option>Cleanse</option>
+            <option>Treat</option>
+            <option>Hydrate</option>
+            <option>Protect</option>
+          </select>
+        </div>
+
+      </div>
+
+
+      <div class="admin-field">
+        <label>Image path</label>
+        <input
+          id="product-image"
+          placeholder="Assets/Images/example.jpg"
+        >
+      </div>
+
+
+      <div class="admin-field">
+        <label>Badge</label>
+        <input
+          id="product-badge"
+          placeholder="NEW"
+        >
+      </div>
+
+
+      <div class="admin-field">
+        <label>Short description</label>
+
+        <textarea
+          id="product-description"
+          rows="2"
+        ></textarea>
+      </div>
+
+
+      <div class="admin-field">
+        <label>Long description</label>
+
+        <textarea
+          id="product-long-description"
+          rows="3"
+        ></textarea>
+      </div>
+
+
+      <div class="admin-modal-row">
+
+        <div class="admin-field">
+          <label>Skin types</label>
+
+          <input
+            id="product-skin-types"
+            placeholder="dry, combination"
+          >
+        </div>
+
+
+        <div class="admin-field">
+          <label>Concerns</label>
+
+          <input
+            id="product-concerns"
+            placeholder="acne, dryness"
+          >
+        </div>
+
+      </div>
+
+
+      <div class="admin-modal-row">
+
+        <div class="admin-field">
+          <label>Ingredients</label>
+          <input id="product-ingredients">
+        </div>
+
+
+        <div class="admin-field">
+          <label>Stock</label>
+
+          <input
+            id="product-stock"
+            type="number"
+            min="0"
+            value="0"
+          >
+        </div>
+
+      </div>
+
+
+      <div class="admin-field">
+        <label>Benefits</label>
+
+        <textarea
+          id="product-benefits"
+          rows="2"
+        ></textarea>
+      </div>
+
+
+      <div class="admin-field">
+        <label>How to use</label>
+
+        <textarea
+          id="product-how-to-use"
+          rows="2"
+        ></textarea>
+      </div>
+
+
+      <div class="admin-field">
+        <label>Suitable for</label>
+        <input id="product-suitable-for">
+      </div>
+
+
+      <div class="admin-modal-row">
+
+        <div class="admin-field">
+          <label>Rating</label>
+
+          <input
+            id="product-rating"
+            type="number"
+            min="0"
+            max="5"
+            step="0.1"
+            value="4.5"
+          >
+        </div>
+
+
+        <div class="admin-field">
+          <label>Review count</label>
+
+          <input
+            id="product-review-count"
+            type="number"
+            min="0"
+            value="0"
+          >
+        </div>
+
+      </div>
+
+
+      <div class="admin-modal-row">
+
+        <label>
+          <input
+            type="checkbox"
+            id="product-beginner-friendly"
+          >
+          Beginner friendly
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            id="product-fragrance-free"
+          >
+          Fragrance free
+        </label>
+
+      </div>
+
+
+      <p
+        class="admin-error"
+        id="product-form-error"
+      ></p>
+
+
+      <div class="admin-modal-actions">
+
+        <button
+          type="button"
+          class="admin-btn admin-btn-outline"
+          id="product-cancel-btn"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="admin-btn admin-btn-primary"
+        >
+          Save Product
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- ORDER MODAL -->
+
+<div
+  class="admin-modal-overlay"
+  id="order-modal-overlay"
+>
+
+  <div class="admin-modal">
+
+    <h3>
+      Order Details
+    </h3>
+
+
+    <div id="order-modal-body"></div>
+
+
+    <div class="admin-modal-actions">
+
+      <button
+        class="admin-btn admin-btn-outline"
+        id="order-modal-close"
+      >
+        Close
+      </button>
+
     </div>
 
+  </div>
 
-    <script>
-
-        const ADMIN_AUTH_KEY = "lavanyaAdminAuthed";
-        const ADMIN_USERNAME = "admin";
-        const ADMIN_PASSWORD = "lavanya123";
-
-        const categoryLabels = LavanyaStore.CATEGORY_LABELS;
+</div>
 
 
-        /* ========================================
-           LOGIN GATE
-           ======================================== */
+<!-- CUSTOMER MODAL -->
 
-        const loginScreen = document.getElementById("admin-login-screen");
-        const adminApp = document.getElementById("admin-app");
-        const loginForm = document.getElementById("admin-login-form");
-        const loginError = document.getElementById("admin-login-error");
+<div
+  class="admin-modal-overlay"
+  id="customer-modal-overlay"
+>
 
-        function showApp() {
-            loginScreen.style.display = "none";
-            adminApp.style.display = "grid";
-            renderAll();
-        }
+  <div class="admin-modal">
 
-        if (sessionStorage.getItem(ADMIN_AUTH_KEY) === "true") {
-            showApp();
-        }
-
-        loginForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const username = document.getElementById("admin-username").value.trim();
-            const password = document.getElementById("admin-password").value;
-
-            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-                sessionStorage.setItem(ADMIN_AUTH_KEY, "true");
-                loginError.textContent = "";
-                showApp();
-            } else {
-                loginError.textContent = "Incorrect username or password.";
-            }
-        });
-
-        document.getElementById("admin-logout-btn").addEventListener("click", function () {
-            sessionStorage.removeItem(ADMIN_AUTH_KEY);
-            adminApp.style.display = "none";
-            loginScreen.style.display = "flex";
-            loginForm.reset();
-        });
+    <h3>
+      Edit Customer
+    </h3>
 
 
-        /* ========================================
-           NAVIGATION
-           ======================================== */
+    <form id="customer-form">
 
-        const navLinks = document.querySelectorAll(".nav-link");
-        const panels = document.querySelectorAll(".admin-panel");
+      <input
+        type="hidden"
+        id="customer-id"
+      >
 
-        navLinks.forEach(function (link) {
-            link.addEventListener("click", function () {
-                navLinks.forEach(function (l) { l.classList.remove("active"); });
-                panels.forEach(function (p) { p.classList.remove("active"); });
-
-                link.classList.add("active");
-                document.getElementById("panel-" + link.dataset.panel).classList.add("active");
-            });
-        });
+      <input
+        type="hidden"
+        id="customer-old-email"
+      >
 
 
-        /* ========================================
-           PRODUCTS
-           All product storage now lives in
-           Assets/js/store-data.js (LavanyaStore) so
-           the exact same data is used here AND on
-           shop.html / product-details.html.
-           ======================================== */
-
-        function renderProducts() {
-            const products = LavanyaStore.getProducts();
-            const tbody = document.getElementById("products-table-body");
-
-            if (products.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='5'><div class='admin-empty'>No products yet.</div></td></tr>";
-            } else {
-                tbody.innerHTML = products.map(function (product) {
-                    return "<tr>" +
-                        "<td class='wrap'>" + escapeHtml(product.name) + "</td>" +
-                        "<td>" + escapeHtml(product.categoryLabel || product.category) + "</td>" +
-                        "<td>NPR " + Number(product.price).toLocaleString() + "</td>" +
-                        "<td>" + (product.badge ? "<span class='admin-badge'>" + escapeHtml(product.badge) + "</span>" : "—") + "</td>" +
-                        "<td><div class='admin-row-actions'>" +
-                        "<button type='button' class='edit-btn' data-id='" + product.id + "'>Edit</button>" +
-                        "<button type='button' class='delete-btn' data-id='" + product.id + "'>Delete</button>" +
-                        "</div></td>" +
-                        "</tr>";
-                }).join("");
-            }
-
-            document.getElementById("stat-products").textContent = products.length;
-
-            tbody.querySelectorAll(".edit-btn").forEach(function (btn) {
-                btn.addEventListener("click", function () { openProductModal(btn.dataset.id); });
-            });
-
-            tbody.querySelectorAll(".delete-btn").forEach(function (btn) {
-                btn.addEventListener("click", function () { deleteProduct(btn.dataset.id); });
-            });
-        }
-
-        function deleteProduct(id) {
-            if (!confirm("Delete this product? This cannot be undone. It will also disappear from the Shop page.")) {
-                return;
-            }
-
-            LavanyaStore.deleteProduct(id);
-            renderProducts();
-        }
+      <div class="admin-field">
+        <label>Name</label>
+        <input id="customer-name" required>
+      </div>
 
 
-        /* ========================================
-           PRODUCTS: add / edit modal
-           ======================================== */
+      <div class="admin-field">
+        <label>Email</label>
+        <input
+          id="customer-email"
+          type="email"
+          required
+        >
+      </div>
 
-        const productModalOverlay = document.getElementById("product-modal-overlay");
-        const productForm = document.getElementById("product-form");
-        const productFormError = document.getElementById("product-form-error");
 
-        function openProductModal(id) {
-            productForm.reset();
-            productFormError.textContent = "";
+      <p
+        class="admin-error"
+        id="customer-form-error"
+      ></p>
 
-            if (id) {
-                const product = LavanyaStore.getProductById(id);
 
-                if (!product) {
-                    return;
+      <div class="admin-modal-actions">
+
+        <button
+          type="button"
+          class="admin-btn admin-btn-outline"
+          id="customer-cancel"
+        >
+          Close
+        </button>
+
+
+        <button
+          class="admin-btn admin-btn-primary"
+        >
+          Save Changes
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script>
+
+(function(){
+
+"use strict";
+
+
+const $ = selector =>
+  document.querySelector(selector);
+
+const $$ = selector =>
+  document.querySelectorAll(selector);
+
+const esc = value => {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    value == null ? "" : String(value);
+
+  return div.innerHTML;
+
+};
+
+
+const store =
+  window.LavanyaStore;
+
+
+const ADMIN_KEY =
+  "lavanyaAdminAuthed";
+
+
+const ADMIN_USER =
+  "admin";
+
+
+const ADMIN_PASS =
+  "lavanya123";
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function showAdmin(){
+
+  $("#admin-login-screen").style.display =
+    "none";
+
+  $("#admin-app").style.display =
+    "grid";
+
+  renderAll();
+
+}
+
+
+if(
+  sessionStorage.getItem(
+    ADMIN_KEY
+  ) === "true"
+){
+  showAdmin();
+}
+
+
+$("#admin-login-form").addEventListener(
+  "submit",
+  function(event){
+
+    event.preventDefault();
+
+    if(
+      $("#admin-username").value.trim() ===
+        ADMIN_USER &&
+      $("#admin-password").value ===
+        ADMIN_PASS
+    ){
+
+      sessionStorage.setItem(
+        ADMIN_KEY,
+        "true"
+      );
+
+      showAdmin();
+
+    }else{
+
+      $("#admin-login-error").textContent =
+        "Incorrect username or password.";
+
+    }
+
+  }
+);
+
+
+$("#admin-logout-btn").onclick =
+  function(){
+
+    sessionStorage.removeItem(
+      ADMIN_KEY
+    );
+
+    location.reload();
+
+  };
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+$$(".nav-link").forEach(
+  function(button){
+
+    button.onclick =
+      function(){
+
+        $$(".nav-link")
+          .forEach(
+            x =>
+              x.classList.remove(
+                "active"
+              )
+          );
+
+        $$(".admin-panel")
+          .forEach(
+            x =>
+              x.classList.remove(
+                "active"
+              )
+          );
+
+        button.classList.add(
+          "active"
+        );
+
+        $(
+          "#panel-" +
+          button.dataset.panel
+        ).classList.add(
+          "active"
+        );
+
+      };
+
+  }
+);
+
+
+/* =========================
+   PRODUCT MANAGEMENT
+========================= */
+
+const productModal =
+  $("#product-modal-overlay");
+
+
+const productForm =
+  $("#product-form");
+
+
+function openProduct(id){
+
+  productForm.reset();
+
+  $("#product-id").value =
+    id || "";
+
+
+  const product =
+    id
+      ? store.getProductById(id)
+      : null;
+
+
+  if(product){
+
+    $("#product-modal-title")
+      .textContent =
+        "Edit Product";
+
+
+    const fields = {
+
+      "product-name":
+        product.name,
+
+      "product-category":
+        product.category,
+
+      "product-price":
+        product.price,
+
+      "product-image":
+        product.image,
+
+      "product-badge":
+        product.badge,
+
+      "product-description":
+        product.description,
+
+      "product-long-description":
+        product.longDescription,
+
+      "product-skin-types":
+        (product.skinTypes || [])
+          .join(", "),
+
+      "product-concerns":
+        (product.concerns || [])
+          .join(", "),
+
+      "product-ingredients":
+        (product.ingredients || [])
+          .join(", "),
+
+      "product-routine-step":
+        product.routineStep,
+
+      "product-benefits":
+        (product.benefits || [])
+          .join(", "),
+
+      "product-how-to-use":
+        product.howToUse,
+
+      "product-suitable-for":
+        product.suitableFor,
+
+      "product-rating":
+        product.rating,
+
+      "product-review-count":
+        product.reviewCount,
+
+      "product-stock":
+        product.stock
+
+    };
+
+
+    Object.keys(fields).forEach(
+      function(key){
+
+        $("#" + key).value =
+          fields[key] ?? "";
+
+      }
+    );
+
+
+    $("#product-beginner-friendly")
+      .checked =
+        !!product.beginnerFriendly;
+
+
+    $("#product-fragrance-free")
+      .checked =
+        !!product.fragranceFree;
+
+  }else{
+
+    $("#product-modal-title")
+      .textContent =
+        "Add Product";
+
+  }
+
+
+  productModal.classList.add(
+    "active"
+  );
+
+}
+
+
+$("#add-product-btn").onclick =
+  () => openProduct();
+
+
+$("#product-cancel-btn").onclick =
+  () =>
+    productModal.classList.remove(
+      "active"
+    );
+
+
+productForm.addEventListener(
+  "submit",
+  function(event){
+
+    event.preventDefault();
+
+
+    const name =
+      $("#product-name")
+        .value
+        .trim();
+
+
+    const price =
+      Number(
+        $("#product-price")
+          .value
+      );
+
+
+    if(
+      !name ||
+      price <= 0
+    ){
+
+      $("#product-form-error")
+        .textContent =
+          "Name and price are required.";
+
+      return;
+
+    }
+
+
+    const category =
+      $("#product-category")
+        .value;
+
+
+    const data = {
+
+      name,
+
+      category,
+
+      categoryLabel:
+        store.CATEGORY_LABELS[
+          category
+        ],
+
+      price,
+
+      image:
+        $("#product-image")
+          .value
+          .trim(),
+
+      badge:
+        $("#product-badge")
+          .value
+          .trim(),
+
+      description:
+        $("#product-description")
+          .value
+          .trim(),
+
+      longDescription:
+        $("#product-long-description")
+          .value
+          .trim(),
+
+      skinTypes:
+        $("#product-skin-types")
+          .value
+          .split(",")
+          .map(x => x.trim().toLowerCase())
+          .filter(Boolean),
+
+      concerns:
+        $("#product-concerns")
+          .value
+          .split(",")
+          .map(x => x.trim().toLowerCase())
+          .filter(Boolean),
+
+      ingredients:
+        $("#product-ingredients")
+          .value
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean),
+
+      routineStep:
+        $("#product-routine-step")
+          .value,
+
+      benefits:
+        $("#product-benefits")
+          .value
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean),
+
+      howToUse:
+        $("#product-how-to-use")
+          .value
+          .trim(),
+
+      suitableFor:
+        $("#product-suitable-for")
+          .value
+          .trim(),
+
+      rating:
+        Number(
+          $("#product-rating")
+            .value
+        ) || 0,
+
+      reviewCount:
+        Number(
+          $("#product-review-count")
+            .value
+        ) || 0,
+
+      stock:
+        Number(
+          $("#product-stock")
+            .value
+        ) || 0,
+
+      beginnerFriendly:
+        $("#product-beginner-friendly")
+          .checked,
+
+      fragranceFree:
+        $("#product-fragrance-free")
+          .checked
+
+    };
+
+
+    const id =
+      $("#product-id").value;
+
+
+    if(id){
+
+      store.updateProduct(
+        id,
+        data
+      );
+
+    }else{
+
+      store.addProduct(
+        data
+      );
+
+    }
+
+
+    productModal.classList.remove(
+      "active"
+    );
+
+
+    renderProducts();
+
+    renderActivity();
+
+  }
+);
+
+
+/* =========================
+   PRODUCTS / INVENTORY
+========================= */
+
+function renderProducts(){
+
+  const products =
+    store.getProducts();
+
+
+  $("#stat-products")
+    .textContent =
+      products.length;
+
+
+  $("#stat-low-stock")
+    .textContent =
+      products.filter(
+        p =>
+          Number(
+            p.stock || 0
+          ) <= 5
+      ).length;
+
+
+  $("#products-table-body")
+    .innerHTML =
+
+      products.map(
+        function(product){
+
+          const stock =
+            Number(
+              product.stock || 0
+            );
+
+
+          return `
+
+            <tr>
+
+              <td class="wrap">
+                <strong>
+                  ${esc(product.name)}
+                </strong>
+              </td>
+
+              <td>
+                ${esc(
+                  product.categoryLabel ||
+                  product.category
+                )}
+              </td>
+
+              <td>
+                NPR
+                ${Number(
+                  product.price || 0
+                ).toLocaleString()}
+              </td>
+
+              <td>
+                <span
+                  class="
+                    stock
+                    ${
+                      stock === 0
+                        ? "out"
+                        : stock <= 5
+                        ? "low"
+                        : ""
+                    }
+                  "
+                >
+                  ${stock}
+                </span>
+              </td>
+
+              <td>
+                ${
+                  product.badge
+                    ? `
+                      <span class="admin-badge">
+                        ${esc(
+                          product.badge
+                        )}
+                      </span>
+                    `
+                    : "—"
                 }
+              </td>
 
-                document.getElementById("product-modal-title").textContent = "Edit Product";
-                document.getElementById("product-id").value = product.id;
-                document.getElementById("product-name").value = product.name;
-                document.getElementById("product-category").value = product.category;
-                document.getElementById("product-price").value = product.price;
-                document.getElementById("product-image").value = product.image || "";
-                document.getElementById("product-badge").value = product.badge || "";
-                document.getElementById("product-description").value = product.description || "";
-                document.getElementById("product-skin-types").value = (product.skinTypes || []).join(", ");
-                document.getElementById("product-concerns").value = (product.concerns || []).join(", ");
-            } else {
-                document.getElementById("product-modal-title").textContent = "Add Product";
-                document.getElementById("product-id").value = "";
-            }
+              <td>
 
-            productModalOverlay.classList.add("active");
+                <div
+                  class="admin-row-actions"
+                >
+
+                  <button
+                    class="edit-product"
+                    data-id="${esc(
+                      product.id
+                    )}"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    class="delete-product"
+                    data-id="${esc(
+                      product.id
+                    )}"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      ).join("");
+
+
+  $$(".edit-product").forEach(
+    button =>
+      button.onclick =
+        () =>
+          openProduct(
+            button.dataset.id
+          )
+  );
+
+
+  $$(".delete-product").forEach(
+    button =>
+      button.onclick =
+        function(){
+
+          if(
+            !confirm(
+              "Delete this product?"
+            )
+          ){
+            return;
+          }
+
+
+          store.deleteProduct(
+            button.dataset.id
+          );
+
+
+          renderProducts();
+          renderActivity();
+
+        }
+  );
+
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+function renderOrders(){
+
+  const orders =
+    store.getOrders();
+
+
+  $("#stat-orders")
+    .textContent =
+      orders.length;
+
+
+  const sales =
+    orders
+      .filter(
+        order =>
+          (order.status ||
+            "Processing") !==
+          "Cancelled"
+      )
+      .reduce(
+        (
+          total,
+          order
+        ) =>
+          total +
+          Number(
+            order.total || 0
+          ),
+        0
+      );
+
+
+  $("#stat-sales")
+    .textContent =
+      "NPR " +
+      sales.toLocaleString();
+
+
+  $("#orders-count-sub")
+    .textContent =
+      orders.length +
+      (
+        orders.length === 1
+          ? " order"
+          : " orders"
+      );
+
+
+  $("#orders-table-body")
+    .innerHTML =
+
+      orders.map(
+        function(order){
+
+          const customer =
+            order.customer ||
+            {};
+
+
+          const status =
+            order.status ||
+            "Processing";
+
+
+          return `
+
+            <tr>
+
+              <td>
+                <strong>
+                  ${esc(
+                    order.orderNumber ||
+                    "—"
+                  )}
+                </strong>
+              </td>
+
+              <td>
+                ${esc(
+                  customer.name ||
+                  customer.fullName ||
+                  customer.email ||
+                  "Guest"
+                )}
+              </td>
+
+              <td>
+                NPR
+                ${Number(
+                  order.total || 0
+                ).toLocaleString()}
+              </td>
+
+              <td>
+
+                <select
+                  class="order-status"
+                  data-id="${esc(
+                    order.orderNumber ||
+                    ""
+                  )}"
+                >
+
+                  ${
+                    [
+                      "Processing",
+                      "Confirmed",
+                      "Shipped",
+                      "Delivered",
+                      "Cancelled"
+                    ]
+                    .map(
+                      option =>
+                        `
+                          <option
+                            ${
+                              option === status
+                                ? "selected"
+                                : ""
+                            }
+                          >
+                            ${option}
+                          </option>
+                        `
+                    ).join("")
+                  }
+
+                </select>
+
+              </td>
+
+              <td>
+                ${
+                  order.placedAt
+                    ? new Date(
+                        order.placedAt
+                      ).toLocaleDateString()
+                    : "—"
+                }
+              </td>
+
+              <td>
+
+                <div
+                  class="admin-row-actions"
+                >
+
+                  <button
+                    class="view-order"
+                    data-id="${esc(
+                      order.orderNumber ||
+                      ""
+                    )}"
+                  >
+                    View
+                  </button>
+
+                  <button
+                    class="delete-order"
+                    data-id="${esc(
+                      order.orderNumber ||
+                      ""
+                    )}"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      ).join("") ||
+
+      `
+        <tr>
+          <td colspan="6">
+            <div class="admin-empty">
+              No orders.
+            </div>
+          </td>
+        </tr>
+      `;
+
+
+  $$(".order-status").forEach(
+    select =>
+
+      select.onchange =
+        function(){
+
+          store.updateOrderStatus(
+            select.dataset.id,
+            select.value
+          );
+
+
+          renderOrders();
+          renderActivity();
+
+        }
+  );
+
+
+  $$(".view-order").forEach(
+    button =>
+      button.onclick =
+        () =>
+          viewOrder(
+            button.dataset.id
+          )
+  );
+
+
+  $$(".delete-order").forEach(
+    button =>
+      button.onclick =
+        function(){
+
+          if(
+            !confirm(
+              "Delete this order?"
+            )
+          ){
+            return;
+          }
+
+
+          store.deleteOrder(
+            button.dataset.id
+          );
+
+
+          renderOrders();
+          renderCustomers();
+          renderActivity();
+
+        }
+  );
+
+}
+
+
+function viewOrder(id){
+
+  const order =
+    store
+      .getOrders()
+      .find(
+        item =>
+          item.orderNumber ===
+          id
+      );
+
+
+  if(!order){
+    return;
+  }
+
+
+  const customer =
+    order.customer ||
+    {};
+
+
+  $("#order-modal-body")
+    .innerHTML = `
+
+      <dl class="admin-kv">
+
+        <dt>Order</dt>
+        <dd>
+          ${esc(
+            order.orderNumber ||
+            "—"
+          )}
+        </dd>
+
+        <dt>Customer</dt>
+        <dd>
+          ${esc(
+            customer.name ||
+            customer.fullName ||
+            "—"
+          )}
+        </dd>
+
+        <dt>Email</dt>
+        <dd>
+          ${esc(
+            customer.email ||
+            "—"
+          )}
+        </dd>
+
+        <dt>Status</dt>
+        <dd>
+          ${esc(
+            order.status ||
+            "Processing"
+          )}
+        </dd>
+
+        <dt>Total</dt>
+        <dd>
+          NPR
+          ${Number(
+            order.total || 0
+          ).toLocaleString()}
+        </dd>
+
+        <dt>Placed</dt>
+        <dd>
+          ${esc(
+            order.placedAt ||
+            "—"
+          )}
+        </dd>
+
+      </dl>
+
+      <h4>
+        Items
+      </h4>
+
+      <ul class="admin-order-items">
+
+        ${
+          (order.items || [])
+            .map(
+              item =>
+                `
+                  <li>
+
+                    <span>
+                      ${esc(
+                        item.name
+                      )}
+                      ×
+                      ${item.quantity || 1}
+                    </span>
+
+                    <strong>
+                      NPR
+                      ${Number(
+                        (
+                          item.price ||
+                          0
+                        ) *
+                        (
+                          item.quantity ||
+                          1
+                        )
+                      ).toLocaleString()}
+                    </strong>
+
+                  </li>
+                `
+            )
+            .join("") ||
+
+          "<li>No items.</li>"
         }
 
-        function closeProductModal() {
-            productModalOverlay.classList.remove("active");
+      </ul>
+
+    `;
+
+
+  $("#order-modal-overlay")
+    .classList.add(
+      "active"
+    );
+
+}
+
+
+$("#order-modal-close").onclick =
+  () =>
+    $("#order-modal-overlay")
+      .classList.remove(
+        "active"
+      );
+
+
+/* =========================
+   CUSTOMERS
+========================= */
+
+function renderCustomers(){
+
+  const customers =
+    store.getCustomers();
+
+
+  const orders =
+    store.getOrders();
+
+
+  $("#stat-customers")
+    .textContent =
+      customers.length;
+
+
+  $("#customers-count-sub")
+    .textContent =
+      customers.length +
+      (
+        customers.length === 1
+          ? " customer"
+          : " customers"
+      );
+
+
+  $("#customers-table-body")
+    .innerHTML =
+
+      customers.map(
+        function(customer){
+
+          const orderCount =
+            orders.filter(
+              order =>
+                String(
+                  order.customer?.email ||
+                  ""
+                ).toLowerCase() ===
+                String(
+                  customer.email ||
+                  ""
+                ).toLowerCase()
+            ).length;
+
+
+          return `
+
+            <tr>
+
+              <td>
+                ${esc(
+                  customer.name ||
+                  customer.fullName ||
+                  "—"
+                )}
+              </td>
+
+              <td>
+                ${esc(
+                  customer.email ||
+                  "—"
+                )}
+              </td>
+
+              <td>
+                ${
+                  customer.createdAt
+                    ? new Date(
+                        customer.createdAt
+                      ).toLocaleDateString()
+                    : "—"
+                }
+              </td>
+
+              <td>
+                ${orderCount}
+              </td>
+
+              <td>
+
+                <div
+                  class="admin-row-actions"
+                >
+
+                  <button
+                    class="edit-customer"
+                    data-id="${esc(
+                      customer.id
+                    )}"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    class="delete-customer"
+                    data-id="${esc(
+                      customer.id
+                    )}"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      ).join("") ||
+
+      `
+        <tr>
+          <td colspan="5">
+            <div class="admin-empty">
+              No customers.
+            </div>
+          </td>
+        </tr>
+      `;
+
+
+  $$(".edit-customer").forEach(
+    button =>
+      button.onclick =
+        () =>
+          openCustomer(
+            button.dataset.id
+          )
+  );
+
+
+  $$(".delete-customer").forEach(
+    button =>
+      button.onclick =
+        function(){
+
+          if(
+            !confirm(
+              "Delete this customer?"
+            )
+          ){
+            return;
+          }
+
+
+          store.deleteCustomer(
+            button.dataset.id
+          );
+
+
+          renderCustomers();
+          renderActivity();
+
+        }
+  );
+
+}
+
+
+function openCustomer(id){
+
+  const customer =
+    store
+      .getCustomers()
+      .find(
+        item =>
+          item.id === id
+      );
+
+
+  if(!customer){
+    return;
+  }
+
+
+  $("#customer-id")
+    .value =
+      customer.id;
+
+
+  $("#customer-old-email")
+    .value =
+      customer.email ||
+      "";
+
+
+  $("#customer-name")
+    .value =
+      customer.name ||
+      customer.fullName ||
+      "";
+
+
+  $("#customer-email")
+    .value =
+      customer.email ||
+      "";
+
+
+  $("#customer-form-error")
+    .textContent =
+      "";
+
+
+  $("#customer-modal-overlay")
+    .classList.add(
+      "active"
+    );
+
+}
+
+
+$("#customer-cancel").onclick =
+  () =>
+    $("#customer-modal-overlay")
+      .classList.remove(
+        "active"
+      );
+
+
+$("#customer-form").onsubmit =
+  function(event){
+
+    event.preventDefault();
+
+
+    const id =
+      $("#customer-id")
+        .value;
+
+
+    const name =
+      $("#customer-name")
+        .value
+        .trim();
+
+
+    const email =
+      $("#customer-email")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if(!name || !email){
+
+      $("#customer-form-error")
+        .textContent =
+          "Name and email are required.";
+
+      return;
+
+    }
+
+
+    const customers =
+      store.getCustomers();
+
+
+    const customer =
+      customers.find(
+        item =>
+          item.id ===
+          id
+      );
+
+
+    if(!customer){
+      return;
+    }
+
+
+    const oldEmail =
+      customer.email ||
+      "";
+
+
+    customer.name =
+      customer.fullName =
+        name;
+
+
+    customer.email =
+      email;
+
+
+    store.saveCustomers(
+      customers
+    );
+
+
+    const orders =
+      store.getOrders();
+
+
+    orders.forEach(
+      order => {
+
+        if(
+          String(
+            order.customer?.email ||
+            ""
+          ).toLowerCase() ===
+          String(
+            oldEmail
+          ).toLowerCase()
+        ){
+
+          order.customer.name =
+            name;
+
+          order.customer.fullName =
+            name;
+
+          order.customer.email =
+            email;
+
         }
 
-        document.getElementById("add-product-btn").addEventListener("click", function () {
-            openProductModal(null);
-        });
+      }
+    );
 
-        document.getElementById("product-cancel-btn").addEventListener("click", closeProductModal);
 
-        productModalOverlay.addEventListener("click", function (event) {
-            if (event.target === productModalOverlay) {
-                closeProductModal();
+    store.saveOrders(
+      orders
+    );
+
+
+    $("#customer-modal-overlay")
+      .classList.remove(
+        "active"
+      );
+
+
+    renderCustomers();
+    renderOrders();
+    renderActivity();
+
+  };
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+function renderMessage(){
+
+  const raw =
+    localStorage.getItem(
+      "lavanyaContactMessage"
+    );
+
+
+  const read =
+    localStorage.getItem(
+      "lavanyaContactMessageRead"
+    ) === "true";
+
+
+  if(!raw){
+
+    $("#message-detail")
+      .innerHTML =
+        `
+          <div class="admin-empty">
+            No message.
+          </div>
+        `;
+
+    return;
+
+  }
+
+
+  let message;
+
+
+  try{
+
+    message =
+      JSON.parse(
+        raw
+      );
+
+  }catch{
+
+    $("#message-detail")
+      .innerHTML =
+        `
+          <div class="admin-empty">
+            Message data could not be read.
+          </div>
+        `;
+
+    return;
+
+  }
+
+
+  $("#message-detail")
+    .innerHTML = `
+
+      <div
+        class="
+          admin-message
+          ${read ? "read" : ""}
+        "
+      >
+
+        <div class="message-head">
+
+          <strong>
+            ${esc(
+              message.name ||
+              "—"
+            )}
+          </strong>
+
+          <span>
+            ${read
+              ? "Read"
+              : "Unread"}
+          </span>
+
+        </div>
+
+
+        <p>
+          <b>
+            ${esc(
+              message.email ||
+              ""
+            )}
+          </b>
+        </p>
+
+
+        <p>
+          ${esc(
+            message.topic ||
+            message.subject ||
+            ""
+          )}
+        </p>
+
+
+        <p>
+          ${esc(
+            message.message ||
+            ""
+          )}
+        </p>
+
+
+        <small>
+          ${
+            message.submittedAt
+              ? new Date(
+                  message.submittedAt
+                ).toLocaleString()
+              : ""
+          }
+        </small>
+
+
+        <div class="admin-row-actions">
+
+          <button
+            id="toggle-message"
+          >
+            ${
+              read
+                ? "Mark Unread"
+                : "Mark Read"
             }
-        });
-
-        function parseTagList(value) {
-            return value
-                .split(",")
-                .map(function (item) { return item.trim().toLowerCase(); })
-                .filter(function (item) { return item.length > 0; });
-        }
-
-        productForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const name = document.getElementById("product-name").value.trim();
-            const category = document.getElementById("product-category").value;
-            const price = Number(document.getElementById("product-price").value);
-            const image = document.getElementById("product-image").value.trim();
-            const badge = document.getElementById("product-badge").value.trim();
-            const description = document.getElementById("product-description").value.trim();
-            const skinTypes = parseTagList(document.getElementById("product-skin-types").value);
-            const concerns = parseTagList(document.getElementById("product-concerns").value);
-            const existingId = document.getElementById("product-id").value;
-
-            if (!name || !price) {
-                productFormError.textContent = "Please fill in the product name and price.";
-                return;
-            }
-
-            const fields = {
-                name: name,
-                category: category,
-                categoryLabel: categoryLabels[category],
-                price: price,
-                image: image,
-                badge: badge,
-                description: description,
-                skinTypes: skinTypes,
-                concerns: concerns
-            };
-
-            if (existingId) {
-                LavanyaStore.updateProduct(existingId, fields);
-            } else {
-                LavanyaStore.addProduct(fields);
-            }
-
-            closeProductModal();
-            renderProducts();
-        });
+          </button>
 
 
-        /* ========================================
-           ORDERS
-           ======================================== */
+          <button
+            id="delete-message"
+          >
+            Delete
+          </button>
 
-        const orderModalOverlay = document.getElementById("order-modal-overlay");
-        const orderModalBody = document.getElementById("order-modal-body");
+        </div>
 
-        function renderOrders() {
-            const orders = LavanyaStore.getOrders();
-            const tbody = document.getElementById("orders-table-body");
+      </div>
 
-            document.getElementById("orders-count-sub").textContent =
-                orders.length + (orders.length === 1 ? " order" : " orders");
-
-            if (orders.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='6'><div class='admin-empty'>No orders have been placed yet.</div></td></tr>";
-                document.getElementById("stat-last-order").textContent = "—";
-                return;
-            }
-
-            document.getElementById("stat-last-order").textContent =
-                "NPR " + Number(orders[0].total || 0).toLocaleString();
-
-            const statusOptions = ["Processing", "Shipped", "Delivered", "Cancelled"];
-
-            tbody.innerHTML = orders.map(function (order) {
-                const customerName = order.customer && (order.customer.fullName || order.customer.name || order.customer.email) || "—";
-                const status = order.status || "Processing";
-
-                const optionsHtml = statusOptions.map(function (opt) {
-                    return "<option value='" + opt + "'" + (opt === status ? " selected" : "") + ">" + opt + "</option>";
-                }).join("");
-
-                return "<tr>" +
-                    "<td class='wrap'>" + escapeHtml(order.orderNumber || "—") + "</td>" +
-                    "<td class='wrap'>" + escapeHtml(String(customerName)) + "</td>" +
-                    "<td>NPR " + Number(order.total || 0).toLocaleString() + "</td>" +
-                    "<td><select class='order-status-select' data-order='" + escapeHtml(order.orderNumber || "") + "'>" + optionsHtml + "</select></td>" +
-                    "<td>" + escapeHtml(order.placedAt ? new Date(order.placedAt).toLocaleString() : "—") + "</td>" +
-                    "<td><div class='admin-row-actions'>" +
-                    "<button type='button' class='view-order-btn' data-order='" + escapeHtml(order.orderNumber || "") + "'>View</button>" +
-                    "<button type='button' class='delete-order-btn' data-order='" + escapeHtml(order.orderNumber || "") + "'>Delete</button>" +
-                    "</div></td>" +
-                    "</tr>";
-            }).join("");
-
-            tbody.querySelectorAll(".order-status-select").forEach(function (select) {
-                select.addEventListener("change", function () {
-                    LavanyaStore.updateOrderStatus(select.dataset.order, select.value);
-                    renderActivity();
-                });
-            });
-
-            tbody.querySelectorAll(".view-order-btn").forEach(function (btn) {
-                btn.addEventListener("click", function () { openOrderModal(btn.dataset.order); });
-            });
-
-            tbody.querySelectorAll(".delete-order-btn").forEach(function (btn) {
-                btn.addEventListener("click", function () {
-                    if (!confirm("Delete this order? This cannot be undone.")) {
-                        return;
-                    }
-                    LavanyaStore.deleteOrder(btn.dataset.order);
-                    renderOrders();
-                    renderActivity();
-                });
-            });
-        }
-
-        function openOrderModal(orderNumber) {
-            const order = LavanyaStore.getOrders().find(function (o) {
-                return o.orderNumber === orderNumber;
-            });
-
-            if (!order) {
-                return;
-            }
-
-            const customer = order.customer || {};
-            const itemsHtml = (order.items || []).map(function (item) {
-                return "<li><span>" + escapeHtml(item.name || "Item") + " &times; " + (item.quantity || 1) + "</span><span>NPR " + Number((item.price || 0) * (item.quantity || 1)).toLocaleString() + "</span></li>";
-            }).join("");
-
-            orderModalBody.innerHTML =
-                "<dl class='admin-kv'>" +
-                "<dt>Order number</dt><dd>" + escapeHtml(order.orderNumber || "—") + "</dd>" +
-                "<dt>Status</dt><dd>" + escapeHtml(order.status || "Processing") + "</dd>" +
-                "<dt>Customer</dt><dd>" + escapeHtml(customer.fullName || customer.name || "—") + "</dd>" +
-                "<dt>Email</dt><dd>" + escapeHtml(customer.email || "—") + "</dd>" +
-                "<dt>Phone</dt><dd>" + escapeHtml(customer.phone || "—") + "</dd>" +
-                "<dt>Address</dt><dd>" + escapeHtml([customer.address, customer.city, customer.postalCode, customer.country].filter(Boolean).join(", ") || "—") + "</dd>" +
-                "<dt>Payment</dt><dd>" + escapeHtml(customer.payment || "—") + "</dd>" +
-                "<dt>Delivery</dt><dd>" + escapeHtml(customer.delivery || "—") + "</dd>" +
-                "<dt>Subtotal</dt><dd>NPR " + Number(order.subtotal || 0).toLocaleString() + "</dd>" +
-                "<dt>Shipping</dt><dd>NPR " + Number(order.shipping || 0).toLocaleString() + "</dd>" +
-                "<dt>Discount</dt><dd>NPR " + Number(order.discount || 0).toLocaleString() + "</dd>" +
-                "<dt>Total</dt><dd>NPR " + Number(order.total || 0).toLocaleString() + "</dd>" +
-                "<dt>Placed at</dt><dd>" + escapeHtml(order.placedAt ? new Date(order.placedAt).toLocaleString() : "—") + "</dd>" +
-                "</dl>" +
-                "<ul class='admin-order-items'>" + (itemsHtml || "<li>No items recorded.</li>") + "</ul>";
-
-            orderModalOverlay.classList.add("active");
-        }
-
-        document.getElementById("order-modal-close-btn").addEventListener("click", function () {
-            orderModalOverlay.classList.remove("active");
-        });
-
-        orderModalOverlay.addEventListener("click", function (event) {
-            if (event.target === orderModalOverlay) {
-                orderModalOverlay.classList.remove("active");
-            }
-        });
+    `;
 
 
-        /* ========================================
-           CUSTOMERS
-           ======================================== */
+  $("#toggle-message").onclick =
+    function(){
 
-        function renderCustomers() {
-            const customers = LavanyaStore.getCustomers();
-            const orders = LavanyaStore.getOrders();
-            const tbody = document.getElementById("customers-table-body");
-
-            document.getElementById("customers-count-sub").textContent =
-                customers.length + (customers.length === 1 ? " customer" : " customers");
-            document.getElementById("stat-customers").textContent = customers.length;
-
-            if (customers.length === 0) {
-                tbody.innerHTML = "<tr><td colspan='5'><div class='admin-empty'>No customers have registered yet.</div></td></tr>";
-                return;
-            }
-
-            tbody.innerHTML = customers.map(function (customer) {
-                const orderCount = orders.filter(function (o) {
-                    return o.customer && String(o.customer.email || "").toLowerCase() === String(customer.email || "").toLowerCase();
-                }).length;
-
-                return "<tr>" +
-                    "<td class='wrap'>" + escapeHtml(customer.name || "—") + "</td>" +
-                    "<td class='wrap'>" + escapeHtml(customer.email || "—") + "</td>" +
-                    "<td>" + escapeHtml(customer.createdAt ? new Date(customer.createdAt).toLocaleString() : "—") + "</td>" +
-                    "<td>" + orderCount + "</td>" +
-                    "<td><div class='admin-row-actions'>" +
-                    "<button type='button' class='delete-customer-btn' data-id='" + customer.id + "'>Delete</button>" +
-                    "</div></td>" +
-                    "</tr>";
-            }).join("");
-
-            tbody.querySelectorAll(".delete-customer-btn").forEach(function (btn) {
-                btn.addEventListener("click", function () {
-                    if (!confirm("Delete this customer? This cannot be undone.")) {
-                        return;
-                    }
-                    LavanyaStore.deleteCustomer(btn.dataset.id);
-                    renderCustomers();
-                    renderActivity();
-                });
-            });
-        }
+      localStorage.setItem(
+        "lavanyaContactMessageRead",
+        String(!read)
+      );
 
 
-        /* ========================================
-           MESSAGES / NEWSLETTER
-           (unchanged — the site only ever stores the
-           single latest submission for these two.)
-           ======================================== */
+      renderMessage();
 
-        function renderMessage() {
-            const raw = localStorage.getItem("lavanyaContactMessage");
-            const container = document.getElementById("message-detail");
-
-            if (!raw) {
-                container.innerHTML = "<div class='admin-empty'>No contact messages yet.</div>";
-                return;
-            }
-
-            let msg;
-
-            try {
-                msg = JSON.parse(raw);
-            } catch (e) {
-                container.innerHTML = "<div class='admin-empty'>Message data could not be read.</div>";
-                return;
-            }
-
-            container.innerHTML =
-                "<dl class='admin-kv'>" +
-                "<dt>Name</dt><dd>" + escapeHtml(msg.name || "—") + "</dd>" +
-                "<dt>Email</dt><dd>" + escapeHtml(msg.email || "—") + "</dd>" +
-                "<dt>Subject</dt><dd>" + escapeHtml(msg.subject || "—") + "</dd>" +
-                "<dt>Message</dt><dd>" + escapeHtml(msg.message || "—") + "</dd>" +
-                "</dl>";
-        }
-
-        function renderNewsletter() {
-            const email = localStorage.getItem("lavanyaNewsletter");
-            const container = document.getElementById("newsletter-detail");
-            const statEl = document.getElementById("stat-newsletter");
-
-            if (!email) {
-                container.innerHTML = "<div class='admin-empty'>No newsletter signups yet.</div>";
-                statEl.textContent = "0";
-                return;
-            }
-
-            statEl.textContent = "1";
-            container.innerHTML = "<dl class='admin-kv'><dt>Email</dt><dd>" + escapeHtml(email) + "</dd></dl>";
-        }
-
-        function renderActivity() {
-            const list = document.getElementById("activity-list");
-            const items = [];
-
-            const orders = LavanyaStore.getOrders();
-            const customers = LavanyaStore.getCustomers();
-            const message = localStorage.getItem("lavanyaContactMessage");
-            const newsletter = localStorage.getItem("lavanyaNewsletter");
-
-            if (orders.length) items.push(["Last order placed", orders[0].placedAt ? new Date(orders[0].placedAt).toLocaleString() : "—"]);
-            if (customers.length) items.push(["Last customer registered", customers[customers.length - 1].email || "—"]);
-            if (message) items.push(["Message received from", JSON.parse(message).name || "—"]);
-            if (newsletter) items.push(["Newsletter signup", newsletter]);
-
-            if (items.length === 0) {
-                list.innerHTML = "<div class='admin-empty'>Nothing recorded yet — browse the site to generate activity.</div>";
-                return;
-            }
-
-            list.innerHTML = items.map(function (pair) {
-                return "<dt>" + escapeHtml(pair[0]) + "</dt><dd>" + escapeHtml(String(pair[1])) + "</dd>";
-            }).join("");
-        }
+    };
 
 
-        /* ========================================
-           UTIL
-           ======================================== */
+  $("#delete-message").onclick =
+    function(){
 
-        function escapeHtml(str) {
-            const div = document.createElement("div");
-            div.textContent = str;
-            return div.innerHTML;
-        }
+      if(
+        !confirm(
+          "Delete message?"
+        )
+      ){
+        return;
+      }
 
-        function renderAll() {
-            renderProducts();
-            renderOrders();
-            renderCustomers();
-            renderMessage();
-            renderNewsletter();
-            renderActivity();
-        }
 
-    </script>
+      localStorage.removeItem(
+        "lavanyaContactMessage"
+      );
 
+
+      localStorage.removeItem(
+        "lavanyaContactMessageRead"
+      );
+
+
+      renderMessage();
+      renderActivity();
+
+    };
+
+}
+
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+function renderNewsletter(){
+
+  const email =
+    localStorage.getItem(
+      "lavanyaNewsletter"
+    );
+
+
+  $("#stat-newsletter")
+    .textContent =
+      email ? "1" : "0";
+
+
+  if(!email){
+
+    $("#newsletter-detail")
+      .innerHTML =
+        `
+          <div class="admin-empty">
+            No newsletter signup.
+          </div>
+        `;
+
+    return;
+
+  }
+
+
+  $("#newsletter-detail")
+    .innerHTML = `
+
+      <div class="admin-message">
+
+        <div class="message-head">
+
+          <strong>
+            ${esc(email)}
+          </strong>
+
+          <span>
+            Subscriber
+          </span>
+
+        </div>
+
+
+        <div class="admin-row-actions">
+
+          <button
+            id="delete-newsletter"
+          >
+            Remove Subscriber
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+
+  $("#delete-newsletter").onclick =
+    function(){
+
+      if(
+        !confirm(
+          "Remove this subscriber?"
+        )
+      ){
+        return;
+      }
+
+
+      localStorage.removeItem(
+        "lavanyaNewsletter"
+      );
+
+
+      renderNewsletter();
+      renderActivity();
+
+    };
+
+}
+
+
+/* =========================
+   ACTIVITY
+========================= */
+
+function renderActivity(){
+
+  const items = [];
+
+
+  const orders =
+    store.getOrders();
+
+
+  const customers =
+    store.getCustomers();
+
+
+  if(orders[0]){
+
+    items.push([
+      "Latest order",
+      orders[0].orderNumber ||
+        "—"
+    ]);
+
+  }
+
+
+  if(customers.length){
+
+    items.push([
+      "Customers",
+      String(
+        customers.length
+      )
+    ]);
+
+  }
+
+
+  if(
+    localStorage.getItem(
+      "lavanyaContactMessage"
+    )
+  ){
+
+    items.push([
+      "Contact message",
+      localStorage.getItem(
+        "lavanyaContactMessageRead"
+      ) === "true"
+        ? "Read"
+        : "Unread"
+    ]);
+
+  }
+
+
+  if(
+    localStorage.getItem(
+      "lavanyaNewsletter"
+    )
+  ){
+
+    items.push([
+      "Newsletter",
+      "1 subscriber"
+    ]);
+
+  }
+
+
+  $("#activity-list")
+    .innerHTML =
+
+      items
+        .map(
+          item =>
+            `
+              <dt>
+                ${esc(item[0])}
+              </dt>
+
+              <dd>
+                ${esc(item[1])}
+              </dd>
+            `
+        )
+        .join("") ||
+
+      `
+        <div class="admin-empty">
+          No activity yet.
+        </div>
+      `;
+
+}
+
+
+/* =========================
+   ALL
+========================= */
+
+function renderAll(){
+
+  renderProducts();
+  renderOrders();
+  renderCustomers();
+  renderMessage();
+  renderNewsletter();
+  renderActivity();
+
+}
+
+})();
+
+</script>
 
 </body>
-
 </html>

@@ -374,7 +374,7 @@
                                 </p>
 
                                 <h2>
-                                    Recent Order
+                                    Order History
                                 </h2>
 
                             </div>
@@ -383,8 +383,7 @@
 
 
                         <div
-                            class="recent-order"
-                            id="recent-order"
+                            class="recent-order" id="order-history"
                         >
 
                             <div class="order-empty">
@@ -761,12 +760,21 @@
             );
 
 
-        const lastOrder =
+        const orders =
             JSON.parse(
                 localStorage.getItem(
-                    "lavanyaLastOrder"
-                ) || "null"
+                    "lavanyaOrders"
+                ) || "[]"
             );
+
+        const lastOrder =
+            orders.length > 0
+                ? orders[0]
+                : JSON.parse(
+                    localStorage.getItem(
+                        "lavanyaLastOrder"
+                    ) || "null"
+                );
 
 
 
@@ -979,116 +987,84 @@
 
 
         /* ========================================
-           RECENT ORDER
+           ORDER HISTORY
            ======================================== */
 
-        if (lastOrder) {
+        const orderHistoryContainer =
+            document.getElementById("order-history");
 
-            const recentOrder =
-                document.getElementById(
-                    "recent-order"
-                );
+        if (orderHistoryContainer) {
 
+            const orderList =
+                orders.length > 0
+                    ? orders
+                    : (lastOrder ? [lastOrder] : []);
 
-            const orderItems =
-                lastOrder.items || [];
+            if (orderList.length === 0) {
 
-
-            const itemCount =
-                orderItems.reduce(
-                    (total, item) =>
-                        total +
-                        Number(
-                            item.quantity || 1
-                        ),
-                    0
-                );
-
-
-            recentOrder.innerHTML = `
-
-                <div class="recent-order-header">
-
-                    <div>
-
-                        <span>
-                            Order Number
-                        </span>
-
-                        <strong>
-                            ${lastOrder.orderNumber}
-                        </strong>
-
+                orderHistoryContainer.innerHTML = `
+                    <div class="recent-order-empty">
+                        <p>You have not placed an order yet.</p>
+                        <a href="shop.html" class="btn btn-primary">Start Shopping</a>
                     </div>
+                `;
 
-                    <span class="order-status">
-                        Confirmed
-                    </span>
+            } else {
 
-                </div>
+                orderHistoryContainer.innerHTML = orderList.map(function(order) {
 
+                    const orderItems = order.items || [];
+                    const itemCount = orderItems.reduce(function(total, item) {
+                        return total + Number(item.quantity || 1);
+                    }, 0);
 
-                <div class="recent-order-details">
+                    const status = order.status || "Processing";
+                    const dateText = order.placedAt
+                        ? new Date(order.placedAt).toLocaleDateString()
+                        : "Recently";
 
-                    <div>
+                    const itemsHtml = orderItems.map(function(item) {
+                        return `
+                            <div class="recent-order-item">
+                                <span>${item.name || "Item"} × ${item.quantity || 1}</span>
+                                <strong>NPR ${Number((item.price || 0) * (item.quantity || 1)).toLocaleString()}</strong>
+                            </div>
+                        `;
+                    }).join("");
 
-                        <span>
-                            Items
-                        </span>
+                    return `
+                        <article class="recent-order-card">
+                            <div class="recent-order-header">
+                                <div>
+                                    <span>Order Number</span>
+                                    <strong>${order.orderNumber || "—"}</strong>
+                                </div>
+                                <span class="order-status">${status}</span>
+                            </div>
 
-                        <strong>
-                            ${itemCount}
-                        </strong>
+                            <div class="recent-order-details">
+                                <div>
+                                    <span>Items</span>
+                                    <strong>${itemCount}</strong>
+                                </div>
+                                <div>
+                                    <span>Total</span>
+                                    <strong>NPR ${Number(order.total || 0).toLocaleString()}</strong>
+                                </div>
+                                <div>
+                                    <span>Date</span>
+                                    <strong>${dateText}</strong>
+                                </div>
+                            </div>
 
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong>
-                            NPR ${Number(
-                                lastOrder.total || 0
-                            ).toLocaleString()}
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            Date
-                        </span>
-
-                        <strong>
-                            ${lastOrder.placedAt
-                                ? new Date(
-                                    lastOrder.placedAt
-                                ).toLocaleDateString()
-                                : "Recently"}
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <a
-                    href="order-confirmation.html"
-                    class="recent-order-link"
-                >
-                    View Order Details →
-
-                </a>
-
-            `;
-
+                            <div class="recent-order-items">
+                                ${itemsHtml}
+                            </div>
+                        </article>
+                    `;
+                }).join("");
+            }
         }
-
 
 
         /* ========================================
