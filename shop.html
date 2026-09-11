@@ -23,6 +23,9 @@
     <!-- PAGE-SPECIFIC CSS -->
     <link rel="stylesheet" href="Assets/CSS/shop.css">
 
+    <!-- SHARED DATA LAYER (products / orders / customers) -->
+    <script src="Assets/js/store-data.js"></script>
+
 </head>
 
 
@@ -723,186 +726,13 @@ if (!currentUser) {
 
                 /* =====================================
                    PRODUCT DATA
+                   Loaded from the shared LavanyaStore data
+                   layer so products added in the Admin
+                   dashboard show up here automatically.
                 ====================================== */
 
-                const products = [
+                let products = LavanyaStore.getProducts();
 
-                    {
-                        id: "cleanse-01",
-                        name: "Gentle Botanical Cleanser",
-                        category: "cleanse",
-                        categoryLabel: "CLEANSE",
-                        price: 850,
-                        image: "Assets/Images/cleanser1.jpg",
-                        description:
-                            "A soft daily cleanser designed to leave skin feeling fresh and comfortable.",
-                        skinTypes:
-                            ["dry", "normal", "sensitive", "combination"],
-                        concerns:
-                            ["dryness", "sensitivity", "dullness"],
-                        badge: "BESTSELLER"
-                    },
-
-
-                    {
-                        id: "cleanse-02",
-                        name: "Green Tea Purifying Cleanser",
-                        category: "cleanse",
-                        categoryLabel: "CLEANSE",
-                        price: 950,
-                        image: "Assets/Images/cleanser2.jpg",
-                        description:
-                            "A refreshing cleanser for a clean, balanced-looking complexion.",
-                        skinTypes:
-                            ["oily", "combination", "normal"],
-                        concerns:
-                            ["acne", "texture", "dullness"],
-                        badge: "NEW"
-                    },
-
-
-                    {
-                        id: "treat-01",
-                        name: "Clarity Botanical Serum",
-                        category: "treat",
-                        categoryLabel: "TREAT",
-                        price: 1450,
-                        image: "Assets/Images/serum1.jpg",
-                        description:
-                            "A targeted serum for routines focused on clearer-looking, smoother skin.",
-                        skinTypes:
-                            ["oily", "combination", "normal"],
-                        concerns:
-                            ["acne", "texture", "dullness"],
-                        badge: "TARGETED"
-                    },
-
-
-                    {
-                        id: "treat-02",
-                        name: "Radiance Botanical Serum",
-                        category: "treat",
-                        categoryLabel: "TREAT",
-                        price: 1550,
-                        image: "Assets/Images/serum2.jpg",
-                        description:
-                            "A brightening-focused botanical serum for a fresh, radiant-looking complexion.",
-                        skinTypes:
-                            ["dry", "normal", "combination"],
-                        concerns:
-                            ["dullness", "aging", "texture"],
-                        badge: "RADIANCE"
-                    },
-
-
-                    {
-                        id: "treat-03",
-                        name: "Calm Botanical Essence",
-                        category: "treat",
-                        categoryLabel: "TREAT",
-                        price: 1200,
-                        image: "Assets/Images/essence.jpg",
-                        description:
-                            "A soothing-feeling essence for simple, comfortable skincare routines.",
-                        skinTypes:
-                            ["dry", "sensitive", "normal"],
-                        concerns:
-                            ["sensitivity", "dryness", "dullness"],
-                        badge: "GENTLE"
-                    },
-
-
-                    {
-                        id: "hydrate-01",
-                        name: "Dew Botanical Moisturizer",
-                        category: "hydrate",
-                        categoryLabel: "HYDRATE",
-                        price: 1250,
-                        image: "Assets/Images/dew.jpg",
-                        description:
-                            "A lightweight botanical moisturizer for comfortable, hydrated-looking skin.",
-                        skinTypes:
-                            ["dry", "normal", "combination", "sensitive"],
-                        concerns:
-                            ["dryness", "dullness", "sensitivity"],
-                        badge: "BEST MATCH"
-                    },
-
-
-                    {
-                        id: "hydrate-02",
-                        name: "Nourish Face Cream",
-                        category: "hydrate",
-                        categoryLabel: "HYDRATE",
-                        price: 1350,
-                        image: "Assets/Images/facecream.jpg",
-                        description:
-                            "A richer cream created for routines that prioritize nourishment and comfort.",
-                        skinTypes:
-                            ["dry", "normal", "sensitive"],
-                        concerns:
-                            ["dryness", "sensitivity", "aging"],
-                        badge: "NOURISH"
-                    },
-
-
-                    {
-                        id: "hydrate-03",
-                        name: "Water Bloom Gel Cream",
-                        category: "hydrate",
-                        categoryLabel: "HYDRATE",
-                        price: 1150,
-                        image: "Assets/Images/gel.jpg",
-                        description:
-                            "A fresh gel moisturizer with a lightweight feel for everyday routines.",
-                        skinTypes:
-                            ["oily", "combination", "normal"],
-                        concerns:
-                            ["dullness", "texture", "acne"],
-                        badge: "LIGHTWEIGHT"
-                    },
-
-
-                    {
-                        id: "protect-01",
-                        name: "Daily Botanical Shield SPF",
-                        category: "protect",
-                        categoryLabel: "PROTECT",
-                        price: 1100,
-                        image: "Assets/Images/spf1.jpg",
-                        description:
-                            "A comfortable daily sunscreen for a simple morning skincare ritual.",
-                        skinTypes:
-                            [
-                                "dry",
-                                "oily",
-                                "combination",
-                                "normal",
-                                "sensitive"
-                            ],
-                        concerns:
-                            ["dullness", "aging", "acne"],
-                        badge: "DAILY ESSENTIAL"
-                    },
-
-
-                    {
-                        id: "protect-02",
-                        name: "Mineral Botanical SPF",
-                        category: "protect",
-                        categoryLabel: "PROTECT",
-                        price: 1350,
-                        image: "Assets/Images/spf2.jpg",
-                        description:
-                            "A mineral sunscreen option for a simple everyday protection step.",
-                        skinTypes:
-                            ["dry", "normal", "sensitive"],
-                        concerns:
-                            ["sensitivity", "aging", "dullness"],
-                        badge: "MINERAL"
-                    }
-
-                ];
 
 
 
@@ -1800,6 +1630,21 @@ if (!currentUser) {
                 updateWishlistCount();
 
                 renderProducts();
+
+
+                /* =====================================
+                   KEEP IN SYNC WITH THE ADMIN DASHBOARD
+                   If products are added/edited/deleted in
+                   another tab (e.g. admin.html), refresh
+                   this page's list automatically.
+                ====================================== */
+
+                window.addEventListener("storage", function (event) {
+                    if (event.key === LavanyaStore.PRODUCTS_KEY) {
+                        products = LavanyaStore.getProducts();
+                        renderProducts();
+                    }
+                });
 
             });
 

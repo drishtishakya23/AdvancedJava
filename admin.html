@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="Assets/css/common.css">
     <link rel="stylesheet" href="Assets/css/admin.css">
 
+    <script src="Assets/js/store-data.js"></script>
+
 </head>
 
 <body class="admin-body">
@@ -142,7 +144,7 @@
                     <div class="admin-section-head">
                         <div>
                             <h3>All products</h3>
-                            <p class="card-sub">Stored under the <code>lavanyaAdminProducts</code> key.</p>
+                            <p class="card-sub">These are the exact products shown on the Shop page.</p>
                         </div>
                         <button type="button" class="admin-btn admin-btn-terracotta" id="add-product-btn">
                             + Add Product
@@ -174,14 +176,35 @@
                 <div class="admin-topbar">
                     <div>
                         <h1>Orders</h1>
-                        <p>The site currently keeps only the most recent order — not a full history.</p>
+                        <p>Every order placed through checkout, newest first.</p>
                     </div>
                 </div>
 
-                <div class="admin-card" id="order-card">
-                    <h3>Most recent order</h3>
-                    <p class="card-sub">From <code>lavanyaLastOrder</code>.</p>
-                    <div id="order-detail"></div>
+                <div class="admin-card">
+
+                    <div class="admin-section-head">
+                        <div>
+                            <h3>All orders</h3>
+                            <p class="card-sub" id="orders-count-sub">0 orders</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order #</th>
+                                    <th>Customer</th>
+                                    <th>Total (NPR)</th>
+                                    <th>Status</th>
+                                    <th>Placed</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body"></tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </section>
@@ -192,14 +215,34 @@
                 <div class="admin-topbar">
                     <div>
                         <h1>Customers</h1>
-                        <p>The site currently keeps only the last registered account, not a full customer list.</p>
+                        <p>Everyone who has created an account on the site.</p>
                     </div>
                 </div>
 
-                <div class="admin-card" id="customer-card">
-                    <h3>Registered customer</h3>
-                    <p class="card-sub">From <code>lavanyaRegisteredUser</code>.</p>
-                    <div id="customer-detail"></div>
+                <div class="admin-card">
+
+                    <div class="admin-section-head">
+                        <div>
+                            <h3>All customers</h3>
+                            <p class="card-sub" id="customers-count-sub">0 customers</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Joined</th>
+                                    <th>Orders</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="customers-table-body"></tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </section>
@@ -271,7 +314,7 @@
                         <select id="product-category" required>
                             <option value="cleanse">Cleanse</option>
                             <option value="treat">Treat</option>
-                            <option value="moisturize">Moisturize</option>
+                            <option value="hydrate">Hydrate</option>
                             <option value="protect">Protect</option>
                         </select>
                     </div>
@@ -298,6 +341,25 @@
                     <textarea id="product-description" rows="3"></textarea>
                 </div>
 
+                <div class="admin-modal-row">
+
+                    <div class="admin-field">
+                        <label for="product-skin-types">Skin types (comma separated, optional)</label>
+                        <input type="text" id="product-skin-types" placeholder="dry, normal, sensitive">
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="product-concerns">Skin concerns (comma separated, optional)</label>
+                        <input type="text" id="product-concerns" placeholder="dryness, dullness">
+                    </div>
+
+                </div>
+
+                <p class="admin-hint" style="margin-top:-8px;">
+                    Skin types / concerns power the "match" score shown on the Shop and Quiz pages.
+                    Leave blank if you don't need that.
+                </p>
+
                 <p class="admin-error" id="product-form-error"></p>
 
                 <div class="admin-modal-actions">
@@ -312,32 +374,34 @@
     </div>
 
 
+    <!-- =========================================
+         ORDER DETAIL MODAL
+         ========================================= -->
+
+    <div class="admin-modal-overlay" id="order-modal-overlay">
+
+        <div class="admin-modal">
+
+            <h3>Order Detail</h3>
+
+            <div id="order-modal-body"></div>
+
+            <div class="admin-modal-actions">
+                <button type="button" class="admin-btn admin-btn-outline" id="order-modal-close-btn">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
     <script>
 
-        /* ========================================
-           SEED DATA
-           (Copied from shop.html so the admin panel
-           has something to manage on first load.)
-           ======================================== */
-
-        const seedProducts = [
-            { id: "cleanse-01", name: "Gentle Botanical Cleanser", category: "cleanse", categoryLabel: "CLEANSE", price: 850, image: "Assets/Images/cleanser1.jpg", description: "A soft daily cleanser designed to leave skin feeling fresh and comfortable.", badge: "BESTSELLER" },
-            { id: "cleanse-02", name: "Green Tea Purifying Cleanser", category: "cleanse", categoryLabel: "CLEANSE", price: 950, image: "Assets/Images/cleanser2.jpg", description: "A refreshing cleanser for a clean, balanced-looking complexion.", badge: "NEW" },
-            { id: "treat-01", name: "Clarity Botanical Serum", category: "treat", categoryLabel: "TREAT", price: 1450, image: "Assets/Images/serum1.jpg", description: "A targeted serum for routines focused on clearer-looking, smoother skin.", badge: "TARGETED" },
-            { id: "treat-02", name: "Radiance Botanical Serum", category: "treat", categoryLabel: "TREAT", price: 1550, image: "Assets/Images/serum2.jpg", description: "A brightening-focused botanical serum for a fresh, radiant-looking complexion.", badge: "RADIANCE" },
-            { id: "treat-03", name: "Calm Botanical Essence", category: "treat", categoryLabel: "TREAT", price: 1250, image: "Assets/Images/essence.jpg", description: "A soothing essence layer for routines built around comfort and calm.", badge: "SOOTHING" },
-            { id: "moisturize-01", name: "Daily Botanical Moisturizer", category: "moisturize", categoryLabel: "MOISTURIZE", price: 1150, image: "Assets/Images/moisturizer.jpg", description: "A lightweight, everyday moisturizer for a comfortable, balanced feel.", badge: "DAILY ESSENTIAL" },
-            { id: "moisturize-02", name: "Rich Botanical Cream", category: "moisturize", categoryLabel: "MOISTURIZE", price: 1650, image: "Assets/Images/skincare2.jpg", description: "A richer cream for routines that need extra comfort and nourishment.", badge: "RICH FORMULA" },
-            { id: "acne-01", name: "Acne Clarifying Treatment", category: "treat", categoryLabel: "TREAT", price: 1350, image: "Assets/Images/acnetreat.jpg", description: "A targeted treatment for routines focused on blemish-prone skin.", badge: "TARGETED" },
-            { id: "protect-01", name: "Daily Botanical SPF", category: "protect", categoryLabel: "PROTECT", price: 1250, image: "Assets/Images/spf1.jpg", description: "An everyday sunscreen step designed to layer easily under makeup.", badge: "DAILY ESSENTIAL" },
-            { id: "protect-02", name: "Mineral Botanical SPF", category: "protect", categoryLabel: "PROTECT", price: 1350, image: "Assets/Images/spf2.jpg", description: "A mineral sunscreen option for a simple everyday protection step.", badge: "MINERAL" }
-        ];
-
         const ADMIN_AUTH_KEY = "lavanyaAdminAuthed";
-        const ADMIN_PRODUCTS_KEY = "lavanyaAdminProducts";
-
         const ADMIN_USERNAME = "admin";
         const ADMIN_PASSWORD = "lavanya123";
+
+        const categoryLabels = LavanyaStore.CATEGORY_LABELS;
 
 
         /* ========================================
@@ -401,30 +465,15 @@
 
 
         /* ========================================
-           PRODUCTS: storage helpers
+           PRODUCTS
+           All product storage now lives in
+           Assets/js/store-data.js (LavanyaStore) so
+           the exact same data is used here AND on
+           shop.html / product-details.html.
            ======================================== */
 
-        function getProducts() {
-            const stored = localStorage.getItem(ADMIN_PRODUCTS_KEY);
-
-            if (!stored) {
-                localStorage.setItem(ADMIN_PRODUCTS_KEY, JSON.stringify(seedProducts));
-                return seedProducts.slice();
-            }
-
-            try {
-                return JSON.parse(stored);
-            } catch (e) {
-                return seedProducts.slice();
-            }
-        }
-
-        function saveProducts(products) {
-            localStorage.setItem(ADMIN_PRODUCTS_KEY, JSON.stringify(products));
-        }
-
         function renderProducts() {
-            const products = getProducts();
+            const products = LavanyaStore.getProducts();
             const tbody = document.getElementById("products-table-body");
 
             if (products.length === 0) {
@@ -456,12 +505,11 @@
         }
 
         function deleteProduct(id) {
-            if (!confirm("Delete this product? This cannot be undone.")) {
+            if (!confirm("Delete this product? This cannot be undone. It will also disappear from the Shop page.")) {
                 return;
             }
 
-            const products = getProducts().filter(function (p) { return p.id !== id; });
-            saveProducts(products);
+            LavanyaStore.deleteProduct(id);
             renderProducts();
         }
 
@@ -479,7 +527,7 @@
             productFormError.textContent = "";
 
             if (id) {
-                const product = getProducts().find(function (p) { return p.id === id; });
+                const product = LavanyaStore.getProductById(id);
 
                 if (!product) {
                     return;
@@ -493,6 +541,8 @@
                 document.getElementById("product-image").value = product.image || "";
                 document.getElementById("product-badge").value = product.badge || "";
                 document.getElementById("product-description").value = product.description || "";
+                document.getElementById("product-skin-types").value = (product.skinTypes || []).join(", ");
+                document.getElementById("product-concerns").value = (product.concerns || []).join(", ");
             } else {
                 document.getElementById("product-modal-title").textContent = "Add Product";
                 document.getElementById("product-id").value = "";
@@ -517,12 +567,12 @@
             }
         });
 
-        const categoryLabels = {
-            cleanse: "CLEANSE",
-            treat: "TREAT",
-            moisturize: "MOISTURIZE",
-            protect: "PROTECT"
-        };
+        function parseTagList(value) {
+            return value
+                .split(",")
+                .map(function (item) { return item.trim().toLowerCase(); })
+                .filter(function (item) { return item.length > 0; });
+        }
 
         productForm.addEventListener("submit", function (event) {
             event.preventDefault();
@@ -533,6 +583,8 @@
             const image = document.getElementById("product-image").value.trim();
             const badge = document.getElementById("product-badge").value.trim();
             const description = document.getElementById("product-description").value.trim();
+            const skinTypes = parseTagList(document.getElementById("product-skin-types").value);
+            const concerns = parseTagList(document.getElementById("product-concerns").value);
             const existingId = document.getElementById("product-id").value;
 
             if (!name || !price) {
@@ -540,116 +592,196 @@
                 return;
             }
 
-            const products = getProducts();
+            const fields = {
+                name: name,
+                category: category,
+                categoryLabel: categoryLabels[category],
+                price: price,
+                image: image,
+                badge: badge,
+                description: description,
+                skinTypes: skinTypes,
+                concerns: concerns
+            };
 
             if (existingId) {
-                const index = products.findIndex(function (p) { return p.id === existingId; });
-
-                if (index !== -1) {
-                    products[index] = Object.assign({}, products[index], {
-                        name: name,
-                        category: category,
-                        categoryLabel: categoryLabels[category],
-                        price: price,
-                        image: image,
-                        badge: badge,
-                        description: description
-                    });
-                }
+                LavanyaStore.updateProduct(existingId, fields);
             } else {
-                const newId = category + "-" + Date.now();
-
-                products.push({
-                    id: newId,
-                    name: name,
-                    category: category,
-                    categoryLabel: categoryLabels[category],
-                    price: price,
-                    image: image,
-                    badge: badge,
-                    description: description
-                });
+                LavanyaStore.addProduct(fields);
             }
 
-            saveProducts(products);
             closeProductModal();
             renderProducts();
         });
 
 
         /* ========================================
-           ORDERS / CUSTOMERS / MESSAGES / NEWSLETTER
+           ORDERS
            ======================================== */
 
-        function renderOrder() {
-            const raw = localStorage.getItem("lavanyaLastOrder");
-            const container = document.getElementById("order-detail");
-            const statEl = document.getElementById("stat-last-order");
+        const orderModalOverlay = document.getElementById("order-modal-overlay");
+        const orderModalBody = document.getElementById("order-modal-body");
 
-            if (!raw) {
-                container.innerHTML = "<div class='admin-empty'>No orders have been placed yet.</div>";
-                statEl.textContent = "—";
+        function renderOrders() {
+            const orders = LavanyaStore.getOrders();
+            const tbody = document.getElementById("orders-table-body");
+
+            document.getElementById("orders-count-sub").textContent =
+                orders.length + (orders.length === 1 ? " order" : " orders");
+
+            if (orders.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='6'><div class='admin-empty'>No orders have been placed yet.</div></td></tr>";
+                document.getElementById("stat-last-order").textContent = "—";
                 return;
             }
 
-            let order;
+            document.getElementById("stat-last-order").textContent =
+                "NPR " + Number(orders[0].total || 0).toLocaleString();
 
-            try {
-                order = JSON.parse(raw);
-            } catch (e) {
-                container.innerHTML = "<div class='admin-empty'>Order data could not be read.</div>";
+            const statusOptions = ["Processing", "Shipped", "Delivered", "Cancelled"];
+
+            tbody.innerHTML = orders.map(function (order) {
+                const customerName = order.customer && (order.customer.fullName || order.customer.name || order.customer.email) || "—";
+                const status = order.status || "Processing";
+
+                const optionsHtml = statusOptions.map(function (opt) {
+                    return "<option value='" + opt + "'" + (opt === status ? " selected" : "") + ">" + opt + "</option>";
+                }).join("");
+
+                return "<tr>" +
+                    "<td class='wrap'>" + escapeHtml(order.orderNumber || "—") + "</td>" +
+                    "<td class='wrap'>" + escapeHtml(String(customerName)) + "</td>" +
+                    "<td>NPR " + Number(order.total || 0).toLocaleString() + "</td>" +
+                    "<td><select class='order-status-select' data-order='" + escapeHtml(order.orderNumber || "") + "'>" + optionsHtml + "</select></td>" +
+                    "<td>" + escapeHtml(order.placedAt ? new Date(order.placedAt).toLocaleString() : "—") + "</td>" +
+                    "<td><div class='admin-row-actions'>" +
+                    "<button type='button' class='view-order-btn' data-order='" + escapeHtml(order.orderNumber || "") + "'>View</button>" +
+                    "<button type='button' class='delete-order-btn' data-order='" + escapeHtml(order.orderNumber || "") + "'>Delete</button>" +
+                    "</div></td>" +
+                    "</tr>";
+            }).join("");
+
+            tbody.querySelectorAll(".order-status-select").forEach(function (select) {
+                select.addEventListener("change", function () {
+                    LavanyaStore.updateOrderStatus(select.dataset.order, select.value);
+                    renderActivity();
+                });
+            });
+
+            tbody.querySelectorAll(".view-order-btn").forEach(function (btn) {
+                btn.addEventListener("click", function () { openOrderModal(btn.dataset.order); });
+            });
+
+            tbody.querySelectorAll(".delete-order-btn").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    if (!confirm("Delete this order? This cannot be undone.")) {
+                        return;
+                    }
+                    LavanyaStore.deleteOrder(btn.dataset.order);
+                    renderOrders();
+                    renderActivity();
+                });
+            });
+        }
+
+        function openOrderModal(orderNumber) {
+            const order = LavanyaStore.getOrders().find(function (o) {
+                return o.orderNumber === orderNumber;
+            });
+
+            if (!order) {
                 return;
             }
 
-            statEl.textContent = "NPR " + Number(order.total || 0).toLocaleString();
-
-            const customerName = order.customer && (order.customer.name || order.customer.fullName || order.customer.email) || "—";
+            const customer = order.customer || {};
             const itemsHtml = (order.items || []).map(function (item) {
                 return "<li><span>" + escapeHtml(item.name || "Item") + " &times; " + (item.quantity || 1) + "</span><span>NPR " + Number((item.price || 0) * (item.quantity || 1)).toLocaleString() + "</span></li>";
             }).join("");
 
-            container.innerHTML =
+            orderModalBody.innerHTML =
                 "<dl class='admin-kv'>" +
                 "<dt>Order number</dt><dd>" + escapeHtml(order.orderNumber || "—") + "</dd>" +
-                "<dt>Customer</dt><dd>" + escapeHtml(String(customerName)) + "</dd>" +
+                "<dt>Status</dt><dd>" + escapeHtml(order.status || "Processing") + "</dd>" +
+                "<dt>Customer</dt><dd>" + escapeHtml(customer.fullName || customer.name || "—") + "</dd>" +
+                "<dt>Email</dt><dd>" + escapeHtml(customer.email || "—") + "</dd>" +
+                "<dt>Phone</dt><dd>" + escapeHtml(customer.phone || "—") + "</dd>" +
+                "<dt>Address</dt><dd>" + escapeHtml([customer.address, customer.city, customer.postalCode, customer.country].filter(Boolean).join(", ") || "—") + "</dd>" +
+                "<dt>Payment</dt><dd>" + escapeHtml(customer.payment || "—") + "</dd>" +
+                "<dt>Delivery</dt><dd>" + escapeHtml(customer.delivery || "—") + "</dd>" +
                 "<dt>Subtotal</dt><dd>NPR " + Number(order.subtotal || 0).toLocaleString() + "</dd>" +
                 "<dt>Shipping</dt><dd>NPR " + Number(order.shipping || 0).toLocaleString() + "</dd>" +
                 "<dt>Discount</dt><dd>NPR " + Number(order.discount || 0).toLocaleString() + "</dd>" +
                 "<dt>Total</dt><dd>NPR " + Number(order.total || 0).toLocaleString() + "</dd>" +
-                "<dt>Placed at</dt><dd>" + escapeHtml(order.placedAt || "—") + "</dd>" +
+                "<dt>Placed at</dt><dd>" + escapeHtml(order.placedAt ? new Date(order.placedAt).toLocaleString() : "—") + "</dd>" +
                 "</dl>" +
                 "<ul class='admin-order-items'>" + (itemsHtml || "<li>No items recorded.</li>") + "</ul>";
+
+            orderModalOverlay.classList.add("active");
         }
 
-        function renderCustomer() {
-            const raw = localStorage.getItem("lavanyaRegisteredUser");
-            const container = document.getElementById("customer-detail");
-            const statEl = document.getElementById("stat-customers");
+        document.getElementById("order-modal-close-btn").addEventListener("click", function () {
+            orderModalOverlay.classList.remove("active");
+        });
 
-            if (!raw) {
-                container.innerHTML = "<div class='admin-empty'>No customer has registered yet.</div>";
-                statEl.textContent = "0";
+        orderModalOverlay.addEventListener("click", function (event) {
+            if (event.target === orderModalOverlay) {
+                orderModalOverlay.classList.remove("active");
+            }
+        });
+
+
+        /* ========================================
+           CUSTOMERS
+           ======================================== */
+
+        function renderCustomers() {
+            const customers = LavanyaStore.getCustomers();
+            const orders = LavanyaStore.getOrders();
+            const tbody = document.getElementById("customers-table-body");
+
+            document.getElementById("customers-count-sub").textContent =
+                customers.length + (customers.length === 1 ? " customer" : " customers");
+            document.getElementById("stat-customers").textContent = customers.length;
+
+            if (customers.length === 0) {
+                tbody.innerHTML = "<tr><td colspan='5'><div class='admin-empty'>No customers have registered yet.</div></td></tr>";
                 return;
             }
 
-            let user;
+            tbody.innerHTML = customers.map(function (customer) {
+                const orderCount = orders.filter(function (o) {
+                    return o.customer && String(o.customer.email || "").toLowerCase() === String(customer.email || "").toLowerCase();
+                }).length;
 
-            try {
-                user = JSON.parse(raw);
-            } catch (e) {
-                container.innerHTML = "<div class='admin-empty'>Customer data could not be read.</div>";
-                return;
-            }
+                return "<tr>" +
+                    "<td class='wrap'>" + escapeHtml(customer.name || "—") + "</td>" +
+                    "<td class='wrap'>" + escapeHtml(customer.email || "—") + "</td>" +
+                    "<td>" + escapeHtml(customer.createdAt ? new Date(customer.createdAt).toLocaleString() : "—") + "</td>" +
+                    "<td>" + orderCount + "</td>" +
+                    "<td><div class='admin-row-actions'>" +
+                    "<button type='button' class='delete-customer-btn' data-id='" + customer.id + "'>Delete</button>" +
+                    "</div></td>" +
+                    "</tr>";
+            }).join("");
 
-            statEl.textContent = "1";
-
-            container.innerHTML =
-                "<dl class='admin-kv'>" +
-                "<dt>Name</dt><dd>" + escapeHtml(user.name || "—") + "</dd>" +
-                "<dt>Email</dt><dd>" + escapeHtml(user.email || "—") + "</dd>" +
-                "<dt>Joined</dt><dd>" + escapeHtml(user.createdAt || "—") + "</dd>" +
-                "</dl>";
+            tbody.querySelectorAll(".delete-customer-btn").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    if (!confirm("Delete this customer? This cannot be undone.")) {
+                        return;
+                    }
+                    LavanyaStore.deleteCustomer(btn.dataset.id);
+                    renderCustomers();
+                    renderActivity();
+                });
+            });
         }
+
+
+        /* ========================================
+           MESSAGES / NEWSLETTER
+           (unchanged — the site only ever stores the
+           single latest submission for these two.)
+           ======================================== */
 
         function renderMessage() {
             const raw = localStorage.getItem("lavanyaContactMessage");
@@ -697,13 +829,13 @@
             const list = document.getElementById("activity-list");
             const items = [];
 
-            const order = localStorage.getItem("lavanyaLastOrder");
-            const user = localStorage.getItem("lavanyaRegisteredUser");
+            const orders = LavanyaStore.getOrders();
+            const customers = LavanyaStore.getCustomers();
             const message = localStorage.getItem("lavanyaContactMessage");
             const newsletter = localStorage.getItem("lavanyaNewsletter");
 
-            if (order) items.push(["Last order placed", JSON.parse(order).placedAt || "—"]);
-            if (user) items.push(["Customer registered", JSON.parse(user).email || "—"]);
+            if (orders.length) items.push(["Last order placed", orders[0].placedAt ? new Date(orders[0].placedAt).toLocaleString() : "—"]);
+            if (customers.length) items.push(["Last customer registered", customers[customers.length - 1].email || "—"]);
             if (message) items.push(["Message received from", JSON.parse(message).name || "—"]);
             if (newsletter) items.push(["Newsletter signup", newsletter]);
 
@@ -730,14 +862,15 @@
 
         function renderAll() {
             renderProducts();
-            renderOrder();
-            renderCustomer();
+            renderOrders();
+            renderCustomers();
             renderMessage();
             renderNewsletter();
             renderActivity();
         }
 
     </script>
+
 
 </body>
 

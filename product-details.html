@@ -29,6 +29,9 @@
         href="Assets/CSS/product-details.css"
     >
 
+    <!-- SHARED DATA LAYER (products / orders / customers) -->
+    <script src="Assets/js/store-data.js"></script>
+
 </head>
 
 
@@ -467,694 +470,19 @@
 
                 /* =====================================
                    PRODUCT DATA
+                   Loaded from the shared LavanyaStore data
+                   layer so products added in the Admin
+                   dashboard get a working detail page here
+                   automatically. Rich fields (ingredients,
+                   long description, benefits, etc.) fall
+                   back to sensible defaults below for any
+                   product that does not define them (i.e.
+                   products added through the admin form,
+                   which only asks for the basics).
                 ====================================== */
 
-                const products = [
+                const products = LavanyaStore.getProducts();
 
-                    {
-                        id: "cleanse-01",
-
-                        name: "Gentle Botanical Cleanser",
-
-                        category: "cleanse",
-
-                        categoryLabel: "CLEANSE",
-
-                        price: 850,
-
-                        image: "Assets/Images/cleanser1.jpg",
-
-                        description:
-                            "A soft daily cleanser designed to leave skin feeling fresh and comfortable.",
-
-                        longDescription:
-                            "A gentle botanical cleanser created for everyday use. It helps remove daily impurities while keeping the skin feeling comfortable and balanced.",
-
-                        ingredients: [
-                            "Green tea extract",
-                            "Aloe vera",
-                            "Chamomile",
-                            "Glycerin"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Normal",
-                            "Sensitive",
-                            "Combination"
-                        ],
-
-                        concerns: [
-                            "Dryness",
-                            "Sensitivity",
-                            "Dullness"
-                        ],
-
-                        benefits: [
-                            "Gently cleanses the skin",
-                            "Helps maintain a comfortable skin feel",
-                            "Suitable for everyday use",
-                            "Ideal for simple skincare routines"
-                        ],
-
-                        howToUse:
-                            "Apply a small amount to damp skin, massage gently, then rinse thoroughly with water.",
-
-                        routineStep:
-                            "Cleanse",
-
-                        suitableFor:
-                            "Dry, normal, sensitive and combination skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.7,
-
-                        reviewCount: 128,
-
-                        stock: 25,
-
-                        badge: "BESTSELLER"
-                    },
-
-
-                    {
-                        id: "cleanse-02",
-
-                        name: "Green Tea Purifying Cleanser",
-
-                        category: "cleanse",
-
-                        categoryLabel: "CLEANSE",
-
-                        price: 950,
-
-                        image: "Assets/Images/cleanser2.jpg",
-
-                        description:
-                            "A refreshing cleanser for a clean, balanced-looking complexion.",
-
-                        longDescription:
-                            "A refreshing botanical cleanser designed for daily routines that focus on keeping skin feeling clean and balanced.",
-
-                        ingredients: [
-                            "Green tea",
-                            "Cucumber extract",
-                            "Aloe vera",
-                            "Glycerin"
-                        ],
-
-                        skinTypes: [
-                            "Oily",
-                            "Combination",
-                            "Normal"
-                        ],
-
-                        concerns: [
-                            "Acne",
-                            "Texture",
-                            "Dullness"
-                        ],
-
-                        benefits: [
-                            "Leaves skin feeling refreshed",
-                            "Helps remove daily buildup",
-                            "Suitable for oily and combination skin",
-                            "Easy to include in a daily routine"
-                        ],
-
-                        howToUse:
-                            "Massage gently onto damp skin for 30 to 60 seconds, then rinse with water.",
-
-                        routineStep:
-                            "Cleanse",
-
-                        suitableFor:
-                            "Oily, combination and normal skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: false,
-
-                        rating: 4.6,
-
-                        reviewCount: 94,
-
-                        stock: 20,
-
-                        badge: "NEW"
-                    },
-
-
-                    {
-                        id: "treat-01",
-
-                        name: "Clarity Botanical Serum",
-
-                        category: "treat",
-
-                        categoryLabel: "TREAT",
-
-                        price: 1450,
-
-                        image: "Assets/Images/serum1.jpg",
-
-                        description:
-                            "A targeted serum for routines focused on clearer-looking, smoother skin.",
-
-                        longDescription:
-                            "A lightweight botanical serum designed for skincare routines focused on the appearance of clarity, smoother texture and balanced-looking skin.",
-
-                        ingredients: [
-                            "Niacinamide",
-                            "Zinc",
-                            "Green tea extract",
-                            "Aloe vera"
-                        ],
-
-                        skinTypes: [
-                            "Oily",
-                            "Combination",
-                            "Normal"
-                        ],
-
-                        concerns: [
-                            "Acne",
-                            "Texture",
-                            "Dullness"
-                        ],
-
-                        benefits: [
-                            "Lightweight texture",
-                            "Supports a balanced-looking complexion",
-                            "Helps improve the appearance of texture",
-                            "Ideal for targeted routines"
-                        ],
-
-                        howToUse:
-                            "Apply 2 to 3 drops to clean skin after cleansing and gently press into the face.",
-
-                        routineStep:
-                            "Treat",
-
-                        suitableFor:
-                            "Oily, combination and normal skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.8,
-
-                        reviewCount: 156,
-
-                        stock: 18,
-
-                        badge: "TARGETED"
-                    },
-
-
-                    {
-                        id: "treat-02",
-
-                        name: "Radiance Botanical Serum",
-
-                        category: "treat",
-
-                        categoryLabel: "TREAT",
-
-                        price: 1550,
-
-                        image: "Assets/Images/serum2.jpg",
-
-                        description:
-                            "A brightening-focused botanical serum for a fresh, radiant-looking complexion.",
-
-                        longDescription:
-                            "A botanical serum created for routines focused on a fresh, even and radiant-looking complexion.",
-
-                        ingredients: [
-                            "Vitamin C",
-                            "Licorice extract",
-                            "Rosehip extract",
-                            "Hyaluronic acid"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Normal",
-                            "Combination"
-                        ],
-
-                        concerns: [
-                            "Dullness",
-                            "Aging",
-                            "Texture"
-                        ],
-
-                        benefits: [
-                            "Supports a brighter-looking complexion",
-                            "Helps skin feel hydrated",
-                            "Lightweight daily treatment",
-                            "Pairs well with simple routines"
-                        ],
-
-                        howToUse:
-                            "Apply a few drops after cleansing and before moisturizer.",
-
-                        routineStep:
-                            "Treat",
-
-                        suitableFor:
-                            "Dry, normal and combination skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.7,
-
-                        reviewCount: 113,
-
-                        stock: 16,
-
-                        badge: "RADIANCE"
-                    },
-
-
-                    {
-                        id: "treat-03",
-
-                        name: "Calm Botanical Essence",
-
-                        category: "treat",
-
-                        categoryLabel: "TREAT",
-
-                        price: 1200,
-
-                        image: "Assets/Images/essence.jpg",
-
-                        description:
-                            "A soothing-feeling essence for simple, comfortable skincare routines.",
-
-                        longDescription:
-                            "A lightweight essence designed for routines that prioritize comfort and a fresh, hydrated skin feel.",
-
-                        ingredients: [
-                            "Chamomile",
-                            "Centella asiatica",
-                            "Aloe vera",
-                            "Panthenol"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Sensitive",
-                            "Normal"
-                        ],
-
-                        concerns: [
-                            "Sensitivity",
-                            "Dryness",
-                            "Dullness"
-                        ],
-
-                        benefits: [
-                            "Comfortable lightweight texture",
-                            "Helps skin feel refreshed",
-                            "Supports a simple routine",
-                            "Suitable for sensitive-feeling skin"
-                        ],
-
-                        howToUse:
-                            "Apply a small amount to clean skin using your hands or a cotton pad.",
-
-                        routineStep:
-                            "Treat",
-
-                        suitableFor:
-                            "Dry, sensitive and normal skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.7,
-
-                        reviewCount: 87,
-
-                        stock: 22,
-
-                        badge: "GENTLE"
-                    },
-
-
-                    {
-                        id: "hydrate-01",
-
-                        name: "Dew Botanical Moisturizer",
-
-                        category: "hydrate",
-
-                        categoryLabel: "HYDRATE",
-
-                        price: 1250,
-
-                        image: "Assets/Images/dew.jpg",
-
-                        description:
-                            "A lightweight botanical moisturizer for comfortable, hydrated-looking skin.",
-
-                        longDescription:
-                            "A lightweight moisturizer designed to provide a comfortable layer of hydration without making the routine feel heavy.",
-
-                        ingredients: [
-                            "Hyaluronic acid",
-                            "Aloe vera",
-                            "Squalane",
-                            "Green tea"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Normal",
-                            "Combination",
-                            "Sensitive"
-                        ],
-
-                        concerns: [
-                            "Dryness",
-                            "Dullness",
-                            "Sensitivity"
-                        ],
-
-                        benefits: [
-                            "Lightweight moisturizing feel",
-                            "Helps maintain hydrated-looking skin",
-                            "Suitable for everyday use",
-                            "Works well in simple routines"
-                        ],
-
-                        howToUse:
-                            "Apply a small amount to clean skin after serum and gently massage until absorbed.",
-
-                        routineStep:
-                            "Hydrate",
-
-                        suitableFor:
-                            "Dry, normal, combination and sensitive skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.8,
-
-                        reviewCount: 174,
-
-                        stock: 25,
-
-                        badge: "BEST MATCH"
-                    },
-
-
-                    {
-                        id: "hydrate-02",
-
-                        name: "Nourish Face Cream",
-
-                        category: "hydrate",
-
-                        categoryLabel: "HYDRATE",
-
-                        price: 1350,
-
-                        image: "Assets/Images/facecream.jpg",
-
-                        description:
-                            "A richer cream created for routines that prioritize nourishment and comfort.",
-
-                        longDescription:
-                            "A richer botanical face cream designed for routines that prioritize a nourished, comfortable and moisturized skin feel.",
-
-                        ingredients: [
-                            "Shea butter",
-                            "Squalane",
-                            "Jojoba oil",
-                            "Chamomile"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Normal",
-                            "Sensitive"
-                        ],
-
-                        concerns: [
-                            "Dryness",
-                            "Sensitivity",
-                            "Aging"
-                        ],
-
-                        benefits: [
-                            "Rich moisturizing texture",
-                            "Supports a comfortable skin feel",
-                            "Ideal for dry skin routines",
-                            "Useful as an evening moisturizer"
-                        ],
-
-                        howToUse:
-                            "Apply a small amount as the final moisturizing step in your routine.",
-
-                        routineStep:
-                            "Hydrate",
-
-                        suitableFor:
-                            "Dry, normal and sensitive skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.6,
-
-                        reviewCount: 102,
-
-                        stock: 19,
-
-                        badge: "NOURISH"
-                    },
-
-
-                    {
-                        id: "hydrate-03",
-
-                        name: "Water Bloom Gel Cream",
-
-                        category: "hydrate",
-
-                        categoryLabel: "HYDRATE",
-
-                        price: 1150,
-
-                        image: "Assets/Images/gel.jpg",
-
-                        description:
-                            "A fresh gel moisturizer with a lightweight feel for everyday routines.",
-
-                        longDescription:
-                            "A fresh gel cream designed for customers who prefer lightweight hydration and a comfortable, non-heavy texture.",
-
-                        ingredients: [
-                            "Hyaluronic acid",
-                            "Cucumber extract",
-                            "Aloe vera",
-                            "Green tea"
-                        ],
-
-                        skinTypes: [
-                            "Oily",
-                            "Combination",
-                            "Normal"
-                        ],
-
-                        concerns: [
-                            "Dullness",
-                            "Texture",
-                            "Acne"
-                        ],
-
-                        benefits: [
-                            "Fresh gel texture",
-                            "Lightweight everyday hydration",
-                            "Comfortable for combination skin",
-                            "Easy to layer with serums"
-                        ],
-
-                        howToUse:
-                            "Apply evenly to clean skin after serum and allow it to absorb.",
-
-                        routineStep:
-                            "Hydrate",
-
-                        suitableFor:
-                            "Oily, combination and normal skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.6,
-
-                        reviewCount: 91,
-
-                        stock: 21,
-
-                        badge: "LIGHTWEIGHT"
-                    },
-
-
-                    {
-                        id: "protect-01",
-
-                        name: "Daily Botanical Shield SPF",
-
-                        category: "protect",
-
-                        categoryLabel: "PROTECT",
-
-                        price: 1100,
-
-                        image: "Assets/Images/spf1.jpg",
-
-                        description:
-                            "A comfortable daily sunscreen for a simple morning skincare ritual.",
-
-                        longDescription:
-                            "A comfortable everyday sunscreen designed to fit easily into a simple morning skincare routine.",
-
-                        ingredients: [
-                            "Zinc oxide",
-                            "Green tea extract",
-                            "Aloe vera",
-                            "Vitamin E"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Oily",
-                            "Combination",
-                            "Normal",
-                            "Sensitive"
-                        ],
-
-                        concerns: [
-                            "Dullness",
-                            "Aging",
-                            "Acne"
-                        ],
-
-                        benefits: [
-                            "Easy daily protection step",
-                            "Comfortable everyday texture",
-                            "Suitable for different skin types",
-                            "Simple addition to a morning routine"
-                        ],
-
-                        howToUse:
-                            "Apply generously as the final step of your morning skincare routine and reapply as needed.",
-
-                        routineStep:
-                            "Protect",
-
-                        suitableFor:
-                            "Dry, oily, combination, normal and sensitive skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.8,
-
-                        reviewCount: 210,
-
-                        stock: 25,
-
-                        badge: "DAILY ESSENTIAL"
-                    },
-
-
-                    {
-                        id: "protect-02",
-
-                        name: "Mineral Botanical SPF",
-
-                        category: "protect",
-
-                        categoryLabel: "PROTECT",
-
-                        price: 1350,
-
-                        image: "Assets/Images/spf2.jpg",
-
-                        description:
-                            "A mineral sunscreen option for a simple everyday protection step.",
-
-                        longDescription:
-                            "A mineral sunscreen designed for customers who prefer a simple daily protection step within a botanical-inspired routine.",
-
-                        ingredients: [
-                            "Zinc oxide",
-                            "Chamomile",
-                            "Aloe vera",
-                            "Vitamin E"
-                        ],
-
-                        skinTypes: [
-                            "Dry",
-                            "Normal",
-                            "Sensitive"
-                        ],
-
-                        concerns: [
-                            "Sensitivity",
-                            "Aging",
-                            "Dullness"
-                        ],
-
-                        benefits: [
-                            "Mineral-based protection",
-                            "Comfortable everyday routine step",
-                            "Suitable for sensitive-feeling skin",
-                            "Easy to pair with moisturizer"
-                        ],
-
-                        howToUse:
-                            "Apply generously as the last step of your morning skincare routine.",
-
-                        routineStep:
-                            "Protect",
-
-                        suitableFor:
-                            "Dry, normal and sensitive skin",
-
-                        beginnerFriendly: true,
-
-                        fragranceFree: true,
-
-                        rating: 4.7,
-
-                        reviewCount: 76,
-
-                        stock: 17,
-
-                        badge: "MINERAL"
-                    }
-
-                ];
 
 
 
@@ -1246,6 +574,64 @@
 
                     return;
                 }
+
+
+
+                /* =====================================
+                   FALLBACK DEFAULTS
+                   Products added through the Admin
+                   dashboard only collect the basics
+                   (name, category, price, image, badge,
+                   description, skin types, concerns).
+                   Fill in sensible defaults for the
+                   richer fields this page displays so an
+                   admin-added product still renders a
+                   complete page instead of showing
+                   "undefined".
+                ====================================== */
+
+                product.longDescription =
+                    product.longDescription || product.description || "";
+
+                product.ingredients =
+                    Array.isArray(product.ingredients) ? product.ingredients : [];
+
+                product.benefits =
+                    Array.isArray(product.benefits) ? product.benefits : [];
+
+                product.howToUse =
+                    product.howToUse ||
+                    "Apply as part of your routine and adjust based on how your skin responds.";
+
+                product.routineStep =
+                    product.routineStep ||
+                    product.categoryLabel ||
+                    (product.category || "").toUpperCase();
+
+                product.suitableFor =
+                    product.suitableFor ||
+                    (product.skinTypes && product.skinTypes.length
+                        ? product.skinTypes.join(", ")
+                        : "All skin types");
+
+                product.beginnerFriendly =
+                    typeof product.beginnerFriendly === "boolean"
+                        ? product.beginnerFriendly
+                        : true;
+
+                product.fragranceFree =
+                    typeof product.fragranceFree === "boolean"
+                        ? product.fragranceFree
+                        : false;
+
+                product.rating =
+                    typeof product.rating === "number" ? product.rating : 4.5;
+
+                product.reviewCount =
+                    typeof product.reviewCount === "number" ? product.reviewCount : 0;
+
+                product.stock =
+                    typeof product.stock === "number" ? product.stock : 10;
 
 
 
