@@ -40,6 +40,7 @@
 </div>
 
 
+
 <!-- =========================================================
      HEADER
 ========================================================= -->
@@ -48,7 +49,6 @@
 
     <div class="container header-inner">
 
-        <!-- LOGO -->
 
         <a
             href="index.html"
@@ -58,7 +58,6 @@
         </a>
 
 
-        <!-- MAIN NAVIGATION -->
 
         <nav
             class="main-nav"
@@ -69,9 +68,7 @@
                 Home
             </a>
 
-            <a
-                href="shop.html"
-            >
+            <a href="shop.html">
                 Shop
             </a>
 
@@ -90,12 +87,11 @@
         </nav>
 
 
-        <!-- HEADER ACTIONS -->
 
         <div class="header-actions">
 
             <a
-                href="#shop-products"
+                href="shop.html#shop-products"
                 class="header-action"
                 aria-label="Search"
             >
@@ -139,8 +135,6 @@
             </a>
 
 
-            <!-- ACCOUNT / LOGIN -->
-
             <a
                 href="login.html"
                 class="header-action"
@@ -150,8 +144,6 @@
                 👤
             </a>
 
-
-            <!-- SIGNUP / LOGOUT -->
 
             <a
                 href="signup.html"
@@ -183,8 +175,6 @@
             <div class="login-card">
 
 
-                <!-- LOGIN INTRO -->
-
                 <div class="login-intro">
 
                     <p class="section-eyebrow">
@@ -204,8 +194,6 @@
                 </div>
 
 
-                <!-- LOGIN MESSAGE -->
-
                 <div
                     class="login-message"
                     id="login-message"
@@ -213,15 +201,11 @@
                 ></div>
 
 
-                <!-- LOGIN FORM -->
-
                 <form
                     id="login-form"
                     class="login-form"
                 >
 
-
-                    <!-- EMAIL -->
 
                     <div class="form-group">
 
@@ -240,8 +224,6 @@
 
                     </div>
 
-
-                    <!-- PASSWORD -->
 
                     <div class="form-group">
 
@@ -274,8 +256,6 @@
                     </div>
 
 
-                    <!-- LOGIN OPTIONS -->
-
                     <div class="login-options">
 
                         <label class="remember-option">
@@ -303,8 +283,6 @@
                     </div>
 
 
-                    <!-- LOGIN BUTTON -->
-
                     <button
                         type="submit"
                         class="btn btn-primary login-submit"
@@ -316,12 +294,11 @@
                 </form>
 
 
-                <!-- SIGNUP LINK -->
-
                 <div class="login-signup">
 
                     <p>
                         Don't have an account?
+
                         <a href="signup.html">
                             Create an account
                         </a>
@@ -347,6 +324,7 @@
 <footer class="site-footer">
 
     <div class="container footer-main">
+
 
         <div class="footer-brand">
 
@@ -457,8 +435,6 @@
     </div>
 
 
-    <!-- FOOTER BOTTOM -->
-
     <div class="container footer-bottom">
 
         <p>
@@ -484,6 +460,14 @@
 
 
 <!-- =========================================================
+     SHARED DATA STORE
+========================================================= -->
+
+<script src="Assets/js/store-data.js"></script>
+
+
+
+<!-- =========================================================
      JAVASCRIPT
 ========================================================= -->
 
@@ -495,37 +479,59 @@
 ========================================================= */
 
 const loginForm =
-    document.getElementById("login-form");
+    document.getElementById(
+        "login-form"
+    );
 
 const loginEmail =
-    document.getElementById("login-email");
+    document.getElementById(
+        "login-email"
+    );
 
 const loginPassword =
-    document.getElementById("login-password");
+    document.getElementById(
+        "login-password"
+    );
 
 const loginMessage =
-    document.getElementById("login-message");
+    document.getElementById(
+        "login-message"
+    );
 
 const rememberEmail =
-    document.getElementById("remember-email");
+    document.getElementById(
+        "remember-email"
+    );
 
 const togglePassword =
-    document.getElementById("toggle-password");
+    document.getElementById(
+        "toggle-password"
+    );
 
 const forgotPassword =
-    document.getElementById("forgot-password");
+    document.getElementById(
+        "forgot-password"
+    );
 
 const accountLink =
-    document.getElementById("account-link");
+    document.getElementById(
+        "account-link"
+    );
 
 const authArrow =
-    document.getElementById("auth-arrow");
+    document.getElementById(
+        "auth-arrow"
+    );
 
 const wishlistCount =
-    document.getElementById("wishlist-count");
+    document.getElementById(
+        "wishlist-count"
+    );
 
 const cartCount =
-    document.getElementById("cart-count");
+    document.getElementById(
+        "cart-count"
+    );
 
 
 
@@ -535,20 +541,41 @@ const cartCount =
 
 function updateHeaderCounts() {
 
-    const wishlist =
-        JSON.parse(
-            localStorage.getItem(
-                "lavanyaWishlist"
-            ) || "[]"
-        );
+    let wishlist = [];
+
+    let cart = [];
 
 
-    const cart =
-        JSON.parse(
-            localStorage.getItem(
-                "lavanyaCart"
-            ) || "[]"
-        );
+    try {
+
+        wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaWishlist"
+                ) || "[]"
+            );
+
+    } catch (error) {
+
+        wishlist = [];
+
+    }
+
+
+    try {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaCart"
+                ) || "[]"
+            );
+
+    } catch (error) {
+
+        cart = [];
+
+    }
 
 
     wishlistCount.textContent =
@@ -557,9 +584,14 @@ function updateHeaderCounts() {
 
     cartCount.textContent =
         cart.reduce(
-            (total, item) =>
-                total +
-                Number(item.quantity || 0),
+            function(total, item) {
+
+                return total +
+                    Number(
+                        item.quantity || 0
+                    );
+
+            },
             0
         );
 
@@ -576,17 +608,24 @@ updateHeaderCounts();
 
 function updateAuthHeader() {
 
-    const user =
-        JSON.parse(
-            localStorage.getItem(
-                "lavanyaUser"
-            ) || "null"
-        );
+    let user = null;
 
 
-    /* ---------------------------------------------
-       LOGGED IN
-    --------------------------------------------- */
+    try {
+
+        user =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaUser"
+                ) || "null"
+            );
+
+    } catch (error) {
+
+        user = null;
+
+    }
+
 
     if (user) {
 
@@ -607,18 +646,10 @@ function updateAuthHeader() {
             "Logout"
         );
 
-
         authArrow.title =
             "Logout";
 
-    }
-
-
-    /* ---------------------------------------------
-       LOGGED OUT
-    --------------------------------------------- */
-
-    else {
+    } else {
 
         accountLink.href =
             "login.html";
@@ -636,7 +667,6 @@ function updateAuthHeader() {
             "aria-label",
             "Signup"
         );
-
 
         authArrow.title =
             "Sign up";
@@ -673,11 +703,6 @@ authArrow.addEventListener(
                 "lavanyaUser"
             );
 
-
-            /*
-               After logout, send the user
-               to the login page.
-            */
 
             window.location.href =
                 "login.html";
@@ -763,9 +788,7 @@ togglePassword.addEventListener(
                 "Hide password"
             );
 
-        }
-
-        else {
+        } else {
 
             loginPassword.type =
                 "password";
@@ -806,22 +829,43 @@ loginForm.addEventListener(
             loginPassword.value;
 
 
+
+        /* =====================================================
+           GET ALL CUSTOMERS FROM SHARED STORE
+        ===================================================== */
+
+        const customers =
+            LavanyaStore.getCustomers();
+
+
+
+        /* =====================================================
+           FIND CUSTOMER BY EMAIL
+        ===================================================== */
+
         const registeredUser =
-            JSON.parse(
-                localStorage.getItem(
-                    "lavanyaRegisteredUser"
-                ) || "null"
+            customers.find(
+                function(customer) {
+
+                    return String(
+                        customer.email || ""
+                    )
+                    .trim()
+                    .toLowerCase() === email;
+
+                }
             );
 
 
-        /* ---------------------------------------------
-           NO REGISTERED ACCOUNT
-        --------------------------------------------- */
+
+        /* =====================================================
+           NO ACCOUNT
+        ===================================================== */
 
         if (!registeredUser) {
 
             loginMessage.textContent =
-                "No account was found. Please create an account first.";
+                "No account was found with this email. Please create an account first.";
 
             loginMessage.classList.add(
                 "show"
@@ -833,35 +877,14 @@ loginForm.addEventListener(
 
 
 
-        /* ---------------------------------------------
-           EMAIL CHECK
-        --------------------------------------------- */
-
-        if (
-            email !==
-            registeredUser.email.toLowerCase()
-        ) {
-
-            loginMessage.textContent =
-                "The email address or password is incorrect.";
-
-            loginMessage.classList.add(
-                "show"
-            );
-
-            return;
-
-        }
-
-
-
-        /* ---------------------------------------------
+        /* =====================================================
            PASSWORD CHECK
-        --------------------------------------------- */
+        ===================================================== */
 
         if (
-            password !==
-            registeredUser.password
+            String(
+                registeredUser.password || ""
+            ) !== password
         ) {
 
             loginMessage.textContent =
@@ -877,9 +900,9 @@ loginForm.addEventListener(
 
 
 
-        /* ---------------------------------------------
+        /* =====================================================
            REMEMBER EMAIL
-        --------------------------------------------- */
+        ===================================================== */
 
         if (rememberEmail.checked) {
 
@@ -888,9 +911,7 @@ loginForm.addEventListener(
                 email
             );
 
-        }
-
-        else {
+        } else {
 
             localStorage.removeItem(
                 "lavanyaRememberedEmail"
@@ -900,11 +921,14 @@ loginForm.addEventListener(
 
 
 
-        /* ---------------------------------------------
+        /* =====================================================
            CREATE ACTIVE USER SESSION
-        --------------------------------------------- */
+        ===================================================== */
 
         const loggedInUser = {
+
+            id:
+                registeredUser.id,
 
             name:
                 registeredUser.name,
@@ -927,20 +951,15 @@ loginForm.addEventListener(
 
 
 
-        /* ---------------------------------------------
-           RETURN TO ORIGINAL REQUESTED PAGE
-        --------------------------------------------- */
+        /* =====================================================
+           RETURN TO ORIGINAL PAGE
+        ===================================================== */
 
         let redirectAfterLogin =
             localStorage.getItem(
                 "lavanyaRedirectAfterLogin"
             );
 
-
-        /*
-           If there is no saved destination,
-           send the customer to their account.
-        */
 
         if (
             !redirectAfterLogin ||
@@ -957,19 +976,11 @@ loginForm.addEventListener(
 
 
 
-        /* ---------------------------------------------
-           REMOVE SAVED REDIRECT
-        --------------------------------------------- */
-
         localStorage.removeItem(
             "lavanyaRedirectAfterLogin"
         );
 
 
-
-        /* ---------------------------------------------
-           GO TO DESTINATION
-        --------------------------------------------- */
 
         window.location.href =
             redirectAfterLogin;
@@ -1053,4 +1064,5 @@ if (newsletterForm) {
 </script>
 
 </body>
+
 </html>

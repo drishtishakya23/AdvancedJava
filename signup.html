@@ -49,8 +49,6 @@
 
         <div class="container header-inner">
 
-            <!-- LOGO -->
-
             <a
                 href="index.html"
                 class="logo"
@@ -58,8 +56,6 @@
                 lavanya<span>.</span>
             </a>
 
-
-            <!-- MAIN NAVIGATION -->
 
             <nav
                 class="main-nav"
@@ -88,8 +84,6 @@
 
             </nav>
 
-
-            <!-- HEADER ACTIONS -->
 
             <div class="header-actions">
 
@@ -135,7 +129,6 @@
 
                 </a>
 
-                <!-- ACCOUNT / LOGIN -->
 
                 <a
                     href="login.html"
@@ -146,7 +139,6 @@
                     👤
                 </a>
 
-                <!-- SIGNUP / LOGOUT -->
 
                 <a
                     href="signup.html"
@@ -175,8 +167,6 @@
 
             <div class="container signup-container">
 
-
-                <!-- SIGNUP CARD -->
 
                 <div class="signup-card">
 
@@ -337,8 +327,6 @@
 
                     </form>
 
-
-                    <!-- LOGIN -->
 
                     <div class="signup-divider">
 
@@ -599,6 +587,13 @@
 
 
     <!-- =========================================
+         SHARED DATA STORE
+         ========================================= -->
+
+    <script src="Assets/js/store-data.js"></script>
+
+
+    <!-- =========================================
          JAVASCRIPT
          ========================================= -->
 
@@ -608,40 +603,74 @@
            HEADER COUNTERS
            ======================================== */
 
-        const wishlist =
-            JSON.parse(
-                localStorage.getItem(
-                    "lavanyaWishlist"
-                ) || "[]"
-            );
+        function updateHeaderCounters() {
 
-        const cart =
-            JSON.parse(
-                localStorage.getItem(
-                    "lavanyaCart"
-                ) || "[]"
-            );
+            let wishlist = [];
+
+            let cart = [];
 
 
-        document.getElementById(
-            "wishlist-count"
-        ).textContent = wishlist.length;
+            try {
+
+                wishlist =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaWishlist"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                wishlist = [];
+
+            }
 
 
-        document.getElementById(
-            "cart-count"
-        ).textContent =
-            cart.reduce(
-                (total, item) =>
-                    total +
-                    Number(item.quantity || 1),
-                0
-            );
+            try {
+
+                cart =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaCart"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                cart = [];
+
+            }
+
+
+            document.getElementById(
+                "wishlist-count"
+            ).textContent = wishlist.length;
+
+
+            document.getElementById(
+                "cart-count"
+            ).textContent =
+                cart.reduce(
+                    function(total, item) {
+
+                        return total +
+                            Number(
+                                item.quantity || 1
+                            );
+
+                    },
+                    0
+                );
+
+        }
+
+
+        updateHeaderCounters();
 
 
 
         /* ========================================
-           HEADER ACCOUNT / LOGIN / SIGNUP / LOGOUT
+           HEADER ACCOUNT STATE
            ======================================== */
 
         const accountLink =
@@ -655,80 +684,95 @@
             );
 
 
-        const currentUser =
-            JSON.parse(
-                localStorage.getItem(
-                    "lavanyaUser"
-                ) || "null"
-            );
+        function updateAuthHeader() {
+
+            let currentUser = null;
 
 
-        if (currentUser) {
+            try {
 
-            /*
-               LOGGED-IN USER
-            */
-
-            accountLink.href =
-                "account.html";
-
-            accountLink.setAttribute(
-                "aria-label",
-                "My Account"
-            );
-
-
-            authArrow.href =
-                "login.html";
-
-            authArrow.setAttribute(
-                "aria-label",
-                "Logout"
-            );
-
-
-            authArrow.addEventListener(
-                "click",
-                function(event) {
-
-                    event.preventDefault();
-
-
-                    localStorage.removeItem(
-                        "lavanyaUser"
+                currentUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaUser"
+                        ) || "null"
                     );
 
+            } catch (error) {
 
-                    window.location.href =
-                        "login.html";
+                currentUser = null;
 
-                }
-            );
-
-        } else {
-
-            /*
-               LOGGED-OUT USER
-            */
-
-            accountLink.href =
-                "login.html";
-
-            accountLink.setAttribute(
-                "aria-label",
-                "Login"
-            );
+            }
 
 
-            authArrow.href =
-                "signup.html";
+            if (currentUser) {
 
-            authArrow.setAttribute(
-                "aria-label",
-                "Sign up"
-            );
+                accountLink.href =
+                    "account.html";
+
+                accountLink.setAttribute(
+                    "aria-label",
+                    "My Account"
+                );
+
+
+                authArrow.href =
+                    "login.html";
+
+                authArrow.setAttribute(
+                    "aria-label",
+                    "Logout"
+                );
+
+                authArrow.title =
+                    "Logout";
+
+
+                authArrow.onclick =
+                    function(event) {
+
+                        event.preventDefault();
+
+                        localStorage.removeItem(
+                            "lavanyaUser"
+                        );
+
+                        window.location.href =
+                            "login.html";
+
+                    };
+
+            } else {
+
+                accountLink.href =
+                    "login.html";
+
+                accountLink.setAttribute(
+                    "aria-label",
+                    "Login"
+                );
+
+
+                authArrow.href =
+                    "signup.html";
+
+                authArrow.setAttribute(
+                    "aria-label",
+                    "Sign up"
+                );
+
+                authArrow.title =
+                    "Sign up";
+
+
+                authArrow.onclick = null;
+
+            }
 
         }
+
+
+        updateAuthHeader();
 
 
 
@@ -802,6 +846,25 @@
 
 
                 /* ========================================
+                   EMAIL VALIDATION
+                   ======================================== */
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+                if (!emailPattern.test(email)) {
+
+                    signupMessage.textContent =
+                        "Please enter a valid email address.";
+
+                    return;
+
+                }
+
+
+
+                /* ========================================
                    PASSWORD VALIDATION
                    ======================================== */
 
@@ -827,21 +890,33 @@
 
 
                 /* ========================================
-                   CHECK EXISTING ACCOUNT
+                   GET ALL CUSTOMERS
                    ======================================== */
 
-                const existingUser =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "lavanyaRegisteredUser"
-                        ) || "null"
+                const customers =
+                    LavanyaStore.getCustomers();
+
+
+
+                /* ========================================
+                   CHECK WHETHER EMAIL ALREADY EXISTS
+                   ======================================== */
+
+                const existingCustomer =
+                    customers.find(
+                        function(customer) {
+
+                            return String(
+                                customer.email || ""
+                            )
+                            .trim()
+                            .toLowerCase() === email;
+
+                        }
                     );
 
 
-                if (
-                    existingUser &&
-                    existingUser.email === email
-                ) {
+                if (existingCustomer) {
 
                     signupMessage.textContent =
                         "An account with this email already exists. Please login.";
@@ -853,10 +928,10 @@
 
 
                 /* ========================================
-                   SAVE REGISTERED USER
+                   CREATE NEW CUSTOMER
                    ======================================== */
 
-                const registeredUser = {
+                const newCustomer = {
 
                     name: name,
 
@@ -865,26 +940,40 @@
                     password: password,
 
                     createdAt:
-                        new Date().toISOString()
+                        new Date().toISOString(),
+
+                    joined:
+                        new Date().toISOString(),
+
+                    orders: 0
 
                 };
 
 
-                localStorage.setItem(
-                    "lavanyaRegisteredUser",
-                    JSON.stringify(
-                        registeredUser
-                    )
-                );
+
+                /* ========================================
+                   SAVE CUSTOMER THROUGH SHARED STORE
+                   ======================================== */
+
+                const createdCustomer =
+                    LavanyaStore.addCustomer(
+                        newCustomer
+                    );
+
+
+                if (!createdCustomer) {
+
+                    signupMessage.textContent =
+                        "Unable to create your account. Please try again.";
+
+                    return;
+
+                }
 
 
 
                 /* ========================================
-                   IMPORTANT
-                   
                    DO NOT AUTOMATICALLY LOGIN
-                   
-                   The user must login after signup.
                    ======================================== */
 
                 localStorage.removeItem(
@@ -894,32 +983,7 @@
 
 
                 /* ========================================
-                   PRESERVE ORIGINAL DESTINATION
-                   
-                   If the user was redirected to signup
-                   because they tried to access Shop/Quiz,
-                   keep that destination for login.
-                   ======================================== */
-
-                const savedRedirect =
-                    localStorage.getItem(
-                        "lavanyaRedirectAfterLogin"
-                    );
-
-
-                if (savedRedirect) {
-
-                    localStorage.setItem(
-                        "lavanyaRedirectAfterLogin",
-                        savedRedirect
-                    );
-
-                }
-
-
-
-                /* ========================================
-                   LOGIN MESSAGE
+                   LOGIN REDIRECT MESSAGE
                    ======================================== */
 
                 localStorage.setItem(
@@ -934,7 +998,7 @@
 
 
                 /* ========================================
-                   REDIRECT TO LOGIN
+                   REDIRECT
                    ======================================== */
 
                 setTimeout(
@@ -1036,9 +1100,13 @@
            NEWSLETTER
            ======================================== */
 
-        document.getElementById(
-            "newsletter-form"
-        ).addEventListener(
+        const newsletterForm =
+            document.getElementById(
+                "newsletter-form"
+            );
+
+
+        newsletterForm.addEventListener(
             "submit",
             function(event) {
 
@@ -1051,7 +1119,13 @@
                             "newsletter-email"
                         )
                         .value
-                        .trim();
+                        .trim()
+                        .toLowerCase();
+
+
+                if (!email) {
+                    return;
+                }
 
 
                 localStorage.setItem(
