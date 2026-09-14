@@ -23,7 +23,7 @@
     <!-- PAGE-SPECIFIC CSS -->
     <link rel="stylesheet" href="Assets/CSS/shop.css">
 
-    <!-- SHARED DATA LAYER (products / orders / customers) -->
+    <!-- SHARED DATA LAYER -->
     <script src="Assets/js/store-data.js"></script>
 
 </head>
@@ -55,7 +55,6 @@
     <header class="site-header">
 
         <div class="container header-inner">
-
 
             <!-- LOGO -->
 
@@ -365,10 +364,13 @@
                     </div>
 
                     <p class="results-count">
+
                         <span id="results-count">
                             0
                         </span>
+
                         products
+
                     </p>
 
                 </div>
@@ -682,42 +684,40 @@
 
     </footer>
 
-    
+
 
     <!-- =========================================
          SHOP JAVASCRIPT
-         JavaScript stays inside this HTML file.
     ========================================== -->
 
     <script>
-        
-/* =========================================================
-   AUTHENTICATION GATE
-   Users must be logged in to access the shop.
-========================================================= */
-
-const currentUser = localStorage.getItem("lavanyaUser");
-
-if (!currentUser) {
-
-    localStorage.setItem(
-        "lavanyaLoginMessage",
-        "Please login or create an account to continue shopping."
-    );
-
-    localStorage.setItem(
-        "lavanyaRedirectAfterLogin",
-        "shop.html"
-    );
-
-    window.location.href = "login.html";
-}
 
 
-/* =========================================================
-   YOUR EXISTING SHOP JAVASCRIPT
-   Keep the rest of your existing script below this point.
-========================================================= */
+        /* =========================================================
+           AUTHENTICATION GATE
+        ========================================================= */
+
+        const currentUser =
+            localStorage.getItem("lavanyaUser");
+
+
+        if (!currentUser) {
+
+            localStorage.setItem(
+                "lavanyaLoginMessage",
+                "Please login or create an account to continue shopping."
+            );
+
+            localStorage.setItem(
+                "lavanyaRedirectAfterLogin",
+                "shop.html"
+            );
+
+            window.location.href = "login.html";
+
+        }
+
+
 
         document.addEventListener(
             "DOMContentLoaded",
@@ -726,13 +726,10 @@ if (!currentUser) {
 
                 /* =====================================
                    PRODUCT DATA
-                   Loaded from the shared LavanyaStore data
-                   layer so products added in the Admin
-                   dashboard show up here automatically.
                 ====================================== */
 
-                let products = LavanyaStore.getProducts();
-
+                let products =
+                    LavanyaStore.getProducts();
 
 
 
@@ -745,30 +742,36 @@ if (!currentUser) {
                         "shop-product-grid"
                     );
 
+
                 const searchInput =
                     document.getElementById(
                         "product-search"
                     );
+
 
                 const sortSelect =
                     document.getElementById(
                         "sort-products"
                     );
 
+
                 const resultsCount =
                     document.getElementById(
                         "results-count"
                     );
+
 
                 const noResults =
                     document.getElementById(
                         "no-results"
                     );
 
+
                 const clearFilters =
                     document.getElementById(
                         "clear-filters"
                     );
+
 
                 const filterButtons =
                     document.querySelectorAll(
@@ -790,6 +793,7 @@ if (!currentUser) {
                 ====================================== */
 
                 let skinProfile = null;
+
 
                 const savedProfile =
                     localStorage.getItem(
@@ -881,6 +885,33 @@ if (!currentUser) {
 
 
                 /* =====================================
+                   GET PRODUCT STOCK
+                ====================================== */
+
+                function getProductStock(product) {
+
+                    const stock =
+                        Number(product.stock);
+
+
+                    if (
+                        !Number.isFinite(stock)
+                        ||
+                        stock < 0
+                    ) {
+
+                        return 0;
+
+                    }
+
+
+                    return Math.floor(stock);
+
+                }
+
+
+
+                /* =====================================
                    GET PRODUCTS
                 ====================================== */
 
@@ -927,6 +958,7 @@ if (!currentUser) {
                         );
 
 
+
                     /* SORT */
 
                     switch (sortSelect.value) {
@@ -935,7 +967,12 @@ if (!currentUser) {
 
                             filtered.sort(
                                 function (a, b) {
-                                    return a.price - b.price;
+
+                                    return (
+                                        a.price -
+                                        b.price
+                                    );
+
                                 }
                             );
 
@@ -946,7 +983,12 @@ if (!currentUser) {
 
                             filtered.sort(
                                 function (a, b) {
-                                    return b.price - a.price;
+
+                                    return (
+                                        b.price -
+                                        a.price
+                                    );
+
                                 }
                             );
 
@@ -957,9 +999,11 @@ if (!currentUser) {
 
                             filtered.sort(
                                 function (a, b) {
+
                                     return a.name.localeCompare(
                                         b.name
                                     );
+
                                 }
                             );
 
@@ -970,11 +1014,13 @@ if (!currentUser) {
 
                             filtered.sort(
                                 function (a, b) {
+
                                     return (
                                         getMatchScore(b)
                                         -
                                         getMatchScore(a)
                                     );
+
                                 }
                             );
 
@@ -995,18 +1041,90 @@ if (!currentUser) {
 
 
                 /* =====================================
-                   PRODUCT CARD - FIXED VERSION
+                   PRODUCT CARD
+                   STOCK-AWARE VERSION
                 ====================================== */
 
                 function createProductCard(product) {
 
-                    const match = getMatchScore(product);
+                    const match =
+                        getMatchScore(product);
+
+
+                    const stock =
+                        getProductStock(product);
+
+
+                    const outOfStock =
+                        stock <= 0;
+
+
+
+                    /*
+                     * Button changes depending on stock.
+                     */
+
+                    const cartButton =
+                        outOfStock
+
+                            ? `
+                                <button
+                                    type="button"
+                                    class="btn btn-primary product-add-button"
+                                    data-add-cart="${product.id}"
+                                    disabled
+                                    aria-disabled="true"
+                                >
+                                    Out of Stock
+                                </button>
+                            `
+
+                            : `
+                                <button
+                                    type="button"
+                                    class="btn btn-primary product-add-button"
+                                    data-add-cart="${product.id}"
+                                >
+                                    Add to Cart
+                                </button>
+                            `;
+
+
+
+                    /*
+                     * Stock message.
+                     */
+
+                    const stockMessage =
+                        outOfStock
+
+                            ? `
+                                <span
+                                    class="product-stock-status"
+                                    aria-label="Out of stock"
+                                >
+                                    Out of Stock
+                                </span>
+                            `
+
+                            : `
+                                <span
+                                    class="product-stock-status"
+                                    aria-label="${stock} items available"
+                                >
+                                    ${stock} available
+                                </span>
+                            `;
+
+
 
                     return `
 
                         <article class="shop-product-card">
 
+
                             <!-- PRODUCT IMAGE -->
+
                             <div class="shop-product-image">
 
                                 <a
@@ -1015,18 +1133,19 @@ if (!currentUser) {
                                     aria-label="View ${product.name} details"
                                 >
 
-                                    <!-- PRODUCT IMAGE: ${product.name} -->
                                     <img
                                         src="${product.image}"
-                                        alt="image"
+                                        alt="${product.name}"
                                         loading="lazy"
                                     >
 
                                 </a>
 
+
                                 <span class="product-badge">
                                     ${product.badge}
                                 </span>
+
 
                                 <button
                                     type="button"
@@ -1040,8 +1159,11 @@ if (!currentUser) {
                             </div>
 
 
+
                             <!-- PRODUCT CONTENT -->
+
                             <div class="shop-product-content">
+
 
                                 <div class="product-card-meta">
 
@@ -1049,13 +1171,19 @@ if (!currentUser) {
                                         ${product.categoryLabel}
                                     </span>
 
+
                                     ${
                                         match
-                                            ? `<span>${match}% MATCH</span>`
+                                            ? `
+                                                <span>
+                                                    ${match}% MATCH
+                                                </span>
+                                            `
                                             : ""
                                     }
 
                                 </div>
+
 
 
                                 <h3>
@@ -1069,10 +1197,25 @@ if (!currentUser) {
                                 </h3>
 
 
+
                                 <p>
                                     ${product.description}
                                 </p>
 
+
+
+                                <!-- STOCK STATUS -->
+
+                                <div
+                                    class="product-stock"
+                                    style="margin: 8px 0;"
+                                >
+                                    ${stockMessage}
+                                </div>
+
+
+
+                                <!-- PRICE + CART -->
 
                                 <div class="product-card-bottom">
 
@@ -1080,15 +1223,10 @@ if (!currentUser) {
                                         NPR ${product.price.toLocaleString()}
                                     </strong>
 
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary product-add-button"
-                                        data-add-cart="${product.id}"
-                                    >
-                                        Add to Cart
-                                    </button>
+                                    ${cartButton}
 
                                 </div>
+
 
                             </div>
 
@@ -1144,25 +1282,73 @@ if (!currentUser) {
 
                 /* =====================================
                    ADD TO CART
+                   STOCK-AWARE VERSION
                 ====================================== */
 
                 function addToCart(productId) {
+
+
+                    /*
+                     * Refresh product data first.
+                     *
+                     * This is important because the Admin
+                     * dashboard may have changed the stock.
+                     */
+
+                    products =
+                        LavanyaStore.getProducts();
+
 
                     const product =
                         products.find(
                             function (item) {
 
-                                return item.id ===
-                                    productId;
+                                return String(item.id) ===
+                                    String(productId);
 
                             }
                         );
 
 
                     if (!product) {
+
+                        alert(
+                            "This product is no longer available."
+                        );
+
                         return;
+
                     }
 
+
+
+                    /* CURRENT STOCK */
+
+                    const stock =
+                        getProductStock(product);
+
+
+
+                    /*
+                     * BLOCK OUT-OF-STOCK PRODUCTS
+                     */
+
+                    if (stock <= 0) {
+
+                        alert(
+                            product.name +
+                            " is currently out of stock."
+                        );
+
+                        renderProducts();
+
+                        return;
+
+                    }
+
+
+
+                    /* GET CART */
 
                     let cart =
                         JSON.parse(
@@ -1172,23 +1358,68 @@ if (!currentUser) {
                         );
 
 
+
+                    /* FIND EXISTING ITEM */
+
                     const existing =
                         cart.find(
                             function (item) {
 
-                                return item.id ===
-                                    productId;
+                                return String(item.id) ===
+                                    String(productId);
 
                             }
                         );
 
 
+
                     if (existing) {
 
+
+                        const currentQuantity =
+                            Number(
+                                existing.quantity || 1
+                            );
+
+
+
+                        /*
+                         * DO NOT ALLOW CART QUANTITY
+                         * TO EXCEED AVAILABLE STOCK.
+                         */
+
+                        if (
+                            currentQuantity >= stock
+                        ) {
+
+                            alert(
+                                "Only " +
+                                stock +
+                                " " +
+                                (
+                                    stock === 1
+                                        ? "item"
+                                        : "items"
+                                ) +
+                                " available."
+                            );
+
+                            return;
+
+                        }
+
+
+
                         existing.quantity =
-                            (existing.quantity || 1) + 1;
+                            currentQuantity + 1;
+
 
                     } else {
+
+
+                        /*
+                         * FIRST ITEM
+                         */
 
                         cart.push({
 
@@ -1207,14 +1438,23 @@ if (!currentUser) {
                     }
 
 
+
+                    /* SAVE CART */
+
                     localStorage.setItem(
                         "lavanyaCart",
                         JSON.stringify(cart)
                     );
 
 
+
+                    /* UPDATE HEADER */
+
                     updateCartCount();
 
+
+
+                    /* SUCCESS MESSAGE */
 
                     alert(
                         product.name +
@@ -1235,8 +1475,8 @@ if (!currentUser) {
                         products.find(
                             function (item) {
 
-                                return item.id ===
-                                    productId;
+                                return String(item.id) ===
+                                    String(productId);
 
                             }
                         );
@@ -1259,8 +1499,8 @@ if (!currentUser) {
                         wishlist.some(
                             function (item) {
 
-                                return item.id ===
-                                    productId;
+                                return String(item.id) ===
+                                    String(productId);
 
                             }
                         );
@@ -1312,40 +1552,80 @@ if (!currentUser) {
                    EVENT DELEGATION FOR BUTTONS
                 ====================================== */
 
-                document.addEventListener("click", function (event) {
+                document.addEventListener(
+                    "click",
+                    function (event) {
 
-                    const cartButton =
-                        event.target.closest("[data-add-cart]");
 
-                    if (cartButton) {
+                        /* ==============================
+                           ADD TO CART
+                        ============================== */
 
-                        event.preventDefault();
+                        const cartButton =
+                            event.target.closest(
+                                "[data-add-cart]"
+                            );
 
-                        const productId =
-                            cartButton.dataset.addCart;
 
-                        addToCart(productId);
+                        if (cartButton) {
 
-                        return;
+                            event.preventDefault();
+
+
+                            /*
+                             * A disabled button normally
+                             * cannot be clicked, but this
+                             * extra check keeps the logic safe.
+                             */
+
+                            if (cartButton.disabled) {
+
+                                return;
+
+                            }
+
+
+                            const productId =
+                                cartButton.dataset.addCart;
+
+
+                            addToCart(productId);
+
+
+                            return;
+
+                        }
+
+
+
+                        /* ==============================
+                           WISHLIST
+                        ============================== */
+
+                        const wishlistButton =
+                            event.target.closest(
+                                "[data-wishlist]"
+                            );
+
+
+                        if (wishlistButton) {
+
+                            event.preventDefault();
+
+
+                            const productId =
+                                wishlistButton.dataset.wishlist;
+
+
+                            addToWishlist(productId);
+
+
+                            return;
+
+                        }
+
                     }
-
-
-                    const wishlistButton =
-                        event.target.closest("[data-wishlist]");
-
-                    if (wishlistButton) {
-
-                        event.preventDefault();
-
-                        const productId =
-                            wishlistButton.dataset.wishlist;
-
-                        addToWishlist(productId);
-
-                        return;
-                    }
-
-                });
+                );
 
 
 
@@ -1430,9 +1710,13 @@ if (!currentUser) {
                     function () {
 
 
-                        currentCategory = "all";
+                        currentCategory =
+                            "all";
 
-                        searchInput.value = "";
+
+                        searchInput.value =
+                            "";
+
 
                         sortSelect.value =
                             "featured";
@@ -1487,7 +1771,9 @@ if (!currentUser) {
                             ) {
 
                                 return total +
-                                    (item.quantity || 1);
+                                    Number(
+                                        item.quantity || 1
+                                    );
 
                             },
                             0
@@ -1562,9 +1848,11 @@ if (!currentUser) {
                                 "lavanyaUser"
                             );
 
+
                             alert(
                                 "You have been logged out."
                             );
+
 
                             window.location.href =
                                 "index.html";
@@ -1632,21 +1920,63 @@ if (!currentUser) {
                 renderProducts();
 
 
+
                 /* =====================================
-                   KEEP IN SYNC WITH THE ADMIN DASHBOARD
-                   If products are added/edited/deleted in
-                   another tab (e.g. admin.html), refresh
-                   this page's list automatically.
+                   KEEP IN SYNC WITH ADMIN DASHBOARD
                 ====================================== */
 
-                window.addEventListener("storage", function (event) {
-                    if (event.key === LavanyaStore.PRODUCTS_KEY) {
-                        products = LavanyaStore.getProducts();
-                        renderProducts();
-                    }
-                });
+                window.addEventListener(
+                    "storage",
+                    function (event) {
 
-            });
+                        if (
+                            event.key ===
+                            LavanyaStore.PRODUCTS_KEY
+                        ) {
+
+                            products =
+                                LavanyaStore.getProducts();
+
+
+                            renderProducts();
+
+                        }
+
+
+                        /*
+                         * Also refresh the cart count if
+                         * the cart changes in another tab.
+                         */
+
+                        if (
+                            event.key ===
+                            "lavanyaCart"
+                        ) {
+
+                            updateCartCount();
+
+                        }
+
+
+                        /*
+                         * Refresh wishlist count if
+                         * wishlist changes in another tab.
+                         */
+
+                        if (
+                            event.key ===
+                            "lavanyaWishlist"
+                        ) {
+
+                            updateWishlistCount();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
 
     </script>
 

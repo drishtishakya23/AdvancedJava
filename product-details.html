@@ -29,7 +29,7 @@
         href="Assets/CSS/product-details.css"
     >
 
-    <!-- SHARED DATA LAYER (products / orders / customers) -->
+    <!-- SHARED DATA LAYER -->
     <script src="Assets/js/store-data.js"></script>
 
 </head>
@@ -470,19 +470,10 @@
 
                 /* =====================================
                    PRODUCT DATA
-                   Loaded from the shared LavanyaStore data
-                   layer so products added in the Admin
-                   dashboard get a working detail page here
-                   automatically. Rich fields (ingredients,
-                   long description, benefits, etc.) fall
-                   back to sensible defaults below for any
-                   product that does not define them (i.e.
-                   products added through the admin form,
-                   which only asks for the basics).
                 ====================================== */
 
-                const products = LavanyaStore.getProducts();
-
+                let products =
+                    LavanyaStore.getProducts();
 
 
 
@@ -495,6 +486,7 @@
                         window.location.search
                     );
 
+
                 const productId =
                     urlParams.get("id");
 
@@ -504,10 +496,13 @@
                    FIND PRODUCT
                 ====================================== */
 
-                const product =
+                let product =
                     products.find(
                         function (item) {
-                            return item.id === productId;
+
+                            return String(item.id) ===
+                                String(productId);
+
                         }
                     );
 
@@ -522,10 +517,12 @@
                         "product-details"
                     );
 
+
                 const productInformation =
                     document.getElementById(
                         "product-information"
                     );
+
 
                 const breadcrumbProduct =
                     document.getElementById(
@@ -579,59 +576,90 @@
 
                 /* =====================================
                    FALLBACK DEFAULTS
-                   Products added through the Admin
-                   dashboard only collect the basics
-                   (name, category, price, image, badge,
-                   description, skin types, concerns).
-                   Fill in sensible defaults for the
-                   richer fields this page displays so an
-                   admin-added product still renders a
-                   complete page instead of showing
-                   "undefined".
                 ====================================== */
 
                 product.longDescription =
-                    product.longDescription || product.description || "";
+                    product.longDescription ||
+                    product.description ||
+                    "";
+
 
                 product.ingredients =
-                    Array.isArray(product.ingredients) ? product.ingredients : [];
+                    Array.isArray(product.ingredients)
+                        ? product.ingredients
+                        : [];
+
 
                 product.benefits =
-                    Array.isArray(product.benefits) ? product.benefits : [];
+                    Array.isArray(product.benefits)
+                        ? product.benefits
+                        : [];
+
 
                 product.howToUse =
                     product.howToUse ||
                     "Apply as part of your routine and adjust based on how your skin responds.";
+
 
                 product.routineStep =
                     product.routineStep ||
                     product.categoryLabel ||
                     (product.category || "").toUpperCase();
 
+
                 product.suitableFor =
                     product.suitableFor ||
-                    (product.skinTypes && product.skinTypes.length
-                        ? product.skinTypes.join(", ")
-                        : "All skin types");
+                    (
+                        product.skinTypes &&
+                        product.skinTypes.length
+                            ? product.skinTypes.join(", ")
+                            : "All skin types"
+                    );
+
 
                 product.beginnerFriendly =
                     typeof product.beginnerFriendly === "boolean"
                         ? product.beginnerFriendly
                         : true;
 
+
                 product.fragranceFree =
                     typeof product.fragranceFree === "boolean"
                         ? product.fragranceFree
                         : false;
 
+
                 product.rating =
-                    typeof product.rating === "number" ? product.rating : 4.5;
+                    typeof product.rating === "number"
+                        ? product.rating
+                        : 4.5;
+
 
                 product.reviewCount =
-                    typeof product.reviewCount === "number" ? product.reviewCount : 0;
+                    typeof product.reviewCount === "number"
+                        ? product.reviewCount
+                        : 0;
+
+
+                /*
+                 * IMPORTANT:
+                 * Do not use 10 as the fallback stock.
+                 *
+                 * If an admin-created product has no valid
+                 * stock value, treating it as 0 is safer than
+                 * incorrectly showing it as available.
+                 */
 
                 product.stock =
-                    typeof product.stock === "number" ? product.stock : 10;
+                    Number.isFinite(
+                        Number(product.stock)
+                    )
+                    &&
+                    Number(product.stock) >= 0
+                        ? Math.floor(
+                            Number(product.stock)
+                        )
+                        : 0;
 
 
 
@@ -645,6 +673,7 @@
                 ====================================== */
 
                 let skinProfile = null;
+
 
                 const savedProfile =
                     localStorage.getItem(
@@ -677,23 +706,28 @@
                         return 0;
                     }
 
+
                     let score = 0;
+
 
                     const skinType =
                         skinProfile.skinType || "";
 
+
                     const primaryConcern =
                         skinProfile.primaryConcern || "";
+
 
                     const secondaryConcern =
                         skinProfile.secondaryConcern || "";
 
 
+
                     if (
                         product.skinTypes
-                            .map(item =>
-                                item.toLowerCase()
-                            )
+                            .map(function (item) {
+                                return item.toLowerCase();
+                            })
                             .includes(
                                 skinType.toLowerCase()
                             )
@@ -704,11 +738,12 @@
                     }
 
 
+
                     if (
                         product.concerns
-                            .map(item =>
-                                item.toLowerCase()
-                            )
+                            .map(function (item) {
+                                return item.toLowerCase();
+                            })
                             .includes(
                                 primaryConcern.toLowerCase()
                             )
@@ -719,11 +754,12 @@
                     }
 
 
+
                     if (
                         product.concerns
-                            .map(item =>
-                                item.toLowerCase()
-                            )
+                            .map(function (item) {
+                                return item.toLowerCase();
+                            })
                             .includes(
                                 secondaryConcern.toLowerCase()
                             )
@@ -732,6 +768,7 @@
                         score += 2;
 
                     }
+
 
 
                     return Math.min(
@@ -749,11 +786,106 @@
 
 
                 /* =====================================
+                   GET CURRENT STOCK
+                ====================================== */
+
+                function getCurrentStock(productId) {
+
+                    const currentProduct =
+                        LavanyaStore.getProductById(
+                            productId
+                        );
+
+
+                    if (!currentProduct) {
+                        return 0;
+                    }
+
+
+                    const stock =
+                        Number(
+                            currentProduct.stock
+                        );
+
+
+                    if (
+                        !Number.isFinite(stock)
+                        ||
+                        stock < 0
+                    ) {
+
+                        return 0;
+
+                    }
+
+
+                    return Math.floor(stock);
+
+                }
+
+
+
+                /* =====================================
                    CREATE PRODUCT PAGE
                 ====================================== */
 
                 const match =
                     getMatchScore(product);
+
+
+                const initialStock =
+                    getCurrentStock(product.id);
+
+
+                const initialOutOfStock =
+                    initialStock <= 0;
+
+
+
+                /*
+                 * Create the Add to Cart button
+                 * according to the current stock.
+                 */
+
+                const addToCartButton =
+                    initialOutOfStock
+
+                        ? `
+                            <button
+                                type="button"
+                                class="btn btn-primary product-cart-button"
+                                id="add-to-cart"
+                                disabled
+                                aria-disabled="true"
+                            >
+                                Out of Stock
+                            </button>
+                        `
+
+                        : `
+                            <button
+                                type="button"
+                                class="btn btn-primary product-cart-button"
+                                id="add-to-cart"
+                            >
+                                Add to Cart
+                            </button>
+                        `;
+
+
+
+                const stockText =
+                    initialOutOfStock
+
+                        ? "Out of Stock"
+
+                        : initialStock +
+                          (
+                              initialStock === 1
+                                  ? " available"
+                                  : " available"
+                          );
+
 
 
                 productDetails.innerHTML = `
@@ -764,7 +896,7 @@
 
                             <img
                                 src="${product.image}"
-                                alt="image"
+                                alt="${product.name}"
                             >
 
                             <span class="product-detail-badge">
@@ -808,39 +940,33 @@
 
                         ${
                             skinProfile
-                            ? `
-                                <div class="product-match-box">
+                                ? `
+                                    <div class="product-match-box">
 
-                                    <div>
+                                        <div>
 
-                                        <span>
-                                            Recommended for your profile
-                                        </span>
+                                            <span>
+                                                Recommended for your profile
+                                            </span>
 
-                                        <strong>
-                                            ${match}% Match
-                                        </strong>
+                                            <strong>
+                                                ${match}% Match
+                                            </strong>
+
+                                        </div>
+
+                                        <p>
+                                            ${getPersonalizedReason(product)}
+                                        </p>
 
                                     </div>
-
-                                    <p>
-                                        ${getPersonalizedReason(product)}
-                                    </p>
-
-                                </div>
-                            `
-                            : ""
+                                `
+                                : ""
                         }
 
                         <div class="product-actions">
 
-                            <button
-                                type="button"
-                                class="btn btn-primary product-cart-button"
-                                id="add-to-cart"
-                            >
-                                Add to Cart
-                            </button>
+                            ${addToCartButton}
 
                             <button
                                 type="button"
@@ -853,8 +979,11 @@
 
                         </div>
 
-                        <p class="stock-status">
-                            ${product.stock} available
+                        <p
+                            class="stock-status"
+                            id="stock-status"
+                        >
+                            ${stockText}
                         </p>
 
                     </div>
@@ -873,14 +1002,15 @@
                         return "";
                     }
 
+
                     const reasons = [];
 
 
                     if (
                         product.skinTypes
-                            .map(item =>
-                                item.toLowerCase()
-                            )
+                            .map(function (item) {
+                                return item.toLowerCase();
+                            })
                             .includes(
                                 (
                                     skinProfile.skinType || ""
@@ -897,9 +1027,9 @@
 
                     if (
                         product.concerns
-                            .map(item =>
-                                item.toLowerCase()
-                            )
+                            .map(function (item) {
+                                return item.toLowerCase();
+                            })
                             .includes(
                                 (
                                     skinProfile.primaryConcern || ""
@@ -916,9 +1046,9 @@
 
                     if (
                         product.concerns
-                            .map(item =>
-                                item.toLowerCase()
-                            )
+                            .map(function (item) {
+                                return item.toLowerCase();
+                            })
                             .includes(
                                 (
                                     skinProfile.secondaryConcern || ""
@@ -1121,6 +1251,7 @@
 
                 /* =====================================
                    ADD TO CART
+                   STOCK-AWARE VERSION
                 ====================================== */
 
                 document
@@ -1128,6 +1259,94 @@
                     .addEventListener(
                         "click",
                         function () {
+
+
+                            /*
+                             * Get the latest product data.
+                             *
+                             * This matters if the Admin page
+                             * changes the stock after this
+                             * product-details page was opened.
+                             */
+
+                            const latestProduct =
+                                LavanyaStore.getProductById(
+                                    product.id
+                                );
+
+
+                            if (!latestProduct) {
+
+                                alert(
+                                    "This product is no longer available."
+                                );
+
+                                return;
+
+                            }
+
+
+
+                            const currentStock =
+                                getCurrentStock(
+                                    product.id
+                                );
+
+
+
+                            /*
+                             * BLOCK IF OUT OF STOCK
+                             */
+
+                            if (currentStock <= 0) {
+
+                                alert(
+                                    product.name +
+                                    " is currently out of stock."
+                                );
+
+                                const button =
+                                    document.getElementById(
+                                        "add-to-cart"
+                                    );
+
+
+                                if (button) {
+
+                                    button.disabled = true;
+
+                                    button.textContent =
+                                        "Out of Stock";
+
+                                    button.setAttribute(
+                                        "aria-disabled",
+                                        "true"
+                                    );
+
+                                }
+
+
+                                const stockStatus =
+                                    document.getElementById(
+                                        "stock-status"
+                                    );
+
+
+                                if (stockStatus) {
+
+                                    stockStatus.textContent =
+                                        "Out of Stock";
+
+                                }
+
+
+                                return;
+
+                            }
+
+
+
+                            /* GET CART */
 
                             let cart =
                                 JSON.parse(
@@ -1137,31 +1356,79 @@
                                 );
 
 
+
+                            /* FIND EXISTING ITEM */
+
                             const existing =
                                 cart.find(
                                     function (item) {
-                                        return item.id ===
-                                            product.id;
+
+                                        return String(item.id) ===
+                                            String(product.id);
+
                                     }
                                 );
 
 
+
                             if (existing) {
 
+
+                                const currentQuantity =
+                                    Number(
+                                        existing.quantity || 1
+                                    );
+
+
+
+                                /*
+                                 * DO NOT ALLOW QUANTITY
+                                 * ABOVE AVAILABLE STOCK.
+                                 */
+
+                                if (
+                                    currentQuantity >=
+                                    currentStock
+                                ) {
+
+                                    alert(
+                                        "Only " +
+                                        currentStock +
+                                        " " +
+                                        (
+                                            currentStock === 1
+                                                ? "item"
+                                                : "items"
+                                        ) +
+                                        " available."
+                                    );
+
+                                    return;
+
+                                }
+
+
+
                                 existing.quantity =
-                                    (existing.quantity || 1) + 1;
+                                    currentQuantity + 1;
+
 
                             } else {
 
+
+                                /*
+                                 * FIRST ITEM
+                                 */
+
                                 cart.push({
 
-                                    id: product.id,
+                                    id: latestProduct.id,
 
-                                    name: product.name,
+                                    name: latestProduct.name,
 
-                                    price: product.price,
+                                    price: latestProduct.price,
 
-                                    image: product.image,
+                                    image: latestProduct.image,
 
                                     quantity: 1
 
@@ -1170,17 +1437,26 @@
                             }
 
 
+
+                            /* SAVE CART */
+
                             localStorage.setItem(
                                 "lavanyaCart",
                                 JSON.stringify(cart)
                             );
 
 
+
+                            /* UPDATE CART COUNT */
+
                             updateCartCount();
 
 
+
+                            /* SUCCESS MESSAGE */
+
                             alert(
-                                product.name +
+                                latestProduct.name +
                                 " added to your cart."
                             );
 
@@ -1211,8 +1487,8 @@
                                 wishlist.some(
                                     function (item) {
 
-                                        return item.id ===
-                                            product.id;
+                                        return String(item.id) ===
+                                            String(product.id);
 
                                     }
                                 );
@@ -1283,7 +1559,9 @@
                             ) {
 
                                 return total +
-                                    (item.quantity || 1);
+                                    Number(
+                                        item.quantity || 1
+                                    );
 
                             },
                             0
@@ -1358,9 +1636,11 @@
                                 "lavanyaUser"
                             );
 
+
                             alert(
                                 "You have been logged out."
                             );
+
 
                             window.location.href =
                                 "index.html";
@@ -1414,6 +1694,143 @@
                     );
 
                 }
+
+
+
+                /* =====================================
+                   KEEP STOCK IN SYNC
+                   If Admin changes the product stock
+                   in another browser tab, refresh the
+                   product details page.
+                ====================================== */
+
+                window.addEventListener(
+                    "storage",
+                    function (event) {
+
+                        if (
+                            event.key ===
+                            LavanyaStore.PRODUCTS_KEY
+                        ) {
+
+                            products =
+                                LavanyaStore.getProducts();
+
+
+                            const updatedProduct =
+                                products.find(
+                                    function (item) {
+
+                                        return String(item.id) ===
+                                            String(product.id);
+
+                                    }
+                                );
+
+
+                            if (!updatedProduct) {
+
+                                return;
+
+                            }
+
+
+                            product =
+                                updatedProduct;
+
+
+                            const updatedStock =
+                                getCurrentStock(
+                                    product.id
+                                );
+
+
+                            const button =
+                                document.getElementById(
+                                    "add-to-cart"
+                                );
+
+
+                            const stockStatus =
+                                document.getElementById(
+                                    "stock-status"
+                                );
+
+
+                            if (updatedStock <= 0) {
+
+                                if (button) {
+
+                                    button.disabled = true;
+
+                                    button.textContent =
+                                        "Out of Stock";
+
+                                    button.setAttribute(
+                                        "aria-disabled",
+                                        "true"
+                                    );
+
+                                }
+
+
+                                if (stockStatus) {
+
+                                    stockStatus.textContent =
+                                        "Out of Stock";
+
+                                }
+
+                            } else {
+
+                                if (button) {
+
+                                    button.disabled = false;
+
+                                    button.textContent =
+                                        "Add to Cart";
+
+                                    button.removeAttribute(
+                                        "aria-disabled"
+                                    );
+
+                                }
+
+
+                                if (stockStatus) {
+
+                                    stockStatus.textContent =
+                                        updatedStock +
+                                        " available";
+
+                                }
+
+                            }
+
+                        }
+
+
+                        if (
+                            event.key ===
+                            "lavanyaCart"
+                        ) {
+
+                            updateCartCount();
+
+                        }
+
+
+                        if (
+                            event.key ===
+                            "lavanyaWishlist"
+                        ) {
+
+                            updateWishlistCount();
+
+                        }
+
+                    }
+                );
 
 
 

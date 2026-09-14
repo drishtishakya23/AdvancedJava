@@ -4,1786 +4,1398 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Checkout | Lavanya</title>
+    <title>Checkout | Lavanya</title>
 
-<!-- COMMON HEADER AND FOOTER CSS -->
-<link
-    rel="stylesheet"
-    href="Assets/CSS/common.css"
->
+    <!-- COMMON HEADER AND FOOTER CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/common.css"
+    >
 
-<!-- CHECKOUT PAGE CSS -->
-<link
-    rel="stylesheet"
-    href="Assets/CSS/checkout.css"
->
+    <!-- CHECKOUT PAGE CSS -->
+    <link
+        rel="stylesheet"
+        href="Assets/CSS/checkout.css"
+    >
 
-<!-- SHARED DATA LAYER (products / orders / customers) -->
-<script src="Assets/js/store-data.js"></script>
-```
+    <!-- SHARED DATA LAYER (products / orders / customers) -->
+    <script src="Assets/js/store-data.js"></script>
 
 </head>
 
 <body>
 
-```
-<!-- =========================================
-     ANNOUNCEMENT BAR
-     ========================================= -->
 
-<div class="announcement-bar">
+    <!-- =========================================
+         ANNOUNCEMENT BAR
+         ========================================= -->
 
-    Free shipping on orders over NPR 2500
+    <div class="announcement-bar">
 
-    <span>|</span>
+        Free shipping on orders over NPR 2500
 
-    Thoughtful botanical skincare
+        <span>|</span>
 
-</div>
-
-
-<!-- =========================================
-     HEADER
-     ========================================= -->
-
-<header class="site-header">
-
-    <div class="container header-inner">
-
-
-        <!-- LOGO -->
-
-        <a
-            href="index.html"
-            class="logo"
-        >
-
-            lavanya<span>.</span>
-
-        </a>
-
-
-        <!-- MAIN NAVIGATION -->
-
-        <nav
-            class="main-nav"
-            aria-label="Main navigation"
-        >
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="shop.html">
-                Shop
-            </a>
-
-            <a href="quiz.html">
-                Find My Products
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-        </nav>
-
-
-        <!-- HEADER ACTIONS -->
-
-        <div class="header-actions">
-
-            <a
-                href="shop.html#shop-products"
-                class="header-action"
-                aria-label="Search"
-            >
-                🔍
-            </a>
-
-            <a
-                href="wishlist.html"
-                class="header-action"
-                aria-label="Wishlist"
-            >
-
-                ♡
-
-                <span
-                    class="header-counter"
-                    id="wishlist-count"
-                >
-                    0
-                </span>
-
-            </a>
-
-            <a
-                href="cart.html"
-                class="header-action"
-                aria-label="Shopping cart"
-            >
-
-                🛒
-
-                <span
-                    class="header-counter"
-                    id="cart-count"
-                >
-                    0
-                </span>
-
-            </a>
-
-            <a
-                href="account.html"
-                class="header-action"
-                aria-label="Account"
-            >
-                👤
-            </a>
-
-            <button
-                type="button"
-                class="header-action"
-                data-logout
-                aria-label="Logout"
-            >
-                ↪
-            </button>
-
-        </div>
+        Thoughtful botanical skincare
 
     </div>
 
-</header>
 
 
-<!-- =========================================
-     CHECKOUT PAGE
-     ========================================= -->
+    <!-- =========================================
+         HEADER
+         ========================================= -->
 
-<main>
+    <header class="site-header">
+
+        <div class="container header-inner">
 
 
-    <!-- CHECKOUT HERO -->
+            <!-- LOGO -->
 
-    <section class="checkout-hero">
+            <a
+                href="index.html"
+                class="logo"
+            >
+                lavanya<span>.</span>
+            </a>
 
-        <div class="container">
 
-            <p class="eyebrow">
-                COMPLETE YOUR ORDER
-            </p>
 
-            <h1>
-                Checkout
-            </h1>
+            <!-- MAIN NAVIGATION -->
 
-            <p>
-                A few details and your Lavanya routine
-                will be on its way.
-            </p>
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="quiz.html">
+                    Find My Products
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <a
+                    href="shop.html#shop-products"
+                    class="header-action"
+                    aria-label="Search"
+                >
+                    🔍
+                </a>
+
+                <a
+                    href="wishlist.html"
+                    class="header-action"
+                    aria-label="Wishlist"
+                >
+
+                    ♡
+
+                    <span
+                        class="header-counter"
+                        id="wishlist-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="cart.html"
+                    class="header-action"
+                    aria-label="Shopping cart"
+                >
+
+                    🛒
+
+                    <span
+                        class="header-counter"
+                        id="cart-count"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+                <a
+                    href="account.html"
+                    class="header-action"
+                    aria-label="Account"
+                >
+                    👤
+                </a>
+
+                <button
+                    type="button"
+                    class="header-action"
+                    data-logout
+                    aria-label="Logout"
+                >
+                    ↪
+                </button>
+
+            </div>
 
         </div>
 
-    </section>
+    </header>
 
 
-    <!-- =====================================
-         CHECKOUT CONTENT
-         ===================================== -->
 
-    <section class="checkout-section">
+    <!-- =========================================
+         CHECKOUT PAGE
+         ========================================= -->
 
-        <div class="container">
+    <main>
 
 
-            <!-- EMPTY CART -->
+        <!-- CHECKOUT HERO -->
 
-            <div
-                class="checkout-empty"
-                id="checkout-empty"
-                hidden
-            >
+        <section class="checkout-hero">
 
-                <div class="checkout-empty-icon">
-                    🛒
-                </div>
+            <div class="container">
 
-                <h2>
-                    Your cart is empty
-                </h2>
-
-                <p>
-                    Add some Lavanya products before
-                    continuing to checkout.
+                <p class="eyebrow">
+                    COMPLETE YOUR ORDER
                 </p>
 
-                <a
-                    href="shop.html"
-                    class="btn btn-primary"
+                <h1>
+                    Checkout
+                </h1>
+
+                <p>
+                    A few details and your Lavanya routine
+                    will be on its way.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             CHECKOUT CONTENT
+             ===================================== -->
+
+        <section class="checkout-section">
+
+            <div class="container">
+
+
+                <!-- EMPTY CART -->
+
+                <div
+                    class="checkout-empty"
+                    id="checkout-empty"
+                    hidden
                 >
-                    Explore Shop
+
+                    <div class="checkout-empty-icon">
+                        🛒
+                    </div>
+
+                    <h2>
+                        Your cart is empty
+                    </h2>
+
+                    <p>
+                        Add some Lavanya products before
+                        continuing to checkout.
+                    </p>
+
+                    <a
+                        href="shop.html"
+                        class="btn btn-primary"
+                    >
+                        Explore Shop
+                    </a>
+
+                </div>
+
+
+
+                <!-- CHECKOUT LAYOUT -->
+
+                <div
+                    class="checkout-layout"
+                    id="checkout-layout"
+                >
+
+
+                    <!-- =================================
+                         CUSTOMER INFORMATION
+                         ================================= -->
+
+                    <div class="checkout-form-area">
+
+                        <form
+                            id="checkout-form"
+                            novalidate
+                        >
+
+
+                            <!-- CONTACT INFORMATION -->
+
+                            <div class="checkout-card">
+
+                                <div class="checkout-card-heading">
+
+                                    <span>
+                                        01
+                                    </span>
+
+                                    <div>
+
+                                        <h2>
+                                            Contact Information
+                                        </h2>
+
+                                        <p>
+                                            Where can we reach you?
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="full-name">
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="full-name"
+                                        name="fullName"
+                                        placeholder="Your full name"
+                                        required
+                                    >
+
+                                    <span
+                                        class="form-error"
+                                        id="full-name-error"
+                                    ></span>
+
+                                </div>
+
+
+
+                                <div class="form-row">
+
+                                    <div class="form-group">
+
+                                        <label for="email">
+                                            Email Address
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            placeholder="you@example.com"
+                                            required
+                                        >
+
+                                        <span
+                                            class="form-error"
+                                            id="email-error"
+                                        ></span>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="phone">
+                                            Phone Number
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="phone"
+                                            name="phone"
+                                            placeholder="98XXXXXXXX"
+                                            required
+                                        >
+
+                                        <span
+                                            class="form-error"
+                                            id="phone-error"
+                                        ></span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 SHIPPING ADDRESS
+                                 ================================= -->
+
+                            <div class="checkout-card">
+
+                                <div class="checkout-card-heading">
+
+                                    <span>
+                                        02
+                                    </span>
+
+                                    <div>
+
+                                        <h2>
+                                            Shipping Address
+                                        </h2>
+
+                                        <p>
+                                            Where should we deliver
+                                            your order?
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="address">
+                                        Street Address
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="address"
+                                        name="address"
+                                        placeholder="House number, street name"
+                                        required
+                                    >
+
+                                    <span
+                                        class="form-error"
+                                        id="address-error"
+                                    ></span>
+
+                                </div>
+
+
+
+                                <div class="form-row">
+
+                                    <div class="form-group">
+
+                                        <label for="city">
+                                            City
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="city"
+                                            name="city"
+                                            placeholder="Kathmandu"
+                                            required
+                                        >
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="postal-code">
+                                            Postal Code
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="postal-code"
+                                            name="postalCode"
+                                            placeholder="44600"
+                                            required
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="country">
+                                        Country
+                                    </label>
+
+                                    <select
+                                        id="country"
+                                        name="country"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select country
+                                        </option>
+
+                                        <option value="Nepal">
+                                            Nepal
+                                        </option>
+
+                                        <option value="India">
+                                            India
+                                        </option>
+
+                                        <option value="Bhutan">
+                                            Bhutan
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 DELIVERY
+                                 ================================= -->
+
+                            <div class="checkout-card">
+
+                                <div class="checkout-card-heading">
+
+                                    <span>
+                                        03
+                                    </span>
+
+                                    <div>
+
+                                        <h2>
+                                            Delivery
+                                        </h2>
+
+                                        <p>
+                                            Choose your delivery
+                                            preference.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="delivery-options">
+
+
+                                    <!-- STANDARD DELIVERY -->
+
+                                    <label class="delivery-option">
+
+                                        <input
+                                            type="radio"
+                                            name="delivery"
+                                            value="standard"
+                                            checked
+                                        >
+
+                                        <span
+                                            class="delivery-option-content"
+                                        >
+
+                                            <strong>
+                                                Standard Delivery
+                                            </strong>
+
+                                            <small>
+                                                3–5 business days
+                                            </small>
+
+                                        </span>
+
+                                        <strong>
+                                            NPR 150
+                                        </strong>
+
+                                    </label>
+
+
+
+                                    <!-- FREE DELIVERY -->
+
+                                    <label
+                                        class="delivery-option"
+                                        id="free-delivery-option"
+                                    >
+
+                                        <input
+                                            type="radio"
+                                            name="delivery"
+                                            value="free"
+                                            id="free-delivery"
+                                        >
+
+                                        <span
+                                            class="delivery-option-content"
+                                        >
+
+                                            <strong>
+                                                Free Delivery
+                                            </strong>
+
+                                            <small
+                                                id="free-delivery-message"
+                                            >
+                                                Available on orders
+                                                over NPR 2500
+                                            </small>
+
+                                        </span>
+
+                                        <strong>
+                                            Free
+                                        </strong>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- =================================
+                                 PAYMENT
+                                 ================================= -->
+
+                            <div class="checkout-card">
+
+                                <div class="checkout-card-heading">
+
+                                    <span>
+                                        04
+                                    </span>
+
+                                    <div>
+
+                                        <h2>
+                                            Payment
+                                        </h2>
+
+                                        <p>
+                                            This is a frontend
+                                            checkout simulation.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="payment-options">
+
+
+                                    <label class="payment-option">
+
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="cod"
+                                            checked
+                                        >
+
+                                        <span>
+
+                                            <strong>
+                                                Cash on Delivery
+                                            </strong>
+
+                                            <small>
+                                                Pay when your order
+                                                arrives.
+                                            </small>
+
+                                        </span>
+
+                                    </label>
+
+
+
+                                    <label class="payment-option">
+
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="card"
+                                        >
+
+                                        <span>
+
+                                            <strong>
+                                                Card Payment
+                                            </strong>
+
+                                            <small>
+                                                Demo payment option
+                                                for this frontend.
+                                            </small>
+
+                                        </span>
+
+                                    </label>
+
+
+
+                                    <label class="payment-option">
+
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="wallet"
+                                        >
+
+                                        <span>
+
+                                            <strong>
+                                                Digital Wallet
+                                            </strong>
+
+                                            <small>
+                                                Demo wallet payment
+                                                option.
+                                            </small>
+
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="checkout-submit-area">
+
+                                <p>
+                                    By placing your order,
+                                    you agree to Lavanya's
+                                    terms and policies.
+                                </p>
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary checkout-submit"
+                                >
+                                    Place Order
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         ORDER SUMMARY
+                         ================================= -->
+
+                    <aside class="checkout-summary">
+
+                        <h2>
+                            Your Order
+                        </h2>
+
+
+
+                        <div
+                            class="checkout-order-items"
+                            id="checkout-order-items"
+                        ></div>
+
+
+
+                        <div class="checkout-summary-divider">
+                        </div>
+
+
+
+                        <div class="checkout-summary-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <strong id="checkout-subtotal">
+                                NPR 0
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="checkout-summary-row">
+
+                            <span>
+                                Shipping
+                            </span>
+
+                            <strong id="checkout-shipping">
+                                NPR 0
+                            </strong>
+
+                        </div>
+
+
+
+                        <div
+                            class="checkout-summary-row"
+                            id="checkout-discount-row"
+                            hidden
+                        >
+
+                            <span>
+                                Discount
+                            </span>
+
+                            <strong id="checkout-discount">
+                                - NPR 0
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="checkout-summary-total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong id="checkout-total">
+                                NPR 0
+                            </strong>
+
+                        </div>
+
+
+
+                        <a
+                            href="cart.html"
+                            class="checkout-back-cart"
+                        >
+                            ← Back to Cart
+                        </a>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-main">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+                    Lavan<span>y</span>a
+                </a>
+
+                <p>
+                    Thoughtful botanical skincare made
+                    for simple, intentional routines.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Shop
+                </h4>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="recommendations.html">
+                    Recommendations
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
                 </a>
 
             </div>
 
 
-            <!-- CHECKOUT LAYOUT -->
 
-            <div
-                class="checkout-layout"
-                id="checkout-layout"
-            >
+            <div class="footer-column">
+
+                <h4>
+                    Help
+                </h4>
+
+                <a href="quiz.html">
+                    Skin Quiz
+                </a>
+
+                <a href="faq.html">
+                    FAQ
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+            </div>
 
 
-                <!-- =================================
-                     CUSTOMER INFORMATION
-                     ================================= -->
 
-                <div class="checkout-form-area">
+            <div class="footer-newsletter">
 
-                    <form
-                        id="checkout-form"
-                        novalidate
+                <h4>
+                    Stay in the loop
+                </h4>
+
+                <p>
+                    Receive skincare tips, new product
+                    updates, and thoughtful offers from
+                    Lavanya.
+                </p>
+
+                <form id="newsletter-form">
+
+                    <label
+                        for="newsletter-email"
+                        class="sr-only"
+                    >
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="newsletter-email"
+                        placeholder="Your email address"
+                        required
                     >
 
-
-                        <!-- CONTACT INFORMATION -->
-
-                        <div class="checkout-card">
-
-                            <div class="checkout-card-heading">
-
-                                <span>
-                                    01
-                                </span>
-
-                                <div>
-
-                                    <h2>
-                                        Contact Information
-                                    </h2>
-
-                                    <p>
-                                        Where can we reach you?
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="full-name">
-                                    Full Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="full-name"
-                                    name="fullName"
-                                    placeholder="Your full name"
-                                    required
-                                >
-
-                                <span
-                                    class="form-error"
-                                    id="full-name-error"
-                                ></span>
-
-                            </div>
-
-
-                            <div class="form-row">
-
-                                <div class="form-group">
-
-                                    <label for="email">
-                                        Email Address
-                                    </label>
-
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        placeholder="you@example.com"
-                                        required
-                                    >
-
-                                    <span
-                                        class="form-error"
-                                        id="email-error"
-                                    ></span>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="phone">
-                                        Phone Number
-                                    </label>
-
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        name="phone"
-                                        placeholder="98XXXXXXXX"
-                                        required
-                                    >
-
-                                    <span
-                                        class="form-error"
-                                        id="phone-error"
-                                    ></span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- =================================
-                             SHIPPING ADDRESS
-                             ================================= -->
-
-                        <div class="checkout-card">
-
-                            <div class="checkout-card-heading">
-
-                                <span>
-                                    02
-                                </span>
-
-                                <div>
-
-                                    <h2>
-                                        Shipping Address
-                                    </h2>
-
-                                    <p>
-                                        Where should we deliver
-                                        your order?
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="address">
-                                    Street Address
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="address"
-                                    name="address"
-                                    placeholder="House number, street name"
-                                    required
-                                >
-
-                                <span
-                                    class="form-error"
-                                    id="address-error"
-                                ></span>
-
-                            </div>
-
-
-                            <div class="form-row">
-
-                                <div class="form-group">
-
-                                    <label for="city">
-                                        City
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="city"
-                                        name="city"
-                                        placeholder="Kathmandu"
-                                        required
-                                    >
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="postal-code">
-                                        Postal Code
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="postal-code"
-                                        name="postalCode"
-                                        placeholder="44600"
-                                        required
-                                    >
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="country">
-                                    Country
-                                </label>
-
-                                <select
-                                    id="country"
-                                    name="country"
-                                    required
-                                >
-
-                                    <option value="">
-                                        Select country
-                                    </option>
-
-                                    <option value="Nepal">
-                                        Nepal
-                                    </option>
-
-                                    <option value="India">
-                                        India
-                                    </option>
-
-                                    <option value="Bhutan">
-                                        Bhutan
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- =================================
-                             DELIVERY
-                             ================================= -->
-
-                        <div class="checkout-card">
-
-                            <div class="checkout-card-heading">
-
-                                <span>
-                                    03
-                                </span>
-
-                                <div>
-
-                                    <h2>
-                                        Delivery
-                                    </h2>
-
-                                    <p>
-                                        Choose your delivery
-                                        preference.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="delivery-options">
-
-
-                                <!-- STANDARD DELIVERY -->
-
-                                <label class="delivery-option">
-
-                                    <input
-                                        type="radio"
-                                        name="delivery"
-                                        value="standard"
-                                        checked
-                                    >
-
-                                    <span
-                                        class="delivery-option-content"
-                                    >
-
-                                        <strong>
-                                            Standard Delivery
-                                        </strong>
-
-                                        <small>
-                                            3–5 business days
-                                        </small>
-
-                                    </span>
-
-                                    <strong>
-                                        NPR 150
-                                    </strong>
-
-                                </label>
-
-
-                                <!-- FREE DELIVERY -->
-
-                                <label
-                                    class="delivery-option"
-                                    id="free-delivery-option"
-                                >
-
-                                    <input
-                                        type="radio"
-                                        name="delivery"
-                                        value="free"
-                                        id="free-delivery"
-                                    >
-
-                                    <span
-                                        class="delivery-option-content"
-                                    >
-
-                                        <strong>
-                                            Free Delivery
-                                        </strong>
-
-                                        <small id="free-delivery-message">
-                                            Available on orders
-                                            over NPR 2500
-                                        </small>
-
-                                    </span>
-
-                                    <strong>
-                                        Free
-                                    </strong>
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- =================================
-                             PAYMENT
-                             ================================= -->
-
-                        <div class="checkout-card">
-
-                            <div class="checkout-card-heading">
-
-                                <span>
-                                    04
-                                </span>
-
-                                <div>
-
-                                    <h2>
-                                        Payment
-                                    </h2>
-
-                                    <p>
-                                        This is a frontend
-                                        checkout simulation.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="payment-options">
-
-
-                                <label class="payment-option">
-
-                                    <input
-                                        type="radio"
-                                        name="payment"
-                                        value="cod"
-                                        checked
-                                    >
-
-                                    <span>
-
-                                        <strong>
-                                            Cash on Delivery
-                                        </strong>
-
-                                        <small>
-                                            Pay when your order
-                                            arrives.
-                                        </small>
-
-                                    </span>
-
-                                </label>
-
-
-                                <label class="payment-option">
-
-                                    <input
-                                        type="radio"
-                                        name="payment"
-                                        value="card"
-                                    >
-
-                                    <span>
-
-                                        <strong>
-                                            Card Payment
-                                        </strong>
-
-                                        <small>
-                                            Demo payment option
-                                            for this frontend.
-                                        </small>
-
-                                    </span>
-
-                                </label>
-
-
-                                <label class="payment-option">
-
-                                    <input
-                                        type="radio"
-                                        name="payment"
-                                        value="wallet"
-                                    >
-
-                                    <span>
-
-                                        <strong>
-                                            Digital Wallet
-                                        </strong>
-
-                                        <small>
-                                            Demo wallet payment
-                                            option.
-                                        </small>
-
-                                    </span>
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="checkout-submit-area">
-
-                            <p>
-                                By placing your order,
-                                you agree to Lavanya's
-                                terms and policies.
-                            </p>
-
-                            <button
-                                type="submit"
-                                class="btn btn-primary checkout-submit"
-                            >
-                                Place Order
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-
-                <!-- =================================
-                     ORDER SUMMARY
-                     ================================= -->
-
-                <aside class="checkout-summary">
-
-                    <h2>
-                        Your Order
-                    </h2>
-
-
-                    <div
-                        class="checkout-order-items"
-                        id="checkout-order-items"
-                    ></div>
-
-
-                    <div class="checkout-summary-divider">
-                    </div>
-
-
-                    <div class="checkout-summary-row">
-
-                        <span>
-                            Subtotal
-                        </span>
-
-                        <strong id="checkout-subtotal">
-                            NPR 0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="checkout-summary-row">
-
-                        <span>
-                            Shipping
-                        </span>
-
-                        <strong id="checkout-shipping">
-                            NPR 0
-                        </strong>
-
-                    </div>
-
-
-                    <div
-                        class="checkout-summary-row"
-                        id="checkout-discount-row"
-                        hidden
+                    <button
+                        type="submit"
+                        class="btn btn-light"
                     >
+                        Join
+                    </button>
 
-                        <span>
-                            Discount
-                        </span>
-
-                        <strong id="checkout-discount">
-                            - NPR 0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="checkout-summary-total">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong id="checkout-total">
-                            NPR 0
-                        </strong>
-
-                    </div>
-
-
-                    <a
-                        href="cart.html"
-                        class="checkout-back-cart"
-                    >
-                        ← Back to Cart
-                    </a>
-
-                </aside>
+                </form>
 
             </div>
 
         </div>
 
-    </section>
-
-</main>
 
 
-<!-- =========================================
-     FOOTER
-     ========================================= -->
+        <!-- FOOTER BOTTOM -->
 
-<footer class="site-footer">
-
-    <div class="container footer-main">
-
-
-        <div class="footer-brand">
-
-            <a
-                href="index.html"
-                class="logo footer-logo"
-            >
-                Lavan<span>y</span>a
-            </a>
+        <div class="container footer-bottom">
 
             <p>
-                Thoughtful botanical skincare made
-                for simple, intentional routines.
+                © 2026 Lavanya. All rights reserved.
             </p>
 
-        </div>
+            <div class="footer-bottom-links">
 
+                <a href="#">
+                    Privacy
+                </a>
 
-        <div class="footer-column">
+                <a href="#">
+                    Terms
+                </a>
 
-            <h4>
-                Shop
-            </h4>
-
-            <a href="shop.html">
-                All Products
-            </a>
-
-            <a href="recommendations.html">
-                Recommendations
-            </a>
-
-            <a href="wishlist.html">
-                Wishlist
-            </a>
-
-            <a href="cart.html">
-                Cart
-            </a>
+            </div>
 
         </div>
 
-
-        <div class="footer-column">
-
-            <h4>
-                Help
-            </h4>
-
-            <a href="quiz.html">
-                Skin Quiz
-            </a>
-
-            <a href="faq.html">
-                FAQ
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-            <a href="account.html">
-                My Account
-            </a>
-
-        </div>
+    </footer>
 
 
-        <div class="footer-newsletter">
 
-            <h4>
-                Stay in the loop
-            </h4>
+    <!-- =========================================
+         CHECKOUT JAVASCRIPT
+         ========================================= -->
 
-            <p>
-                Receive skincare tips, new product
-                updates, and thoughtful offers from
-                Lavanya.
-            </p>
-
-            <form id="newsletter-form">
-
-                <label
-                    for="newsletter-email"
-                    class="sr-only"
-                >
-                    Email address
-                </label>
-
-                <input
-                    type="email"
-                    id="newsletter-email"
-                    placeholder="Your email address"
-                    required
-                >
-
-                <button
-                    type="submit"
-                    class="btn btn-light"
-                >
-                    Join
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
+    <script>
 
 
-    <!-- FOOTER BOTTOM -->
+        /* ========================================
+           SHIPPING CONSTANTS
+           ======================================== */
 
-    <div class="container footer-bottom">
+        const FREE_SHIPPING_THRESHOLD = 2500;
 
-        <p>
-            © 2026 Lavanya. All rights reserved.
-        </p>
-
-        <div class="footer-bottom-links">
-
-            <a href="#">
-                Privacy
-            </a>
-
-            <a href="#">
-                Terms
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
+        const STANDARD_SHIPPING_FEE = 150;
 
 
-<!-- =========================================
-     CHECKOUT JAVASCRIPT
-     ========================================= -->
 
-<script>
+        /* ========================================
+           LOCAL STORAGE
+           ======================================== */
 
-
-    /* ========================================
-       SHIPPING CONSTANTS
-       ======================================== */
-
-    const FREE_SHIPPING_THRESHOLD = 2500;
-
-    const STANDARD_SHIPPING_FEE = 150;
+        let cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaCart"
+                ) || "[]"
+            );
 
 
-    /* ========================================
-       LOCAL STORAGE
-       ======================================== */
-
-    let cart =
-        JSON.parse(
-            localStorage.getItem(
-                "lavanyaCart"
-            ) || "[]"
-        );
-
-
-    let wishlist =
-        JSON.parse(
-            localStorage.getItem(
-                "lavanyaWishlist"
-            ) || "[]"
-        );
-
-
-    /*
-     * Current logged-in session.
-     *
-     * This is only the session reference.
-     * The actual customer record is resolved
-     * from LavanyaStore below.
-     */
-
-    const currentUser =
-        JSON.parse(
-            localStorage.getItem(
-                "lavanyaUser"
-            ) || "null"
-        );
-
-
-    let discount = 0;
-
-
-    /* ========================================
-       RESOLVE LOGGED-IN CUSTOMER
-       ======================================== */
-
-    /*
-     * IMPORTANT:
-     *
-     * The customer's unique ID is the authoritative
-     * owner of an order.
-     *
-     * We first try to find the customer using the
-     * session ID. If the session does not contain a
-     * valid ID, we safely fall back to the session email.
-     *
-     * This prevents an order from accidentally being
-     * assigned to another customer's account.
-     */
-
-    function getLoggedInCustomer() {
-
-        if (
-            !currentUser ||
-            !LavanyaStore ||
-            typeof LavanyaStore.getCustomers !== "function"
-        ) {
-            return null;
-        }
-
-
-        const customers =
-            LavanyaStore.getCustomers();
+        let wishlist =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaWishlist"
+                ) || "[]"
+            );
 
 
         /*
-         * First choice:
-         * match the unique customer ID.
-         */
-
-        if (currentUser.id) {
-
-            const customerById =
-                customers.find(
-                    customer =>
-                        String(customer.id) ===
-                        String(currentUser.id)
-                );
-
-
-            if (customerById) {
-
-                return customerById;
-
-            }
-
-        }
-
-
-        /*
-         * Fallback:
-         * match the account email.
+         * Current logged-in session.
          *
-         * This is only used when an older session
-         * does not contain a usable customer ID.
+         * This is only the session reference.
+         * The actual customer record is resolved
+         * from LavanyaStore below.
          */
 
-        if (currentUser.email) {
-
-            const sessionEmail =
-                String(
-                    currentUser.email
-                )
-                    .trim()
-                    .toLowerCase();
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaUser"
+                ) || "null"
+            );
 
 
-            const customerByEmail =
-                customers.find(
-                    customer =>
-                        String(
-                            customer.email || ""
-                        )
-                            .trim()
-                            .toLowerCase() ===
-                        sessionEmail
-                );
+        let discount = 0;
 
 
-            if (customerByEmail) {
 
-                return customerByEmail;
+        /* ========================================
+           STOCK HELPERS
+           ======================================== */
 
+        function getCurrentProduct(productId) {
+
+            if (
+                typeof LavanyaStore === "undefined" ||
+                typeof LavanyaStore.getProductById !== "function"
+            ) {
+                return null;
             }
 
-        }
 
-
-        return null;
-
-    }
-
-
-    /*
-     * Resolve the account owner once when checkout
-     * loads.
-     *
-     * If the session is invalid, do not allow the
-     * checkout to create an unowned or incorrectly
-     * owned order.
-     */
-
-    const accountCustomer =
-        getLoggedInCustomer();
-
-
-    /* ========================================
-       UPDATE HEADER COUNTERS
-       ======================================== */
-
-    function updateHeaderCounters() {
-
-        const wishlistCount =
-            document.getElementById(
-                "wishlist-count"
+            return LavanyaStore.getProductById(
+                productId
             );
-
-
-        const cartCount =
-            document.getElementById(
-                "cart-count"
-            );
-
-
-        if (wishlistCount) {
-
-            wishlistCount.textContent =
-                wishlist.length;
 
         }
 
 
-        if (cartCount) {
 
-            const quantity =
-                cart.reduce(
-                    (total, item) =>
-                        total +
+        function getCurrentStock(productId) {
+
+            const product =
+                getCurrentProduct(productId);
+
+
+            if (!product) {
+                return 0;
+            }
+
+
+            const stock =
+                Number(product.stock);
+
+
+            if (
+                !Number.isFinite(stock) ||
+                stock < 0
+            ) {
+                return 0;
+            }
+
+
+            return Math.floor(stock);
+
+        }
+
+
+
+        function getInvalidStockItem() {
+
+            return cart.find(
+                item => {
+
+                    const stock =
+                        getCurrentStock(item.id);
+
+                    const quantity =
                         Number(
                             item.quantity || 1
-                        ),
-                    0
-                );
-
-
-            cartCount.textContent =
-                quantity;
-
-        }
-
-    }
-
-
-    /* ========================================
-       SUBTOTAL
-       ======================================== */
-
-    function getSubtotal() {
-
-        return cart.reduce(
-            (total, item) =>
-                total +
-                Number(item.price) *
-                Number(item.quantity || 1),
-            0
-        );
-
-    }
-
-
-    /* ========================================
-       CHECK FREE SHIPPING ELIGIBILITY
-       ======================================== */
-
-    function updateDeliveryAvailability() {
-
-        const subtotal =
-            getSubtotal();
-
-
-        const standardDelivery =
-            document.querySelector(
-                'input[name="delivery"][value="standard"]'
-            );
-
-
-        const freeDelivery =
-            document.querySelector(
-                'input[name="delivery"][value="free"]'
-            );
-
-
-        const freeDeliveryOption =
-            document.getElementById(
-                "free-delivery-option"
-            );
-
-
-        const freeDeliveryMessage =
-            document.getElementById(
-                "free-delivery-message"
-            );
-
-
-        /*
-         * Free shipping is available ONLY when
-         * subtotal is NPR 2500 or more.
-         */
-
-        const qualifiesForFreeShipping =
-            subtotal >= FREE_SHIPPING_THRESHOLD;
-
-
-        if (!freeDelivery) {
-
-            return;
-
-        }
-
-
-        if (qualifiesForFreeShipping) {
-
-
-            /*
-             * Enable free delivery once the
-             * subtotal reaches NPR 2500.
-             */
-
-            freeDelivery.disabled = false;
-
-
-            if (freeDeliveryOption) {
-
-                freeDeliveryOption.classList.remove(
-                    "delivery-disabled"
-                );
-
-            }
-
-
-            if (freeDeliveryMessage) {
-
-                freeDeliveryMessage.textContent =
-                    "Available on orders over NPR 2500";
-
-            }
-
-        } else {
-
-
-            /*
-             * Disable free delivery for orders
-             * below NPR 2500.
-             */
-
-            freeDelivery.disabled = true;
-
-
-            /*
-             * If the customer had selected Free Delivery
-             * and the subtotal is now below NPR 2500,
-             * automatically switch them back to Standard
-             * Delivery.
-             */
-
-            if (freeDelivery.checked) {
-
-                freeDelivery.checked = false;
-
-
-                if (standardDelivery) {
-
-                    standardDelivery.checked = true;
-
-                }
-
-            }
-
-
-            if (freeDeliveryOption) {
-
-                freeDeliveryOption.classList.add(
-                    "delivery-disabled"
-                );
-
-            }
-
-
-            if (freeDeliveryMessage) {
-
-                freeDeliveryMessage.textContent =
-                    "Available on orders over NPR 2500";
-
-            }
-
-        }
-
-    }
-
-
-    /* ========================================
-       DELIVERY
-       ======================================== */
-
-    function getShipping() {
-
-        const subtotal =
-            getSubtotal();
-
-
-        const selectedDelivery =
-            document.querySelector(
-                'input[name="delivery"]:checked'
-            );
-
-
-        /*
-         * Free delivery is allowed ONLY if:
-         *
-         * 1. The customer selected Free Delivery.
-         * 2. The subtotal is at least NPR 2500.
-         */
-
-        if (
-            selectedDelivery &&
-            selectedDelivery.value === "free" &&
-            subtotal >= FREE_SHIPPING_THRESHOLD
-        ) {
-
-            return 0;
-
-        }
-
-
-        /*
-         * Any order below NPR 2500 must pay
-         * the standard NPR 150 delivery fee.
-         */
-
-        return STANDARD_SHIPPING_FEE;
-
-    }
-
-
-    /* ========================================
-       RENDER ORDER SUMMARY
-       ======================================== */
-
-    function renderOrderSummary() {
-
-        /*
-         * Always update delivery availability
-         * before calculating shipping.
-         */
-
-        updateDeliveryAvailability();
-
-
-        const itemsContainer =
-            document.getElementById(
-                "checkout-order-items"
-            );
-
-
-        const subtotal =
-            getSubtotal();
-
-
-        const shipping =
-            getShipping();
-
-
-        const total =
-            Math.max(
-                0,
-                subtotal +
-                shipping -
-                discount
-            );
-
-
-        itemsContainer.innerHTML =
-            cart.map(
-                item => `
-
-                <div class="checkout-order-item">
-
-                    <div
-                        class="checkout-order-image"
-                    >
-
-                        <!-- PRODUCT IMAGE GOES HERE -->
-
-                        <img
-                            src="${item.image}"
-                            alt="image"
-                        >
-
-                        <span>
-                            ${item.quantity}
-                        </span>
-
-                    </div>
-
-
-                    <div
-                        class="checkout-order-details"
-                    >
-
-                        <strong>
-                            ${item.name}
-                        </strong>
-
-                        <span>
-                            NPR ${Number(item.price).toLocaleString()}
-                        </span>
-
-                    </div>
-
-                </div>
-
-            `
-            ).join("");
-
-
-        document.getElementById(
-            "checkout-subtotal"
-        ).textContent =
-            "NPR " +
-            subtotal.toLocaleString();
-
-
-        document.getElementById(
-            "checkout-shipping"
-        ).textContent =
-            shipping === 0
-                ? "Free"
-                : "NPR " +
-                  shipping.toLocaleString();
-
-
-        document.getElementById(
-            "checkout-discount"
-        ).textContent =
-            "- NPR " +
-            discount.toLocaleString();
-
-
-        document.getElementById(
-            "checkout-total"
-        ).textContent =
-            "NPR " +
-            total.toLocaleString();
-
-
-        document.getElementById(
-            "checkout-discount-row"
-        ).hidden =
-            discount === 0;
-
-    }
-
-
-    /* ========================================
-       LOAD CART
-       ======================================== */
-
-    function loadCheckout() {
-
-        const empty =
-            document.getElementById(
-                "checkout-empty"
-            );
-
-
-        const layout =
-            document.getElementById(
-                "checkout-layout"
-            );
-
-
-        if (cart.length === 0) {
-
-            empty.hidden = false;
-
-            layout.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        empty.hidden = true;
-
-        layout.style.display =
-            "grid";
-
-
-        renderOrderSummary();
-
-    }
-
-
-    /* ========================================
-       DELIVERY CHANGE
-       ======================================== */
-
-    document
-        .querySelectorAll(
-            'input[name="delivery"]'
-        )
-        .forEach(
-            option => {
-
-                option.addEventListener(
-                    "change",
-                    function() {
-
-                        /*
-                         * If Free Delivery is selected,
-                         * validate the threshold immediately.
-                         */
-
-                        const subtotal =
-                            getSubtotal();
-
-
-                        if (
-                            this.value === "free" &&
-                            subtotal < FREE_SHIPPING_THRESHOLD
-                        ) {
-
-                            /*
-                             * Do not allow free shipping
-                             * below NPR 2500.
-                             */
-
-                            this.checked = false;
-
-
-                            const standardDelivery =
-                                document.querySelector(
-                                    'input[name="delivery"][value="standard"]'
-                                );
-
-
-                            if (standardDelivery) {
-
-                                standardDelivery.checked =
-                                    true;
-
-                            }
-
-
-                            alert(
-                                "Free Delivery is available only on orders of NPR 2500 or more."
-                            );
-
-                        }
-
-
-                        renderOrderSummary();
-
-                    }
-                );
-
-            }
-        );
-
-
-    /* ========================================
-       FORM VALIDATION
-       ======================================== */
-
-    function validateForm() {
-
-        let valid = true;
-
-
-        const fields = [
-
-            {
-                id: "full-name",
-                error: "full-name-error",
-                message: "Please enter your full name."
-            },
-
-            {
-                id: "email",
-                error: "email-error",
-                message: "Please enter a valid email address."
-            },
-
-            {
-                id: "phone",
-                error: "phone-error",
-                message: "Please enter your phone number."
-            },
-
-            {
-                id: "address",
-                error: "address-error",
-                message: "Please enter your shipping address."
-            }
-
-        ];
-
-
-        fields.forEach(
-            field => {
-
-                const input =
-                    document.getElementById(
-                        field.id
-                    );
-
-
-                const error =
-                    document.getElementById(
-                        field.error
-                    );
-
-
-                let fieldValid =
-                    input.value.trim() !== "";
-
-
-                /*
-                 * Validate email address.
-                 */
-
-                if (field.id === "email") {
-
-                    fieldValid =
-                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                            .test(
-                                input.value.trim()
-                            );
-
-                }
-
-
-                if (fieldValid) {
-
-                    input.classList.remove(
-                        "input-error"
-                    );
-
-
-                    error.textContent = "";
-
-                } else {
-
-                    input.classList.add(
-                        "input-error"
-                    );
-
-
-                    error.textContent =
-                        field.message;
-
-
-                    valid = false;
-
-                }
-
-            }
-        );
-
-
-        return valid;
-
-    }
-
-
-    /* ========================================
-       PLACE ORDER
-       ======================================== */
-
-    document
-        .getElementById(
-            "checkout-form"
-        )
-        .addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-
-                /*
-                 * Do not create an order if the
-                 * customer session is invalid.
-                 */
-
-                if (!accountCustomer) {
-
-                    alert(
-                        "Your account session could not be verified. Please log in again before placing your order."
-                    );
-
-
-                    localStorage.removeItem(
-                        "lavanyaUser"
-                    );
-
-
-                    window.location.href =
-                        "login.html";
-
-
-                    return;
-
-                }
-
-
-                if (!validateForm()) {
-
-                    return;
-
-                }
-
-
-                const subtotal =
-                    getSubtotal();
-
-
-                /*
-                 * FINAL DELIVERY VALIDATION
-                 *
-                 * This is intentionally checked again
-                 * at checkout submission so that even if
-                 * someone manipulates the radio button or
-                 * browser state, an order below NPR 2500
-                 * can never receive free shipping.
-                 */
-
-                const selectedDelivery =
-                    document.querySelector(
-                        'input[name="delivery"]:checked'
-                    );
-
-
-                let deliveryValue =
-                    selectedDelivery
-                        ? selectedDelivery.value
-                        : "standard";
-
-
-                /*
-                 * Force Standard Delivery for orders
-                 * below NPR 2500.
-                 */
-
-                if (
-                    subtotal < FREE_SHIPPING_THRESHOLD &&
-                    deliveryValue === "free"
-                ) {
-
-                    deliveryValue =
-                        "standard";
-
-
-                    const standardDelivery =
-                        document.querySelector(
-                            'input[name="delivery"][value="standard"]'
                         );
+
+
+                    return (
+                        stock <= 0 ||
+                        quantity > stock
+                    );
+
+                }
+            ) || null;
+
+        }
+
+
+
+        /* ========================================
+           RESOLVE LOGGED-IN CUSTOMER
+           ======================================== */
+
+        function getLoggedInCustomer() {
+
+            if (
+                !currentUser ||
+                typeof LavanyaStore === "undefined" ||
+                typeof LavanyaStore.getCustomers !== "function"
+            ) {
+                return null;
+            }
+
+
+            const customers =
+                LavanyaStore.getCustomers();
+
+
+
+            /*
+             * First choice:
+             * match the unique customer ID.
+             */
+
+            if (currentUser.id) {
+
+                const customerById =
+                    customers.find(
+                        customer =>
+                            String(customer.id) ===
+                            String(currentUser.id)
+                    );
+
+
+                if (customerById) {
+                    return customerById;
+                }
+
+            }
+
+
+
+            /*
+             * Fallback:
+             * match the account email.
+             */
+
+            if (currentUser.email) {
+
+                const sessionEmail =
+                    String(
+                        currentUser.email
+                    )
+                        .trim()
+                        .toLowerCase();
+
+
+                const customerByEmail =
+                    customers.find(
+                        customer =>
+                            String(
+                                customer.email || ""
+                            )
+                                .trim()
+                                .toLowerCase() ===
+                            sessionEmail
+                    );
+
+
+                if (customerByEmail) {
+                    return customerByEmail;
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+
+        /*
+         * Resolve the account owner once when checkout
+         * loads.
+         */
+
+        const accountCustomer =
+            getLoggedInCustomer();
+
+
+
+        /* ========================================
+           UPDATE HEADER COUNTERS
+           ======================================== */
+
+        function updateHeaderCounters() {
+
+            const wishlistCount =
+                document.getElementById(
+                    "wishlist-count"
+                );
+
+
+            const cartCount =
+                document.getElementById(
+                    "cart-count"
+                );
+
+
+            if (wishlistCount) {
+
+                wishlistCount.textContent =
+                    wishlist.length;
+
+            }
+
+
+            if (cartCount) {
+
+                const quantity =
+                    cart.reduce(
+                        (total, item) =>
+                            total +
+                            Number(
+                                item.quantity || 1
+                            ),
+                        0
+                    );
+
+
+                cartCount.textContent =
+                    quantity;
+
+            }
+
+        }
+
+
+
+        /* ========================================
+           SUBTOTAL
+           ======================================== */
+
+        function getSubtotal() {
+
+            return cart.reduce(
+                (total, item) =>
+                    total +
+                    Number(item.price) *
+                    Number(item.quantity || 1),
+                0
+            );
+
+        }
+
+
+
+        /* ========================================
+           CHECKOUT STOCK VALIDATION
+           ======================================== */
+
+        function validateCartStock() {
+
+            const invalidStockItem =
+                getInvalidStockItem();
+
+
+            if (!invalidStockItem) {
+                return true;
+            }
+
+
+            const stock =
+                getCurrentStock(
+                    invalidStockItem.id
+                );
+
+
+            if (stock <= 0) {
+
+                alert(
+                    `"${invalidStockItem.name}" is currently out of stock. Please remove it from your cart before checkout.`
+                );
+
+            } else {
+
+                alert(
+                    `"${invalidStockItem.name}" has only ${stock} item${
+                        stock === 1 ? "" : "s"
+                    } available. Please update your cart quantity before checkout.`
+                );
+
+            }
+
+
+            return false;
+
+        }
+
+
+
+        /* ========================================
+           CHECK FREE SHIPPING ELIGIBILITY
+           ======================================== */
+
+        function updateDeliveryAvailability() {
+
+            const subtotal =
+                getSubtotal();
+
+
+            const standardDelivery =
+                document.querySelector(
+                    'input[name="delivery"][value="standard"]'
+                );
+
+
+            const freeDelivery =
+                document.querySelector(
+                    'input[name="delivery"][value="free"]'
+                );
+
+
+            const freeDeliveryOption =
+                document.getElementById(
+                    "free-delivery-option"
+                );
+
+
+            const freeDeliveryMessage =
+                document.getElementById(
+                    "free-delivery-message"
+                );
+
+
+            const qualifiesForFreeShipping =
+                subtotal >= FREE_SHIPPING_THRESHOLD;
+
+
+            if (!freeDelivery) {
+                return;
+            }
+
+
+            if (qualifiesForFreeShipping) {
+
+                freeDelivery.disabled = false;
+
+
+                if (freeDeliveryOption) {
+
+                    freeDeliveryOption.classList.remove(
+                        "delivery-disabled"
+                    );
+
+                }
+
+
+                if (freeDeliveryMessage) {
+
+                    freeDeliveryMessage.textContent =
+                        "Available on orders over NPR 2500";
+
+                }
+
+            } else {
+
+                freeDelivery.disabled = true;
+
+
+                if (freeDelivery.checked) {
+
+                    freeDelivery.checked = false;
 
 
                     if (standardDelivery) {
@@ -1796,323 +1408,939 @@
                 }
 
 
-                /*
-                 * Calculate shipping only AFTER
-                 * validating the delivery method.
-                 */
+                if (freeDeliveryOption) {
 
-                const shipping =
-                    deliveryValue === "free" &&
-                    subtotal >= FREE_SHIPPING_THRESHOLD
-                        ? 0
-                        : STANDARD_SHIPPING_FEE;
-
-
-                const total =
-                    Math.max(
-                        0,
-                        subtotal +
-                        shipping -
-                        discount
+                    freeDeliveryOption.classList.add(
+                        "delivery-disabled"
                     );
-
-
-                /*
-                 * Generate a unique order number every time.
-                 */
-
-                const orderSequence =
-                    Number(
-                        localStorage.getItem(
-                            "lavanyaOrderSequence"
-                        ) || 0
-                    ) + 1;
-
-
-                localStorage.setItem(
-                    "lavanyaOrderSequence",
-                    String(orderSequence)
-                );
-
-
-                const orderNumber =
-                    "LAV-" +
-                    new Date().getFullYear() +
-                    "-" +
-                    String(orderSequence).padStart(
-                        5,
-                        "0"
-                    );
-
-
-                /*
-                 * CUSTOMER CONTACT / DELIVERY INFORMATION
-                 *
-                 * This email is allowed to be the
-                 * checkout contact email.
-                 *
-                 * It is NOT used as the account owner.
-                 */
-
-                const customer = {
-
-                    fullName:
-                        document
-                            .getElementById(
-                                "full-name"
-                            )
-                            .value
-                            .trim(),
-
-                    email:
-                        document
-                            .getElementById(
-                                "email"
-                            )
-                            .value
-                            .trim(),
-
-                    phone:
-                        document
-                            .getElementById(
-                                "phone"
-                            )
-                            .value
-                            .trim(),
-
-                    address:
-                        document
-                            .getElementById(
-                                "address"
-                            )
-                            .value
-                            .trim(),
-
-                    city:
-                        document
-                            .getElementById(
-                                "city"
-                            )
-                            .value
-                            .trim(),
-
-                    postalCode:
-                        document
-                            .getElementById(
-                                "postal-code"
-                            )
-                            .value
-                            .trim(),
-
-                    country:
-                        document
-                            .getElementById(
-                                "country"
-                            )
-                            .value,
-
-                    delivery:
-                        deliveryValue,
-
-                    payment:
-                        document.querySelector(
-                            'input[name="payment"]:checked'
-                        ).value
-
-                };
-
-
-                /*
-                 * CREATE ORDER
-                 *
-                 * IMPORTANT:
-                 *
-                 * userId and userEmail come from the
-                 * verified logged-in account.
-                 *
-                 * They do NOT come from the checkout
-                 * contact email field.
-                 *
-                 * This prevents an order for Account A
-                 * from being assigned to Account B.
-                 */
-
-                const order = {
-
-                    orderNumber:
-                        orderNumber,
-
-
-                    customer:
-                        customer,
-
-
-                    /*
-                     * AUTHORITATIVE ACCOUNT OWNER
-                     */
-
-                    userId:
-                        accountCustomer.id,
-
-
-                    userEmail:
-                        accountCustomer.email,
-
-
-                    items:
-                        cart,
-
-
-                    subtotal:
-                        subtotal,
-
-
-                    /*
-                     * Validated shipping amount.
-                     *
-                     * Below NPR 2500 = NPR 150
-                     * NPR 2500 or above + Free Delivery = NPR 0
-                     */
-
-                    shipping:
-                        shipping,
-
-
-                    discount:
-                        discount,
-
-
-                    total:
-                        total,
-
-
-                    status:
-                        "Processing",
-
-
-                    placedAt:
-                        new Date().toISOString()
-
-                };
-
-
-                /*
-                 * Save the order through the shared
-                 * data layer.
-                 *
-                 * store-data.js will also normalize the
-                 * owner information before saving.
-                 */
-
-                LavanyaStore.addOrder(order);
-
-
-                /*
-                 * Clear cart after successful order.
-                 */
-
-                localStorage.removeItem(
-                    "lavanyaCart"
-                );
-
-
-                window.location.href =
-                    "order-confirmation.html";
-
-            }
-        );
-
-
-    /* ========================================
-       LOGOUT
-       ======================================== */
-
-    const logoutButton =
-        document.querySelector(
-            "[data-logout]"
-        );
-
-
-    if (logoutButton) {
-
-        logoutButton.addEventListener(
-            "click",
-            function() {
-
-                localStorage.removeItem(
-                    "lavanyaUser"
-                );
-
-
-                window.location.href =
-                    "index.html";
-
-            }
-        );
-
-    }
-
-
-    /* ========================================
-       NEWSLETTER
-       ======================================== */
-
-    const newsletterForm =
-        document.getElementById(
-            "newsletter-form"
-        );
-
-
-    if (newsletterForm) {
-
-        newsletterForm.addEventListener(
-            "submit",
-            function(event) {
-
-                event.preventDefault();
-
-
-                const email =
-                    document
-                        .getElementById(
-                            "newsletter-email"
-                        )
-                        .value
-                        .trim();
-
-
-                if (!email) {
-
-                    return;
 
                 }
 
 
-                localStorage.setItem(
-                    "lavanyaNewsletter",
-                    email
+                if (freeDeliveryMessage) {
+
+                    freeDeliveryMessage.textContent =
+                        "Available on orders over NPR 2500";
+
+                }
+
+            }
+
+        }
+
+
+
+        /* ========================================
+           DELIVERY
+           ======================================== */
+
+        function getShipping() {
+
+            const subtotal =
+                getSubtotal();
+
+
+            const selectedDelivery =
+                document.querySelector(
+                    'input[name="delivery"]:checked'
                 );
 
 
-                newsletterForm.reset();
+            if (
+                selectedDelivery &&
+                selectedDelivery.value === "free" &&
+                subtotal >= FREE_SHIPPING_THRESHOLD
+            ) {
+
+                return 0;
+
+            }
+
+
+            return STANDARD_SHIPPING_FEE;
+
+        }
+
+
+
+        /* ========================================
+           RENDER ORDER SUMMARY
+           ======================================== */
+
+        function renderOrderSummary() {
+
+            updateDeliveryAvailability();
+
+
+            const itemsContainer =
+                document.getElementById(
+                    "checkout-order-items"
+                );
+
+
+            const subtotal =
+                getSubtotal();
+
+
+            const shipping =
+                getShipping();
+
+
+            const total =
+                Math.max(
+                    0,
+                    subtotal +
+                    shipping -
+                    discount
+                );
+
+
+            itemsContainer.innerHTML =
+                cart.map(
+                    item => `
+
+                        <div class="checkout-order-item">
+
+                            <div
+                                class="checkout-order-image"
+                            >
+
+                                <img
+                                    src="${item.image}"
+                                    alt="${item.name}"
+                                >
+
+                                <span>
+                                    ${item.quantity}
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="checkout-order-details"
+                            >
+
+                                <strong>
+                                    ${item.name}
+                                </strong>
+
+                                <span>
+                                    NPR ${Number(item.price).toLocaleString()}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `
+                ).join("");
+
+
+            document.getElementById(
+                "checkout-subtotal"
+            ).textContent =
+                "NPR " +
+                subtotal.toLocaleString();
+
+
+            document.getElementById(
+                "checkout-shipping"
+            ).textContent =
+                shipping === 0
+                    ? "Free"
+                    : "NPR " +
+                      shipping.toLocaleString();
+
+
+            document.getElementById(
+                "checkout-discount"
+            ).textContent =
+                "- NPR " +
+                discount.toLocaleString();
+
+
+            document.getElementById(
+                "checkout-total"
+            ).textContent =
+                "NPR " +
+                total.toLocaleString();
+
+
+            document.getElementById(
+                "checkout-discount-row"
+            ).hidden =
+                discount === 0;
+
+        }
+
+
+
+        /* ========================================
+           LOAD CART
+           ======================================== */
+
+        function loadCheckout() {
+
+            const empty =
+                document.getElementById(
+                    "checkout-empty"
+                );
+
+
+            const layout =
+                document.getElementById(
+                    "checkout-layout"
+                );
+
+
+            if (cart.length === 0) {
+
+                empty.hidden = false;
+
+                layout.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+
+            /*
+             * IMPORTANT:
+             *
+             * Check stock before showing checkout.
+             *
+             * This catches the situation where:
+             *
+             * User added product to cart
+             * ↓
+             * Admin changed stock to 0
+             * ↓
+             * User opened checkout directly
+             */
+
+            if (!validateCartStock()) {
+
+                empty.hidden = true;
+
+                layout.style.display =
+                    "none";
+
+                setTimeout(
+                    function() {
+
+                        window.location.href =
+                            "cart.html";
+
+                    },
+                    100
+                );
+
+                return;
+
+            }
+
+
+            empty.hidden = true;
+
+            layout.style.display =
+                "grid";
+
+
+            renderOrderSummary();
+
+        }
+
+
+
+        /* ========================================
+           DELIVERY CHANGE
+           ======================================== */
+
+        document
+            .querySelectorAll(
+                'input[name="delivery"]'
+            )
+            .forEach(
+                option => {
+
+                    option.addEventListener(
+                        "change",
+                        function() {
+
+                            const subtotal =
+                                getSubtotal();
+
+
+                            if (
+                                this.value === "free" &&
+                                subtotal < FREE_SHIPPING_THRESHOLD
+                            ) {
+
+                                this.checked =
+                                    false;
+
+
+                                const standardDelivery =
+                                    document.querySelector(
+                                        'input[name="delivery"][value="standard"]'
+                                    );
+
+
+                                if (standardDelivery) {
+
+                                    standardDelivery.checked =
+                                        true;
+
+                                }
+
+
+                                alert(
+                                    "Free Delivery is available only on orders of NPR 2500 or more."
+                                );
+
+                            }
+
+
+                            renderOrderSummary();
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* ========================================
+           FORM VALIDATION
+           ======================================== */
+
+        function validateForm() {
+
+            let valid = true;
+
+
+            const fields = [
+
+                {
+                    id: "full-name",
+                    error: "full-name-error",
+                    message: "Please enter your full name."
+                },
+
+                {
+                    id: "email",
+                    error: "email-error",
+                    message: "Please enter a valid email address."
+                },
+
+                {
+                    id: "phone",
+                    error: "phone-error",
+                    message: "Please enter your phone number."
+                },
+
+                {
+                    id: "address",
+                    error: "address-error",
+                    message: "Please enter your shipping address."
+                }
+
+            ];
+
+
+            fields.forEach(
+                field => {
+
+                    const input =
+                        document.getElementById(
+                            field.id
+                        );
+
+
+                    const error =
+                        document.getElementById(
+                            field.error
+                        );
+
+
+                    let fieldValid =
+                        input.value.trim() !== "";
+
+
+                    /*
+                     * Validate email address.
+                     */
+
+                    if (field.id === "email") {
+
+                        fieldValid =
+                            /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                                .test(
+                                    input.value.trim()
+                                );
+
+                    }
+
+
+                    if (fieldValid) {
+
+                        input.classList.remove(
+                            "input-error"
+                        );
+
+
+                        error.textContent = "";
+
+                    } else {
+
+                        input.classList.add(
+                            "input-error"
+                        );
+
+
+                        error.textContent =
+                            field.message;
+
+
+                        valid = false;
+
+                    }
+
+                }
+            );
+
+
+            return valid;
+
+        }
+
+
+
+        /* ========================================
+           PLACE ORDER
+           ======================================== */
+
+        document
+            .getElementById(
+                "checkout-form"
+            )
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+
+                    /*
+                     * FINAL STOCK VALIDATION
+                     *
+                     * This MUST happen immediately before
+                     * creating the order.
+                     *
+                     * Stock could have changed while the
+                     * customer was filling out the form.
+                     */
+
+                    if (!validateCartStock()) {
+
+                        window.location.href =
+                            "cart.html";
+
+                        return;
+
+                    }
+
+
+
+                    /*
+                     * Do not create an order if the
+                     * customer session is invalid.
+                     */
+
+                    if (!accountCustomer) {
+
+                        alert(
+                            "Your account session could not be verified. Please log in again before placing your order."
+                        );
+
+
+                        localStorage.removeItem(
+                            "lavanyaUser"
+                        );
+
+
+                        window.location.href =
+                            "login.html";
+
+
+                        return;
+
+                    }
+
+
+
+                    if (!validateForm()) {
+                        return;
+                    }
+
+
+
+                    const subtotal =
+                        getSubtotal();
+
+
+
+                    /*
+                     * FINAL DELIVERY VALIDATION
+                     */
+
+                    const selectedDelivery =
+                        document.querySelector(
+                            'input[name="delivery"]:checked'
+                        );
+
+
+                    let deliveryValue =
+                        selectedDelivery
+                            ? selectedDelivery.value
+                            : "standard";
+
+
+
+                    /*
+                     * Force Standard Delivery for orders
+                     * below NPR 2500.
+                     */
+
+                    if (
+                        subtotal < FREE_SHIPPING_THRESHOLD &&
+                        deliveryValue === "free"
+                    ) {
+
+                        deliveryValue =
+                            "standard";
+
+
+                        const standardDelivery =
+                            document.querySelector(
+                                'input[name="delivery"][value="standard"]'
+                            );
+
+
+                        if (standardDelivery) {
+
+                            standardDelivery.checked =
+                                true;
+
+                        }
+
+                    }
+
+
+
+                    /*
+                     * Calculate shipping only AFTER
+                     * validating the delivery method.
+                     */
+
+                    const shipping =
+                        deliveryValue === "free" &&
+                        subtotal >= FREE_SHIPPING_THRESHOLD
+                            ? 0
+                            : STANDARD_SHIPPING_FEE;
+
+
+                    const total =
+                        Math.max(
+                            0,
+                            subtotal +
+                            shipping -
+                            discount
+                        );
+
+
+
+                    /*
+                     * Generate a unique order number.
+                     */
+
+                    const orderSequence =
+                        Number(
+                            localStorage.getItem(
+                                "lavanyaOrderSequence"
+                            ) || 0
+                        ) + 1;
+
+
+                    localStorage.setItem(
+                        "lavanyaOrderSequence",
+                        String(orderSequence)
+                    );
+
+
+                    const orderNumber =
+                        "LAV-" +
+                        new Date().getFullYear() +
+                        "-" +
+                        String(orderSequence).padStart(
+                            5,
+                            "0"
+                        );
+
+
+
+                    /*
+                     * CUSTOMER CONTACT / DELIVERY INFORMATION
+                     */
+
+                    const customer = {
+
+                        fullName:
+                            document
+                                .getElementById(
+                                    "full-name"
+                                )
+                                .value
+                                .trim(),
+
+                        email:
+                            document
+                                .getElementById(
+                                    "email"
+                                )
+                                .value
+                                .trim(),
+
+                        phone:
+                            document
+                                .getElementById(
+                                    "phone"
+                                )
+                                .value
+                                .trim(),
+
+                        address:
+                            document
+                                .getElementById(
+                                    "address"
+                                )
+                                .value
+                                .trim(),
+
+                        city:
+                            document
+                                .getElementById(
+                                    "city"
+                                )
+                                .value
+                                .trim(),
+
+                        postalCode:
+                            document
+                                .getElementById(
+                                    "postal-code"
+                                )
+                                .value
+                                .trim(),
+
+                        country:
+                            document
+                                .getElementById(
+                                    "country"
+                                )
+                                .value,
+
+                        delivery:
+                            deliveryValue,
+
+                        payment:
+                            document.querySelector(
+                                'input[name="payment"]:checked'
+                            ).value
+
+                    };
+
+
+
+                    /*
+                     * CREATE ORDER
+                     */
+
+                    const order = {
+
+                        orderNumber:
+                            orderNumber,
+
+
+                        customer:
+                            customer,
+
+
+                        /*
+                         * AUTHORITATIVE ACCOUNT OWNER
+                         */
+
+                        userId:
+                            accountCustomer.id,
+
+
+                        userEmail:
+                            accountCustomer.email,
+
+
+                        items:
+                            cart,
+
+
+                        subtotal:
+                            subtotal,
+
+
+                        shipping:
+                            shipping,
+
+
+                        discount:
+                            discount,
+
+
+                        total:
+                            total,
+
+
+                        status:
+                            "Processing",
+
+
+                        placedAt:
+                            new Date().toISOString()
+
+                    };
+
+
+
+                    /*
+                     * Save the order through the shared
+                     * data layer.
+                     */
+
+                    LavanyaStore.addOrder(order);
+
+
+
+                    /*
+                     * Clear cart after successful order.
+                     */
+
+                    localStorage.removeItem(
+                        "lavanyaCart"
+                    );
+
+
+                    window.location.href =
+                        "order-confirmation.html";
+
+                }
+            );
+
+
+
+        /* ========================================
+           LOGOUT
+           ======================================== */
+
+        const logoutButton =
+            document.querySelector(
+                "[data-logout]"
+            );
+
+
+        if (logoutButton) {
+
+            logoutButton.addEventListener(
+                "click",
+                function() {
+
+                    localStorage.removeItem(
+                        "lavanyaUser"
+                    );
+
+
+                    window.location.href =
+                        "index.html";
+
+                }
+            );
+
+        }
+
+
+
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+
+        const newsletterForm =
+            document.getElementById(
+                "newsletter-form"
+            );
+
+
+        if (newsletterForm) {
+
+            newsletterForm.addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const email =
+                        document
+                            .getElementById(
+                                "newsletter-email"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (!email) {
+                        return;
+                    }
+
+
+                    localStorage.setItem(
+                        "lavanyaNewsletter",
+                        email
+                    );
+
+
+                    newsletterForm.reset();
+
+                }
+            );
+
+        }
+
+
+
+        /* ========================================
+           STORAGE SYNC
+           ======================================== */
+
+        window.addEventListener(
+            "storage",
+            function(event) {
+
+
+                /*
+                 * Admin changed product stock
+                 * in another browser tab.
+                 */
+
+                if (
+                    event.key ===
+                    "lavanyaAdminProducts"
+                ) {
+
+                    cart =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "lavanyaCart"
+                            ) || "[]"
+                        );
+
+
+                    if (cart.length === 0) {
+
+                        loadCheckout();
+
+                        return;
+
+                    }
+
+
+                    if (!validateCartStock()) {
+
+                        window.location.href =
+                            "cart.html";
+
+                        return;
+
+                    }
+
+
+                    renderOrderSummary();
+
+                }
+
+
+
+                /*
+                 * Cart changed in another tab.
+                 */
+
+                if (
+                    event.key ===
+                    "lavanyaCart"
+                ) {
+
+                    cart =
+                        JSON.parse(
+                            event.newValue ||
+                            "[]"
+                        );
+
+
+                    updateHeaderCounters();
+
+
+                    loadCheckout();
+
+                }
+
+
+
+                /*
+                 * Wishlist changed in another tab.
+                 */
+
+                if (
+                    event.key ===
+                    "lavanyaWishlist"
+                ) {
+
+                    wishlist =
+                        JSON.parse(
+                            event.newValue ||
+                            "[]"
+                        );
+
+
+                    updateHeaderCounters();
+
+                }
 
             }
         );
 
-    }
 
 
-    /* ========================================
-       INITIAL LOAD
-       ======================================== */
+        /* ========================================
+           INITIAL LOAD
+           ======================================== */
 
-    updateHeaderCounters();
+        updateHeaderCounters();
 
-    loadCheckout();
+        loadCheckout();
 
 
-</script>
-```
+    </script>
 
 </body>
 
