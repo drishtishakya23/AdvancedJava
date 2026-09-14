@@ -825,10 +825,22 @@
                GET SAVED PROFILE
             ========================================== */
 
-            const savedProfile =
-                localStorage.getItem(
-                    "lavanyaSkinProfile"
-                );
+            /* =========================================
+               GET CURRENT USER'S SAVED PROFILE
+            ========================================== */
+
+            const currentUser = JSON.parse(
+                localStorage.getItem("lavanyaUser") || "null"
+            );
+
+            const profileKey =
+                currentUser && currentUser.id
+                    ? "lavanyaSkinProfile_" + currentUser.id
+                    : null;
+
+            const savedProfile = profileKey
+                ? localStorage.getItem(profileKey)
+                : null;
 
 
             const profileDetails =

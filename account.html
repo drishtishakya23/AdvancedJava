@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -28,7 +27,6 @@
 
 
 <body>
-
 
     <!-- =========================================
          ANNOUNCEMENT BAR
@@ -112,7 +110,6 @@
                     class="header-action"
                     aria-label="Wishlist"
                 >
-
                     ♡
 
                     <span
@@ -129,7 +126,6 @@
                     class="header-action"
                     aria-label="Shopping cart"
                 >
-
                     🛒
 
                     <span
@@ -172,7 +168,6 @@
 
     <main>
 
-
         <!-- =====================================
              ACCOUNT HERO
              ===================================== -->
@@ -208,13 +203,11 @@
 
             <div class="container account-layout">
 
-
                 <!-- =================================
                      PROFILE CARD
                      ================================= -->
 
                 <div class="account-main">
-
 
                     <section class="account-card profile-card">
 
@@ -288,7 +281,6 @@
                                 class="btn btn-secondary"
                             >
                                 Login
-
                             </a>
 
                         </div>
@@ -360,7 +352,7 @@
 
 
                     <!-- =================================
-                         RECENT ORDER
+                         ORDER HISTORY
                          ================================= -->
 
                     <section class="account-card">
@@ -383,7 +375,8 @@
 
 
                         <div
-                            class="recent-order" id="order-history"
+                            class="recent-order"
+                            id="order-history"
                         >
 
                             <div class="order-empty">
@@ -601,6 +594,7 @@
 
             </div>
 
+
             <div class="footer-column">
 
                 <h4>
@@ -625,6 +619,7 @@
 
             </div>
 
+
             <div class="footer-column">
 
                 <h4>
@@ -648,6 +643,7 @@
                 </a>
 
             </div>
+
 
             <div class="footer-newsletter">
 
@@ -689,6 +685,7 @@
             </div>
 
         </div>
+
 
 
         <!-- FOOTER BOTTOM -->
@@ -752,29 +749,102 @@
             );
 
 
-        const skinProfile =
-            JSON.parse(
-                localStorage.getItem(
-                    "lavanyaSkinProfile"
-                ) || "null"
-            );
+        /*
+         * IMPORTANT:
+         * Skin profiles are now stored separately
+         * for every logged-in user.
+         *
+         * Example:
+         * lavanyaSkinProfile_cust-12345
+         *
+         * This prevents User B from seeing
+         * User A's quiz results.
+         */
+
+        let skinProfile = null;
+
+        if (user && user.id) {
+
+            skinProfile =
+                JSON.parse(
+                    localStorage.getItem(
+                        "lavanyaSkinProfile_" + user.id
+                    ) || "null"
+                );
+
+        }
 
 
-        const orders =
+        /*
+         * IMPORTANT:
+         * Orders are filtered by the currently
+         * logged-in user's ID/email.
+         *
+         * We intentionally DO NOT use
+         * lavanyaLastOrder here because that
+         * value is global and can belong to
+         * another account.
+         */
+
+        const allOrders =
             JSON.parse(
                 localStorage.getItem(
                     "lavanyaOrders"
                 ) || "[]"
             );
 
-        const lastOrder =
-            orders.length > 0
-                ? orders[0]
-                : JSON.parse(
-                    localStorage.getItem(
-                        "lavanyaLastOrder"
-                    ) || "null"
-                );
+
+        let orders = [];
+
+
+        if (user) {
+
+            orders =
+                allOrders.filter(function(order) {
+
+                    /*
+                     * New orders have userId.
+                     * This is the preferred check.
+                     */
+
+                    if (
+                        order.userId &&
+                        user.id
+                    ) {
+
+                        return (
+                            String(order.userId) ===
+                            String(user.id)
+                        );
+
+                    }
+
+
+                    /*
+                     * Backward compatibility:
+                     * Older orders may not have userId.
+                     *
+                     * In that case match by email.
+                     */
+
+                    const orderEmail =
+                        order.userEmail ||
+                        (
+                            order.customer &&
+                            order.customer.email
+                        ) ||
+                        "";
+
+                    return (
+                        orderEmail &&
+                        user.email &&
+                        orderEmail.toLowerCase() ===
+                        user.email.toLowerCase()
+                    );
+
+                });
+
+        }
 
 
 
@@ -991,80 +1061,205 @@
            ======================================== */
 
         const orderHistoryContainer =
-            document.getElementById("order-history");
+            document.getElementById(
+                "order-history"
+            );
+
 
         if (orderHistoryContainer) {
 
-            const orderList =
-                orders.length > 0
-                    ? orders
-                    : (lastOrder ? [lastOrder] : []);
+            /*
+             * Only the current user's orders
+             * reach this section.
+             *
+             * There is intentionally NO fallback
+             * to lavanyaLastOrder.
+             */
+
+            const orderList = orders;
+
 
             if (orderList.length === 0) {
 
                 orderHistoryContainer.innerHTML = `
+
                     <div class="recent-order-empty">
-                        <p>You have not placed an order yet.</p>
-                        <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+
+                        <p>
+                            You have not placed an order yet.
+                        </p>
+
+                        <a
+                            href="shop.html"
+                            class="btn btn-primary"
+                        >
+                            Start Shopping
+                        </a>
+
                     </div>
+
                 `;
 
             } else {
 
-                orderHistoryContainer.innerHTML = orderList.map(function(order) {
+                orderHistoryContainer.innerHTML =
+                    orderList
+                        .map(function(order) {
 
-                    const orderItems = order.items || [];
-                    const itemCount = orderItems.reduce(function(total, item) {
-                        return total + Number(item.quantity || 1);
-                    }, 0);
+                            const orderItems =
+                                order.items || [];
 
-                    const status = order.status || "Processing";
-                    const dateText = order.placedAt
-                        ? new Date(order.placedAt).toLocaleDateString()
-                        : "Recently";
 
-                    const itemsHtml = orderItems.map(function(item) {
-                        return `
-                            <div class="recent-order-item">
-                                <span>${item.name || "Item"} × ${item.quantity || 1}</span>
-                                <strong>NPR ${Number((item.price || 0) * (item.quantity || 1)).toLocaleString()}</strong>
-                            </div>
-                        `;
-                    }).join("");
+                            const itemCount =
+                                orderItems.reduce(
+                                    function(
+                                        total,
+                                        item
+                                    ) {
 
-                    return `
-                        <article class="recent-order-card">
-                            <div class="recent-order-header">
-                                <div>
-                                    <span>Order Number</span>
-                                    <strong>${order.orderNumber || "—"}</strong>
-                                </div>
-                                <span class="order-status">${status}</span>
-                            </div>
+                                        return (
+                                            total +
+                                            Number(
+                                                item.quantity || 1
+                                            )
+                                        );
 
-                            <div class="recent-order-details">
-                                <div>
-                                    <span>Items</span>
-                                    <strong>${itemCount}</strong>
-                                </div>
-                                <div>
-                                    <span>Total</span>
-                                    <strong>NPR ${Number(order.total || 0).toLocaleString()}</strong>
-                                </div>
-                                <div>
-                                    <span>Date</span>
-                                    <strong>${dateText}</strong>
-                                </div>
-                            </div>
+                                    },
+                                    0
+                                );
 
-                            <div class="recent-order-items">
-                                ${itemsHtml}
-                            </div>
-                        </article>
-                    `;
-                }).join("");
+
+                            const status =
+                                order.status ||
+                                "Processing";
+
+
+                            const dateText =
+                                order.placedAt
+                                    ? new Date(
+                                        order.placedAt
+                                    ).toLocaleDateString()
+                                    : "Recently";
+
+
+                            const itemsHtml =
+                                orderItems
+                                    .map(function(item) {
+
+                                        return `
+
+                                            <div class="recent-order-item">
+
+                                                <span>
+                                                    ${item.name || "Item"}
+                                                    ×
+                                                    ${item.quantity || 1}
+                                                </span>
+
+                                                <strong>
+                                                    NPR
+                                                    ${Number(
+                                                        (item.price || 0) *
+                                                        (item.quantity || 1)
+                                                    ).toLocaleString()}
+                                                </strong>
+
+                                            </div>
+
+                                        `;
+
+                                    })
+                                    .join("");
+
+
+                            return `
+
+                                <article class="recent-order-card">
+
+                                    <div class="recent-order-header">
+
+                                        <div>
+
+                                            <span>
+                                                Order Number
+                                            </span>
+
+                                            <strong>
+                                                ${order.orderNumber || "—"}
+                                            </strong>
+
+                                        </div>
+
+                                        <span class="order-status">
+                                            ${status}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="recent-order-details">
+
+                                        <div>
+
+                                            <span>
+                                                Items
+                                            </span>
+
+                                            <strong>
+                                                ${itemCount}
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <span>
+                                                Total
+                                            </span>
+
+                                            <strong>
+                                                NPR
+                                                ${Number(
+                                                    order.total || 0
+                                                ).toLocaleString()}
+                                            </strong>
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <span>
+                                                Date
+                                            </span>
+
+                                            <strong>
+                                                ${dateText}
+                                            </strong>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="recent-order-items">
+
+                                        ${itemsHtml}
+
+                                    </div>
+
+                                </article>
+
+                            `;
+
+                        })
+                        .join("");
+
             }
+
         }
+
 
 
         /* ========================================
@@ -1086,6 +1281,7 @@
                     localStorage.removeItem(
                         "lavanyaUser"
                     );
+
 
                     window.location.href =
                         "index.html";
@@ -1142,6 +1338,7 @@
             );
 
         }
+
 
     </script>
 

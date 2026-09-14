@@ -979,6 +979,22 @@
             );
 
 
+        /*
+         * Current logged-in user.
+         *
+         * This is used to attach ownership information
+         * to every new order so each account can see
+         * only its own order history.
+         */
+
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaUser"
+                ) || "null"
+            );
+
+
         let discount = 0;
 
 
@@ -1482,6 +1498,27 @@
 
                         customer:
                             customer,
+
+                        /*
+                         * Store the owner of this order.
+                         * New orders are linked to the logged-in
+                         * user's unique customer ID.
+                         *
+                         * userEmail is also stored as a fallback
+                         * for account matching.
+                         */
+
+                        userId:
+                            currentUser &&
+                            currentUser.id
+                                ? currentUser.id
+                                : null,
+
+                        userEmail:
+                            currentUser &&
+                            currentUser.email
+                                ? currentUser.email
+                                : customer.email,
 
                         items:
                             cart,

@@ -1214,9 +1214,11 @@
    Users must be logged in to take the skin quiz.
 ========================================================= */
 
-const currentUser = localStorage.getItem("lavanyaUser");
+const currentUser = JSON.parse(
+    localStorage.getItem("lavanyaUser") || "null"
+);
 
-if (!currentUser) {
+if (!currentUser || !currentUser.id) {
 
     localStorage.setItem(
         "lavanyaLoginMessage",
@@ -1400,6 +1402,18 @@ if (!currentUser) {
                         /* SAVE QUIZ PROFILE */
 
                         const profile = {
+                            /*
+                             * Link this quiz result to the currently
+                             * logged-in customer. The unique user ID
+                             * prevents one account from seeing another
+                             * account's skin profile.
+                             */
+                            userId:
+                                currentUser.id,
+
+                            userEmail:
+                                currentUser.email || "",
+
                             skinType:
                                 quizAnswers.skinType || "",
 
@@ -1422,10 +1436,26 @@ if (!currentUser) {
                                 new Date().toISOString()
                         };
 
+                        /*
+                         * Store the profile under a user-specific key.
+                         * A newly registered user therefore has no profile
+                         * until they actually complete this quiz.
+                         */
+                        const profileKey =
+                            "lavanyaSkinProfile_" +
+                            currentUser.id;
 
                         localStorage.setItem(
-                            "lavanyaSkinProfile",
+                            profileKey,
                             JSON.stringify(profile)
+                        );
+
+                        /*
+                         * Remove the old shared profile key so an older
+                         * account's quiz result cannot be reused.
+                         */
+                        localStorage.removeItem(
+                            "lavanyaSkinProfile"
                         );
 
 
