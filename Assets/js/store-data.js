@@ -21,6 +21,18 @@
    The old lavanyaRegisteredUser key is supported only for
    backwards compatibility/migration with older versions.
    It is NOT used as the main account database anymore.
+
+   ORDER OWNERSHIP
+   -------------------------------------------------------------
+   IMPORTANT:
+   For new orders, userId is the authoritative account owner.
+
+   customer.email is the checkout/contact email and MUST NOT be
+   used to determine which account owns an order.
+
+   This prevents an order placed by Account A from appearing
+   under Account B just because the checkout contact email is
+   different or autofilled.
    ============================================================= */
 
 (function (global) {
@@ -1055,6 +1067,265 @@
 
 
 
+    /*
+     * Find a customer using their ID.
+     *
+     * ID is the authoritative way to identify an account.
+     */
+
+    function findCustomerById(
+        id
+    ) {
+
+        if (
+            id === null ||
+            id === undefined ||
+            String(id).trim() === ""
+        ) {
+
+            return null;
+
+        }
+
+
+        var customers =
+            getCustomers();
+
+
+        for (
+            var i = 0;
+            i < customers.length;
+            i++
+        ) {
+
+            if (
+                String(
+                    customers[i].id
+                ) ===
+                String(id)
+            ) {
+
+                return customers[i];
+
+            }
+
+        }
+
+
+        return null;
+
+    }
+
+
+
+    /*
+     * Resolve the account that owns an order.
+     *
+     * Priority:
+     *
+     * 1. Explicit order.userId
+     * 2. Logged-in lavanyaUser.id
+     * 3. order.userEmail
+     *
+     * IMPORTANT:
+     *
+     * customer.email is intentionally NOT used here as the
+     * primary account owner because it is the checkout/contact
+     * email and may differ from the logged-in account email.
+     */
+
+    function resolveOrderOwner(
+        order
+    ) {
+
+        order =
+            order || {};
+
+
+        var owner =
+            null;
+
+
+        /*
+         * -----------------------------------------------------
+         * 1. Explicit userId
+         * -----------------------------------------------------
+         */
+
+        if (
+            order.userId !== null &&
+            order.userId !== undefined &&
+            String(
+                order.userId
+            ).trim() !== ""
+        ) {
+
+            owner =
+                findCustomerById(
+                    order.userId
+                );
+
+        }
+
+
+        /*
+         * -----------------------------------------------------
+         * 2. Active logged-in account
+         * -----------------------------------------------------
+         *
+         * This protects against orders where userId was omitted
+         * by an older checkout implementation.
+         */
+
+        if (!owner) {
+
+            var activeUser =
+                readJSON(
+                    "lavanyaUser",
+                    null
+                );
+
+
+            if (
+                activeUser &&
+                activeUser.id
+            ) {
+
+                owner =
+                    findCustomerById(
+                        activeUser.id
+                    );
+
+            }
+
+        }
+
+
+        /*
+         * -----------------------------------------------------
+         * 3. Account email fallback
+         * -----------------------------------------------------
+         *
+         * This is primarily for older orders.
+         */
+
+        if (!owner) {
+
+            var accountEmail =
+                String(
+                    order.userEmail ||
+                    ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            if (accountEmail) {
+
+                owner =
+                    findCustomerByEmail(
+                        accountEmail
+                    );
+
+            }
+
+        }
+
+
+        return owner;
+
+    }
+
+
+
+    /*
+     * Normalize an order before saving it.
+     *
+     * The important part of this function is that userId and
+     * userEmail always refer to the registered account that owns
+     * the order.
+     *
+     * customer.email remains the checkout/contact email.
+     */
+
+    function normalizeOrderOwner(
+        order
+    ) {
+
+        if (
+            !order ||
+            typeof order !==
+            "object"
+        ) {
+
+            return order;
+
+        }
+
+
+        var normalizedOrder =
+            Object.assign(
+                {},
+                order
+            );
+
+
+        var owner =
+            resolveOrderOwner(
+                normalizedOrder
+            );
+
+
+        if (owner) {
+
+            /*
+             * The customer account ID is the authoritative owner.
+             */
+
+            normalizedOrder.userId =
+                owner.id;
+
+
+            /*
+             * Store the actual account email separately from the
+             * checkout/contact email.
+             */
+
+            normalizedOrder.userEmail =
+                owner.email;
+
+        }
+
+
+        /*
+         * Make sure order.customer exists without replacing
+         * checkout information.
+         */
+
+        if (
+            !normalizedOrder.customer ||
+            typeof normalizedOrder.customer !==
+            "object"
+        ) {
+
+            normalizedOrder.customer = {};
+
+        }
+
+
+        /*
+         * Do NOT overwrite customer.email here.
+         *
+         * customer.email may be the delivery/contact email
+         * entered during checkout.
+         */
+
+        return normalizedOrder;
+
+    }
+
+
+
     function addOrder(
         order
     ) {
@@ -1063,14 +1334,45 @@
             getOrders();
 
 
+        /*
+         * Resolve and lock the account owner before saving.
+         */
+
+        var normalizedOrder =
+            normalizeOrderOwner(
+                order
+            );
+
+
         var newOrder =
             Object.assign(
                 {
                     status:
                         "Processing"
                 },
-                order
+                normalizedOrder
             );
+
+
+        /*
+         * Every new order gets a unique ID if checkout did not
+         * already provide one.
+         */
+
+        if (
+            !newOrder.orderNumber
+        ) {
+
+            newOrder.orderNumber =
+                "LV-" +
+                Date.now() +
+                "-" +
+                Math.random()
+                    .toString(36)
+                    .slice(2, 7)
+                    .toUpperCase();
+
+        }
 
 
         orders.unshift(
@@ -1115,6 +1417,40 @@
                 orderNumber
             ) {
 
+                /*
+                 * IMPORTANT:
+                 *
+                 * Once a customer has cancelled an order, the
+                 * status becomes locked.
+                 *
+                 * Admin must not be able to change it back to
+                 * Processing, Shipped, Delivered, etc.
+                 *
+                 * The customer cancellation is identified by
+                 * the cancellation metadata when available.
+                 */
+
+                var customerCancelled =
+                    orders[i].cancelledBy ===
+                    "customer";
+
+
+                if (
+                    customerCancelled &&
+                    orders[i].status ===
+                    "Cancelled"
+                ) {
+
+                    /*
+                     * Do not allow any status change after
+                     * customer cancellation.
+                     */
+
+                    return orders[i];
+
+                }
+
+
                 orders[i].status =
                     status;
 
@@ -1139,6 +1475,9 @@
         saveOrders(
             orders
         );
+
+
+        return null;
 
     }
 
@@ -1172,7 +1511,7 @@
     /* =========================================================
        CUSTOMERS
        =========================================================
-       
+
        IMPORTANT:
        This is now the single source of truth for ALL accounts.
        ========================================================= */
@@ -2228,6 +2567,9 @@
 
         findCustomerByEmail:
             findCustomerByEmail,
+
+        findCustomerById:
+            findCustomerById,
 
         addCustomer:
             addCustomer,

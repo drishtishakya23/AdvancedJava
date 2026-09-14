@@ -1,7 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -23,10 +25,221 @@
         href="Assets/CSS/account.css"
     >
 
+    <style>
+
+        /* =========================================
+           ORDER HISTORY
+           ========================================= */
+
+        .recent-order {
+            width: 100%;
+        }
+
+        .order-history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .recent-order-card {
+            border: 1px solid #e5e0da;
+            padding: 22px;
+            background: #fff;
+        }
+
+        .recent-order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #eee8e2;
+        }
+
+        .recent-order-header > div {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .recent-order-header span:first-child {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: .65;
+        }
+
+        .recent-order-header strong {
+            font-size: 17px;
+        }
+
+        .order-status {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            background: #eee9e2;
+        }
+
+        .order-status.processing {
+            background: #f5ead5;
+            color: #8a5a00;
+        }
+
+        .order-status.confirmed {
+            background: #e5f0e6;
+            color: #35643c;
+        }
+
+        .order-status.shipped {
+            background: #e3edf6;
+            color: #28577c;
+        }
+
+        .order-status.delivered {
+            background: #dfeee3;
+            color: #276238;
+        }
+
+        .order-status.cancelled {
+            background: #f4dddd;
+            color: #9b3030;
+        }
+
+        .recent-order-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 18px 0;
+        }
+
+        .recent-order-details > div {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .recent-order-details span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            opacity: .6;
+        }
+
+        .recent-order-details strong {
+            font-size: 15px;
+        }
+
+        .recent-order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-top: 1px solid #eee8e2;
+            padding-top: 16px;
+        }
+
+        .recent-order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+        }
+
+        .recent-order-item strong {
+            white-space: nowrap;
+        }
+
+        .order-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid #eee8e2;
+        }
+
+        .cancel-order-btn {
+            border: 1px solid #b94a48;
+            background: #fff;
+            color: #a33331;
+            padding: 9px 17px;
+            cursor: pointer;
+            font: inherit;
+            transition: .2s ease;
+        }
+
+        .cancel-order-btn:hover {
+            background: #a33331;
+            color: #fff;
+        }
+
+        .cancel-order-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+        .cancelled-message {
+            color: #9b3030;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .order-empty {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .order-empty .empty-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .order-empty h3 {
+            margin-bottom: 8px;
+        }
+
+        .order-empty p {
+            margin-bottom: 20px;
+        }
+
+        .cancelled-order-card {
+            border-color: #e8cccc;
+        }
+
+        @media (max-width: 700px) {
+
+            .recent-order-header {
+                flex-direction: column;
+            }
+
+            .recent-order-details {
+                grid-template-columns: 1fr;
+            }
+
+            .recent-order-item {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .order-actions {
+                justify-content: flex-start;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
+
 
     <!-- =========================================
          ANNOUNCEMENT BAR
@@ -35,7 +248,9 @@
     <div class="announcement-bar">
 
         Free shipping on orders over NPR 2500
+
         <span>|</span>
+
         Thoughtful botanical skincare
 
     </div>
@@ -58,6 +273,7 @@
             >
                 lavanya<span>.</span>
             </a>
+
 
 
             <!-- MAIN NAVIGATION -->
@@ -93,6 +309,7 @@
             </nav>
 
 
+
             <!-- HEADER ACTIONS -->
 
             <div class="header-actions">
@@ -105,11 +322,13 @@
                     🔍
                 </a>
 
+
                 <a
                     href="wishlist.html"
                     class="header-action"
                     aria-label="Wishlist"
                 >
+
                     ♡
 
                     <span
@@ -121,11 +340,13 @@
 
                 </a>
 
+
                 <a
                     href="cart.html"
                     class="header-action"
                     aria-label="Shopping cart"
                 >
+
                     🛒
 
                     <span
@@ -137,6 +358,7 @@
 
                 </a>
 
+
                 <a
                     href="account.html"
                     class="header-action"
@@ -144,6 +366,7 @@
                 >
                     👤
                 </a>
+
 
                 <button
                     type="button"
@@ -167,6 +390,7 @@
          ========================================= -->
 
     <main>
+
 
         <!-- =====================================
              ACCOUNT HERO
@@ -203,11 +427,17 @@
 
             <div class="container account-layout">
 
+
                 <!-- =================================
-                     PROFILE CARD
+                     ACCOUNT MAIN
                      ================================= -->
 
                 <div class="account-main">
+
+
+                    <!-- =================================
+                         PROFILE CARD
+                         ================================= -->
 
                     <section class="account-card profile-card">
 
@@ -366,7 +596,7 @@
                                 </p>
 
                                 <h2>
-                                    Order History
+                                    My Orders
                                 </h2>
 
                             </div>
@@ -390,8 +620,8 @@
                                 </h3>
 
                                 <p>
-                                    Your recent Lavanya orders
-                                    will appear here.
+                                    Your orders will appear here
+                                    after you complete checkout.
                                 </p>
 
                                 <a
@@ -406,6 +636,7 @@
                         </div>
 
                     </section>
+
 
                 </div>
 
@@ -508,13 +739,13 @@
                             class="account-signup-link"
                         >
                             Create an account →
-
                         </a>
 
                     </div>
 
 
                 </aside>
+
 
             </div>
 
@@ -578,6 +809,7 @@
 
         <div class="container footer-main">
 
+
             <div class="footer-brand">
 
                 <a
@@ -593,6 +825,7 @@
                 </p>
 
             </div>
+
 
 
             <div class="footer-column">
@@ -620,6 +853,7 @@
             </div>
 
 
+
             <div class="footer-column">
 
                 <h4>
@@ -643,6 +877,7 @@
                 </a>
 
             </div>
+
 
 
             <div class="footer-newsletter">
@@ -684,6 +919,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -720,6 +956,8 @@
 
     <script>
 
+        "use strict";
+
 
         /* ========================================
            LOCAL STORAGE
@@ -749,100 +987,434 @@
             );
 
 
+        const skinProfile =
+            JSON.parse(
+                localStorage.getItem(
+                    "lavanyaSkinProfile"
+                ) || "null"
+            );
+
+
+
+        /* ========================================
+           HELPER FUNCTIONS
+           ======================================== */
+
+        function escapeHTML(value) {
+
+            return String(
+                value === undefined ||
+                value === null
+                    ? ""
+                    : value
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+
+        function getLoggedInUserEmail() {
+
+            if (
+                !user ||
+                !user.email
+            ) {
+
+                return "";
+
+            }
+
+            return String(
+                user.email
+            )
+            .trim()
+            .toLowerCase();
+
+        }
+
+
+
+        function getLoggedInUserId() {
+
+            if (
+                !user ||
+                user.id === undefined ||
+                user.id === null
+            ) {
+
+                return "";
+
+            }
+
+            return String(
+                user.id
+            )
+            .trim();
+
+        }
+
+
+
         /*
-         * IMPORTANT:
-         * Skin profiles are now stored separately
-         * for every logged-in user.
+         * Check whether the order belongs to
+         * the currently logged-in customer.
          *
-         * Example:
-         * lavanyaSkinProfile_cust-12345
+         * We support:
          *
-         * This prevents User B from seeing
-         * User A's quiz results.
+         * 1. order.userId
+         * 2. order.userEmail
+         * 3. order.customer.email
+         *
+         * This also keeps older orders working.
          */
+        function orderBelongsToCurrentUser(order) {
 
-        let skinProfile = null;
+            if (
+                !user ||
+                !order
+            ) {
 
-        if (user && user.id) {
+                return false;
 
-            skinProfile =
-                JSON.parse(
-                    localStorage.getItem(
-                        "lavanyaSkinProfile_" + user.id
-                    ) || "null"
+            }
+
+
+            const currentUserId =
+                getLoggedInUserId();
+
+
+            const currentUserEmail =
+                getLoggedInUserEmail();
+
+
+            const orderUserId =
+                order.userId !== undefined &&
+                order.userId !== null
+                    ? String(
+                        order.userId
+                    ).trim()
+                    : "";
+
+
+            const orderUserEmail =
+                order.userEmail
+                    ? String(
+                        order.userEmail
+                    )
+                    .trim()
+                    .toLowerCase()
+                    : "";
+
+
+            const customerEmail =
+                order.customer &&
+                order.customer.email
+                    ? String(
+                        order.customer.email
+                    )
+                    .trim()
+                    .toLowerCase()
+                    : "";
+
+
+            /*
+             * Match using user ID when available.
+             */
+            if (
+                currentUserId &&
+                orderUserId &&
+                currentUserId === orderUserId
+            ) {
+
+                return true;
+
+            }
+
+
+            /*
+             * Match using order user email.
+             */
+            if (
+                currentUserEmail &&
+                orderUserEmail &&
+                currentUserEmail === orderUserEmail
+            ) {
+
+                return true;
+
+            }
+
+
+            /*
+             * Match using customer email
+             * for older orders.
+             */
+            if (
+                currentUserEmail &&
+                customerEmail &&
+                currentUserEmail === customerEmail
+            ) {
+
+                return true;
+
+            }
+
+
+            return false;
+
+        }
+
+
+
+        /*
+         * Always read the latest orders from
+         * localStorage instead of keeping an old
+         * copy in memory.
+         *
+         * This is important because the admin page
+         * or another tab may have changed an order.
+         */
+        function getAllOrders() {
+
+            try {
+
+                const storedOrders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaOrders"
+                        ) || "[]"
+                    );
+
+
+                return Array.isArray(
+                    storedOrders
+                )
+                    ? storedOrders
+                    : [];
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Unable to read orders:",
+                    error
+                );
+
+
+                return [];
+
+            }
+
+        }
+
+
+
+        /*
+         * Return ONLY orders belonging to
+         * the currently logged-in user.
+         */
+        function getCurrentUserOrders() {
+
+            if (!user) {
+
+                return [];
+
+            }
+
+
+            return getAllOrders()
+                .filter(
+                    function(order) {
+
+                        return orderBelongsToCurrentUser(
+                            order
+                        );
+
+                    }
+                )
+                .sort(
+                    function(a, b) {
+
+                        const dateA =
+                            new Date(
+                                a.placedAt ||
+                                a.createdAt ||
+                                0
+                            ).getTime();
+
+
+                        const dateB =
+                            new Date(
+                                b.placedAt ||
+                                b.createdAt ||
+                                0
+                            ).getTime();
+
+
+                        return (
+                            dateB -
+                            dateA
+                        );
+
+                    }
                 );
 
         }
 
 
-        /*
-         * IMPORTANT:
-         * Orders are filtered by the currently
-         * logged-in user's ID/email.
-         *
-         * We intentionally DO NOT use
-         * lavanyaLastOrder here because that
-         * value is global and can belong to
-         * another account.
-         */
 
-        const allOrders =
-            JSON.parse(
-                localStorage.getItem(
-                    "lavanyaOrders"
-                ) || "[]"
+        function getStatusClass(status) {
+
+            const normalized =
+                String(
+                    status ||
+                    "Processing"
+                )
+                .trim()
+                .toLowerCase();
+
+
+            return normalized
+                .replace(
+                    /\s+/g,
+                    "-"
+                );
+
+        }
+
+
+
+        function formatDate(dateValue) {
+
+            if (!dateValue) {
+
+                return "Recently";
+
+            }
+
+
+            const date =
+                new Date(
+                    dateValue
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "Recently";
+
+            }
+
+
+            return date.toLocaleDateString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
             );
 
-
-        let orders = [];
-
-
-        if (user) {
-
-            orders =
-                allOrders.filter(function(order) {
-
-                    /*
-                     * New orders have userId.
-                     * This is the preferred check.
-                     */
-
-                    if (
-                        order.userId &&
-                        user.id
-                    ) {
-
-                        return (
-                            String(order.userId) ===
-                            String(user.id)
-                        );
-
-                    }
+        }
 
 
-                    /*
-                     * Backward compatibility:
-                     * Older orders may not have userId.
-                     *
-                     * In that case match by email.
-                     */
 
-                    const orderEmail =
-                        order.userEmail ||
-                        (
-                            order.customer &&
-                            order.customer.email
-                        ) ||
-                        "";
+        function formatDateTime(dateValue) {
 
-                    return (
-                        orderEmail &&
-                        user.email &&
-                        orderEmail.toLowerCase() ===
-                        user.email.toLowerCase()
-                    );
+            if (!dateValue) {
 
-                });
+                return "";
+
+            }
+
+
+            const date =
+                new Date(
+                    dateValue
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "";
+
+            }
+
+
+            return date.toLocaleString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+
+        /*
+         * Customer cancellation rules:
+         *
+         * Processing  -> CAN CANCEL
+         * Confirmed   -> CAN CANCEL
+         * Shipped     -> CANNOT CANCEL
+         * Delivered   -> CANNOT CANCEL
+         * Cancelled   -> CANNOT CANCEL
+         */
+        function canCancelOrder(order) {
+
+            if (!order) {
+
+                return false;
+
+            }
+
+
+            const status =
+                String(
+                    order.status ||
+                    "Processing"
+                )
+                .trim()
+                .toLowerCase();
+
+
+            return (
+                status === "processing" ||
+                status === "confirmed"
+            );
 
         }
 
@@ -852,23 +1424,46 @@
            HEADER COUNTERS
            ======================================== */
 
-        document.getElementById(
-            "wishlist-count"
-        ).textContent =
-            wishlist.length;
-
-
-        document.getElementById(
-            "cart-count"
-        ).textContent =
-            cart.reduce(
-                (total, item) =>
-                    total +
-                    Number(
-                        item.quantity || 1
-                    ),
-                0
+        const wishlistCount =
+            document.getElementById(
+                "wishlist-count"
             );
+
+
+        if (wishlistCount) {
+
+            wishlistCount.textContent =
+                wishlist.length;
+
+        }
+
+
+
+        const cartCount =
+            document.getElementById(
+                "cart-count"
+            );
+
+
+        if (cartCount) {
+
+            cartCount.textContent =
+                cart.reduce(
+                    function(total, item) {
+
+                        return (
+                            total +
+                            Number(
+                                item.quantity ||
+                                1
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+        }
 
 
 
@@ -878,31 +1473,56 @@
 
         if (user) {
 
-            document.getElementById(
-                "profile-name"
-            ).textContent =
-                user.name ||
-                user.fullName ||
-                "Lavanya User";
+            const profileName =
+                document.getElementById(
+                    "profile-name"
+                );
 
 
-            document.getElementById(
-                "profile-email"
-            ).textContent =
-                user.email ||
-                "Email not available";
+            const profileEmail =
+                document.getElementById(
+                    "profile-email"
+                );
 
 
-            document.getElementById(
-                "account-login-message"
-            ).innerHTML = `
+            const accountLoginMessage =
+                document.getElementById(
+                    "account-login-message"
+                );
 
-                <p>
-                    Your account is ready to use.
-                    Continue exploring your Lavanya routine.
-                </p>
 
-            `;
+            if (profileName) {
+
+                profileName.textContent =
+                    user.name ||
+                    user.fullName ||
+                    "Lavanya User";
+
+            }
+
+
+            if (profileEmail) {
+
+                profileEmail.textContent =
+                    user.email ||
+                    "Email not available";
+
+            }
+
+
+            if (accountLoginMessage) {
+
+                accountLoginMessage.innerHTML = `
+
+                    <p>
+                        Your account is ready to use.
+                        You can view your orders and
+                        manage your skincare journey here.
+                    </p>
+
+                `;
+
+            }
 
         }
 
@@ -921,136 +1541,165 @@
 
 
             const formatValue =
-                value => {
+                function(value) {
 
                     if (!value) {
+
                         return "Not specified";
+
                     }
 
-                    return value
-                        .replaceAll("-", " ")
-                        .replace(/\b\w/g, letter =>
-                            letter.toUpperCase()
-                        );
+
+                    return String(
+                        value
+                    )
+                    .replaceAll(
+                        "-",
+                        " "
+                    )
+                    .replace(
+                        /\b\w/g,
+                        function(letter) {
+
+                            return letter.toUpperCase();
+
+                        }
+                    );
 
                 };
 
 
-            skinProfileContainer.innerHTML = `
+            if (skinProfileContainer) {
 
-                <div class="skin-profile-grid">
+                skinProfileContainer.innerHTML = `
 
-                    <div class="skin-profile-item">
+                    <div class="skin-profile-grid">
 
-                        <span>
-                            Skin Type
-                        </span>
+                        <div class="skin-profile-item">
 
-                        <strong>
-                            ${formatValue(
-                                skinProfile.skinType
-                            )}
-                        </strong>
+                            <span>
+                                Skin Type
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatValue(
+                                        skinProfile.skinType
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="skin-profile-item">
+
+                            <span>
+                                Main Concern
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatValue(
+                                        skinProfile.primaryConcern
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="skin-profile-item">
+
+                            <span>
+                                Secondary Concern
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatValue(
+                                        skinProfile.secondaryConcern
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="skin-profile-item">
+
+                            <span>
+                                Routine
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatValue(
+                                        skinProfile.routine
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="skin-profile-item">
+
+                            <span>
+                                Preference
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatValue(
+                                        skinProfile.preference
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="skin-profile-item">
+
+                            <span>
+                                Budget
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatValue(
+                                        skinProfile.budget
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
 
                     </div>
 
 
-                    <div class="skin-profile-item">
+                    <div class="skin-profile-action">
 
-                        <span>
-                            Main Concern
-                        </span>
+                        <a
+                            href="quiz.html"
+                            class="btn btn-secondary"
+                        >
+                            Retake Quiz
+                        </a>
 
-                        <strong>
-                            ${formatValue(
-                                skinProfile.primaryConcern
-                            )}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="skin-profile-item">
-
-                        <span>
-                            Secondary Concern
-                        </span>
-
-                        <strong>
-                            ${formatValue(
-                                skinProfile.secondaryConcern
-                            )}
-                        </strong>
+                        <a
+                            href="recommendations.html"
+                            class="btn btn-primary"
+                        >
+                            View Recommendations
+                        </a>
 
                     </div>
 
+                `;
 
-                    <div class="skin-profile-item">
-
-                        <span>
-                            Routine
-                        </span>
-
-                        <strong>
-                            ${formatValue(
-                                skinProfile.routine
-                            )}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="skin-profile-item">
-
-                        <span>
-                            Preference
-                        </span>
-
-                        <strong>
-                            ${formatValue(
-                                skinProfile.preference
-                            )}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="skin-profile-item">
-
-                        <span>
-                            Budget
-                        </span>
-
-                        <strong>
-                            ${formatValue(
-                                skinProfile.budget
-                            )}
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="skin-profile-action">
-
-                    <a
-                        href="quiz.html"
-                        class="btn btn-secondary"
-                    >
-                        Retake Quiz
-                    </a>
-
-                    <a
-                        href="recommendations.html"
-                        class="btn btn-primary"
-                    >
-                        View Recommendations
-                    </a>
-
-                </div>
-
-            `;
+            }
 
         }
 
@@ -1066,27 +1715,81 @@
             );
 
 
-        if (orderHistoryContainer) {
+
+        function renderOrderHistory() {
+
+            if (!orderHistoryContainer) {
+
+                return;
+
+            }
+
 
             /*
-             * Only the current user's orders
-             * reach this section.
-             *
-             * There is intentionally NO fallback
-             * to lavanyaLastOrder.
+             * User is not logged in.
              */
+            if (!user) {
 
-            const orderList = orders;
+                orderHistoryContainer.innerHTML = `
+
+                    <div class="order-empty">
+
+                        <div class="empty-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Please log in to view your orders
+                        </h3>
+
+                        <p>
+                            Your order history is connected
+                            to your Lavanya account.
+                        </p>
+
+                        <a
+                            href="login.html"
+                            class="btn btn-primary"
+                        >
+                            Login
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
 
 
+            /*
+             * Get fresh order data every time.
+             */
+            const orderList =
+                getCurrentUserOrders();
+
+
+            /*
+             * User has no orders.
+             */
             if (orderList.length === 0) {
 
                 orderHistoryContainer.innerHTML = `
 
-                    <div class="recent-order-empty">
+                    <div class="order-empty">
+
+                        <div class="empty-icon">
+                            🛍
+                        </div>
+
+                        <h3>
+                            No orders yet
+                        </h3>
 
                         <p>
-                            You have not placed an order yet.
+                            Your orders will appear here
+                            after you complete checkout.
                         </p>
 
                         <a
@@ -1100,165 +1803,800 @@
 
                 `;
 
-            } else {
+                return;
 
-                orderHistoryContainer.innerHTML =
-                    orderList
-                        .map(function(order) {
-
-                            const orderItems =
-                                order.items || [];
+            }
 
 
-                            const itemCount =
-                                orderItems.reduce(
-                                    function(
-                                        total,
-                                        item
-                                    ) {
+            /*
+             * Render all orders.
+             */
+            orderHistoryContainer.innerHTML = `
 
-                                        return (
-                                            total +
-                                            Number(
-                                                item.quantity || 1
-                                            )
-                                        );
+                <div class="order-history-list">
 
-                                    },
+                    ${
+                        orderList
+                            .map(
+                                function(order) {
+
+                                    return renderSingleOrder(
+                                        order
+                                    );
+
+                                }
+                            )
+                            .join("")
+                    }
+
+                </div>
+
+            `;
+
+
+            /*
+             * Attach cancel handlers.
+             */
+            orderHistoryContainer
+                .querySelectorAll(
+                    ".cancel-order-btn"
+                )
+                .forEach(
+                    function(button) {
+
+                        button.addEventListener(
+                            "click",
+                            function() {
+
+                                const orderNumber =
+                                    button.dataset.order;
+
+
+                                cancelOrder(
+                                    orderNumber
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        function renderSingleOrder(order) {
+
+            const orderItems =
+                Array.isArray(
+                    order.items
+                )
+                    ? order.items
+                    : [];
+
+
+            const itemCount =
+                orderItems.reduce(
+                    function(total, item) {
+
+                        return (
+                            total +
+                            Number(
+                                item.quantity ||
+                                1
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+
+            const status =
+                order.status ||
+                "Processing";
+
+
+            const normalizedStatus =
+                String(
+                    status
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const statusClass =
+                getStatusClass(
+                    status
+                );
+
+
+            const total =
+                Number(
+                    order.total ||
+                    0
+                );
+
+
+            const orderNumber =
+                order.orderNumber ||
+                order.id ||
+                "—";
+
+
+            /*
+             * Render each item.
+             */
+            const itemsHTML =
+                orderItems
+                    .map(
+                        function(item) {
+
+                            const quantity =
+                                Number(
+                                    item.quantity ||
+                                    1
+                                );
+
+
+                            const price =
+                                Number(
+                                    item.price ||
                                     0
                                 );
 
 
-                            const status =
-                                order.status ||
-                                "Processing";
-
-
-                            const dateText =
-                                order.placedAt
-                                    ? new Date(
-                                        order.placedAt
-                                    ).toLocaleDateString()
-                                    : "Recently";
-
-
-                            const itemsHtml =
-                                orderItems
-                                    .map(function(item) {
-
-                                        return `
-
-                                            <div class="recent-order-item">
-
-                                                <span>
-                                                    ${item.name || "Item"}
-                                                    ×
-                                                    ${item.quantity || 1}
-                                                </span>
-
-                                                <strong>
-                                                    NPR
-                                                    ${Number(
-                                                        (item.price || 0) *
-                                                        (item.quantity || 1)
-                                                    ).toLocaleString()}
-                                                </strong>
-
-                                            </div>
-
-                                        `;
-
-                                    })
-                                    .join("");
-
-
                             return `
 
-                                <article class="recent-order-card">
+                                <div
+                                    class="recent-order-item"
+                                >
 
-                                    <div class="recent-order-header">
+                                    <span>
 
-                                        <div>
+                                        ${escapeHTML(
+                                            item.name ||
+                                            "Item"
+                                        )}
 
-                                            <span>
-                                                Order Number
-                                            </span>
+                                        ×
 
-                                            <strong>
-                                                ${order.orderNumber || "—"}
-                                            </strong>
+                                        ${quantity}
 
-                                        </div>
-
-                                        <span class="order-status">
-                                            ${status}
-                                        </span>
-
-                                    </div>
+                                    </span>
 
 
-                                    <div class="recent-order-details">
+                                    <strong>
 
-                                        <div>
+                                        NPR
 
-                                            <span>
-                                                Items
-                                            </span>
+                                        ${(
+                                            price *
+                                            quantity
+                                        ).toLocaleString()}
 
-                                            <strong>
-                                                ${itemCount}
-                                            </strong>
+                                    </strong>
 
-                                        </div>
-
-
-                                        <div>
-
-                                            <span>
-                                                Total
-                                            </span>
-
-                                            <strong>
-                                                NPR
-                                                ${Number(
-                                                    order.total || 0
-                                                ).toLocaleString()}
-                                            </strong>
-
-                                        </div>
-
-
-                                        <div>
-
-                                            <span>
-                                                Date
-                                            </span>
-
-                                            <strong>
-                                                ${dateText}
-                                            </strong>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="recent-order-items">
-
-                                        ${itemsHtml}
-
-                                    </div>
-
-                                </article>
+                                </div>
 
                             `;
 
-                        })
-                        .join("");
+                        }
+                    )
+                    .join("");
+
+
+            /*
+             * Customer action area.
+             */
+            let actionHTML = "";
+
+
+            /*
+             * Processing / Confirmed:
+             * show Cancel Order button.
+             */
+            if (
+                canCancelOrder(
+                    order
+                )
+            ) {
+
+                actionHTML = `
+
+                    <div
+                        class="order-actions"
+                    >
+
+                        <button
+                            type="button"
+                            class="cancel-order-btn"
+                            data-order="${escapeHTML(
+                                orderNumber
+                            )}"
+                        >
+                            Cancel Order
+                        </button>
+
+                    </div>
+
+                `;
 
             }
 
+
+            /*
+             * Cancelled:
+             * show cancellation information.
+             *
+             * There is deliberately NO
+             * Cancel button here.
+             */
+            else if (
+                normalizedStatus ===
+                "cancelled"
+            ) {
+
+                actionHTML = `
+
+                    <div
+                        class="order-actions"
+                    >
+
+                        <p
+                            class="cancelled-message"
+                        >
+
+                            This order has been cancelled.
+
+                            ${
+                                order.cancelledAt
+                                    ? `
+                                        Cancelled on
+                                        ${escapeHTML(
+                                            formatDateTime(
+                                                order.cancelledAt
+                                            )
+                                        )}
+                                      `
+                                    : ""
+                            }
+
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /*
+             * Add a special class to cancelled orders.
+             */
+            const cardClass =
+                normalizedStatus ===
+                "cancelled"
+                    ? " cancelled-order-card"
+                    : "";
+
+
+            return `
+
+                <article
+                    class="recent-order-card${cardClass}"
+                >
+
+
+                    <!-- ORDER HEADER -->
+
+                    <div
+                        class="recent-order-header"
+                    >
+
+                        <div>
+
+                            <span>
+                                Order Number
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    orderNumber
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        <span
+                            class="
+                                order-status
+                                ${statusClass}
+                            "
+                        >
+                            ${escapeHTML(
+                                status
+                            )}
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- ORDER SUMMARY -->
+
+                    <div
+                        class="recent-order-details"
+                    >
+
+                        <div>
+
+                            <span>
+                                Items
+                            </span>
+
+                            <strong>
+                                ${itemCount}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong>
+                                NPR
+                                ${total.toLocaleString()}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(
+                                    formatDate(
+                                        order.placedAt ||
+                                        order.createdAt
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ORDER ITEMS -->
+
+                    <div
+                        class="recent-order-items"
+                    >
+
+                        ${
+                            itemsHTML ||
+                            `
+                                <div
+                                    class="recent-order-item"
+                                >
+
+                                    <span>
+                                        No item details available
+                                    </span>
+
+                                </div>
+                            `
+                        }
+
+                    </div>
+
+
+                    ${actionHTML}
+
+
+                </article>
+
+            `;
+
         }
+
+
+
+        /* ========================================
+           CANCEL ORDER
+           ======================================== */
+
+        function cancelOrder(orderNumber) {
+
+            /*
+             * User must be logged in.
+             */
+            if (!user) {
+
+                alert(
+                    "Please log in to cancel an order."
+                );
+
+                return;
+
+            }
+
+
+            if (!orderNumber) {
+
+                alert(
+                    "Invalid order number."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * ALWAYS read the latest orders
+             * from localStorage.
+             */
+            const orders =
+                getAllOrders();
+
+
+            /*
+             * Find the order.
+             */
+            const orderIndex =
+                orders.findIndex(
+                    function(order) {
+
+                        return String(
+                            order.orderNumber ||
+                            order.id ||
+                            ""
+                        ) === String(
+                            orderNumber
+                        );
+
+                    }
+                );
+
+
+            if (orderIndex === -1) {
+
+                alert(
+                    "This order could not be found."
+                );
+
+                return;
+
+            }
+
+
+            const order =
+                orders[
+                    orderIndex
+                ];
+
+
+            /*
+             * SECURITY CHECK:
+             *
+             * The customer can ONLY cancel
+             * their own order.
+             */
+            if (
+                !orderBelongsToCurrentUser(
+                    order
+                )
+            ) {
+
+                alert(
+                    "You are not allowed to cancel this order."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Check the current status AGAIN.
+             *
+             * This prevents cancellation if the
+             * admin has already changed the order
+             * to Shipped or Delivered.
+             */
+            if (
+                !canCancelOrder(
+                    order
+                )
+            ) {
+
+                const currentStatus =
+                    order.status ||
+                    "Processing";
+
+
+                if (
+                    String(
+                        currentStatus
+                    )
+                    .toLowerCase() ===
+                    "cancelled"
+                ) {
+
+                    alert(
+                        "This order has already been cancelled."
+                    );
+
+                }
+                else {
+
+                    alert(
+                        "This order can no longer be cancelled because its status is " +
+                        currentStatus +
+                        "."
+                    );
+
+                }
+
+
+                /*
+                 * Refresh in case the status changed
+                 * somewhere else.
+                 */
+                renderOrderHistory();
+
+                return;
+
+            }
+
+
+            /*
+             * Ask the customer for confirmation.
+             */
+            const confirmed =
+                window.confirm(
+                    "Are you sure you want to cancel order " +
+                    orderNumber +
+                    "?"
+                );
+
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+
+            /*
+             * FINAL SAFETY CHECK.
+             *
+             * Read localStorage one more time
+             * before changing the order.
+             */
+            const latestOrders =
+                getAllOrders();
+
+
+            const latestIndex =
+                latestOrders.findIndex(
+                    function(item) {
+
+                        return String(
+                            item.orderNumber ||
+                            item.id ||
+                            ""
+                        ) === String(
+                            orderNumber
+                        );
+
+                    }
+                );
+
+
+            if (latestIndex === -1) {
+
+                alert(
+                    "This order could not be found."
+                );
+
+                renderOrderHistory();
+
+                return;
+
+            }
+
+
+            const latestOrder =
+                latestOrders[
+                    latestIndex
+                ];
+
+
+            /*
+             * Verify ownership again.
+             */
+            if (
+                !orderBelongsToCurrentUser(
+                    latestOrder
+                )
+            ) {
+
+                alert(
+                    "You are not allowed to cancel this order."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Verify status again.
+             */
+            if (
+                !canCancelOrder(
+                    latestOrder
+                )
+            ) {
+
+                alert(
+                    "This order can no longer be cancelled."
+                );
+
+                renderOrderHistory();
+
+                return;
+
+            }
+
+
+            /*
+             * =====================================
+             *
+             * IMPORTANT:
+             *
+             * DO NOT DELETE THE ORDER.
+             *
+             * Change its status to Cancelled.
+             *
+             * This means:
+             *
+             * CUSTOMER:
+             * sees Cancelled
+             *
+             * ADMIN:
+             * sees Cancelled
+             *
+             * ORDER HISTORY:
+             * still contains the order
+             *
+             * =====================================
+             */
+
+            latestOrder.status =
+                "Cancelled";
+
+
+            latestOrder.cancelledAt =
+                new Date().toISOString();
+
+
+            latestOrder.cancelledBy =
+                "customer";
+
+
+            /*
+             * Save the updated orders.
+             */
+            localStorage.setItem(
+                "lavanyaOrders",
+                JSON.stringify(
+                    latestOrders
+                )
+            );
+
+
+            /*
+             * Update lavanyaLastOrder if this
+             * is the last order stored there.
+             *
+             * This keeps order-confirmation.html
+             * synchronized as well.
+             */
+            try {
+
+                const lastOrder =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "lavanyaLastOrder"
+                        ) || "null"
+                    );
+
+
+                if (
+                    lastOrder &&
+                    String(
+                        lastOrder.orderNumber ||
+                        lastOrder.id ||
+                        ""
+                    ) === String(
+                        orderNumber
+                    )
+                ) {
+
+                    lastOrder.status =
+                        "Cancelled";
+
+
+                    lastOrder.cancelledAt =
+                        latestOrder.cancelledAt;
+
+
+                    lastOrder.cancelledBy =
+                        "customer";
+
+
+                    localStorage.setItem(
+                        "lavanyaLastOrder",
+                        JSON.stringify(
+                            lastOrder
+                        )
+                    );
+
+                }
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Unable to update last order:",
+                    error
+                );
+
+            }
+
+
+            /*
+             * Refresh the page section immediately.
+             *
+             * The Cancel Order button will disappear
+             * and the order will now show Cancelled.
+             */
+            renderOrderHistory();
+
+
+            /*
+             * Inform the customer.
+             */
+            alert(
+                "Your order " +
+                orderNumber +
+                " has been cancelled successfully."
+            );
+
+        }
+
+
+
+        /* ========================================
+           INITIAL ORDER RENDER
+           ======================================== */
+
+        renderOrderHistory();
 
 
 
@@ -1312,7 +2650,7 @@
                     event.preventDefault();
 
 
-                    const email =
+                    const newsletterEmail =
                         document
                             .getElementById(
                                 "newsletter-email"
@@ -1321,23 +2659,60 @@
                             .trim();
 
 
-                    if (!email) {
+                    if (!newsletterEmail) {
+
                         return;
+
                     }
 
 
                     localStorage.setItem(
                         "lavanyaNewsletter",
-                        email
+                        newsletterEmail
                     );
 
 
                     newsletterForm.reset();
 
+
+                    alert(
+                        "Thank you for subscribing!"
+                    );
+
                 }
             );
 
         }
+
+
+
+        /* ========================================
+           CROSS-TAB ORDER SYNCHRONIZATION
+           ======================================== */
+
+        /*
+         * If the admin page is open in another tab
+         * and changes an order status, this account
+         * page refreshes the displayed order history.
+         *
+         * This is especially useful when testing
+         * customer + admin at the same time.
+         */
+        window.addEventListener(
+            "storage",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "lavanyaOrders"
+                ) {
+
+                    renderOrderHistory();
+
+                }
+
+            }
+        );
 
 
     </script>
@@ -1346,3 +2721,4 @@
 </body>
 
 </html>
+```

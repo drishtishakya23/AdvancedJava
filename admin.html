@@ -680,7 +680,7 @@
 </div>
 
 
-<!-- CUSTOMER MODAL -->
+<!-- CUSTOMER EDIT MODAL -->
 
 <div
   class="admin-modal-overlay"
@@ -715,6 +715,7 @@
 
       <div class="admin-field">
         <label>Email</label>
+
         <input
           id="customer-email"
           type="email"
@@ -755,6 +756,46 @@
 </div>
 
 
+<!-- CUSTOMER DETAILS MODAL -->
+
+<div
+  class="admin-modal-overlay"
+  id="customer-details-modal-overlay"
+>
+
+  <div
+    class="admin-modal"
+    style="
+      max-width:900px;
+      width:calc(100% - 32px);
+    "
+  >
+
+    <h3>
+      Customer Details
+    </h3>
+
+
+    <div id="customer-details-modal-body"></div>
+
+
+    <div class="admin-modal-actions">
+
+      <button
+        type="button"
+        class="admin-btn admin-btn-outline"
+        id="customer-details-close"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <script>
 
 (function(){
@@ -765,8 +806,10 @@
 const $ = selector =>
   document.querySelector(selector);
 
+
 const $$ = selector =>
   document.querySelectorAll(selector);
+
 
 const esc = value => {
 
@@ -795,6 +838,78 @@ const ADMIN_USER =
 
 const ADMIN_PASS =
   "lavanya123";
+
+
+/* =========================
+   CUSTOMER-CANCELLED ORDER
+   PROTECTION
+========================= */
+
+function isCustomerCancelledOrder(order){
+
+  return (
+    order &&
+    String(
+      order.status || ""
+    ).trim().toLowerCase() === "cancelled" &&
+    String(
+      order.cancelledBy || ""
+    ).trim().toLowerCase() === "customer"
+  );
+
+}
+
+
+function getOrderByNumber(orderNumber){
+
+  return store
+    .getOrders()
+    .find(
+      order =>
+        String(
+          order.orderNumber || ""
+        ) ===
+        String(
+          orderNumber || ""
+        )
+    );
+
+}
+
+
+/* =========================
+   ORDER ACCOUNT EMAIL
+========================= */
+
+function getOrderAccountEmail(order){
+
+  if(!order){
+    return "—";
+  }
+
+
+  return (
+    order.userEmail ||
+    order.customer?.email ||
+    "—"
+  );
+
+}
+
+
+function getOrderContactEmail(order){
+
+  if(!order){
+    return "—";
+  }
+
+
+  return (
+    order.customer?.email ||
+    "—"
+  );
+
+}
 
 
 /* =========================
@@ -1217,7 +1332,6 @@ productForm.addEventListener(
 
 
     renderProducts();
-
     renderActivity();
 
   }
@@ -1409,9 +1523,11 @@ function renderOrders(){
     orders
       .filter(
         order =>
-          (order.status ||
-            "Processing") !==
-          "Cancelled"
+          String(
+            order.status ||
+            "Processing"
+          ).trim().toLowerCase() !==
+          "cancelled"
       )
       .reduce(
         (
@@ -1458,36 +1574,39 @@ function renderOrders(){
             "Processing";
 
 
-          return `
+          const customerCancelled =
+            isCustomerCancelledOrder(
+              order
+            );
 
-            <tr>
 
-              <td>
-                <strong>
-                  ${esc(
-                    order.orderNumber ||
-                    "—"
-                  )}
-                </strong>
-              </td>
+          const accountEmail =
+            getOrderAccountEmail(
+              order
+            );
 
-              <td>
-                ${esc(
-                  customer.name ||
-                  customer.fullName ||
-                  customer.email ||
-                  "Guest"
-                )}
-              </td>
 
-              <td>
-                NPR
-                ${Number(
-                  order.total || 0
-                ).toLocaleString()}
-              </td>
+          const statusControl =
+            customerCancelled
 
-              <td>
+              ? `
+
+                <span
+                  class="order-status"
+                  style="
+                    display:inline-block;
+                    padding:6px 10px;
+                    border-radius:6px;
+                    font-weight:600;
+                  "
+                  title="This order was cancelled by the customer and cannot be changed."
+                >
+                  Cancelled
+                </span>
+
+              `
+
+              : `
 
                 <select
                   class="order-status"
@@ -1509,8 +1628,11 @@ function renderOrders(){
                       option =>
                         `
                           <option
+                            value="${esc(option)}"
                             ${
-                              option === status
+                              option.toLowerCase() ===
+                              String(status)
+                                .toLowerCase()
                                 ? "selected"
                                 : ""
                             }
@@ -1522,6 +1644,76 @@ function renderOrders(){
                   }
 
                 </select>
+
+              `;
+
+
+          return `
+
+            <tr>
+
+              <td>
+                <strong>
+                  ${esc(
+                    order.orderNumber ||
+                    "—"
+                  )}
+                </strong>
+              </td>
+
+              <td>
+
+                <div>
+                  <strong>
+                    ${esc(
+                      customer.name ||
+                      customer.fullName ||
+                      "Guest"
+                    )}
+                  </strong>
+                </div>
+
+                <div
+                  style="
+                    margin-top:3px;
+                    font-size:12px;
+                    opacity:.75;
+                  "
+                  title="Account email"
+                >
+                  ${esc(
+                    accountEmail
+                  )}
+                </div>
+
+              </td>
+
+              <td>
+                NPR
+                ${Number(
+                  order.total || 0
+                ).toLocaleString()}
+              </td>
+
+              <td>
+
+                ${statusControl}
+
+                ${
+                  customerCancelled
+                    ? `
+                      <div
+                        style="
+                          margin-top:5px;
+                          font-size:12px;
+                          opacity:.75;
+                        "
+                      >
+                        Cancelled by customer
+                      </div>
+                    `
+                    : ""
+                }
 
               </td>
 
@@ -1572,22 +1764,67 @@ function renderOrders(){
         }
       ).join("") ||
 
+
       `
+
         <tr>
+
           <td colspan="6">
+
             <div class="admin-empty">
               No orders.
             </div>
+
           </td>
+
         </tr>
+
       `;
 
 
   $$(".order-status").forEach(
-    select =>
+    select => {
+
+      if(
+        select.tagName !==
+        "SELECT"
+      ){
+        return;
+      }
+
 
       select.onchange =
         function(){
+
+          const order =
+            getOrderByNumber(
+              select.dataset.id
+            );
+
+
+          if(!order){
+            renderOrders();
+            return;
+          }
+
+
+          if(
+            isCustomerCancelledOrder(
+              order
+            )
+          ){
+
+            alert(
+              "This order was cancelled by the customer and its status cannot be changed."
+            );
+
+
+            renderOrders();
+
+            return;
+
+          }
+
 
           store.updateOrderStatus(
             select.dataset.id,
@@ -1598,7 +1835,9 @@ function renderOrders(){
           renderOrders();
           renderActivity();
 
-        }
+        };
+
+    }
   );
 
 
@@ -1641,6 +1880,10 @@ function renderOrders(){
 }
 
 
+/* =========================
+   VIEW ORDER
+========================= */
+
 function viewOrder(id){
 
   const order =
@@ -1648,8 +1891,12 @@ function viewOrder(id){
       .getOrders()
       .find(
         item =>
-          item.orderNumber ===
-          id
+          String(
+            item.orderNumber || ""
+          ) ===
+          String(
+            id || ""
+          )
       );
 
 
@@ -1663,12 +1910,31 @@ function viewOrder(id){
     {};
 
 
+  const customerCancelled =
+    isCustomerCancelledOrder(
+      order
+    );
+
+
+  const accountEmail =
+    getOrderAccountEmail(
+      order
+    );
+
+
+  const contactEmail =
+    getOrderContactEmail(
+      order
+    );
+
+
   $("#order-modal-body")
     .innerHTML = `
 
       <dl class="admin-kv">
 
         <dt>Order</dt>
+
         <dd>
           ${esc(
             order.orderNumber ||
@@ -1676,7 +1942,9 @@ function viewOrder(id){
           )}
         </dd>
 
+
         <dt>Customer</dt>
+
         <dd>
           ${esc(
             customer.name ||
@@ -1685,23 +1953,83 @@ function viewOrder(id){
           )}
         </dd>
 
-        <dt>Email</dt>
+
+        <dt>Account Email</dt>
+
         <dd>
           ${esc(
-            customer.email ||
-            "—"
+            accountEmail
           )}
         </dd>
 
-        <dt>Status</dt>
+
+        <dt>Contact Email</dt>
+
         <dd>
+          ${esc(
+            contactEmail
+          )}
+        </dd>
+
+
+        <dt>Status</dt>
+
+        <dd>
+
           ${esc(
             order.status ||
             "Processing"
           )}
+
+          ${
+            customerCancelled
+              ? `
+                <div
+                  style="
+                    margin-top:6px;
+                    font-size:13px;
+                    opacity:.75;
+                  "
+                >
+                  This order was cancelled by the customer.
+                </div>
+              `
+              : ""
+          }
+
         </dd>
 
+
+        ${
+          customerCancelled
+            ? `
+
+              <dt>Cancelled By</dt>
+
+              <dd>
+                Customer
+              </dd>
+
+
+              <dt>Cancelled At</dt>
+
+              <dd>
+                ${
+                  order.cancelledAt
+                    ? new Date(
+                        order.cancelledAt
+                      ).toLocaleString()
+                    : "—"
+                }
+              </dd>
+
+            `
+            : ""
+        }
+
+
         <dt>Total</dt>
+
         <dd>
           NPR
           ${Number(
@@ -1709,7 +2037,9 @@ function viewOrder(id){
           ).toLocaleString()}
         </dd>
 
+
         <dt>Placed</dt>
+
         <dd>
           ${esc(
             order.placedAt ||
@@ -1719,9 +2049,11 @@ function viewOrder(id){
 
       </dl>
 
+
       <h4>
         Items
       </h4>
+
 
       <ul class="admin-order-items">
 
@@ -1730,18 +2062,26 @@ function viewOrder(id){
             .map(
               item =>
                 `
+
                   <li>
 
                     <span>
+
                       ${esc(
                         item.name
                       )}
+
                       ×
+
                       ${item.quantity || 1}
+
                     </span>
 
+
                     <strong>
+
                       NPR
+
                       ${Number(
                         (
                           item.price ||
@@ -1752,9 +2092,11 @@ function viewOrder(id){
                           1
                         )
                       ).toLocaleString()}
+
                     </strong>
 
                   </li>
+
                 `
             )
             .join("") ||
@@ -1786,6 +2128,110 @@ $("#order-modal-close").onclick =
 /* =========================
    CUSTOMERS
 ========================= */
+
+function orderBelongsToCustomer(
+  order,
+  customer
+){
+
+  if(
+    !order ||
+    !customer
+  ){
+    return false;
+  }
+
+
+  /*
+    NEW ORDERS:
+
+    userId is authoritative.
+
+    If userId exists, do not use checkout
+    contact email as the owner.
+  */
+
+  if(
+    order.userId &&
+    customer.id
+  ){
+
+    return (
+      String(
+        order.userId
+      ) ===
+      String(
+        customer.id
+      )
+    );
+
+  }
+
+
+  /*
+    LEGACY ORDERS:
+
+    Older orders may not have userId.
+
+    Use userEmail first, then customer.email.
+  */
+
+  const orderEmail =
+    order.userEmail ||
+    order.customer?.email ||
+    "";
+
+
+  const customerEmail =
+    customer.email ||
+    "";
+
+
+  return (
+    String(
+      orderEmail
+    )
+      .trim()
+      .toLowerCase() ===
+    String(
+      customerEmail
+    )
+      .trim()
+      .toLowerCase()
+  );
+
+}
+
+
+/*
+  Returns every order belonging to a specific
+  customer account.
+
+  This function is used by Customer Details,
+  so the customer purchase history follows
+  the same ownership rules as the Customers
+  order count.
+*/
+
+function getOrdersForCustomer(customer){
+
+  if(!customer){
+    return [];
+  }
+
+
+  return store
+    .getOrders()
+    .filter(
+      order =>
+        orderBelongsToCustomer(
+          order,
+          customer
+        )
+    );
+
+}
+
 
 function renderCustomers(){
 
@@ -1821,14 +2267,10 @@ function renderCustomers(){
           const orderCount =
             orders.filter(
               order =>
-                String(
-                  order.customer?.email ||
-                  ""
-                ).toLowerCase() ===
-                String(
-                  customer.email ||
-                  ""
-                ).toLowerCase()
+                orderBelongsToCustomer(
+                  order,
+                  customer
+                )
             ).length;
 
 
@@ -1872,6 +2314,15 @@ function renderCustomers(){
                 >
 
                   <button
+                    class="view-customer"
+                    data-id="${esc(
+                      customer.id
+                    )}"
+                  >
+                    View
+                  </button>
+
+                  <button
                     class="edit-customer"
                     data-id="${esc(
                       customer.id
@@ -1900,15 +2351,32 @@ function renderCustomers(){
         }
       ).join("") ||
 
+
       `
+
         <tr>
+
           <td colspan="5">
+
             <div class="admin-empty">
               No customers.
             </div>
+
           </td>
+
         </tr>
+
       `;
+
+
+  $$(".view-customer").forEach(
+    button =>
+      button.onclick =
+        () =>
+          viewCustomer(
+            button.dataset.id
+          )
+  );
 
 
   $$(".edit-customer").forEach(
@@ -1949,6 +2417,719 @@ function renderCustomers(){
 }
 
 
+/* =========================
+   VIEW CUSTOMER
+========================= */
+
+function viewCustomer(id){
+
+  const customer =
+    store
+      .getCustomers()
+      .find(
+        item =>
+          String(
+            item.id
+          ) ===
+          String(
+            id || ""
+          )
+      );
+
+
+  if(!customer){
+    return;
+  }
+
+
+  /*
+    IMPORTANT:
+
+    Get orders through the same ID-first
+    ownership system used everywhere else.
+
+    This prevents another customer's order
+    from appearing just because the checkout
+    contact email matches.
+  */
+
+  const customerOrders =
+    getOrdersForCustomer(
+      customer
+    );
+
+
+  /*
+    Build an aggregate list of products purchased.
+
+    If a customer purchased the same product
+    multiple times across different orders,
+    combine those quantities here.
+  */
+
+  const purchasedProducts = {};
+
+
+  customerOrders.forEach(
+    order => {
+
+      (order.items || [])
+        .forEach(
+          item => {
+
+            const productId =
+              item.productId ||
+              item.id ||
+              item.name ||
+              "unknown";
+
+
+            const key =
+              String(
+                productId
+              );
+
+
+            if(
+              !purchasedProducts[key]
+            ){
+
+              purchasedProducts[key] = {
+
+                name:
+                  item.name ||
+                  "Unknown product",
+
+                quantity: 0,
+
+                spent: 0
+
+              };
+
+            }
+
+
+            const quantity =
+              Number(
+                item.quantity || 1
+              );
+
+
+            const price =
+              Number(
+                item.price || 0
+              );
+
+
+            purchasedProducts[key]
+              .quantity +=
+                quantity;
+
+
+            purchasedProducts[key]
+              .spent +=
+                price *
+                quantity;
+
+          }
+        );
+
+    }
+  );
+
+
+  const purchasedProductList =
+    Object.values(
+      purchasedProducts
+    );
+
+
+  const customerName =
+    customer.name ||
+    customer.fullName ||
+    "—";
+
+
+  const customerEmail =
+    customer.email ||
+    "—";
+
+
+  const joinedDate =
+    customer.createdAt
+      ? new Date(
+          customer.createdAt
+        ).toLocaleDateString()
+      : "—";
+
+
+  const totalSpent =
+    customerOrders
+      .reduce(
+        (
+          total,
+          order
+        ) =>
+          total +
+          Number(
+            order.total || 0
+          ),
+        0
+      );
+
+
+  $("#customer-details-modal-body")
+    .innerHTML = `
+
+      <!-- CUSTOMER ACCOUNT DETAILS -->
+
+      <div
+        class="admin-card"
+        style="
+          margin-bottom:20px;
+          box-shadow:none;
+        "
+      >
+
+        <h4>
+          Account Details
+        </h4>
+
+
+        <dl class="admin-kv">
+
+          <dt>Name</dt>
+
+          <dd>
+            ${esc(
+              customerName
+            )}
+          </dd>
+
+
+          <dt>Account Email</dt>
+
+          <dd>
+            ${esc(
+              customerEmail
+            )}
+          </dd>
+
+
+          <dt>Joined</dt>
+
+          <dd>
+            ${esc(
+              joinedDate
+            )}
+          </dd>
+
+
+          <dt>Total Orders</dt>
+
+          <dd>
+            ${customerOrders.length}
+          </dd>
+
+
+          <dt>Total Spent</dt>
+
+          <dd>
+            NPR
+            ${totalSpent.toLocaleString()}
+          </dd>
+
+        </dl>
+
+      </div>
+
+
+      <!-- ORDER HISTORY -->
+
+      <div
+        class="admin-card"
+        style="
+          margin-bottom:20px;
+          box-shadow:none;
+        "
+      >
+
+        <div class="admin-section-head">
+
+          <div>
+
+            <h4>
+              Order History
+            </h4>
+
+            <p class="card-sub">
+              Orders placed by this customer account.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        ${
+          customerOrders.length
+
+            ? `
+
+              <div class="admin-table-wrap">
+
+                <table class="admin-table">
+
+                  <thead>
+
+                    <tr>
+
+                      <th>Order</th>
+                      <th>Date</th>
+                      <th>Products</th>
+                      <th>Total</th>
+                      <th>Status</th>
+
+                    </tr>
+
+                  </thead>
+
+
+                  <tbody>
+
+                    ${
+                      customerOrders
+                        .map(
+                          order => {
+
+                            const status =
+                              order.status ||
+                              "Processing";
+
+
+                            const cancelled =
+                              isCustomerCancelledOrder(
+                                order
+                              );
+
+
+                            const productCount =
+                              (order.items || [])
+                                .reduce(
+                                  (
+                                    total,
+                                    item
+                                  ) =>
+                                    total +
+                                    Number(
+                                      item.quantity ||
+                                      1
+                                    ),
+                                  0
+                                );
+
+
+                            return `
+
+                              <tr>
+
+                                <td>
+
+                                  <strong>
+                                    ${esc(
+                                      order.orderNumber ||
+                                      "—"
+                                    )}
+                                  </strong>
+
+                                </td>
+
+
+                                <td>
+                                  ${
+                                    order.placedAt
+                                      ? new Date(
+                                          order.placedAt
+                                        ).toLocaleDateString()
+                                      : "—"
+                                  }
+                                </td>
+
+
+                                <td>
+                                  ${productCount}
+                                  ${
+                                    productCount === 1
+                                      ? " item"
+                                      : " items"
+                                  }
+                                </td>
+
+
+                                <td>
+
+                                  NPR
+                                  ${Number(
+                                    order.total || 0
+                                  ).toLocaleString()}
+
+                                </td>
+
+
+                                <td>
+
+                                  ${esc(
+                                    status
+                                  )}
+
+                                  ${
+                                    cancelled
+                                      ? `
+                                        <div
+                                          style="
+                                            margin-top:4px;
+                                            font-size:12px;
+                                            opacity:.75;
+                                          "
+                                        >
+                                          Cancelled by customer
+                                        </div>
+                                      `
+                                      : ""
+                                  }
+
+                                </td>
+
+                              </tr>
+
+                            `;
+
+                          }
+                        )
+                        .join("")
+
+                    }
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            `
+
+            : `
+
+              <div class="admin-empty">
+                This customer has not placed any orders yet.
+              </div>
+
+            `
+
+        }
+
+      </div>
+
+
+      <!-- PRODUCTS PURCHASED -->
+
+      <div
+        class="admin-card"
+        style="
+          margin-bottom:20px;
+          box-shadow:none;
+        "
+      >
+
+        <div class="admin-section-head">
+
+          <div>
+
+            <h4>
+              Products Purchased
+            </h4>
+
+            <p class="card-sub">
+              Products purchased across all orders.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        ${
+          purchasedProductList.length
+
+            ? `
+
+              <div class="admin-table-wrap">
+
+                <table class="admin-table">
+
+                  <thead>
+
+                    <tr>
+
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Total Spent</th>
+
+                    </tr>
+
+                  </thead>
+
+
+                  <tbody>
+
+                    ${
+                      purchasedProductList
+                        .map(
+                          product => `
+
+                            <tr>
+
+                              <td>
+                                <strong>
+                                  ${esc(
+                                    product.name
+                                  )}
+                                </strong>
+                              </td>
+
+
+                              <td>
+                                ${product.quantity}
+                              </td>
+
+
+                              <td>
+                                NPR
+                                ${Number(
+                                  product.spent
+                                ).toLocaleString()}
+                              </td>
+
+                            </tr>
+
+                          `
+                        )
+                        .join("")
+
+                    }
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            `
+
+            : `
+
+              <div class="admin-empty">
+                No products purchased yet.
+              </div>
+
+            `
+
+        }
+
+      </div>
+
+
+      <!-- DETAILED PURCHASE HISTORY -->
+
+      ${
+        customerOrders.length
+
+          ? `
+
+            <div
+              class="admin-card"
+              style="
+                box-shadow:none;
+              "
+            >
+
+              <div class="admin-section-head">
+
+                <div>
+
+                  <h4>
+                    Purchased Items by Order
+                  </h4>
+
+                  <p class="card-sub">
+                    Detailed products and quantities from each order.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              ${
+                customerOrders
+                  .map(
+                    order => `
+
+                      <div
+                        style="
+                          border:1px solid rgba(0,0,0,.08);
+                          border-radius:10px;
+                          padding:14px;
+                          margin-bottom:12px;
+                        "
+                      >
+
+                        <div
+                          style="
+                            display:flex;
+                            justify-content:space-between;
+                            gap:12px;
+                            flex-wrap:wrap;
+                            margin-bottom:10px;
+                          "
+                        >
+
+                          <strong>
+                            ${esc(
+                              order.orderNumber ||
+                              "Order"
+                            )}
+                          </strong>
+
+
+                          <span>
+
+                            ${
+                              order.placedAt
+                                ? new Date(
+                                    order.placedAt
+                                  ).toLocaleDateString()
+                                : "—"
+                            }
+
+                            ·
+
+                            ${esc(
+                              order.status ||
+                              "Processing"
+                            )}
+
+                          </span>
+
+                        </div>
+
+
+                        <ul
+                          class="admin-order-items"
+                        >
+
+                          ${
+                            (order.items || [])
+                              .map(
+                                item => {
+
+                                  const quantity =
+                                    Number(
+                                      item.quantity ||
+                                      1
+                                    );
+
+
+                                  const price =
+                                    Number(
+                                      item.price ||
+                                      0
+                                    );
+
+
+                                  const lineTotal =
+                                    price *
+                                    quantity;
+
+
+                                  return `
+
+                                    <li>
+
+                                      <span>
+
+                                        ${esc(
+                                          item.name ||
+                                          "Unknown product"
+                                        )}
+
+                                        ×
+
+                                        ${quantity}
+
+                                      </span>
+
+
+                                      <strong>
+
+                                        NPR
+
+                                        ${lineTotal.toLocaleString()}
+
+                                      </strong>
+
+                                    </li>
+
+                                  `;
+
+                                }
+                              )
+                              .join("") ||
+
+                            "<li>No items.</li>"
+                          }
+
+                        </ul>
+
+                      </div>
+
+                    `
+                  )
+                  .join("")
+
+              }
+
+            </div>
+
+          `
+
+          : ""
+
+      }
+
+    `;
+
+
+  $("#customer-details-modal-overlay")
+    .classList.add(
+      "active"
+    );
+
+}
+
+
+$("#customer-details-close").onclick =
+  () =>
+    $("#customer-details-modal-overlay")
+      .classList.remove(
+        "active"
+      );
+
+
+/* =========================
+   OPEN CUSTOMER EDIT
+========================= */
+
 function openCustomer(id){
 
   const customer =
@@ -1956,7 +3137,12 @@ function openCustomer(id){
       .getCustomers()
       .find(
         item =>
-          item.id === id
+          String(
+            item.id
+          ) ===
+          String(
+            id
+          )
       );
 
 
@@ -2052,8 +3238,12 @@ $("#customer-form").onsubmit =
     const customer =
       customers.find(
         item =>
-          item.id ===
-          id
+          String(
+            item.id
+          ) ===
+          String(
+            id
+          )
       );
 
 
@@ -2062,9 +3252,33 @@ $("#customer-form").onsubmit =
     }
 
 
-    const oldEmail =
-      customer.email ||
-      "";
+    const duplicate =
+      customers.find(
+        item =>
+          String(
+            item.id
+          ) !==
+          String(
+            id
+          ) &&
+          String(
+            item.email || ""
+          )
+            .trim()
+            .toLowerCase() ===
+          email
+      );
+
+
+    if(duplicate){
+
+      $("#customer-form-error")
+        .textContent =
+          "Another customer already uses this email.";
+
+      return;
+
+    }
 
 
     customer.name =
@@ -2081,6 +3295,13 @@ $("#customer-form").onsubmit =
     );
 
 
+    /*
+      Do NOT change order ownership when an admin
+      edits a customer's email.
+
+      Orders belong to accounts through userId.
+    */
+
     const orders =
       store.getOrders();
 
@@ -2089,23 +3310,27 @@ $("#customer-form").onsubmit =
       order => {
 
         if(
+          order.userId &&
+          customer.id &&
           String(
-            order.customer?.email ||
-            ""
-          ).toLowerCase() ===
+            order.userId
+          ) ===
           String(
-            oldEmail
-          ).toLowerCase()
+            customer.id
+          )
         ){
+
+          if(!order.customer){
+            order.customer = {};
+          }
+
 
           order.customer.name =
             name;
 
+
           order.customer.fullName =
             name;
-
-          order.customer.email =
-            email;
 
         }
 
@@ -2154,9 +3379,11 @@ function renderMessage(){
     $("#message-detail")
       .innerHTML =
         `
+
           <div class="admin-empty">
             No message.
           </div>
+
         `;
 
     return;
@@ -2179,9 +3406,11 @@ function renderMessage(){
     $("#message-detail")
       .innerHTML =
         `
+
           <div class="admin-empty">
             Message data could not be read.
           </div>
+
         `;
 
     return;
@@ -2347,9 +3576,11 @@ function renderNewsletter(){
     $("#newsletter-detail")
       .innerHTML =
         `
+
           <div class="admin-empty">
             No newsletter signup.
           </div>
+
         `;
 
     return;
@@ -2494,6 +3725,7 @@ function renderActivity(){
         .map(
           item =>
             `
+
               <dt>
                 ${esc(item[0])}
               </dt>
@@ -2501,14 +3733,18 @@ function renderActivity(){
               <dd>
                 ${esc(item[1])}
               </dd>
+
             `
         )
         .join("") ||
 
+
       `
+
         <div class="admin-empty">
           No activity yet.
         </div>
+
       `;
 
 }
